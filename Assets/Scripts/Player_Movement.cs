@@ -7,6 +7,7 @@ public class Player_Movement : MonoBehaviour {
     public float moveForce;
     public float jumpForce;
     public float maxVelocity;
+    public float horizontalDecelaration;
 
     public Transform groundCheck;
     public LayerMask groundCheckLayer;
@@ -19,7 +20,7 @@ public class Player_Movement : MonoBehaviour {
     void Awake() {
         myRigidBody = gameObject.GetComponent<Rigidbody2D> ();
     }
-    
+
     // Update is called once per frame
     void Update () {
         isAirborn = !Physics2D.Linecast(transform.position, groundCheck.position, groundCheckLayer);
@@ -31,10 +32,7 @@ public class Player_Movement : MonoBehaviour {
 
     // Called in sync with physics engine
     void FixedUpdate() {
-        // Controls
         float h = Input.GetAxis("Horizontal");
-
-        // Animation
 
         UpdateDirection(h);
         UpdateHorizontalVelocity(h);
@@ -51,11 +49,17 @@ public class Player_Movement : MonoBehaviour {
     }
 
     private void UpdateHorizontalVelocity(float horizontalInput) {
-        if (horizontalInput * myRigidBody.velocity.x < maxVelocity) {
-            myRigidBody.AddForce(Vector2.right * horizontalInput * moveForce);
-        }
-        if (Mathf.Abs(myRigidBody.velocity.x) > maxVelocity) {
-            myRigidBody.velocity = new Vector2(Mathf.Sign(myRigidBody.velocity.x) * maxVelocity, myRigidBody.velocity.y);
+        float currentXSpeed = Mathf.Abs(myRigidBody.velocity.x);
+        if (horizontalInput == 0 && currentXSpeed > 0.1) {
+            float direction = Mathf.Sign(myRigidBody.velocity.x);
+            myRigidBody.AddForce(Vector2.right * direction * -1 * horizontalDecelaration);
+        } else {
+            if (horizontalInput * myRigidBody.velocity.x < maxVelocity) {
+                myRigidBody.AddForce(Vector2.right * horizontalInput * moveForce);
+            }
+            if (Mathf.Abs(myRigidBody.velocity.x) > maxVelocity) {
+                myRigidBody.velocity = new Vector2(Mathf.Sign(myRigidBody.velocity.x) * maxVelocity, myRigidBody.velocity.y);
+            }
         }
     }
 
