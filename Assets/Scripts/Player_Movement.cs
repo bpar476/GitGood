@@ -19,7 +19,7 @@ public class Player_Movement : MonoBehaviour {
         this.moveX = Input.GetAxis("Horizontal");
         //ANIMATIONS
         //PLAYER DIRECTION
-        if ((this.moveX < 0.0f && !this.facingRight) || (this.moveX > 0.0f && this.facingRight)) {
+        if ((this.moveX < 0.0f && this.facingRight) || (this.moveX > 0.0f && !this.facingRight)) {
             FlipPlayer ();
         }
         //PHYSICS
@@ -31,6 +31,9 @@ public class Player_Movement : MonoBehaviour {
     }
 
     void FlipPlayer () {
-
+        this.facingRight = !this.facingRight;
+        Vector2 localScale = this.gameObject.transform.localScale;
+        localScale.x *= -1;
+        this.transform.localScale = localScale;
     }
 }
