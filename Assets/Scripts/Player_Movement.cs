@@ -5,9 +5,9 @@ using UnityEngine;
 public class Player_Movement : MonoBehaviour {
 
     public int playerSpeed = 10;
-    public bool facingRight = true;
     public int playerJumpPower = 1250;
-    public float moveX;
+    private bool facingRight = true;
+    private float moveX;
 
     // Update is called once per frame
     void Update () {
