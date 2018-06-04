@@ -4,47 +4,65 @@ using UnityEngine;
 
 public class Player_Movement : MonoBehaviour {
 
-    public int playerSpeed = 10;
-    public int playerJumpPower = 1250;
-    public int maxVelocity = 10;
-    private bool facingRight = true;
-    private float moveX;
-    private bool isAirborn = false;
+    public float moveForce;
+    public float jumpForce;
+    public float maxVelocity;
 
+    public Transform groundCheck;
+    public LayerMask groundCheckLayer;
+
+    private bool facingRight = true;
+    private bool isAirborn = false;
+    private bool jump = false;
+    private Rigidbody2D myRigidBody;
+
+    void Awake() {
+        myRigidBody = gameObject.GetComponent<Rigidbody2D> ();
+    }
+    
     // Update is called once per frame
     void Update () {
-        PlayerMove ();
-    }
+        isAirborn = !Physics2D.Linecast(transform.position, groundCheck.position, groundCheckLayer);
 
-    void PlayerMove () {
-        //CONTROLS
-        if (!this.isAirborn) {
-            this.moveX = Input.GetAxis("Horizontal");
-            if (Input.GetButtonDown ("Jump")) {
-                Jump ();
-                this.isAirborn = true;
-            }
-            //ANIMATIONS
-            //PLAYER DIRECTION
-            if ((this.moveX < 0.0f && this.facingRight) || (this.moveX > 0.0f && !this.facingRight)) {
-                FlipPlayer ();
-            }
-            //PHYSICS
-            this.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 (moveX * this.playerSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
-        } else if (this.gameObject.GetComponent<Rigidbody2D>().velocity.y == 0){
-            
+        if (Input.GetButtonDown("Jump") && !isAirborn) {
+            jump = true;
         }
     }
 
-    void Jump () {
-        //JUMPING
-        GetComponent<Rigidbody2D> ().AddForce (Vector2.up * this.playerJumpPower, ForceMode2D.Impulse);
+    // Called in sync with physics engine
+    void FixedUpdate() {
+        // Controls
+        float h = Input.GetAxis("Horizontal");
+
+        // Animation
+
+        UpdateDirection(h);
+        UpdateHorizontalVelocity(h);
+        UpdateJump();
+
+    }
+    private void UpdateDirection(float horizontalInput) {
+        if ((horizontalInput < 0.0f && this.facingRight) || (horizontalInput > 0.0f && !this.facingRight)) {
+                    this.facingRight = !this.facingRight;
+            Vector2 localScale = this.gameObject.transform.localScale;
+            localScale.x *= -1;
+            this.transform.localScale = localScale;
+        }
     }
 
-    void FlipPlayer () {
-        this.facingRight = !this.facingRight;
-        Vector2 localScale = this.gameObject.transform.localScale;
-        localScale.x *= -1;
-        this.transform.localScale = localScale;
+    private void UpdateHorizontalVelocity(float horizontalInput) {
+        if (horizontalInput * myRigidBody.velocity.x < maxVelocity) {
+            myRigidBody.AddForce(Vector2.right * horizontalInput * moveForce);
+        }
+        if (Mathf.Abs(myRigidBody.velocity.x) > maxVelocity) {
+            myRigidBody.velocity = new Vector2(Mathf.Sign(myRigidBody.velocity.x) * maxVelocity, myRigidBody.velocity.y);
+        }
+    }
+
+    private void UpdateJump () {
+        if (jump) {
+            myRigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            jump = false;
+        }
     }
 }
