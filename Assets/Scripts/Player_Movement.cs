@@ -41,7 +41,7 @@ public class Player_Movement : MonoBehaviour {
     }
     private void UpdateDirection(float horizontalInput) {
         if ((horizontalInput < 0.0f && this.facingRight) || (horizontalInput > 0.0f && !this.facingRight)) {
-                    this.facingRight = !this.facingRight;
+            this.facingRight = !this.facingRight;
             Vector2 localScale = this.gameObject.transform.localScale;
             localScale.x *= -1;
             this.transform.localScale = localScale;
