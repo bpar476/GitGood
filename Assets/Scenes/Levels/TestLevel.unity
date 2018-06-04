@@ -332,10 +332,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 70
   m_LinearDrag: 1
   m_AngularDrag: 0.05
-  m_GravityScale: 4
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -436,7 +436,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 6
-  playerJumpPower: 2000
+  playerJumpPower: 1000
+  maxVelocity: 10
 --- !u!1 &955690100
 GameObject:
   m_ObjectHideFlags: 0
