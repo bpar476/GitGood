@@ -3,7 +3,7 @@ using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
 
-public class NewTestScript {
+public class VersionManagerTests {
 
     [Test]
     public void NewTestScriptSimplePasses() {
@@ -31,7 +31,8 @@ public class NewTestScript {
         yield return null;
 
         // Then
-        Assert.AreEqual(player.transform.position, new Vector2(0,0));
+        Assert.AreEqual(player.transform.position.x, 0.0f, 0.1f);
+        Assert.AreEqual(player.transform.position.y, 0.0f, 0.1f);
     }
 
     [TearDown]
