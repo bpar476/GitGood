@@ -19,14 +19,14 @@ public class NewTestScript {
 
         GameObject player = Object.Instantiate(Resources.Load("Tests/PrototypePlayer")) as GameObject;
         player.transform.position = new Vector2(0,0);
-        versionManager.stage(player);
-        versionManager.commit("Set player position to 0,0");
+        versionManager.Stage(player);
+        versionManager.Commit("Set player position to 0,0");
 
         yield return null;
 
         // When
         player.transform.position = new Vector2(1,0);
-        versionManager.resetToHead(player);
+        versionManager.ResetToHead(player);
 
         yield return null;
 
