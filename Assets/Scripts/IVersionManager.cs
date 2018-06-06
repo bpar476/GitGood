@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface IVersionManager {
-	void Stage(GameObject gobj);
+	void Stage();
 
 	void Commit(string message);
 
