@@ -7,14 +7,13 @@ public class Player_Movement : MonoBehaviour {
     public float moveForce;
     public float jumpForce;
     public float maxVelocity;
-    public float horizontalDecelaration;
-
     public Transform groundCheck;
     public LayerMask groundCheckLayer;
 
     private bool facingRight = true;
     private bool isAirborn = false;
     private bool jump = false;
+    private bool isMoving = false;
     private Rigidbody2D myRigidBody;
 
     void Awake() {
@@ -49,17 +48,11 @@ public class Player_Movement : MonoBehaviour {
     }
 
     private void UpdateHorizontalVelocity(float horizontalInput) {
-        float currentXSpeed = Mathf.Abs(myRigidBody.velocity.x);
-        if (horizontalInput == 0 && currentXSpeed > 0.1) {
-            float direction = Mathf.Sign(myRigidBody.velocity.x);
-            myRigidBody.AddForce(Vector2.right * direction * -1 * horizontalDecelaration);
-        } else {
-            if (horizontalInput * myRigidBody.velocity.x < maxVelocity) {
-                myRigidBody.AddForce(Vector2.right * horizontalInput * moveForce);
-            }
-            if (Mathf.Abs(myRigidBody.velocity.x) > maxVelocity) {
-                myRigidBody.velocity = new Vector2(Mathf.Sign(myRigidBody.velocity.x) * maxVelocity, myRigidBody.velocity.y);
-            }
+        if (horizontalInput * myRigidBody.velocity.x < maxVelocity) {
+            myRigidBody.AddForce(Vector2.right * horizontalInput * moveForce);
+        }
+        if (Mathf.Abs(myRigidBody.velocity.x) > maxVelocity) {
+            myRigidBody.velocity = new Vector2(Mathf.Sign(myRigidBody.velocity.x) * maxVelocity, myRigidBody.velocity.y);
         }
     }
 

@@ -440,7 +440,7 @@ MonoBehaviour:
   moveForce: 350
   jumpForce: 100
   maxVelocity: 6
-  horizontalDecelaration: 400
+  horizontalDecelarationFactor: 0.9
   groundCheck: {fileID: 1130017342}
   groundCheckLayer:
     serializedVersion: 2
