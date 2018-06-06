@@ -15,11 +15,11 @@ public class VersionManagerTests {
     [UnityTest]
     public IEnumerator TestResetPlayerPosition() {
         // Given
-        IVersionManager versionManager = new GameObject().AddComponent<InMemoryVersionManager>();
-
         GameObject player = Object.Instantiate(Resources.Load("Tests/PrototypePlayer")) as GameObject;
+
+        IVersionManager versionManager = player.AddComponent<VersionManager>();
         player.transform.position = new Vector2(0,0);
-        versionManager.Stage(player);
+        versionManager.Stage();
         versionManager.Commit("Set player position to 0,0");
 
         yield return null;
