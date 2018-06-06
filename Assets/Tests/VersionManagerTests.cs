@@ -15,7 +15,7 @@ public class NewTestScript {
     [UnityTest]
     public IEnumerator TestResetPlayerPosition() {
         // Given
-        GameObject versionManager = new GameObject().AddComponent<VersionManager>();
+        IVersionManager versionManager = new GameObject().AddComponent<InMemoryVersionManager>();
 
         GameObject player = Object.Instantiate(Resources.Load("Tests/PrototypePlayer")) as GameObject;
         player.transform.position = new Vector2(0,0);
