@@ -13,7 +13,6 @@ public class Player_Movement : MonoBehaviour {
     private bool facingRight = true;
     private bool isAirborn = false;
     private bool jump = false;
-    private bool isMoving = false;
     private Rigidbody2D myRigidBody;
 
     void Awake() {
