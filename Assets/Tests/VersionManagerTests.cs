@@ -33,6 +33,36 @@ public class VersionManagerTests {
         Assert.AreEqual(0.0f, testObject.transform.position.y, 0.1f);
     }
 
+    [UnityTest]
+    public IEnumerator TestResetPositionBeforeHEAD() {
+        //Given
+        VersionController testObject = new GameObject().AddComponent<VersionController>();
+        testObject.AddVersionable(new TransformVersionable(testObject.gameObject));
+
+        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
+
+        testObject.transform.position = new Vector2(0.0f,0.0f);
+
+        versionManager.Add(testObject);
+        int commitToLoad = versionManager.Commit("Set thing position to 0,0");
+
+        yield return null;
+        
+        testObject.transform.position = new Vector2(1.0f,1.0f);
+
+        versionManager.Add(testObject);
+        versionManager.Commit("Set thing position to 1,1");
+
+        yield return null;
+
+        versionManager.ResetToCommit(commitToLoad);
+
+        yield return null;
+
+        Assert.AreEqual(0.0f, testObject.transform.position.x, 0.1f);
+        Assert.AreEqual(0.0f, testObject.transform.position.y, 0.1f);
+    }
+
     [TearDown]
     public void AfterEachTest() {
         
