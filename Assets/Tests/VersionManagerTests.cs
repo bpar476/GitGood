@@ -13,7 +13,7 @@ public class VersionManagerTests {
     // A UnityTest behaves like a coroutine in PlayMode
     // and allows you to yield null to skip a frame in EditMode
     [UnityTest]
-    public IEnumerator TestResetPosition() {
+    public IEnumerator TestResetPositionToHead() {
         // Given
         VersionController testObject = new GameObject().AddComponent<VersionController>();
         testObject.AddVersionable(new TransformVersionable(testObject.gameObject));
