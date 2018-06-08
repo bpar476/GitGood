@@ -4,5 +4,5 @@ public interface Versionable {
 
     void Commit(int commitId);
 
-    void resetToCommit(int commitId);
+    void ResetToCommit(int commitId);
 }

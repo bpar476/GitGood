@@ -17,7 +17,7 @@ public class TransformVersionable : MonoBehaviour, Versionable {
 
 	}
 
-	public void resetToCommit(int commitId) {
+	public void ResetToCommit(int commitId) {
 
 	}
 
