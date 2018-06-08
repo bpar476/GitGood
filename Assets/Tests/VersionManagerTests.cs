@@ -16,7 +16,7 @@ public class VersionManagerTests {
     public IEnumerator TestResetPosition() {
         // Given
         VersionController testObject = new GameObject().AddComponent<VersionController>();
-        testObject.AddVersionable(new TransformVersionable(testObject.gameObject));
+        testObject.AddVersionable(new TransformVersionable());
 
         VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
 
