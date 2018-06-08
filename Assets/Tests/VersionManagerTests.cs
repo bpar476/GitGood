@@ -10,8 +10,7 @@ public class VersionManagerTests {
     [UnityTest]
     public IEnumerator TestResetPositionToHead() {
         // Given
-        VersionController testObject = new GameObject().AddComponent<VersionController>();
-        testObject.AddVersionable(new TransformVersionable(testObject.gameObject));
+        VersionController testObject = createTransformVersionedObject();
 
         VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
 
@@ -36,8 +35,7 @@ public class VersionManagerTests {
     [UnityTest]
     public IEnumerator TestResetPositionBeforeHEAD() {
         //Given
-        VersionController testObject = new GameObject().AddComponent<VersionController>();
-        testObject.AddVersionable(new TransformVersionable(testObject.gameObject));
+        VersionController testObject = createTransformVersionedObject();
 
         VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
 
@@ -66,5 +64,11 @@ public class VersionManagerTests {
     [TearDown]
     public void AfterEachTest() {
         
+    }
+
+    private VersionController createTransformVersionedObject() {
+        VersionController testObject = new GameObject().AddComponent<VersionController>();
+        testObject.AddVersionable(new TransformVersionable(testObject.gameObject));
+        return testObject;
     }
 }
