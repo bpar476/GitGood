@@ -44,7 +44,9 @@ public class VersionManager : MonoBehaviour {
 	}
 
 	public void ResetToHead(VersionController versionedObject) {
-		ResetToCommit(head);
+		if (trackedObjects.Contains(versionedObject)) {
+			versionedObject.ResetToCommit(head);
+		}
 	}
 
 	public void ResetToHead() {
