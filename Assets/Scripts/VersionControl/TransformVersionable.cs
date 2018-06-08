@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TransformVersionable : MonoBehaviour, Versionable {
+public class TransformVersionable : Versionable {
 
 	private float stagedX;
 	private float stagedY;
+	
+	private GameObject gameObject;
 
 	private History<Vector2> history;
 
-	private void Awake() {
+	public TransformVersionable(GameObject gobj) {
+		gameObject = gobj;
 		history = new History<Vector2>();
 	}
 
@@ -19,8 +22,8 @@ public class TransformVersionable : MonoBehaviour, Versionable {
 	}
 
 	public void Stage() {
-		stagedX = transform.position.x;
-		stagedY = transform.position.y;
+		stagedX = gameObject.transform.position.x;
+		stagedY = gameObject.transform.position.y;
 	}
 
 	public void Commit(int commitId) {
@@ -28,6 +31,6 @@ public class TransformVersionable : MonoBehaviour, Versionable {
 	}
 
 	public void ResetToCommit(int commitId) {
-		this.transform.position = history.Load(commitId);
+		gameObject.transform.position = history.Load(commitId);
 	}
 }
