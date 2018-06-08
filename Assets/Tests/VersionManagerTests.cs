@@ -15,24 +15,24 @@ public class VersionManagerTests {
     [UnityTest]
     public IEnumerator TestResetPlayerPosition() {
         // Given
-        GameObject player = Object.Instantiate(Resources.Load("Tests/PrototypePlayer")) as GameObject;
+        GameObject testObject = new GameObject();
 
-        IVersionManager versionManager = player.AddComponent<InMemoryVersionManager>();
-        player.transform.position = new Vector2(0,0);
-        versionManager.Stage();
-        versionManager.Commit("Set player position to 0,0");
+        IVersionManager versionManager = new GameObject().AddComponent<InMemoryVersionManager>();
+        testObject.transform.position = new Vector2(0,0);
+        versionManager.Stage(testObject);
+        versionManager.Commit("Set thing position to 0,0");
 
         yield return null;
 
         // When
-        player.transform.position = new Vector2(1,0);
-        versionManager.ResetToHead(player);
+        testObject.transform.position = new Vector2(1,0);
+        versionManager.ResetToHead(testObject);
 
         yield return null;
 
         // Then
-        Assert.AreEqual(player.transform.position.x, 0.0f, 0.1f);
-        Assert.AreEqual(player.transform.position.y, 0.0f, 0.1f);
+        Assert.AreEqual(testObject.transform.position.x, 0.0f, 0.1f);
+        Assert.AreEqual(testObject.transform.position.y, 0.0f, 0.1f);
     }
 
     [TearDown]
