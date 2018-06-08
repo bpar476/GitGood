@@ -46,4 +46,8 @@ public class VersionManager : MonoBehaviour {
 	public void ResetToHead(VersionController versionedObject) {
 		ResetToCommit(head);
 	}
+
+	public void ResetToHead() {
+		ResetToCommit(head);
+	}
 }
