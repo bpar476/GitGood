@@ -34,8 +34,8 @@ public class VersionManagerTests {
         yield return null;
 
         // Then
-        Assert.AreEqual(testObject.transform.position.x, 0.0f, 0.1f);
-        Assert.AreEqual(testObject.transform.position.y, 0.0f, 0.1f);
+        Assert.AreEqual(0.0f, testObject.transform.position.x, 0.1f);
+        Assert.AreEqual(0.0f, testObject.transform.position.y, 0.1f);
     }
 
     [TearDown]
