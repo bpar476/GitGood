@@ -6,7 +6,7 @@ public class ConeDetector : MonoBehaviour {
 
 	public bool debug = false;
 	public float fovAngle = 65.0f;
-	public string tagToDetect;
+	public string tagToDetect = "";
 	public CircleCollider2D triggerZone;
 	public Transform forwards;
 
@@ -27,7 +27,7 @@ public class ConeDetector : MonoBehaviour {
 	}
 	// Is within radius
 	private void OnTriggerStay2D(Collider2D other) {
-		if (other.gameObject.tag == tagToDetect) {
+		if (other.gameObject.tag == tagToDetect || tagToDetect == "") {
 			Vector3 otherPosition = other.transform.position;
 			Vector3 myPosition = transform.position;
 			Vector3 forwardDirection = forwards.position - myPosition;
