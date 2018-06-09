@@ -6,8 +6,13 @@ public class VersionController : MonoBehaviour {
 
 	private List<Versionable> versioners;
 
+	public bool transformVersionable;
+
 	private void Awake() {
 		versioners = new List<Versionable>();	
+		if (transformVersionable) {
+			versioners.Add(new TransformVersionable(gameObject));
+		}
 	}
 
 	// Use this for initialization
