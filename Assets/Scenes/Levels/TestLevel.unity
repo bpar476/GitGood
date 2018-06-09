@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 168230482}
   - component: {fileID: 168230481}
   - component: {fileID: 168230480}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 1181788384}
   - component: {fileID: 1181788383}
   - component: {fileID: 1181788385}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Prototyping Art_3 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -586,6 +586,10 @@ Prefab:
     - target: {fileID: 4984778553732218, guid: 71255ff4376c03148b71a7f569691060, type: 2}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1179346558908496, guid: 71255ff4376c03148b71a7f569691060, type: 2}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 71255ff4376c03148b71a7f569691060, type: 2}

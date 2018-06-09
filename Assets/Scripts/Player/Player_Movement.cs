@@ -21,9 +21,12 @@ public class Player_Movement : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        isAirborn = !Physics2D.Linecast(transform.position, groundCheck.position, groundCheckLayer);
+        float groundCheckDistance = 0.1f;
+        RaycastHit2D raycastHit = Physics2D.Raycast(groundCheck.position, new Vector2(0.0f, -1.0f), groundCheckDistance);
+        Debug.DrawLine(transform.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance, transform.position.z));
+        
 
-        if (Input.GetButtonDown("Jump") && !isAirborn) {
+        if (Input.GetButtonDown("Jump") && raycastHit.collider != null) {
             jump = true;
         }
     }
