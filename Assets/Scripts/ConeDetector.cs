@@ -27,6 +27,7 @@ public class ConeDetector : MonoBehaviour {
 	}
 	// Is within radius
 	private void OnTriggerStay2D(Collider2D other) {
+		bool unsetClosestObject = false;
 		if (other.gameObject.tag == tagToDetect || tagToDetect == "") {
 			Vector3 otherPosition = other.transform.position;
 			Vector3 myPosition = transform.position;
@@ -45,8 +46,15 @@ public class ConeDetector : MonoBehaviour {
 					} else if(Vector3.Distance(transform.position, otherPosition) < Vector3.Distance(transform.position, closestObject.transform.position)) {
 						closestObject = other.gameObject;
 					}
+				} else if (other.gameObject.Equals(closestObject)) {
+					unsetClosestObject = true;
 				}
+			} else if (other.gameObject.Equals(closestObject)) {
+				unsetClosestObject = true;
 			}
+		}
+		if (unsetClosestObject) {
+			closestObject = null;
 		}
 	}
 
