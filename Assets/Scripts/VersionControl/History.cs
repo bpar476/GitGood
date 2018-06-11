@@ -20,4 +20,12 @@ public class History<T> {
             throw new System.ArgumentException("Commit id does not exist in this history");
         }
     }
+
+    public void ResetOntoCommit(int commitId) {
+        commitId++;
+        while(commits.ContainsKey(commitId)) {
+            commits.Remove(commitId);
+            commitId++;
+        }
+    }
 }

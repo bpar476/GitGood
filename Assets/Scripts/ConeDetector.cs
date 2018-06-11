@@ -63,4 +63,8 @@ public class ConeDetector : MonoBehaviour {
 			closestObject = null;
 		}
 	}
+
+	public GameObject getClosestDetectedObject() {
+		return closestObject;
+	}
 }
