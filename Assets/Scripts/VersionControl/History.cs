@@ -14,6 +14,9 @@ public class History<T> {
 
     public T Load(int commitId) {
         T result;
+        while(!commits.ContainsKey(commitId) && commitId >= 0) {
+            commitId--;
+        }
         if(commits.TryGetValue(commitId, out result)) {
             return result;
         } else {
