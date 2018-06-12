@@ -129,6 +129,44 @@ public class VersionManagerTests {
         Assert.AreEqual(0.0f, otherTestObject.transform.position.y, 0.1f);
     }
 
+    [UnityTest]
+    public IEnumerator TestResetObjectsToCommitWhereOneWasNotChanged() {
+        VersionController testObject = createTransformVersionedObject();
+        VersionController otherTestObject = createTransformVersionedObject();
+
+        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
+
+        testObject.transform.position = new Vector2(0.0f, 0.0f);
+        otherTestObject.transform.position = new Vector2(3.0f, 3.0f);
+
+        versionManager.Add(testObject);
+        versionManager.Add(otherTestObject);
+
+        versionManager.Commit("Create two objects");
+
+        yield return null;
+
+        testObject.transform.position = new Vector2(-2.0f, -2.0f);
+
+        versionManager.Add(testObject);
+        versionManager.Commit("Move one of the objects");
+
+        yield return null;
+
+        testObject.transform.position = new Vector2(0.0f, 0.0f);
+        otherTestObject.transform.position = new Vector2(6.0f, 0.0f);
+
+        yield return null;
+
+        versionManager.ResetToHead();
+
+        Assert.AreEqual(-2.0f, testObject.transform.position.x, 0.1f);
+        Assert.AreEqual(-2.0f, testObject.transform.position.y, 0.1f);
+
+        Assert.AreEqual(3.0f, otherTestObject.transform.position.x, 0.1f);
+        Assert.AreEqual(3.0f, otherTestObject.transform.position.y, 0.1f);
+    }
+
     [TearDown]
     public void AfterEachTest() {
         
