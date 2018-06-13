@@ -7,6 +7,7 @@ public class VersionController : MonoBehaviour {
 	private List<Versionable> versioners;
 
 	public bool transformVersionable;
+	private int version = 0;
 
 	private void Awake() {
 		versioners = new List<Versionable>();	
@@ -26,11 +27,17 @@ public class VersionController : MonoBehaviour {
 		}
 	}
 
-	public void Commit(int commitId) {
+	public int GenerateVersion() {
+		this.version++;
 		foreach (Versionable versioner in versioners) {
-			versioner.Commit(commitId);
+			versioner.Commit(version);
 		}
-	} 
+		return version;
+	}
+
+	public int GetVersion() {
+		return this.version;
+	}
 
 	public void ResetToCommit(int commitId) {
 		foreach (Versionable versioner in versioners) {

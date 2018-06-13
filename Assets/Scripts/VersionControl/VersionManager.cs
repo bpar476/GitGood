@@ -6,17 +6,17 @@ public class VersionManager : MonoBehaviour {
 
 	IList<VersionController> trackedObjects;
 	IList<VersionController> stagingArea;
-	private int commitCount = 0;
-	private int head = 0;
+	private Commit commitHead;
 
 	private void Awake() {
 		trackedObjects = new List<VersionController>();
 		stagingArea = new List<VersionController>();
+		commitHead = null;
 	}
 
 	// Use this for initialization
 	void Start () {
-		
+
 	}
 	
 	public void Add(VersionController controller) {
@@ -27,29 +27,38 @@ public class VersionManager : MonoBehaviour {
 		controller.Stage();
 	}
 
-	public int Commit(string message) {
-		foreach(VersionController controller in stagingArea) {
-			controller.Commit(commitCount);
-		}
-		head = commitCount;
-		commitCount++;
-		stagingArea.Clear();
-		return head;
-	}
-
-	public void ResetToCommit(int commitId) {
+	public Commit Commit(string message) {
+		Commit commit = new Commit(commitHead, message);
 		foreach(VersionController controller in trackedObjects) {
-			controller.ResetToCommit(commitId);
+			int controllerVersion;
+			if (stagingArea.Contains(controller)) {
+				// increment commit count
+				controllerVersion = controller.GenerateVersion();
+			}
+			else {
+				controllerVersion = controller.GetVersion();
+			}
+			commit.addObject(controller, controllerVersion);
+		}
+		commitHead = commit;
+		stagingArea.Clear();
+		return commit;
+	}
+
+	public void ResetToCommit(Commit commit) {
+		foreach (VersionController trackedObject in trackedObjects) {
+			ResetToCommit(commit, trackedObject);
 		}
 	}
 
-	public void ResetToHead(VersionController versionedObject) {
-		if (trackedObjects.Contains(versionedObject)) {
-			versionedObject.ResetToCommit(head);
-		}
+	public void ResetToCommit(Commit commit, VersionController trackedObject) {
+		trackedObject.ResetToCommit(commit.getObjectVersion(trackedObject));
 	}
 
 	public void ResetToHead() {
-		ResetToCommit(head);
+		ResetToCommit(commitHead);
+	}
+	public void ResetToHead(VersionController versionedObject) {
+			ResetToCommit(commitHead, versionedObject);
 	}
 }
