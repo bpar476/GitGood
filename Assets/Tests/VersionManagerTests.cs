@@ -42,7 +42,7 @@ public class VersionManagerTests {
         testObject.transform.position = new Vector2(0.0f,0.0f);
 
         versionManager.Add(testObject);
-        int commitToLoad = versionManager.Commit("Set thing position to 0,0");
+        Commit commitToLoad = versionManager.Commit("Set thing position to 0,0");
 
         yield return null;
         
