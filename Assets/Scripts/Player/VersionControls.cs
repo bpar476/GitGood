@@ -8,24 +8,20 @@ public class VersionControls : MonoBehaviour {
 
 	public ConeDetector versionableDetector;
 
-	private GameObject currentClosestVersionable;
+	private GameObject currentSelectedVersionable;
 
 	private void Start() {
 	}
 
 	// Update is called once per frame
 	void Update () {
-		GameObject closestVersionable = versionableDetector.getClosestDetectedObject();
-		highlightClosestVersionableIfPresent(closestVersionable);
+		selectVersionable();
 
-		if ((Input.GetKeyDown(KeyCode.Q) && Input.GetKey(KeyCode.LeftControl))
-		|| (Input.GetKeyDown(KeyCode.LeftControl) && Input.GetKey(KeyCode.Q))) {
-			versionManager.Add(GetComponent<VersionController>());
-			Debug.Log("Adding player position");
-		} else if(currentClosestVersionable != null && Input.GetKeyDown(KeyCode.Q)) {
-			VersionController versionController = currentClosestVersionable.GetComponent<VersionController>();
+		if(currentSelectedVersionable != null && Input.GetKeyDown(KeyCode.Q)) {
+			VersionController versionController = currentSelectedVersionable.GetComponent<VersionController>();
 			versionManager.Add(versionController);
 			Debug.Log("Adding closest object");
+			Debug.Log(currentSelectedVersionable);
 		} else if(Input.GetKeyDown(KeyCode.E)) {
 			versionManager.Commit("Commit message");
 			Debug.Log("Commiting staged objects");
@@ -35,13 +31,26 @@ public class VersionControls : MonoBehaviour {
 		}
 	}
 
-	private void setOutline(GameObject gobj, bool enabled) {
-		SpriteOutline outline = gobj.GetComponent<SpriteOutline>();
-		if (outline != null) {
-			outline.enabled = enabled;
+	private void selectVersionable() {
+		GameObject objectToSelect = null;
+		if (Input.GetKey(KeyCode.LeftControl)) {
+			objectToSelect =  gameObject;
 		} else {
-			Debug.Log("Game object doesn't have outline component");
-			Debug.Log(gobj);
+			objectToSelect = versionableDetector.getClosestDetectedObject();
+		}
+
+		highlightNewlySelectedVersionableIfPresent(objectToSelect);
+		currentSelectedVersionable = objectToSelect;
+	}
+
+	private void highlightNewlySelectedVersionableIfPresent(GameObject selectedVersionable) {
+		if (currentSelectedVersionable == null && selectedVersionable != null) {
+			toggleOutline(selectedVersionable);
+		} else if (selectedVersionable != null) {
+			toggleOutline(currentSelectedVersionable);
+			toggleOutline(selectedVersionable);
+		} else if (currentSelectedVersionable != null && selectedVersionable == null) {
+			toggleOutline(currentSelectedVersionable);
 		}
 	}
 
@@ -58,24 +67,13 @@ public class VersionControls : MonoBehaviour {
 		return result;
 	}
 
-	private void highlightClosestVersionableIfPresent(GameObject closestVersionable) {
-		if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.LeftControl)) {
-			bool isOutlined = toggleOutline(gameObject);
-			if (currentClosestVersionable != null) {
-				setOutline(currentClosestVersionable, isOutlined);
-			}
-		} else if (!Input.GetKey(KeyCode.LeftControl)) {
-			if (currentClosestVersionable == null && closestVersionable != null) {
-				currentClosestVersionable = closestVersionable;
-				toggleOutline(currentClosestVersionable);
-			} else if (closestVersionable != null) {
-				toggleOutline(currentClosestVersionable);
-				currentClosestVersionable = closestVersionable;
-				toggleOutline(currentClosestVersionable);
-			} else if (currentClosestVersionable != null && closestVersionable == null) {
-				toggleOutline(currentClosestVersionable);
-				currentClosestVersionable = null;
-			}
+	private void setOutline(GameObject gobj, bool enabled) {
+		SpriteOutline outline = gobj.GetComponent<SpriteOutline>();
+		if (outline != null) {
+			outline.enabled = enabled;
+		} else {
+			Debug.Log("Game object doesn't have outline component");
+			Debug.Log(gobj);
 		}
 	}
 }
