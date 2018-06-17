@@ -35,23 +35,36 @@ public class VersionControls : MonoBehaviour {
 		}
 	}
 
-	private void toggleOutline(GameObject gobj) {
+	private void setOutline(GameObject gobj, bool enabled) {
 		SpriteOutline outline = gobj.GetComponent<SpriteOutline>();
 		if (outline != null) {
-			outline.enabled = !outline.enabled;
+			outline.enabled = enabled;
 		} else {
 			Debug.Log("Game object doesn't have outline component");
 			Debug.Log(gobj);
 		}
 	}
 
+	private bool toggleOutline(GameObject gobj) {
+		SpriteOutline outline = gobj.GetComponent<SpriteOutline>();
+		bool result = false;
+		if (outline != null) {
+			result = outline.enabled;
+			outline.enabled = !outline.enabled;
+		} else {
+			Debug.Log("Game object doesn't have outline component");
+			Debug.Log(gobj);
+		}
+		return result;
+	}
+
 	private void highlightClosestVersionableIfPresent(GameObject closestVersionable) {
 		if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.LeftControl)) {
-			toggleOutline(gameObject);
+			bool isOutlined = toggleOutline(gameObject);
 			if (currentClosestVersionable != null) {
-				toggleOutline(currentClosestVersionable);
+				setOutline(currentClosestVersionable, isOutlined);
 			}
-		} else {
+		} else if (!Input.GetKey(KeyCode.LeftControl)) {
 			if (currentClosestVersionable == null && closestVersionable != null) {
 				currentClosestVersionable = closestVersionable;
 				toggleOutline(currentClosestVersionable);
