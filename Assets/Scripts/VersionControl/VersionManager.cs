@@ -24,7 +24,7 @@ public class VersionManager : MonoBehaviour {
 			trackedObjects.Add(controller);
 		}
 		stagingArea.Add(controller);
-		controller.Stage();
+		controller.StageVersion();
 		foreach(VersionController stagedController in stagingArea) {
 			stagedController.ShowStagedState();
 		}

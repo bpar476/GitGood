@@ -32,7 +32,7 @@ public class VersionController : MonoBehaviour {
 		}
 	}
 	
-	public void Stage() {
+	public void StageVersion() {
 		foreach (Versionable versioner in versioners) {
 			versioner.Stage(activeVersion);
 		}
