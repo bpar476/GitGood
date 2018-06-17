@@ -3,9 +3,9 @@ using UnityEngine;
 public interface Versionable {
     void Stage(GameObject version);
 
-    void Commit(int commitId);
+    void Commit(int version);
 
-    void ResetToCommit(int commitId, GameObject target);
+    void ResetToVersion(int version, GameObject target);
 
     void ResetToStaged(GameObject target);
 }

@@ -23,12 +23,12 @@ public class TransformVersionable : Versionable {
 		stagedY = version.transform.position.y;
 	}
 
-	public void Commit(int commitId) {
-		history.Add(commitId, new Vector2(stagedX, stagedY));
+	public void Commit(int version) {
+		history.Add(version, new Vector2(stagedX, stagedY));
 	}
 
-	public void ResetToCommit(int commitId, GameObject target) {
-		target.transform.position = history.Load(commitId);
+	public void ResetToVersion(int version, GameObject target) {
+		target.transform.position = history.GetStateAt(version);
 	}
 
 	public void ResetToStaged(GameObject target) {

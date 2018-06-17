@@ -59,7 +59,7 @@ public class VersionManager : MonoBehaviour {
 	}
 
 	public void ResetToCommit(Commit commit, VersionController trackedObject) {
-		trackedObject.ResetToCommit(commit.getObjectVersion(trackedObject));
+		trackedObject.ResetToVersion(commit.getObjectVersion(trackedObject));
 	}
 
 	public void ResetToHead() {

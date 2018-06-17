@@ -50,9 +50,9 @@ public class VersionController : MonoBehaviour {
 		return this.version;
 	}
 
-	public void ResetToCommit(int commitId) {
+	public void ResetToVersion(int version) {
 		foreach (Versionable versioner in versioners) {
-			versioner.ResetToCommit(commitId, activeVersion);
+			versioner.ResetToVersion(version, activeVersion);
 		}
 	}
 
@@ -75,7 +75,7 @@ public class VersionController : MonoBehaviour {
 		if(!previewVersions.TryGetValue(commitId, out preview)) {
 			preview = Instantiate(previewPrefab, transform) as GameObject;
 			foreach (Versionable versioner in versioners) {
-				versioner.ResetToCommit(commitId, preview);
+				versioner.ResetToVersion(commitId, preview);
 			}
 			SpriteRenderer renderer = preview.GetComponent<SpriteRenderer>();
 			renderer.color = new Color(0.5f, 0.1f, 0.0f, 0.4f);
