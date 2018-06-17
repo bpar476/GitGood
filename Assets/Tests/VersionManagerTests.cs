@@ -46,7 +46,7 @@ public class VersionManagerTests {
         testObject.transform.position = new Vector2(0.0f,0.0f);
 
         versionManager.Add(testController);
-        Commit commitToLoad = versionManager.Commit("Set thing position to 0,0");
+        ICommit commitToLoad = versionManager.Commit("Set thing position to 0,0");
 
         yield return null;
         

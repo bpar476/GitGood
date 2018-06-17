@@ -6,12 +6,20 @@ public class VersionManager : MonoBehaviour {
 
 	IList<VersionController> trackedObjects;
 	IList<VersionController> stagingArea;
-	private Commit commitHead;
+	private ICommit commitHead;
+	private List<IBranch> branches;
+	private IBranch activeBranch;
 
 	private void Awake() {
 		trackedObjects = new List<VersionController>();
 		stagingArea = new List<VersionController>();
 		commitHead = null;
+
+		branches = new List<IBranch>();
+		IBranch master = new Branch("master", null);
+		branches.Add(master);
+
+		activeBranch = master;
 	}
 
 	// Use this for initialization
@@ -30,8 +38,8 @@ public class VersionManager : MonoBehaviour {
 		}
 	}
 
-	public Commit Commit(string message) {
-		Commit commit = new Commit(commitHead, message);
+	public ICommit Commit(string message) {
+		ICommit commit = new Commit(commitHead, message);
 		foreach(VersionController controller in trackedObjects) {
 			int controllerVersion;
 			if (stagingArea.Contains(controller)) {
@@ -52,13 +60,13 @@ public class VersionManager : MonoBehaviour {
 		return commit;
 	}
 
-	public void ResetToCommit(Commit commit) {
+	public void ResetToCommit(ICommit commit) {
 		foreach (VersionController trackedObject in trackedObjects) {
 			ResetToCommit(commit, trackedObject);
 		}
 	}
 
-	public void ResetToCommit(Commit commit, VersionController trackedObject) {
+	public void ResetToCommit(ICommit commit, VersionController trackedObject) {
 		trackedObject.ResetToVersion(commit.getObjectVersion(trackedObject));
 	}
 
@@ -67,5 +75,19 @@ public class VersionManager : MonoBehaviour {
 	}
 	public void ResetToHead(VersionController versionedObject) {
 			ResetToCommit(commitHead, versionedObject);
+	}
+
+	public void checkout(Branch branch) {
+		if (!branches.Contains(branch)) {
+			branches.Add(branch);
+		}
+		activeBranch = branch;
+		commitHead = branch.GetTip();
+
+		RefreshGame();
+	}
+
+	public void RefreshGame() {
+		ResetToCommit(activeBranch.GetTip());
 	}
 }
