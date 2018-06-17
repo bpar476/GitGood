@@ -12,4 +12,14 @@ public class BranchTests {
         yield return null;
         Assert.AreEqual("Commit A", b.GetParent().GetMessage());
     }
+
+    [UnityTest]
+    public IEnumerator TestBranchConstruction() {
+        ICommit A = new Commit(null, "Test commit object construction");
+        IBranch testBranch = new Branch("feature/branches", A);
+        yield return null;
+        Assert.AreSame(A, testBranch.GetTip());
+        Assert.AreEqual("feature/branches", testBranch.GetName());
+
+    }
 }
