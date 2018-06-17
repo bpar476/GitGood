@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VersionController : MonoBehaviour {
 
-	private List<Versionable> versioners;
+	private List<IVersionable> versioners;
 
 	public GameObject templatePrefab;
 	public GameObject previewPrefab;
@@ -18,7 +18,7 @@ public class VersionController : MonoBehaviour {
 	private int version = 0;
 
 	private void Awake() {
-		versioners = new List<Versionable>();	
+		versioners = new List<IVersionable>();
 		if (transformVersionable) {
 			versioners.Add(new TransformVersionable(gameObject));
 		}
@@ -33,14 +33,14 @@ public class VersionController : MonoBehaviour {
 	}
 	
 	public void StageVersion() {
-		foreach (Versionable versioner in versioners) {
+		foreach (IVersionable versioner in versioners) {
 			versioner.Stage(activeVersion);
 		}
 	}
 
 	public int GenerateVersion() {
 		this.version++;
-		foreach (Versionable versioner in versioners) {
+		foreach (IVersionable versioner in versioners) {
 			versioner.Commit(version);
 		}
 		return version;
@@ -51,12 +51,12 @@ public class VersionController : MonoBehaviour {
 	}
 
 	public void ResetToVersion(int version) {
-		foreach (Versionable versioner in versioners) {
+		foreach (IVersionable versioner in versioners) {
 			versioner.ResetToVersion(version, activeVersion);
 		}
 	}
 
-	public void AddVersionable(Versionable versioner) {
+	public void AddVersionable(IVersionable versioner) {
 		if (versioner != null) {
 			versioners.Add(versioner);
 		}
@@ -74,7 +74,7 @@ public class VersionController : MonoBehaviour {
 		GameObject preview;
 		if(!previewVersions.TryGetValue(commitId, out preview)) {
 			preview = Instantiate(previewPrefab, transform) as GameObject;
-			foreach (Versionable versioner in versioners) {
+			foreach (IVersionable versioner in versioners) {
 				versioner.ResetToVersion(commitId, preview);
 			}
 			SpriteRenderer renderer = preview.GetComponent<SpriteRenderer>();
@@ -87,7 +87,7 @@ public class VersionController : MonoBehaviour {
 		if(stagedStatePreview == null) {
 			stagedStatePreview =  Instantiate(previewPrefab, transform) as GameObject;
 		}
-		foreach (Versionable versioner in versioners) {
+		foreach (IVersionable versioner in versioners) {
 			versioner.ResetToStaged(stagedStatePreview);
 		}
 	}

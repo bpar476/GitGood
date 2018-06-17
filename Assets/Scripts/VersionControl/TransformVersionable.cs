@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TransformVersionable : Versionable {
+public class TransformVersionable : IVersionable {
 
 	private float stagedX;
 	private float stagedY;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface Versionable {
+public interface IVersionable {
     void Stage(GameObject version);
 
     void Commit(int version);
