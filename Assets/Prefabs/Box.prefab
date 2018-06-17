@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 61040997334647168}
   - component: {fileID: 114652744217101084}
   - component: {fileID: 58315619061405078}
-  - component: {fileID: 114046363924262098}
   - component: {fileID: 114030664651372988}
   m_Layer: 0
   m_Name: Box
@@ -119,18 +118,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0.087086126, g: 0.9716981, b: 0.094609, a: 1}
   outlineSize: 3
---- !u!114 &114046363924262098
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1179346558908496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9f505fbfecfceb4aa69fe905b664c46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transformVersionable: 1
 --- !u!114 &114652744217101084
 MonoBehaviour:
   m_ObjectHideFlags: 1
