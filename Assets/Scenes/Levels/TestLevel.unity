@@ -796,8 +796,7 @@ Prefab:
       propertyPath: m_Name
       value: VersionableBox
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114046363924262098, guid: 71255ff4376c03148b71a7f569691060, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 71255ff4376c03148b71a7f569691060, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1685114693
