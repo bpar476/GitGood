@@ -12,12 +12,7 @@ public class TransformVersionable : IVersionable {
 	public TransformVersionable(GameObject gobj) {
 		history = new History<Vector2>();
 	}
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-
+	
 	public void Stage(GameObject version) {
 		stagedX = version.transform.position.x;
 		stagedY = version.transform.position.y;
