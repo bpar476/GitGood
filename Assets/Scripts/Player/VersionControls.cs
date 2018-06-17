@@ -8,12 +8,21 @@ public class VersionControls : MonoBehaviour {
 
 	public ConeDetector versionableDetector;
 
+	private SpriteOutline outliner;
+
 	private void Start() {
+		outliner = GetComponent<SpriteOutline>();
 	}
 
 	// Update is called once per frame
 	void Update () {
 		GameObject closestVersionable = versionableDetector.getClosestDetectedObject();
+		if (Input.GetKey(KeyCode.LeftControl)) {
+			outliner.enabled = true;
+		} else {
+			outliner.enabled = false;
+		}
+
 		if ((Input.GetKeyDown(KeyCode.Q) && Input.GetKey(KeyCode.LeftControl))
 		|| (Input.GetKeyDown(KeyCode.LeftControl) && Input.GetKey(KeyCode.Q))) {
 			versionManager.Add(GetComponent<VersionController>());
@@ -28,6 +37,15 @@ public class VersionControls : MonoBehaviour {
 		} else if(Input.GetKeyDown(KeyCode.R)) {
 			versionManager.ResetToHead();
 			Debug.Log("Resetting to HEAD");
+		}
+
+		if(closestVersionable != null) {
+			SpriteOutline closestVersionableOutline = closestVersionable.GetComponent<SpriteOutline>();
+			if (closestVersionableOutline != null) {
+				closestVersionableOutline.enabled = true;
+			} else{
+				Debug.Log("Closest versionable doesn't have outline component");
+			}
 		}
 	}
 }
