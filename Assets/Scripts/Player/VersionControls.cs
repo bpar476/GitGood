@@ -9,6 +9,7 @@ public class VersionControls : MonoBehaviour {
 	public ConeDetector versionableDetector;
 
 	private void Start() {
+		versionManager = GameObject.FindWithTag("VersionManager").GetComponent<VersionManager>();
 	}
 
 	// Update is called once per frame

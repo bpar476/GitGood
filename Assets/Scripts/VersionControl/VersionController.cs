@@ -6,7 +6,10 @@ public class VersionController : MonoBehaviour {
 
 	private List<Versionable> versioners;
 
-	public GameObject activeVersion;
+	public GameObject templatePrefab;
+	public Transform initialPosition;
+
+	private GameObject activeVersion;
 	private IDictionary<int, GameObject> previewVersions;
 
 	public bool transformVersionable;
@@ -21,7 +24,10 @@ public class VersionController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		if (activeVersion == null) {
+			activeVersion = Instantiate(templatePrefab, transform) as GameObject;
+			activeVersion.transform.position = initialPosition.position;
+		}
 	}
 	
 	public void Stage() {
