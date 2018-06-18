@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VersionController : MonoBehaviour {
 
-	private List<Versionable> versioners;
+	private List<IVersionable> versioners;
 
 	public GameObject templatePrefab;
 	public GameObject previewPrefab;
@@ -18,7 +18,7 @@ public class VersionController : MonoBehaviour {
 	private int version = 0;
 
 	private void Awake() {
-		versioners = new List<Versionable>();	
+		versioners = new List<IVersionable>();
 		if (transformVersionable) {
 			versioners.Add(new TransformVersionable(gameObject));
 		}
@@ -32,15 +32,15 @@ public class VersionController : MonoBehaviour {
 		}
 	}
 	
-	public void Stage() {
-		foreach (Versionable versioner in versioners) {
+	public void StageVersion() {
+		foreach (IVersionable versioner in versioners) {
 			versioner.Stage(activeVersion);
 		}
 	}
 
 	public int GenerateVersion() {
 		this.version++;
-		foreach (Versionable versioner in versioners) {
+		foreach (IVersionable versioner in versioners) {
 			versioner.Commit(version);
 		}
 		return version;
@@ -50,13 +50,13 @@ public class VersionController : MonoBehaviour {
 		return this.version;
 	}
 
-	public void ResetToCommit(int commitId) {
-		foreach (Versionable versioner in versioners) {
-			versioner.ResetToCommit(commitId, activeVersion);
+	public void ResetToVersion(int version) {
+		foreach (IVersionable versioner in versioners) {
+			versioner.ResetToVersion(version, activeVersion);
 		}
 	}
 
-	public void AddVersionable(Versionable versioner) {
+	public void AddVersionable(IVersionable versioner) {
 		if (versioner != null) {
 			versioners.Add(versioner);
 		}
@@ -70,16 +70,16 @@ public class VersionController : MonoBehaviour {
 		return activeVersion;
 	}
 
-	public void ShowCommit(int commitId) {
+	public void ShowVersion(int version) {
 		GameObject preview;
-		if(!previewVersions.TryGetValue(commitId, out preview)) {
+		if(!previewVersions.TryGetValue(version, out preview)) {
 			preview = Instantiate(previewPrefab, transform) as GameObject;
-			foreach (Versionable versioner in versioners) {
-				versioner.ResetToCommit(commitId, preview);
+			foreach (IVersionable versioner in versioners) {
+				versioner.ResetToVersion(version, preview);
 			}
 			SpriteRenderer renderer = preview.GetComponent<SpriteRenderer>();
 			renderer.color = new Color(0.5f, 0.1f, 0.0f, 0.4f);
-			previewVersions.Add(commitId, preview);
+			previewVersions.Add(version, preview);
 		}
 	}
 
@@ -87,7 +87,7 @@ public class VersionController : MonoBehaviour {
 		if(stagedStatePreview == null) {
 			stagedStatePreview =  Instantiate(previewPrefab, transform) as GameObject;
 		}
-		foreach (Versionable versioner in versioners) {
+		foreach (IVersionable versioner in versioners) {
 			versioner.ResetToStaged(stagedStatePreview);
 		}
 	}

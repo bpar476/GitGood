@@ -29,6 +29,16 @@ public class VersionControls : MonoBehaviour {
 		} else if(Input.GetKeyDown(KeyCode.R)) {
 			versionManager.ResetToHead();
 			Debug.Log("Resetting to HEAD");
+		} else if(Input.GetKeyDown(KeyCode.J)) {
+			if (!versionManager.HasBranch("demo")) {
+				versionManager.CreateBranch("demo");
+				Debug.Log("Creating branch 'demo'");
+			}
+			versionManager.Checkout("demo");
+			Debug.Log("Checkout demo");
+		} else if(Input.GetKeyDown(KeyCode.K)) {
+			versionManager.Checkout("master");
+			Debug.Log("Checkout master");
 		}
 	}
 
