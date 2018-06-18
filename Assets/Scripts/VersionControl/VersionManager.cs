@@ -86,14 +86,7 @@ public class VersionManager : MonoBehaviour {
 		return false;
 	}
 
-	public void Checkout(IBranch branch) {
-		if (branches.ContainsKey(branch.GetName()) && branches[branch.GetName()] != branch) {
-			throw new System.Exception("Branch mismatch");
-		} 
-		else if (!branches.ContainsKey(branch.GetName())) {
-			branches.Add(branch.GetName(), branch);
-		}
-
+	private void Checkout(IBranch branch) {
 		activeBranch = branch;
 		commitHead = branch.GetTip();
 
@@ -101,7 +94,7 @@ public class VersionManager : MonoBehaviour {
 	}
 
 	public bool CheckoutBranch(string reference) {
-		if (branches.ContainsKey(reference)) {
+		if (branches.ContainsKey(reference) && branches[reference].GetName().Equals(reference)) {
 			Checkout(branches[reference]);
 			return true;
 		}
@@ -115,7 +108,7 @@ public class VersionManager : MonoBehaviour {
 
 		IBranch branch = new Branch(branchName, commitHead);
 		branches.Add(branchName, branch);
-		
+
 		return branch;
 	}
 
