@@ -25,16 +25,19 @@ public class BranchTests {
 
     [UnityTest]
     public IEnumerator TestSwitchBranch() {
-         VersionController testObject = createTransformVersionedObject();
-        VersionController otherTestObject = createTransformVersionedObject();
+        VersionController testController = createTransformVersionedObject();
+        VersionController otherTestController = createTransformVersionedObject();
+
+        GameObject testObject = testController.GetActiveVersion();
+        GameObject otherTestObject = otherTestController.GetActiveVersion();
 
         VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
 
         testObject.transform.position = new Vector2(0.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(3.0f, 3.0f);
 
-        versionManager.Add(testObject);
-        versionManager.Add(otherTestObject);
+        versionManager.Add(testController);
+        versionManager.Add(otherTestController);
 
         ICommit commit = versionManager.Commit("Add two objects");
 
@@ -48,7 +51,7 @@ public class BranchTests {
         Assert.AreSame(commit, versionManager.GetActiveBranch().GetTip());
 
         testObject.transform.position = new Vector2(1.0f, 0.0f);
-        versionManager.Add(testObject);
+        versionManager.Add(testController);
         ICommit secondCommit = versionManager.Commit("Move testObject");
 
         Assert.AreSame(secondCommit, versionManager.GetActiveBranch().GetTip());
@@ -61,10 +64,10 @@ public class BranchTests {
 
     }
 
-
     private VersionController createTransformVersionedObject() {
         VersionController testObject = new GameObject().AddComponent<VersionController>();
         testObject.AddVersionable(new TransformVersionable(testObject.gameObject));
+        testObject.SetActiveVersion(new GameObject());
         return testObject;
     }
 }
