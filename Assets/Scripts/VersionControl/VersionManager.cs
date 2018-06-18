@@ -26,7 +26,7 @@ public class VersionManager : MonoBehaviour {
 	void Start () {
 
 	}
-	
+
 	public void Add(VersionController controller) {
 		if (!trackedObjects.Contains(controller)) {
 			trackedObjects.Add(controller);
@@ -77,14 +77,35 @@ public class VersionManager : MonoBehaviour {
 			ResetToCommit(commitHead, versionedObject);
 	}
 
-	public void checkout(Branch branch) {
-		if (!branches.Contains(branch)) {
-			branches.Add(branch);
-		}
+	public void checkout(IBranch branch) {
 		activeBranch = branch;
 		commitHead = branch.GetTip();
 
 		RefreshGame();
+	}
+
+	public bool checkoutBranch(string reference) {
+		foreach (IBranch b in branches) {
+			if (b.GetName().Equals(reference)) {
+				checkout(b);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void checkout(string reference) {
+		if (checkoutBranch(reference)) {
+			return;
+		}
+		// Do other kinds of reference checking such as commit ids, tags, etc;
+	}
+
+	public IBranch createBranch(string branchName) {
+		IBranch branch = new Branch(branchName, commitHead);
+		branches.Add(branch);
+
+		return branch;
 	}
 
 	public void RefreshGame() {
