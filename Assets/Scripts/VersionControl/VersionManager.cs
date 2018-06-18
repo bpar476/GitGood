@@ -25,6 +25,9 @@ public class VersionManager : MonoBehaviour {
 		}
 		stagingArea.Add(controller);
 		controller.Stage();
+		foreach(VersionController stagedController in stagingArea) {
+			stagedController.ShowStagedState();
+		}
 	}
 
 	public Commit Commit(string message) {
@@ -41,7 +44,11 @@ public class VersionManager : MonoBehaviour {
 			commit.addObject(controller, controllerVersion);
 		}
 		commitHead = commit;
+		foreach(VersionController stagedController in stagingArea) {
+			stagedController.HideStagedState();
+		}
 		stagingArea.Clear();
+
 		return commit;
 	}
 

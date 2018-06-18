@@ -11,6 +11,7 @@ public class VersionControls : MonoBehaviour {
 	private GameObject currentSelectedVersionable;
 
 	private void Start() {
+		versionManager = GameObject.FindWithTag("VersionManager").GetComponent<VersionManager>();
 	}
 
 	// Update is called once per frame
@@ -18,7 +19,7 @@ public class VersionControls : MonoBehaviour {
 		selectVersionable();
 
 		if(currentSelectedVersionable != null && Input.GetKeyDown(KeyCode.Q)) {
-			VersionController versionController = currentSelectedVersionable.GetComponent<VersionController>();
+			VersionController versionController = currentSelectedVersionable.GetComponentInParent<VersionController>();
 			versionManager.Add(versionController);
 			Debug.Log("Adding closest object");
 			Debug.Log(currentSelectedVersionable);
