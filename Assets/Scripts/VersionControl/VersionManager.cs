@@ -125,4 +125,19 @@ public class VersionManager : MonoBehaviour {
 		// Incase users change to branch after making changes and want changes to persist
 		// to commit
 	}
+
+	public IBranch LookupBranch(string branchName) {
+		if (HasBranch(branchName)) {
+			return branches[branchName];
+		}
+		return null;
+	}
+
+	public IBranch GetActiveBranch() {
+		return activeBranch;
+	}
+
+	public ICommit GetHead() {
+		return commitHead;
+	}
 }
