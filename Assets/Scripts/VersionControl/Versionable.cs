@@ -6,4 +6,6 @@ public interface Versionable {
     void Commit(int commitId);
 
     void ResetToCommit(int commitId, GameObject target);
+
+    void ResetToStaged(GameObject target);
 }

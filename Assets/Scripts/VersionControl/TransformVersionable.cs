@@ -30,4 +30,8 @@ public class TransformVersionable : Versionable {
 	public void ResetToCommit(int commitId, GameObject target) {
 		target.transform.position = history.Load(commitId);
 	}
+
+	public void ResetToStaged(GameObject target) {
+		target.transform.position = new Vector2(stagedX, stagedY);
+	}
 }

@@ -7,10 +7,12 @@ public class VersionController : MonoBehaviour {
 	private List<Versionable> versioners;
 
 	public GameObject templatePrefab;
+	public GameObject previewPrefab;
 	public Transform initialPosition;
 
 	private GameObject activeVersion;
 	private IDictionary<int, GameObject> previewVersions;
+	private GameObject stagedStatePreview;
 
 	public bool transformVersionable;
 	private int version = 0;
@@ -66,5 +68,34 @@ public class VersionController : MonoBehaviour {
 
 	public GameObject GetActiveVersion() {
 		return activeVersion;
+	}
+
+	public void ShowCommit(int commitId) {
+		GameObject preview;
+		if(!previewVersions.TryGetValue(commitId, out preview)) {
+			preview = Instantiate(previewPrefab, transform) as GameObject;
+			foreach (Versionable versioner in versioners) {
+				versioner.ResetToCommit(commitId, preview);
+			}
+			SpriteRenderer renderer = preview.GetComponent<SpriteRenderer>();
+			renderer.color = new Color(0.5f, 0.1f, 0.0f, 0.4f);
+			previewVersions.Add(commitId, preview);
+		}
+	}
+
+	public void ShowStagedState() {
+		if(stagedStatePreview == null) {
+			stagedStatePreview =  Instantiate(previewPrefab, transform) as GameObject;
+		}
+		foreach (Versionable versioner in versioners) {
+			versioner.ResetToStaged(stagedStatePreview);
+		}
+	}
+
+	public void HideStagedState() {
+		if(stagedStatePreview != null) {
+			Destroy(stagedStatePreview);
+			stagedStatePreview = null;
+		}
 	}
 }
