@@ -70,16 +70,16 @@ public class VersionController : MonoBehaviour {
 		return activeVersion;
 	}
 
-	public void ShowCommit(int commitId) {
+	public void ShowVersion(int version) {
 		GameObject preview;
-		if(!previewVersions.TryGetValue(commitId, out preview)) {
+		if(!previewVersions.TryGetValue(version, out preview)) {
 			preview = Instantiate(previewPrefab, transform) as GameObject;
 			foreach (IVersionable versioner in versioners) {
-				versioner.ResetToVersion(commitId, preview);
+				versioner.ResetToVersion(version, preview);
 			}
 			SpriteRenderer renderer = preview.GetComponent<SpriteRenderer>();
 			renderer.color = new Color(0.5f, 0.1f, 0.0f, 0.4f);
-			previewVersions.Add(commitId, preview);
+			previewVersions.Add(version, preview);
 		}
 	}
 
