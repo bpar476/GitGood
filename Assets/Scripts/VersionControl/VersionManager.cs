@@ -94,7 +94,7 @@ public class VersionManager : MonoBehaviour {
 	}
 
 	public bool CheckoutBranch(string reference) {
-		if (branches.ContainsKey(reference) && branches[reference].GetName().Equals(reference)) {
+		if (HasBranch(reference) && branches[reference].GetName().Equals(reference)) {
 			Checkout(branches[reference]);
 			return true;
 		}
@@ -102,7 +102,7 @@ public class VersionManager : MonoBehaviour {
 	}
 
 	public IBranch CreateBranch(string branchName) {
-		if (branches.ContainsKey(branchName)) {
+		if (HasBranch(branchName)) {
 			throw new System.ArgumentException("Branch already exists");
 		}
 
@@ -110,6 +110,10 @@ public class VersionManager : MonoBehaviour {
 		branches.Add(branchName, branch);
 
 		return branch;
+	}
+
+	public bool HasBranch(string branchName) {
+		return branches.ContainsKey(branchName);
 	}
 
 	public void RefreshGame() {
