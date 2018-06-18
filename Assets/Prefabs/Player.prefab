@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114415682447259536}
   - component: {fileID: 70106837517930922}
   - component: {fileID: 114953495467383190}
+  - component: {fileID: 114253544264562374}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -183,6 +184,19 @@ CapsuleCollider2D:
   m_Offset: {x: -0.03232336, y: 0}
   m_Size: {x: 1.8553534, y: 3.06}
   m_Direction: 0
+--- !u!114 &114253544264562374
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1051562760724500}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ea7a0ec30291a4195aaaab41a9c658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.11764706, g: 0.88235295, b: 0.078431375, a: 1}
+  outlineSize: 3
 --- !u!114 &114415682447259536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -245,7 +259,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 21d785355de21544a9be46787a9724c0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
