@@ -6,6 +6,9 @@ public class VersionController : MonoBehaviour {
 
 	private List<Versionable> versioners;
 
+	public GameObject activeVersion;
+	private IDictionary<int, GameObject> previewVersions;
+
 	public bool transformVersionable;
 	private int version = 0;
 
@@ -23,7 +26,7 @@ public class VersionController : MonoBehaviour {
 	
 	public void Stage() {
 		foreach (Versionable versioner in versioners) {
-			versioner.Stage();
+			versioner.Stage(activeVersion);
 		}
 	}
 
@@ -41,7 +44,7 @@ public class VersionController : MonoBehaviour {
 
 	public void ResetToCommit(int commitId) {
 		foreach (Versionable versioner in versioners) {
-			versioner.ResetToCommit(commitId);
+			versioner.ResetToCommit(commitId, activeVersion);
 		}
 	}
 
@@ -49,5 +52,13 @@ public class VersionController : MonoBehaviour {
 		if (versioner != null) {
 			versioners.Add(versioner);
 		}
+	}
+
+	public void SetActiveVersion(GameObject gobj) {
+		activeVersion = gobj;
+	}
+
+	public GameObject GetActiveVersion() {
+		return activeVersion;
 	}
 }

@@ -16,10 +16,10 @@ public class VersionControls : MonoBehaviour {
 		GameObject closestVersionable = versionableDetector.getClosestDetectedObject();
 		if ((Input.GetKeyDown(KeyCode.Q) && Input.GetKey(KeyCode.LeftControl))
 		|| (Input.GetKeyDown(KeyCode.LeftControl) && Input.GetKey(KeyCode.Q))) {
-			versionManager.Add(GetComponent<VersionController>());
+			versionManager.Add(GetComponentInParent<VersionController>());
 			Debug.Log("Adding player position");
 		} else if(closestVersionable != null && Input.GetKeyDown(KeyCode.Q)) {
-			VersionController versionController = closestVersionable.GetComponent<VersionController>();
+			VersionController versionController = closestVersionable.GetComponentInParent<VersionController>();
 			versionManager.Add(versionController);
 			Debug.Log("Adding closest object");
 		} else if(Input.GetKeyDown(KeyCode.E)) {

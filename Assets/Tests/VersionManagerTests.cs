@@ -10,20 +10,22 @@ public class VersionManagerTests {
     [UnityTest]
     public IEnumerator TestResetPositionToHead() {
         // Given
-        VersionController testObject = createTransformVersionedObject();
+        VersionController testController = createTransformVersionedObject();
+
+        GameObject testObject = testController.GetActiveVersion();
 
         VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
 
         testObject.transform.position = new Vector2(0,0);
 
-        versionManager.Add(testObject);
+        versionManager.Add(testController);
         versionManager.Commit("Set thing position to 0,0");
 
         yield return null;
 
         // When
         testObject.transform.position = new Vector2(1,0);
-        versionManager.ResetToHead(testObject);
+        versionManager.ResetToHead(testController);
 
         yield return null;
 
@@ -35,20 +37,22 @@ public class VersionManagerTests {
     [UnityTest]
     public IEnumerator TestResetPositionBeforeHEAD() {
         // Given
-        VersionController testObject = createTransformVersionedObject();
+        VersionController testController = createTransformVersionedObject();
+
+        GameObject testObject = testController.GetActiveVersion();
 
         VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
 
         testObject.transform.position = new Vector2(0.0f,0.0f);
 
-        versionManager.Add(testObject);
+        versionManager.Add(testController);
         Commit commitToLoad = versionManager.Commit("Set thing position to 0,0");
 
         yield return null;
         
         testObject.transform.position = new Vector2(1.0f,1.0f);
 
-        versionManager.Add(testObject);
+        versionManager.Add(testController);
         versionManager.Commit("Set thing position to 1,1");
 
         yield return null;
@@ -66,16 +70,19 @@ public class VersionManagerTests {
     [UnityTest]
     public IEnumerator TestResetMultipleObjectPositions() {
         // Given
-        VersionController testObject = createTransformVersionedObject();
-        VersionController otherTestObject = createTransformVersionedObject();
+        VersionController testController = createTransformVersionedObject();
+        VersionController otherTestController = createTransformVersionedObject();
+
+        GameObject testObject = testController.GetActiveVersion();
+        GameObject otherTestObject = otherTestController.GetActiveVersion();
 
         VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
 
         testObject.transform.position = new Vector2(1.0f, 3.0f);
         otherTestObject.transform.position = new Vector2(-1.0f, 5.0f);
 
-        versionManager.Add(testObject);
-        versionManager.Add(otherTestObject);
+        versionManager.Add(testController);
+        versionManager.Add(otherTestController);
 
         versionManager.Commit("Create two objects");
 
@@ -98,16 +105,19 @@ public class VersionManagerTests {
 
     [UnityTest]
     public IEnumerator TestResetOnePositionObjectToHeadButKeepOtherOneChanges() {
-        VersionController testObject = createTransformVersionedObject();
-        VersionController otherTestObject = createTransformVersionedObject();
+        VersionController testController = createTransformVersionedObject();
+        VersionController otherTestController = createTransformVersionedObject();
+
+        GameObject testObject = testController.GetActiveVersion();
+        GameObject otherTestObject = otherTestController.GetActiveVersion();
 
         VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
 
         testObject.transform.position = new Vector2(1.0f, 3.0f);
         otherTestObject.transform.position = new Vector2(-1.0f, 5.0f);
 
-        versionManager.Add(testObject);
-        versionManager.Add(otherTestObject);
+        versionManager.Add(testController);
+        versionManager.Add(otherTestController);
 
         versionManager.Commit("Create two objects");
 
@@ -118,7 +128,7 @@ public class VersionManagerTests {
 
         yield return null;
 
-        versionManager.ResetToHead(testObject);
+        versionManager.ResetToHead(testController);
 
         yield return null;
 
@@ -131,16 +141,19 @@ public class VersionManagerTests {
 
     [UnityTest]
     public IEnumerator TestResetObjectsToCommitWhereOneWasNotChanged() {
-        VersionController testObject = createTransformVersionedObject();
-        VersionController otherTestObject = createTransformVersionedObject();
+        VersionController testController = createTransformVersionedObject();
+        VersionController otherTestController = createTransformVersionedObject();
+
+        GameObject testObject = testController.GetActiveVersion();
+        GameObject otherTestObject = otherTestController.GetActiveVersion();
 
         VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
 
         testObject.transform.position = new Vector2(0.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(3.0f, 3.0f);
 
-        versionManager.Add(testObject);
-        versionManager.Add(otherTestObject);
+        versionManager.Add(testController);
+        versionManager.Add(otherTestController);
 
         versionManager.Commit("Create two objects");
 
@@ -148,7 +161,7 @@ public class VersionManagerTests {
 
         testObject.transform.position = new Vector2(-2.0f, -2.0f);
 
-        versionManager.Add(testObject);
+        versionManager.Add(testController);
         versionManager.Commit("Move one of the objects");
 
         yield return null;
@@ -175,6 +188,7 @@ public class VersionManagerTests {
     private VersionController createTransformVersionedObject() {
         VersionController testObject = new GameObject().AddComponent<VersionController>();
         testObject.AddVersionable(new TransformVersionable(testObject.gameObject));
+        testObject.SetActiveVersion(new GameObject());
         return testObject;
     }
 }

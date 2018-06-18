@@ -7,12 +7,9 @@ public class TransformVersionable : Versionable {
 	private float stagedX;
 	private float stagedY;
 	
-	private GameObject gameObject;
-
 	private History<Vector2> history;
 
 	public TransformVersionable(GameObject gobj) {
-		gameObject = gobj;
 		history = new History<Vector2>();
 	}
 
@@ -21,16 +18,16 @@ public class TransformVersionable : Versionable {
 		
 	}
 
-	public void Stage() {
-		stagedX = gameObject.transform.position.x;
-		stagedY = gameObject.transform.position.y;
+	public void Stage(GameObject version) {
+		stagedX = version.transform.position.x;
+		stagedY = version.transform.position.y;
 	}
 
 	public void Commit(int commitId) {
 		history.Add(commitId, new Vector2(stagedX, stagedY));
 	}
 
-	public void ResetToCommit(int commitId) {
-		gameObject.transform.position = history.Load(commitId);
+	public void ResetToCommit(int commitId, GameObject target) {
+		target.transform.position = history.Load(commitId);
 	}
 }
