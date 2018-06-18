@@ -7,7 +7,7 @@ public class VersionManager : MonoBehaviour {
 	IList<VersionController> trackedObjects;
 	IList<VersionController> stagingArea;
 	private ICommit commitHead;
-	private List<IBranch> branches;
+	private IDictionary<string, IBranch> branches;
 	private IBranch activeBranch;
 
 	private void Awake() {
@@ -15,9 +15,9 @@ public class VersionManager : MonoBehaviour {
 		stagingArea = new List<VersionController>();
 		commitHead = null;
 
-		branches = new List<IBranch>();
+		branches = new Dictionary<string, IBranch>();
 		IBranch master = new Branch("master", null);
-		branches.Add(master);
+		branches.Add(master.GetName(), master);
 
 		activeBranch = master;
 	}
@@ -77,34 +77,45 @@ public class VersionManager : MonoBehaviour {
 			ResetToCommit(commitHead, versionedObject);
 	}
 
-	public void checkout(IBranch branch) {
+	public bool Checkout(string reference) {
+		if (CheckoutBranch(reference)) {
+			return true;
+		}
+		// Do other kinds of reference checking such as commit ids, tags, etc;
+
+		return false;
+	}
+
+	public void Checkout(IBranch branch) {
+		if (branches.ContainsKey(branch.GetName()) && branches[branch.GetName()] != branch) {
+			throw new System.Exception("Branch mismatch");
+		} 
+		else if (!branches.ContainsKey(branch.GetName())) {
+			branches.Add(branch.GetName(), branch);
+		}
+
 		activeBranch = branch;
 		commitHead = branch.GetTip();
 
 		RefreshGame();
 	}
 
-	public bool checkoutBranch(string reference) {
-		foreach (IBranch b in branches) {
-			if (b.GetName().Equals(reference)) {
-				checkout(b);
-				return true;
-			}
+	public bool CheckoutBranch(string reference) {
+		if (branches.ContainsKey(reference)) {
+			Checkout(branches[reference]);
+			return true;
 		}
 		return false;
 	}
 
-	public void checkout(string reference) {
-		if (checkoutBranch(reference)) {
-			return;
+	public IBranch CreateBranch(string branchName) {
+		if (branches.ContainsKey(branchName)) {
+			throw new System.ArgumentException("Branch already exists");
 		}
-		// Do other kinds of reference checking such as commit ids, tags, etc;
-	}
 
-	public IBranch createBranch(string branchName) {
 		IBranch branch = new Branch(branchName, commitHead);
-		branches.Add(branch);
-
+		branches.Add(branchName, branch);
+		
 		return branch;
 	}
 
