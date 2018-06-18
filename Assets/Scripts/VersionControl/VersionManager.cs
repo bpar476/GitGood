@@ -55,6 +55,9 @@ public class VersionManager : MonoBehaviour {
 		foreach(VersionController stagedController in stagingArea) {
 			stagedController.HideStagedState();
 		}
+		if (activeBranch != null) {
+			activeBranch.UpdateTip(commitHead);
+		}
 		stagingArea.Clear();
 
 		return commit;
@@ -118,5 +121,8 @@ public class VersionManager : MonoBehaviour {
 
 	public void RefreshGame() {
 		ResetToCommit(activeBranch.GetTip());
+		// Need to find a way to change branches without restoring to head.
+		// Incase users change to branch after making changes and want changes to persist
+		// to commit
 	}
 }
