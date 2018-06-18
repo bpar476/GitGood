@@ -156,16 +156,11 @@ Prefab:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 70021675675371208, guid: 434cf745e28d1734bba3f8e394619a05,
+    - target: {fileID: 114028577618326384, guid: 434cf745e28d1734bba3f8e394619a05,
         type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 50974384381226020, guid: 434cf745e28d1734bba3f8e394619a05,
-        type: 2}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
+      propertyPath: versionManager
+      value: 
+      objectReference: {fileID: 1737957629}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 434cf745e28d1734bba3f8e394619a05, type: 2}
   m_IsPrefabParent: 0
@@ -458,11 +453,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &882831529 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4376040706441848, guid: 434cf745e28d1734bba3f8e394619a05,
-    type: 2}
-  m_PrefabInternal: {fileID: 13955906}
 --- !u!1 &906517440
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,52 +653,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.04, y: 1.04}
   m_EdgeRadius: 0
---- !u!1 &970756021
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 970756022}
-  m_Layer: 0
-  m_Name: Forward
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &970756022
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 970756021}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1397156399}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1006070313 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1670039716108416, guid: 434cf745e28d1734bba3f8e394619a05,
-    type: 2}
-  m_PrefabInternal: {fileID: 13955906}
---- !u!114 &1006070314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1006070313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b8aa086c48d08a44ba52888d2b70aa2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  versionManager: {fileID: 1737957629}
-  versionableDetector: {fileID: 1397156400}
 --- !u!1 &1181788382
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,68 +753,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.04, y: 1.04}
   m_EdgeRadius: 0
---- !u!1 &1397156398
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1397156399}
-  - component: {fileID: 1397156401}
-  - component: {fileID: 1397156400}
-  m_Layer: 0
-  m_Name: VersionableDetector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1397156399
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1397156398}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
-  m_Children:
-  - {fileID: 970756022}
-  m_Father: {fileID: 882831529}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1397156400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1397156398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b0a03cbd6dd5ea479175c175294bc44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  debug: 1
-  fovAngle: 45
-  tagToDetect: versionable
-  triggerZone: {fileID: 1397156401}
-  forwards: {fileID: 970756022}
---- !u!58 &1397156401
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1397156398}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 8.5
 --- !u!1001 &1532878339
 Prefab:
   m_ObjectHideFlags: 0

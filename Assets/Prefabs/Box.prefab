@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 61040997334647168}
   - component: {fileID: 114652744217101084}
   - component: {fileID: 58315619061405078}
-  - component: {fileID: 114046363924262098}
+  - component: {fileID: 114030664651372988}
   m_Layer: 0
   m_Name: Box
   m_TagString: versionable
@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1179346558908496}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.367, y: -2.963, z: 0}
+  m_LocalPosition: {x: -1, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -105,18 +105,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.04, y: 1.04}
   m_EdgeRadius: 0
---- !u!114 &114046363924262098
+--- !u!114 &114030664651372988
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1179346558908496}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9f505fbfecfceb4aa69fe905b664c46, type: 3}
+  m_Script: {fileID: 11500000, guid: 45ea7a0ec30291a4195aaaab41a9c658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transformVersionable: 1
+  color: {r: 0.087086126, g: 0.9716981, b: 0.094609, a: 1}
+  outlineSize: 3
 --- !u!114 &114652744217101084
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -144,7 +145,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 21d785355de21544a9be46787a9724c0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
