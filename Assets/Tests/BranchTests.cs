@@ -25,8 +25,10 @@ public class BranchTests {
 
     [UnityTest]
     public IEnumerator TestSwitchBranch() {
-        VersionController testController = createTransformVersionedObject();
-        VersionController otherTestController = createTransformVersionedObject();
+        VersionableObjectFactory factory = new VersionableObjectFactory();
+
+        VersionController testController = factory.createVersionablePlayer();
+        VersionController otherTestController = factory.createVersionableBox();
 
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();

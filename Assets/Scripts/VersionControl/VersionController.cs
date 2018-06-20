@@ -30,7 +30,28 @@ public class VersionController : MonoBehaviour {
 			activeVersion = Instantiate(templatePrefab, transform) as GameObject;
 			activeVersion.transform.position = initialPosition.position;
 		}
+		if (initialPosition == null) {
+			initialPosition = new GameObject().transform;
+		}
 	}
+
+	#region accessors
+	public void SetActiveVersion(GameObject gobj) {
+		activeVersion = gobj;
+	}
+
+	public GameObject GetActiveVersion() {
+		return activeVersion;
+	}
+
+	public void SetTemplatePrefab(GameObject template) {
+		templatePrefab = template;
+	}
+
+	public void SetPreviewPrefab(GameObject preview) {
+		previewPrefab = preview;
+	}
+	#endregion accessors
 	
 	public void StageVersion() {
 		foreach (IVersionable versioner in versioners) {
@@ -62,13 +83,6 @@ public class VersionController : MonoBehaviour {
 		}
 	}
 
-	public void SetActiveVersion(GameObject gobj) {
-		activeVersion = gobj;
-	}
-
-	public GameObject GetActiveVersion() {
-		return activeVersion;
-	}
 
 	public void ShowVersion(int version) {
 		GameObject preview;
