@@ -14,6 +14,15 @@ public class Commit : ICommit {
         this.objectData = new Dictionary<VersionController, int>();
     }
 
+    public Commit(ICommit parent, IDictionary<VersionController, int> versionData, string message) {
+        Relink(parent);
+        this.commitMessage = message;
+        this.objectData = new Dictionary<VersionController, int>();
+        foreach (VersionController controller in versionData.Keys) {
+            this.objectData.Add(controller, versionData[controller]);
+        }
+    }
+
     public string GetMessage() {
         return commitMessage;
 
