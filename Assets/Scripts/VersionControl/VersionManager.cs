@@ -39,7 +39,9 @@ public class VersionManager : MonoBehaviour {
 	}
 
 	public ICommit Commit(string message) {
-		ICommit commit = new Commit(commitHead, message);
+		CommitBuilder builder = new CommitBuilder();
+		builder.SetMessage(message);
+		builder.SetParent(commitHead);
 		foreach(VersionController controller in trackedObjects) {
 			int controllerVersion;
 			if (stagingArea.Contains(controller)) {
@@ -49,8 +51,9 @@ public class VersionManager : MonoBehaviour {
 			else {
 				controllerVersion = controller.GetVersion();
 			}
-			commit.addObject(controller, controllerVersion);
+			builder.AddObject(controller, controllerVersion);
 		}
+		ICommit commit = builder.Build();
 		commitHead = commit;
 		foreach(VersionController stagedController in stagingArea) {
 			stagedController.HideStagedState();

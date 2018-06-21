@@ -6,8 +6,8 @@ using System.Collections;
 public class BranchTests {
     [UnityTest]
     public IEnumerator TestSimple() {
-        Commit a = new Commit(null, "Commit A");
-        Commit b = new Commit(a, "Commit B");
+        ICommit a = new CommitBuilder().SetMessage("Commit A").Build();
+        ICommit b = new CommitBuilder().SetParent(a).SetMessage("Commit B").Build();
 
         yield return null;
         Assert.AreEqual("Commit A", b.GetParent().GetMessage());
@@ -15,7 +15,7 @@ public class BranchTests {
 
     [UnityTest]
     public IEnumerator TestBranchConstruction() {
-        ICommit A = new Commit(null, "Test commit object construction");
+        ICommit A = new CommitBuilder().SetMessage("Test commit object construction").Build();
         IBranch testBranch = new Branch("feature/branches", A);
         yield return null;
         Assert.AreSame(A, testBranch.GetTip());
