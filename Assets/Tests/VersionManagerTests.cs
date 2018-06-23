@@ -10,7 +10,9 @@ public class VersionManagerTests {
     [UnityTest]
     public IEnumerator TestResetPositionToHead() {
         // Given
-        VersionController testController = createTransformVersionedObject();
+        VersionableObjectFactory factory = new VersionableObjectFactory();
+
+        VersionController testController = factory.createVersionablePlayer();
 
         GameObject testObject = testController.GetActiveVersion();
 
@@ -37,7 +39,9 @@ public class VersionManagerTests {
     [UnityTest]
     public IEnumerator TestResetPositionBeforeHEAD() {
         // Given
-        VersionController testController = createTransformVersionedObject();
+        VersionableObjectFactory factory = new VersionableObjectFactory();
+        
+        VersionController testController = factory.createVersionablePlayer();
 
         GameObject testObject = testController.GetActiveVersion();
 
@@ -70,8 +74,10 @@ public class VersionManagerTests {
     [UnityTest]
     public IEnumerator TestResetMultipleObjectPositions() {
         // Given
-        VersionController testController = createTransformVersionedObject();
-        VersionController otherTestController = createTransformVersionedObject();
+        VersionableObjectFactory factory = new VersionableObjectFactory();
+
+        VersionController testController = factory.createVersionablePlayer();
+        VersionController otherTestController = factory.createVersionableBox();
 
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
@@ -105,8 +111,10 @@ public class VersionManagerTests {
 
     [UnityTest]
     public IEnumerator TestResetOnePositionObjectToHeadButKeepOtherOneChanges() {
-        VersionController testController = createTransformVersionedObject();
-        VersionController otherTestController = createTransformVersionedObject();
+        VersionableObjectFactory factory = new VersionableObjectFactory();
+
+        VersionController testController = factory.createVersionablePlayer();
+        VersionController otherTestController = factory.createVersionableBox();
 
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
@@ -141,8 +149,10 @@ public class VersionManagerTests {
 
     [UnityTest]
     public IEnumerator TestResetObjectsToCommitWhereOneWasNotChanged() {
-        VersionController testController = createTransformVersionedObject();
-        VersionController otherTestController = createTransformVersionedObject();
+        VersionableObjectFactory factory = new VersionableObjectFactory();
+
+        VersionController testController = factory.createVersionablePlayer();
+        VersionController otherTestController = factory.createVersionableBox();
 
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
@@ -183,12 +193,5 @@ public class VersionManagerTests {
     [TearDown]
     public void AfterEachTest() {
         
-    }
-
-    private VersionController createTransformVersionedObject() {
-        VersionController testObject = new GameObject().AddComponent<VersionController>();
-        testObject.AddVersionable(new TransformVersionable(testObject.gameObject));
-        testObject.SetActiveVersion(new GameObject());
-        return testObject;
     }
 }
