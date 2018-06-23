@@ -1,36 +1,51 @@
 using System;
 using System.Collections.Generic;
 
+/// <summary>
+/// Commits represent the state of a level at a point in time. Contains versionable objects and their versions.
+/// </summary>
 public class Commit : ICommit {
 
     private IDictionary<VersionController, int> objectData;
     private ICommit parent;
     private string commitMessage;
 
-
-    public Commit(ICommit parent, string commitMessage) {
+    /// <summary>
+    /// The Commit constructor should not be called directly, instead use a CommitBuilder to incrementally build a commit
+    /// </summary>
+    public Commit(ICommit parent, IDictionary<VersionController, int> versionData, string message) {
         Relink(parent);
-        this.commitMessage = commitMessage;
+        this.commitMessage = message;
         this.objectData = new Dictionary<VersionController, int>();
+        foreach (VersionController controller in versionData.Keys) {
+            this.objectData.Add(controller, versionData[controller]);
+        }
     }
 
+    /// <summary>
+    /// Gets the commit message for this commit
+    /// </summary>
     public string GetMessage() {
         return commitMessage;
-
     }
 
+    /// <summary>
+    /// Changes the parent commit of this parent
+    /// </summary>
     public void Relink(ICommit parent) {
         this.parent = parent;
     }
 
+    /// <summary>
+    /// Gets the parent of this commit
+    /// </summary>
     public ICommit GetParent() {
         return parent;
     }
 
-    public void addObject(VersionController versionedObject, int version) {
-        objectData.Add(versionedObject, version);
-    }
-
+    /// <summary>
+    /// Gets the version code for the given object corresponding to the state at this commit
+    /// </summary>
     public int getObjectVersion(VersionController versionedObject) {
         int version;
         if (this.objectData.TryGetValue(versionedObject, out version)) {
