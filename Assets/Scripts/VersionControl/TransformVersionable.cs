@@ -23,10 +23,18 @@ public class TransformVersionable : IVersionable {
 	}
 
 	public void ResetToVersion(int version, GameObject target) {
-		target.transform.position = history.GetStateAt(version);
+		Reset(target, history.GetStateAt(version));
 	}
 
 	public void ResetToStaged(GameObject target) {
-		target.transform.position = new Vector2(stagedX, stagedY);
+		Reset(target, new Vector2(stagedX, stagedY));
+	}
+
+	private void Reset(GameObject target, Vector2 state) {
+		target.transform.position = state;
+		Rigidbody2D rb2d = target.GetComponent<Rigidbody2D>();
+		if (rb2d != null) {
+			rb2d.velocity = new Vector3(0,0,0);
+		}
 	}
 }
