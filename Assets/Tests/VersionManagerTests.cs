@@ -62,7 +62,7 @@ public class VersionManagerTests {
         yield return null;
         
         // When
-        versionManager.ResetToCommit(commitToLoad);
+        versionManager.CheckoutCommit(commitToLoad);
 
         yield return null;
 
@@ -188,6 +188,47 @@ public class VersionManagerTests {
 
         Assert.AreEqual(3.0f, otherTestObject.transform.position.x, 0.1f);
         Assert.AreEqual(3.0f, otherTestObject.transform.position.y, 0.1f);
+    }
+
+    [UnityTest]
+    public IEnumerator TestCheckoutCommitOnCurrentBranch() {
+        VersionableObjectFactory factory = new VersionableObjectFactory();
+
+        VersionController testController = factory.createVersionableBox();
+        VersionController otherTestController = factory.createVersionableBox();
+
+        GameObject testObject = testController.GetActiveVersion();
+        GameObject otherTestObject = otherTestController.GetActiveVersion();
+
+        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
+
+        testObject.transform.position = new Vector2(0.0f, 0.0f);
+        otherTestObject.transform.position = new Vector2(3.0f, 0.0f);
+
+        versionManager.Add(testController);
+        versionManager.Add(otherTestController);
+
+        Guid firstCommitId = versionManager.Commit("Create two boxes").GetCommitId();
+
+        yield return null;
+
+        testObject.transform.position = new Vector2(1.0f, 0.0f);
+        otherTestObject.transform.position = new Vector2(4.0f, 1.0f);
+
+        versionManager.Add(testController);
+        versionManager.Add(otherTestController);
+
+        versionManager.Commit("Move boxes");
+
+        yield return null;
+
+        versionManager.Checkout(versionManager.GetActiveBranch(), firstCommitId);
+
+        Assert.AreEqual(0.0f, testObject.transform.position.x, 0.1f);
+        Assert.AreEqual(0.0f, testObject.transform.position.y, 0.1f);
+
+        Assert.AreEqual(3.0f, otherTestObject.transform.position.x, 0.1f);
+        Assert.AreEqual(0.0f, otherTestObject.transform.position.y, 0.1f);
     }
 
     [TearDown]
