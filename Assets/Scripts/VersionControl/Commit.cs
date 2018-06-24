@@ -9,6 +9,7 @@ public class Commit : ICommit {
     private IDictionary<VersionController, int> objectData;
     private ICommit parent;
     private string commitMessage;
+    private Guid id;
 
     /// <summary>
     /// The Commit constructor should not be called directly, instead use a CommitBuilder to incrementally build a commit
@@ -20,6 +21,7 @@ public class Commit : ICommit {
         foreach (VersionController controller in versionData.Keys) {
             this.objectData.Add(controller, versionData[controller]);
         }
+        this.id = Guid.NewGuid();
     }
 
     /// <summary>
@@ -54,5 +56,12 @@ public class Commit : ICommit {
         else {
             throw new System.ArgumentException("Key doesn't exist");
         }
+    }
+
+    /// <summary>
+    /// Gets the ID for this commit.
+    /// </summary>
+    public Guid GetCommitId() {
+        return this.id;
     }
 }
