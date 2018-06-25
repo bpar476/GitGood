@@ -136,6 +136,18 @@ public class VersionManager : MonoBehaviour {
 	}
 
 	/// <summary>
+	/// Checks out the specified commit on the branch identified by the given reference
+	/// </summary>
+	public void Checkout(string branchReference, Guid commitId) {
+		IBranch branch = LookupBranch(branchReference);
+		if (branch != null) {
+			Checkout(branch, commitId);
+		} else {
+			Debug.LogError("The branch: " + branchReference + " does not exist");
+		}
+	}
+
+	/// <summary>
 	/// Checks out the specified commit
 	/// </summary>
 	public void CheckoutCommit(ICommit commit) {
