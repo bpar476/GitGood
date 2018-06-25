@@ -255,7 +255,7 @@ public class VersionManagerTests {
         yield return null;
 
         versionManager.CreateBranch("feature");
-        versionManager.CheckoutBranch("feature");
+        versionManager.Checkout("feature");
 
         testObject.transform.position = new Vector2(1.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(4.0f, 1.0f);
@@ -419,6 +419,49 @@ public class VersionManagerTests {
         Assert.AreEqual(newBranch.GetTip().GetCommitId(), commit.GetCommitId());
         Assert.True(commit.ObjectIsTrackedInThisCommit(testController));
         Assert.True(commit.ObjectIsTrackedInThisCommit(otherTestController));
+    }
+
+    [UnityTest]
+    public IEnumerator shouldPreserveStagingAreaWhenCheckingOutNewBranch() {
+        VersionableObjectFactory factory = new VersionableObjectFactory();
+
+        VersionController testController = factory.createVersionableBox();
+        VersionController otherTestController = factory.createVersionableBox();
+
+        GameObject testObject = testController.GetActiveVersion();
+        GameObject otherTestObject = otherTestController.GetActiveVersion();
+
+        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
+
+        testObject.transform.position = new Vector2(0.0f, 0.0f);
+        otherTestObject.transform.position = new Vector2(3.0f, 0.0f);
+
+        versionManager.Add(testController);
+        versionManager.Add(otherTestController);
+
+        Guid firstCommitId = versionManager.Commit("Create two boxes").GetCommitId();
+
+        yield return null;
+
+        testObject.transform.position = new Vector2(1.0f, 0.0f);
+        otherTestObject.transform.position = new Vector2(4.0f, 1.0f);
+        Debug.Log(otherTestObject.transform.position);
+
+        versionManager.Add(testController);
+        versionManager.Add(otherTestController);
+
+        versionManager.CreateBranch("feature");
+        versionManager.Checkout("feature");
+
+        versionManager.Commit("Move boxes");
+
+        versionManager.ResetToHead();
+
+        Assert.AreEqual(1.0f, testObject.transform.position.x, 0.1f);
+        Assert.AreEqual(0.0f, testObject.transform.position.y, 0.1f);
+
+        Assert.AreEqual(4.0f, otherTestObject.transform.position.x, 0.1f);
+        Assert.AreEqual(1.0f, otherTestObject.transform.position.y, 0.1f);
     }
 
     [TearDown]
