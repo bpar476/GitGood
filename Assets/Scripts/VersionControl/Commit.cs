@@ -78,4 +78,7 @@ public class Commit : ICommit {
     public IEnumerator<VersionController> GetTrackedObjectsEnumerator() {
         return this.objectData.Keys.GetEnumerator();
     }
+    public ICollection<VersionController> GetTrackedObjects() {
+        return objectData.Keys;
+    }
 }

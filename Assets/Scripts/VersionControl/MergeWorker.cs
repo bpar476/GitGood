@@ -3,15 +3,17 @@ using System;
 public class MergeWorker : IMergeWorker
 {
     private IBranch baseBranch, featureBranch;
+    private VersionManager versionManager;
     private bool isMergable;
 
-    public MergeWorker(IBranch baseBranch, IBranch featureBranch) {
+    public MergeWorker(VersionManager versionManager, IBranch baseBranch, IBranch featureBranch) {
         if (baseBranch == null || featureBranch == null) {
             throw new Exception("Branch can not be null");
         }
         this.baseBranch = baseBranch;
         this.featureBranch = featureBranch;
         this.isMergable = false;
+        this.versionManager = versionManager;
         Initialise();
     }
 
@@ -23,8 +25,14 @@ public class MergeWorker : IMergeWorker
                 throw new Exception("Branches are the same");
             case BranchCompareAnalysis.Unknown:
                 throw new Exception("Can not determine branch relativity");
-            case BranchCompareAnalysis.Divergent:
             case BranchCompareAnalysis.FastForward:
+                foreach (VersionController trackedObject in featureBranch.GetTip().GetTrackedObjects()) {
+                    this.versionManager.Add(trackedObject);
+                    this.isMergable = true;
+                }
+                break;
+            case BranchCompareAnalysis.Divergent:
+                break;
             default:
                 break;
         }

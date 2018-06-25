@@ -65,4 +65,58 @@ public class BranchTests {
 
 
     }
+
+    [UnityTest]
+    public IEnumerator TestFastForward() {
+        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
+        versionManager.Commit("Initial Commit");
+        IBranch master = versionManager.GetActiveBranch();
+        IBranch feature = versionManager.CreateBranch("feature");
+
+        versionManager.Checkout(feature.GetName());
+        versionManager.Commit("Commit on feature branch");
+        yield return null;
+
+        Assert.AreEqual(BranchCompareAnalysis.FastForward, BranchAnalyser.Compare(master, feature));
+    }
+
+    [UnityTest]
+    public IEnumerator TestRewind() {
+        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
+        versionManager.Commit("Initial Commit");
+        IBranch master = versionManager.GetActiveBranch();
+        IBranch feature = versionManager.CreateBranch("feature");
+
+        versionManager.Commit("Commit on feature branch");
+        yield return null;
+
+        Assert.AreEqual(BranchCompareAnalysis.Rewind, BranchAnalyser.Compare(master, feature));
+    }
+
+    [UnityTest]
+    public IEnumerator TestSame() {
+        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
+        versionManager.Commit("Initial Commit");
+        IBranch master = versionManager.GetActiveBranch();
+        IBranch feature = versionManager.CreateBranch("feature");
+
+        yield return null;
+
+        Assert.AreEqual(BranchCompareAnalysis.Same, BranchAnalyser.Compare(master, feature));
+    }
+
+    [UnityTest]
+    public IEnumerator TestDivergent() {
+        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
+        versionManager.Commit("Initial Commit");
+        IBranch master = versionManager.GetActiveBranch();
+        IBranch feature = versionManager.CreateBranch("feature");
+
+        versionManager.Commit("Commit on master branch");
+        versionManager.Checkout(feature.GetName());
+        versionManager.Commit("Commit on feature branch");
+        yield return null;
+
+        Assert.AreEqual(BranchCompareAnalysis.Divergent, BranchAnalyser.Compare(master, feature));
+    }
 }
