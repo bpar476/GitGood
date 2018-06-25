@@ -320,6 +320,12 @@ public class VersionManagerTests {
         Assert.AreEqual(0.0f, otherTestController.transform.position.y, 0.1f);
     }
 
+    [UnityTest]
+    public IEnumerator shouldNotBeAbleToCommitWhenInDetachedHeadState() {
+        Assert.Fail();
+        yield return null;
+    }
+
     [TearDown]
     public void AfterEachTest() {
 
