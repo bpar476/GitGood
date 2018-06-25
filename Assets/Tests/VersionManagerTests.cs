@@ -439,13 +439,12 @@ public class VersionManagerTests {
         versionManager.Add(testController);
         versionManager.Add(otherTestController);
 
-        Guid firstCommitId = versionManager.Commit("Create two boxes").GetCommitId();
+        versionManager.Commit("Create two boxes").GetCommitId();
 
         yield return null;
 
         testObject.transform.position = new Vector2(1.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(4.0f, 1.0f);
-        Debug.Log(otherTestObject.transform.position);
 
         versionManager.Add(testController);
         versionManager.Add(otherTestController);
