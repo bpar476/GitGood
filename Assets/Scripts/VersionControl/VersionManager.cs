@@ -179,7 +179,7 @@ public class VersionManager : MonoBehaviour {
 	}
 
 	// Helper function for checking out a branch
-	private void Checkout(IBranch branch) {
+	public void Checkout(IBranch branch) {
 		Checkout(branch, branch.GetTip());
 	}
 
