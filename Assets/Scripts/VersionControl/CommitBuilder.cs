@@ -6,7 +6,7 @@ using System.Collections.Generic;
 /// </summary>
 public class CommitBuilder {
 
-    private IDictionary<VersionController, int> versionData;
+    private IDictionary<VersionController, IVersion> versionData;
     private ICommit parent;
     private string message;
     private ICommit buildTarget;
@@ -15,7 +15,7 @@ public class CommitBuilder {
     /// Creates a fresh CommitBuilder
     /// </summary>
     public CommitBuilder() {
-        this.versionData = new Dictionary<VersionController, int>();
+        this.versionData = new Dictionary<VersionController, IVersion>();
     }
 
     /// <summary>
@@ -37,7 +37,7 @@ public class CommitBuilder {
     /// <summary>
     /// Adds the given versionable object to the commit, with the state being the current version. Returns this instance so methods can be chained.
     /// </summary>
-    public CommitBuilder AddObject(VersionController versionable, int version) {
+    public CommitBuilder AddObject(VersionController versionable, IVersion version) {
         this.versionData.Add(versionable, version);
         return this;
     }

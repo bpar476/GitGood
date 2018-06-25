@@ -12,10 +12,11 @@ public class VersionController : MonoBehaviour {
 	public TransformVersionable transformVersioner;
 
 	private GameObject activeVersion;
-	private IDictionary<int, GameObject> previewVersions;
+	private IDictionary<IVersion, GameObject> previewVersions;
 	private GameObject stagedStatePreview;
 
-	private int version = 0;
+	public bool transformVersionable;
+	private IVersion version = new Version();
 
 	private void Awake() {
 		versioners = new List<IVersionable>();
@@ -66,19 +67,19 @@ public class VersionController : MonoBehaviour {
 		}
 	}
 
-	public int GenerateVersion() {
-		this.version++;
+	public IVersion GenerateVersion() {
+		version = new Version(version);
 		foreach (IVersionable versioner in versioners) {
 			versioner.Commit(version);
 		}
 		return version;
 	}
 
-	public int GetVersion() {
+	public IVersion GetVersion() {
 		return this.version;
 	}
 
-	public void ResetToVersion(int version) {
+	public void ResetToVersion(IVersion version) {
 		foreach (IVersionable versioner in versioners) {
 			versioner.ResetToVersion(version, activeVersion);
 		}
@@ -96,7 +97,8 @@ public class VersionController : MonoBehaviour {
 		}
 	}
 
-	public void ShowVersion(int version) {
+
+	public void ShowVersion(IVersion version) {
 		GameObject preview;
 		if(!previewVersions.TryGetValue(version, out preview)) {
 			preview = Instantiate(previewPrefab, transform) as GameObject;

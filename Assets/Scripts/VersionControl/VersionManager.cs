@@ -59,7 +59,7 @@ public class VersionManager : MonoBehaviour {
 		builder.SetMessage(message);
 		builder.SetParent(activeCommit);
 		foreach(VersionController controller in trackedObjects) {
-			int controllerVersion;
+			IVersion controllerVersion;
 			if (stagingArea.Contains(controller)) {
 				// increment commit count
 				controllerVersion = controller.GenerateVersion();

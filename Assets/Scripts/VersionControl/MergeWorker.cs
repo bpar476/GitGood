@@ -50,7 +50,7 @@ public class MergeWorker : IMergeWorker
         return this.isMergable;
     }
 
-    public void PickVersion(VersionController vc, int version) {
+    public void PickVersion(VersionController vc, IVersion version) {
         throw new NotImplementedException();
     }
 
