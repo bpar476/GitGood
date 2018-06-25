@@ -232,6 +232,53 @@ public class VersionManagerTests {
         Assert.AreEqual(0.0f, otherTestObject.transform.position.y, 0.1f);
     }
 
+    [UnityTest]
+    public IEnumerator TestCheckoutCommitOnDifferentBranch() {
+        VersionableObjectFactory factory = new VersionableObjectFactory();
+
+        VersionController testController = factory.createVersionableBox();
+        VersionController otherTestController = factory.createVersionableBox();
+
+        GameObject testObject = testController.GetActiveVersion();
+        GameObject otherTestObject = otherTestController.GetActiveVersion();
+
+        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
+
+        testObject.transform.position = new Vector2(0.0f, 0.0f);
+        otherTestObject.transform.position = new Vector2(3.0f, 0.0f);
+
+        versionManager.Add(testController);
+        versionManager.Add(otherTestController);
+
+        Guid firstCommitId = versionManager.Commit("Create two boxes").GetCommitId();
+
+        yield return null;
+
+        versionManager.CreateBranch("feature");
+        versionManager.CheckoutBranch("feature");
+
+        testObject.transform.position = new Vector2(1.0f, 0.0f);
+        otherTestObject.transform.position = new Vector2(4.0f, 1.0f);
+
+        versionManager.Add(testController);
+        versionManager.Add(otherTestController);
+
+        versionManager.Commit("Move boxes");
+
+        yield return null;
+
+        versionManager.Checkout("master", firstCommitId);
+
+        Assert.AreEqual(0.0f, testObject.transform.position.x, 0.1f);
+        Assert.AreEqual(0.0f, testObject.transform.position.y, 0.1f);
+
+        Assert.AreEqual(3.0f, otherTestObject.transform.position.x, 0.1f);
+        Assert.AreEqual(0.0f, otherTestObject.transform.position.y, 0.1f);
+
+        IBranch master = versionManager.LookupBranch("master");
+        Assert.AreEqual(master, versionManager.GetActiveBranch());
+    }
+
     [TearDown]
     public void AfterEachTest() {
         
