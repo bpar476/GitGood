@@ -28,10 +28,7 @@ public class MergeWorker : IMergeWorker
             case Relationship.Unknown:
                 throw new Exception("Can not determine branch relativity");
             case Relationship.FastForward:
-                foreach (VersionController trackedObject in featureBranch.GetTip().GetTrackedObjects()) {
-                    this.versionManager.Add(trackedObject);
-                    this.isMergable = true;
-                }
+                this.isMergable = true;
                 break;
             case Relationship.Divergent:
                 break;
