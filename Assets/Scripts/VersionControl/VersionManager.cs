@@ -229,6 +229,13 @@ public class VersionManager : MonoBehaviour {
 	}
 
 	/// <summary>
+	/// Gets the currently checked out commit
+	/// </summary>
+	public ICommit GetActiveCommit() {
+		return activeCommit;
+	}
+
+	/// <summary>
 	/// Gets the HEAD commit of the currently checked out branch
 	/// </summary>
 	public ICommit GetHead() {
