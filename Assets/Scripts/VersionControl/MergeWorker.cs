@@ -1,6 +1,19 @@
+using System;
+
 public class MergeWorker : IMergeWorker
 {
-    public MergeWorker() {
+    private IBranch baseBranch, featureBranch;
+    private bool isMergable;
+
+    public MergeWorker(IBranch baseBranch, IBranch featureBranch) {
+        this.baseBranch = baseBranch;
+        this.featureBranch = featureBranch;
+        this.isMergable = false;
+        Initialise();
+    }
+
+    private void Initialise() {
+
     }
 
     public void Abort()
@@ -15,7 +28,7 @@ public class MergeWorker : IMergeWorker
 
     public bool IsResolved()
     {
-        throw new System.NotImplementedException();
+        return this.isMergable;
     }
 
     public void PickVersion(VersionController vc, int version)
