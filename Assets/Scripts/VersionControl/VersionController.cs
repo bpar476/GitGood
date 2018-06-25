@@ -60,7 +60,7 @@ public class VersionController : MonoBehaviour {
 		initialPosition.position = new Vector2(x, y);
 	}
 	#endregion accessors
-	
+
 	public void StageVersion() {
 		foreach (IVersionable versioner in versioners) {
 			versioner.Stage(activeVersion);
@@ -68,9 +68,9 @@ public class VersionController : MonoBehaviour {
 	}
 
 	public void StageVersion(IVersion version) {
-		ShowVersion(version);
+		GameObject gameObject = this.ReconstructVersion(version);
 		foreach (IVersionable versioner in versioners) {
-			versioner.Stage(previewVersions[version]);
+			versioner.Stage(gameObject);
 		}
 	}
 
@@ -118,6 +118,16 @@ public class VersionController : MonoBehaviour {
 			renderer.color = new Color(0.5f, 0.1f, 0.0f, 0.4f);
 			previewVersions.Add(version, preview);
 		}
+	}
+
+	public GameObject ReconstructVersion(IVersion version) {
+		GameObject gameObject = Instantiate(previewPrefab, transform) as GameObject;
+		this.ResetToVersion(version, gameObject);
+
+		SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
+		renderer.color = new Color(0.5f, 0.1f, 0.0f, 0.4f);
+
+		return gameObject;
 	}
 
 	public void ShowStagedState() {
