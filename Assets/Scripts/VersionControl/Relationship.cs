@@ -1,4 +1,4 @@
-public enum BranchCompareAnalysis {
+public enum Relationship {
     Divergent,
     FastForward,
     Rewind,

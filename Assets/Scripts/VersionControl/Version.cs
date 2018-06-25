@@ -22,4 +22,8 @@ public class Version : IVersion {
     public void Relink(IVersion parent) {
         this.parent = parent;
     }
+
+    public bool Equals(IChainLink<IVersion> other) {
+        return this == other;
+    }
 }

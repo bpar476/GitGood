@@ -18,20 +18,20 @@ public class MergeWorker : IMergeWorker
     }
 
     private void Initialise() {
-        switch (BranchAnalyser.Compare(this.baseBranch, this.featureBranch)) {
-            case BranchCompareAnalysis.Rewind:
+        switch (LineageAnalyser.Compare(this.baseBranch.GetTip(), this.featureBranch.GetTip())) {
+            case Relationship.Rewind:
                 throw new Exception("Base branch is ahead of feature branch, merge redundant");
-            case BranchCompareAnalysis.Same:
+            case Relationship.Same:
                 throw new Exception("Branches are the same");
-            case BranchCompareAnalysis.Unknown:
+            case Relationship.Unknown:
                 throw new Exception("Can not determine branch relativity");
-            case BranchCompareAnalysis.FastForward:
+            case Relationship.FastForward:
                 foreach (VersionController trackedObject in featureBranch.GetTip().GetTrackedObjects()) {
                     this.versionManager.Add(trackedObject);
                     this.isMergable = true;
                 }
                 break;
-            case BranchCompareAnalysis.Divergent:
+            case Relationship.Divergent:
                 break;
             default:
                 break;

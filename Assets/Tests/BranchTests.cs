@@ -77,7 +77,7 @@ public class BranchTests {
         versionManager.Commit("Commit on feature branch");
         yield return null;
 
-        Assert.AreEqual(BranchCompareAnalysis.FastForward, BranchAnalyser.Compare(master, feature));
+        Assert.AreEqual(Relationship.FastForward, LineageAnalyser.Compare(master.GetTip(), feature.GetTip()));
     }
 
     [UnityTest]
@@ -90,7 +90,7 @@ public class BranchTests {
         versionManager.Commit("Commit on feature branch");
         yield return null;
 
-        Assert.AreEqual(BranchCompareAnalysis.Rewind, BranchAnalyser.Compare(master, feature));
+        Assert.AreEqual(Relationship.Rewind, LineageAnalyser.Compare(master.GetTip(), feature.GetTip()));
     }
 
     [UnityTest]
@@ -102,7 +102,7 @@ public class BranchTests {
 
         yield return null;
 
-        Assert.AreEqual(BranchCompareAnalysis.Same, BranchAnalyser.Compare(master, feature));
+        Assert.AreEqual(Relationship.Same, LineageAnalyser.Compare(master.GetTip(), feature.GetTip()));
     }
 
     [UnityTest]
@@ -117,6 +117,6 @@ public class BranchTests {
         versionManager.Commit("Commit on feature branch");
         yield return null;
 
-        Assert.AreEqual(BranchCompareAnalysis.Divergent, BranchAnalyser.Compare(master, feature));
+        Assert.AreEqual(Relationship.Divergent, LineageAnalyser.Compare(master.GetTip(), feature.GetTip()));
     }
 }

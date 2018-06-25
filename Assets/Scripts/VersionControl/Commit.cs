@@ -81,4 +81,8 @@ public class Commit : ICommit {
     public ICollection<VersionController> GetTrackedObjects() {
         return objectData.Keys;
     }
+
+    public bool Equals(IChainLink<ICommit> other) {
+        return this == other;
+    }
 }
