@@ -322,12 +322,59 @@ public class VersionManagerTests {
 
     [UnityTest]
     public IEnumerator shouldNotBeAbleToCommitWhenInDetachedHeadState() {
-        Assert.Fail();
+        VersionableObjectFactory factory = new VersionableObjectFactory();
+
+        VersionController testController = factory.createVersionableBox();
+        VersionController otherTestController = factory.createVersionableBox();
+
+        GameObject testObject = testController.GetActiveVersion();
+        GameObject otherTestObject = otherTestController.GetActiveVersion();
+
+        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
+
+        testObject.transform.position = new Vector2(0.0f, 0.0f);
+        otherTestObject.transform.position = new Vector2(3.0f, 0.0f);
+
+        versionManager.Add(testController);
+        versionManager.Add(otherTestController);
+
+        ICommit firstCommit = versionManager.Commit("Create two boxes");
+        Guid firstCommitId = firstCommit.GetCommitId();
+
         yield return null;
+
+        versionManager.CreateBranch("feature");
+        versionManager.CheckoutBranch("feature");
+
+        testObject.transform.position = new Vector2(1.0f, 0.0f);
+        otherTestObject.transform.position = new Vector2(4.0f, 1.0f);
+
+        versionManager.Add(testController);
+        versionManager.Add(otherTestController);
+
+        versionManager.Commit("Move boxes");
+
+        yield return null;
+
+        versionManager.Checkout("master", firstCommitId);
+
+        testObject.transform.position = new Vector2(3.0f, 3.0f);
+
+        versionManager.Add(testController);
+
+        ICommit commit = null;
+        try {
+            commit = versionManager.Commit("Move the box");
+            Assert.Fail();
+        } catch (InvalidOperationException ioe) {
+            Assert.AreEqual(ioe.Message, "Cannot commit in detached HEAD state");
+            Assert.IsNull(commit);
+            Assert.AreEqual(versionManager.GetActiveCommit(), firstCommit);
+        }
     }
 
     [TearDown]
     public void AfterEachTest() {
-
+        
     }
 }
