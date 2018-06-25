@@ -80,8 +80,12 @@ public class VersionController : MonoBehaviour {
 	}
 
 	public void ResetToVersion(IVersion version) {
+		this.ResetToVersion(version, activeVersion);
+	}
+
+	public void ResetToVersion(IVersion version, GameObject gameObject) {
 		foreach (IVersionable versioner in versioners) {
-			versioner.ResetToVersion(version, activeVersion);
+			versioner.ResetToVersion(version, gameObject);
 		}
 	}
 
@@ -102,9 +106,7 @@ public class VersionController : MonoBehaviour {
 		GameObject preview;
 		if(!previewVersions.TryGetValue(version, out preview)) {
 			preview = Instantiate(previewPrefab, transform) as GameObject;
-			foreach (IVersionable versioner in versioners) {
-				versioner.ResetToVersion(version, preview);
-			}
+			this.ResetToVersion(version, preview);
 			SpriteRenderer renderer = preview.GetComponent<SpriteRenderer>();
 			renderer.color = new Color(0.5f, 0.1f, 0.0f, 0.4f);
 			previewVersions.Add(version, preview);
