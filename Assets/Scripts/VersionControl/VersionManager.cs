@@ -10,6 +10,7 @@ public class VersionManager : MonoBehaviour {
 	private IDictionary<string, IBranch> branches;
 	private ICommit activeCommit;
 	private IBranch activeBranch;
+	private bool isDetached;
 
 	private void Awake() {
 		trackedObjects = new List<VersionController>();
@@ -21,6 +22,7 @@ public class VersionManager : MonoBehaviour {
 
 		activeBranch = master;
 		activeCommit = null;
+		isDetached = false;
 	}
 
 	// Use this for initialization
@@ -49,6 +51,10 @@ public class VersionManager : MonoBehaviour {
 	/// Clears the preview of the staging area.
 	/// </summary>
 	public ICommit Commit(string message) {
+		if (isDetached) {
+			throw new InvalidOperationException("Cannot commit in detached HEAD state");
+		}
+
 		CommitBuilder builder = new CommitBuilder();
 		builder.SetMessage(message);
 		builder.SetParent(activeCommit);
@@ -127,16 +133,28 @@ public class VersionManager : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Checks out the specified commit on the specified branch
+	/// Checks out the commit specified by the given commit ID on the specified branch
 	/// </summary>
 	public void Checkout(IBranch branch, Guid commitId) {
 		ICommit commit = branch.GetTip();
 		while (! commit.GetCommitId().Equals(commitId)) {
 			commit = commit.GetParent();
 		}
+		Checkout(branch, commit);
+	}
+
+	/// <summary>
+	/// Checks out the given commit on the given branch
+	/// </summary>
+	public void Checkout(IBranch branch, ICommit commit) {
 		LoadStateOfCommit(commit);
 		activeCommit = commit;
 		activeBranch = branch;
+		if (! activeCommit.Equals(activeBranch.GetTip())) {
+			this.isDetached = true;
+		} else {
+			this.isDetached = false;
+		}
 	}
 
 	/// <summary>
@@ -162,10 +180,7 @@ public class VersionManager : MonoBehaviour {
 
 	// Helper function for checking out a branch
 	private void Checkout(IBranch branch) {
-		activeBranch = branch;
-		activeCommit = branch.GetTip();
-
-		RefreshGame();
+		Checkout(branch, branch.GetTip());
 	}
 
 	/// <summary>
