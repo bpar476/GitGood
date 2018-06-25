@@ -343,9 +343,6 @@ public class VersionManagerTests {
 
         yield return null;
 
-        versionManager.CreateBranch("feature");
-        versionManager.CheckoutBranch("feature");
-
         testObject.transform.position = new Vector2(1.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(4.0f, 1.0f);
 
