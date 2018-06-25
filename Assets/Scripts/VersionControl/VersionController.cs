@@ -67,6 +67,13 @@ public class VersionController : MonoBehaviour {
 		}
 	}
 
+	public void StageVersion(IVersion version) {
+		ShowVersion(version);
+		foreach (IVersionable versioner in versioners) {
+			versioner.Stage(previewVersions[version]);
+		}
+	}
+
 	public IVersion GenerateVersion() {
 		version = new Version(version);
 		foreach (IVersionable versioner in versioners) {

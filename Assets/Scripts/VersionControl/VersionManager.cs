@@ -45,6 +45,17 @@ public class VersionManager : MonoBehaviour {
 		}
 	}
 
+	public void Add(VersionController controller, IVersion version) {
+		if (!trackedObjects.Contains(controller)) {
+			trackedObjects.Add(controller);
+		}
+		stagingArea.Add(controller);
+		controller.StageVersion(version);
+		foreach(VersionController stagedController in stagingArea) {
+			stagedController.ShowStagedState();
+		}
+	}
+
 	/// <summary>
 	/// Creates a new commit from the current state of the staging area.
 	/// Appends the commit to the current branch and clears the staging area.
