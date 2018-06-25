@@ -370,6 +370,57 @@ public class VersionManagerTests {
         }
     }
 
+    [UnityTest]
+    public IEnumerator shouldBeAbleToCreateNewBranchWhenInDetachedHead() {
+        VersionableObjectFactory factory = new VersionableObjectFactory();
+
+        VersionController testController = factory.createVersionableBox();
+        VersionController otherTestController = factory.createVersionableBox();
+
+        GameObject testObject = testController.GetActiveVersion();
+        GameObject otherTestObject = otherTestController.GetActiveVersion();
+
+        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
+
+        testObject.transform.position = new Vector2(0.0f, 0.0f);
+        otherTestObject.transform.position = new Vector2(3.0f, 0.0f);
+
+        versionManager.Add(testController);
+        versionManager.Add(otherTestController);
+
+        ICommit firstCommit = versionManager.Commit("Create two boxes");
+        Guid firstCommitId = firstCommit.GetCommitId();
+
+        yield return null;
+
+        testObject.transform.position = new Vector2(1.0f, 0.0f);
+        otherTestObject.transform.position = new Vector2(4.0f, 1.0f);
+
+        versionManager.Add(testController);
+        versionManager.Add(otherTestController);
+
+        versionManager.Commit("Move boxes");
+
+        yield return null;
+
+        versionManager.Checkout("master", firstCommitId);
+
+        IBranch newBranch = versionManager.CreateBranch("refactor");
+        versionManager.Checkout(newBranch);
+
+        Assert.AreEqual(newBranch.GetTip().GetCommitId(), versionManager.GetActiveBranch().GetTip().GetCommitId());
+        Assert.AreEqual(newBranch.GetTip().GetCommitId(), versionManager.GetActiveCommit().GetCommitId());
+
+        testObject.transform.position = new Vector2(-1.0f, 0.0f);
+
+        versionManager.Add(testController);
+        ICommit commit = versionManager.Commit("Move a box to the left");
+
+        Assert.AreEqual(newBranch.GetTip().GetCommitId(), commit.GetCommitId());
+        Assert.True(commit.ObjectIsTrackedInThisCommit(testController));
+        Assert.True(commit.ObjectIsTrackedInThisCommit(otherTestController));
+    }    
+
     [TearDown]
     public void AfterEachTest() {
         
