@@ -51,6 +51,13 @@ public class VersionController : MonoBehaviour {
 	public void SetPreviewPrefab(GameObject preview) {
 		previewPrefab = preview;
 	}
+
+	public void SetInitialPosition(float x, float y) {
+		if (initialPosition == null) {
+			initialPosition = new GameObject().transform;
+		}
+		initialPosition.position = new Vector2(x, y);
+	}
 	#endregion accessors
 	
 	public void StageVersion() {
