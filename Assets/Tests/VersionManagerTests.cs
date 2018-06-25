@@ -279,6 +279,47 @@ public class VersionManagerTests {
         Assert.AreEqual(master, versionManager.GetActiveBranch());
     }
 
+    [UnityTest]
+    public IEnumerator shouldResetObjectToInitialPositionIfCheckingOutCommitWhereItWasNotTracked() {
+        VersionableObjectFactory factory = new VersionableObjectFactory();
+
+        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
+
+        VersionController testController = factory.createVersionableBox();
+        GameObject testObject = testController.GetActiveVersion();
+
+        testObject.transform.position = new Vector2(0.0f, 0.0f);
+
+        versionManager.Add(testController);
+
+        Guid firstCommitId = versionManager.Commit("Create a box").GetCommitId();
+
+        yield return null;
+
+        VersionController otherTestController = factory.createVersionableBox();
+        GameObject otherTestObject = otherTestController.GetActiveVersion();
+        
+        otherTestController.SetInitialPosition(5.0f, 0.0f);
+
+        testObject.transform.position = new Vector2(-3.0f, 0.0f);
+        otherTestObject.transform.position = new Vector2(3.0f, -2.0f);
+
+        versionManager.Add(testController);
+        versionManager.Add(otherTestController);
+
+        versionManager.Commit("Create another box and move the first box");
+
+        yield return null;
+
+        versionManager.Checkout(versionManager.GetActiveBranch(), firstCommitId);
+
+        Assert.AreEqual(0.0f, testObject.transform.position.x, 0.1f);
+        Assert.AreEqual(0.0f, testObject.transform.position.y, 0.1f);
+
+        Assert.AreEqual(5.0f, otherTestObject.transform.position.x, 0.1f);
+        Assert.AreEqual(0.0f, otherTestController.transform.position.y, 0.1f);
+    }
+
     [TearDown]
     public void AfterEachTest() {
         
