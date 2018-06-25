@@ -371,7 +371,7 @@ public class VersionManagerTests {
     }
 
     [UnityTest]
-    public IEnumerator shouldBeAbleToCreateNewBranchWhenInDetachedHead() {
+    public IEnumerator shouldBeAbleToCreateNewBranchWhenInDetachedHeadAndThenCommit() {
         VersionableObjectFactory factory = new VersionableObjectFactory();
 
         VersionController testController = factory.createVersionableBox();
@@ -419,7 +419,7 @@ public class VersionManagerTests {
         Assert.AreEqual(newBranch.GetTip().GetCommitId(), commit.GetCommitId());
         Assert.True(commit.ObjectIsTrackedInThisCommit(testController));
         Assert.True(commit.ObjectIsTrackedInThisCommit(otherTestController));
-    }    
+    }
 
     [TearDown]
     public void AfterEachTest() {
