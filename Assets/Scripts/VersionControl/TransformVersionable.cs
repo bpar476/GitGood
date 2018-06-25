@@ -2,32 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TransformVersionable : IVersionable {
+public class TransformVersionable : MonoBehaviour, IVersionable {
+
+	public Transform initialState;
 
 	private float stagedX;
 	private float stagedY;
 	
 	private History<Vector2> history;
 
-	public TransformVersionable(GameObject gobj) {
-		history = new History<Vector2>();
+	public void Awake() {
+		this.history = new History<Vector2>();
+		if (this.initialState == null) {
+			this.initialState = new GameObject().transform;
+		}
 	}
 	
 	public void Stage(GameObject version) {
-		stagedX = version.transform.position.x;
-		stagedY = version.transform.position.y;
+		this.stagedX = version.transform.position.x;
+		this.stagedY = version.transform.position.y;
 	}
 
 	public void Commit(int version) {
-		history.Add(version, new Vector2(stagedX, stagedY));
+		this.history.Add(version, new Vector2(stagedX, stagedY));
 	}
 
 	public void ResetToVersion(int version, GameObject target) {
-		Reset(target, history.GetStateAt(version));
+		Reset(target, this.history.GetStateAt(version));
 	}
 
 	public void ResetToStaged(GameObject target) {
 		Reset(target, new Vector2(stagedX, stagedY));
+	}
+
+	public void ResetToInitialState(GameObject target) {
+		Reset(target, this.initialState.position);
 	}
 
 	private void Reset(GameObject target, Vector2 state) {
@@ -36,5 +45,9 @@ public class TransformVersionable : IVersionable {
 		if (rb2d != null) {
 			rb2d.velocity = new Vector3(0,0,0);
 		}
+	}
+
+	public void SetInitialState(Vector2 position) {
+		this.initialState.position = new Vector3(position.x, position.y, 0);
 	}
 }

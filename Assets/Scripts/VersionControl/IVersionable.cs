@@ -8,4 +8,6 @@ public interface IVersionable {
     void ResetToVersion(int version, GameObject target);
 
     void ResetToStaged(GameObject target);
+
+    void ResetToInitialState(GameObject target);
 }

@@ -88,7 +88,11 @@ public class VersionManager : MonoBehaviour {
 	// state in the given commit
 	private void LoadStateOfCommit(ICommit commit, VersionController trackedObject) {
 		if (trackedObjects.Contains(trackedObject)) {
-			trackedObject.ResetToVersion(commit.getObjectVersion(trackedObject));
+			if (commit.ObjectIsTrackedInThisCommit(trackedObject)) {
+				trackedObject.ResetToVersion(commit.getObjectVersion(trackedObject));
+			} else {
+				trackedObject.ResetToInitialState();
+			}
 		}
 	}
 

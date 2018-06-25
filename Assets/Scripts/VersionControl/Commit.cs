@@ -64,4 +64,8 @@ public class Commit : ICommit {
     public Guid GetCommitId() {
         return this.id;
     }
+
+    public bool ObjectIsTrackedInThisCommit(VersionController controller) {
+        return this.objectData.ContainsKey(controller);
+    }
 }

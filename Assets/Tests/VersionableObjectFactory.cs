@@ -3,7 +3,8 @@ using UnityEngine;
 public class VersionableObjectFactory {
     private VersionController createTransformVersionedObject(string prefabName) {
         VersionController testObject = new GameObject().AddComponent<VersionController>();
-        testObject.AddVersionable(new TransformVersionable(testObject.gameObject));
+        TransformVersionable transformVersioner = testObject.gameObject.AddComponent<TransformVersionable>();
+        testObject.AddVersionable(transformVersioner);
         testObject.SetActiveVersion(new GameObject());
         testObject.SetTemplatePrefab(Resources.Load("Tests/Versionables/" + prefabName) as GameObject);
         testObject.SetPreviewPrefab(Resources.Load("Tests/Versionables/" + prefabName + "Preview") as GameObject);

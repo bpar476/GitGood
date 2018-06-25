@@ -9,18 +9,18 @@ public class VersionController : MonoBehaviour {
 	public GameObject templatePrefab;
 	public GameObject previewPrefab;
 	public Transform initialPosition;
+	public TransformVersionable transformVersioner;
 
 	private GameObject activeVersion;
 	private IDictionary<int, GameObject> previewVersions;
 	private GameObject stagedStatePreview;
 
-	public bool transformVersionable;
 	private int version = 0;
 
 	private void Awake() {
 		versioners = new List<IVersionable>();
-		if (transformVersionable) {
-			versioners.Add(new TransformVersionable(gameObject));
+		if (transformVersioner != null) {
+			versioners.Add(transformVersioner);
 		}
 	}
 
@@ -84,12 +84,17 @@ public class VersionController : MonoBehaviour {
 		}
 	}
 
+	public void ResetToInitialState() {
+		foreach (IVersionable versioner in versioners) {
+			versioner.ResetToInitialState(activeVersion);
+		}
+	}
+
 	public void AddVersionable(IVersionable versioner) {
 		if (versioner != null) {
 			versioners.Add(versioner);
 		}
 	}
-
 
 	public void ShowVersion(int version) {
 		GameObject preview;

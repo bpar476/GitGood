@@ -299,7 +299,7 @@ public class VersionManagerTests {
         VersionController otherTestController = factory.createVersionableBox();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
         
-        otherTestController.SetInitialPosition(5.0f, 0.0f);
+        otherTestController.GetComponent<TransformVersionable>().SetInitialState(new Vector2(5.0f, 0.0f));
 
         testObject.transform.position = new Vector2(-3.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(3.0f, -2.0f);
@@ -322,6 +322,6 @@ public class VersionManagerTests {
 
     [TearDown]
     public void AfterEachTest() {
-        
+
     }
 }
