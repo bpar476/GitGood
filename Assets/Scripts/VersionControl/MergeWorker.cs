@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class MergeWorker : IMergeWorker
 {
     private IBranch baseBranch, featureBranch;
+    private IOverlay baseOverlay, featureOverlay;
     private VersionManager versionManager;
     private bool isMergable;
     private Relationship relationship;
@@ -22,6 +24,7 @@ public class MergeWorker : IMergeWorker
         Initialise();
 
         UpdateStatus();
+        RenderDiff();
     }
 
     private void UpdateStatus() {
@@ -101,6 +104,7 @@ public class MergeWorker : IMergeWorker
     }
 
     public void RenderDiff() {
-        throw new NotImplementedException();
+        this.baseOverlay = new Overlay(baseBranch.GetTip(), new Color(0.5f, 0f, 1f, 0.5f));
+        this.featureOverlay = new Overlay(featureBranch.GetTip(), new Color(1f, 1f, 0f, 0.5f));
     }
 }
