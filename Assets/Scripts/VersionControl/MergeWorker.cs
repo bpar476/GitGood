@@ -88,11 +88,11 @@ public class MergeWorker : IMergeWorker
     }
 
     public void Abort() {
-        throw new NotImplementedException();
+        this.DestroyOverlays();
     }
 
     public void End() {
-        throw new NotImplementedException();
+        this.DestroyOverlays();
     }
 
     public bool IsResolved() {
@@ -106,5 +106,10 @@ public class MergeWorker : IMergeWorker
     public void RenderDiff() {
         this.baseOverlay = new Overlay(baseBranch.GetTip(), new Color(0.5f, 0f, 1f, 0.5f));
         this.featureOverlay = new Overlay(featureBranch.GetTip(), new Color(1f, 1f, 0f, 0.5f));
+    }
+
+    private void DestroyOverlays() {
+        this.baseOverlay.Destroy();
+        this.featureOverlay.Destroy();
     }
 }
