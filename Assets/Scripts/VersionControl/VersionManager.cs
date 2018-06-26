@@ -82,20 +82,36 @@ public class VersionManager : MonoBehaviour {
 		for (int i = 0; i < trackedObjects.Count; i++) {
 			LoadStateOfCommit(commit, trackedObjects[i]);
 		}
+		IEnumerator<VersionController> objectsTrackedInCommit = commit.GetTrackedObjectsEnumerator();
+		while (objectsTrackedInCommit.MoveNext()) {
+			LoadStateOfCommit(commit, objectsTrackedInCommit.Current);
+		}
+	}
+
+	private void LoadStateOfCommit(ICommit commit, VersionController versionableObject) {
+		int trackedObjectIndex = trackedObjects.IndexOf(versionableObject);
+		if (trackedObjectIndex != -1) {
+			LoadStateOfCommitForTrackedObject(commit, versionableObject, trackedObjectIndex);
+		} else {
+			LoadStateOfCommitForNewTrackedObject(commit, versionableObject);
+		}
 	}
 
 	// Helper method for setting the state of the given tracked object to the corresponding
 	// state in the given commit
-	private void LoadStateOfCommit(ICommit commit, VersionController trackedObject) {
-		int trackedObjectIndex = trackedObjects.IndexOf(trackedObject);
-		if (trackedObjectIndex != -1) {
-			if (commit.ObjectIsTrackedInThisCommit(trackedObject)) {
-				trackedObject.ResetToVersion(commit.getObjectVersion(trackedObject));
-			} else {
-				trackedObject.ResetToInitialState();
-				trackedObjects.RemoveAt(trackedObjectIndex);
-			}
+	private void LoadStateOfCommitForTrackedObject(ICommit commit, VersionController trackedObject, int trackedObjectIndex) {
+		if (commit.ObjectIsTrackedInThisCommit(trackedObject)) {
+			trackedObject.ResetToVersion(commit.getObjectVersion(trackedObject));
+		} else {
+			trackedObject.ResetToInitialState();
+			trackedObjects.RemoveAt(trackedObjectIndex);
 		}
+	}
+
+	// Helper method for adding a new object to the tracked objects when loading a commit where the object is tracked but was not
+	private void LoadStateOfCommitForNewTrackedObject(ICommit commit, VersionController versionableObject) {
+		trackedObjects.Add(versionableObject);
+		versionableObject.ResetToVersion(commit.getObjectVersion(versionableObject));
 	}
 
 	/// <summary>

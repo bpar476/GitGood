@@ -65,7 +65,17 @@ public class Commit : ICommit {
         return this.id;
     }
 
+    /// <summary>
+    /// Determines whether an object is tracked in this commit
+    /// </summary>
     public bool ObjectIsTrackedInThisCommit(VersionController controller) {
         return this.objectData.ContainsKey(controller);
+    }
+
+    /// <summary>
+    /// Returns an IEnumerator over all the objects that are tracked in this commit
+    /// </summary>
+    public IEnumerator<VersionController> GetTrackedObjectsEnumerator() {
+        return this.objectData.Keys.GetEnumerator();
     }
 }
