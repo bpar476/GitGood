@@ -10,8 +10,11 @@ public class VersionControls : MonoBehaviour {
 
 	private GameObject currentSelectedVersionable;
 
+	private IOverlay overlay;
+
 	private void Start() {
 		versionManager = GameObject.FindWithTag("VersionManager").GetComponent<VersionManager>();
+		overlay = new Overlay(null);
 	}
 
 	// Update is called once per frame
@@ -21,7 +24,7 @@ public class VersionControls : MonoBehaviour {
 		if(currentSelectedVersionable != null && Input.GetKeyDown(KeyCode.Q)) {
 			VersionController versionController = currentSelectedVersionable.GetComponentInParent<VersionController>();
 			versionManager.Add(versionController);
-			Debug.Log("Adding closest object");
+			Debug.Log(currentSelectedVersionable == gameObject ? "Adding player" : "Adding closest object");
 			Debug.Log(currentSelectedVersionable);
 		} else if(Input.GetKeyDown(KeyCode.E)) {
 			versionManager.Commit("Commit message");
@@ -39,6 +42,9 @@ public class VersionControls : MonoBehaviour {
 		} else if(Input.GetKeyDown(KeyCode.K)) {
 			versionManager.Checkout("master");
 			Debug.Log("Checkout master");
+		} else if(Input.GetKeyDown(KeyCode.O)) {
+			overlay.Destroy();
+			overlay = new Overlay(versionManager.GetHead(), Color.red);
 		}
 	}
 
