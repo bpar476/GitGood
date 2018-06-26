@@ -85,21 +85,39 @@ public class VersionManager : MonoBehaviour {
 	// Helper method for setting the state of all tracked objects to the corresponding
 	// state in the given commit
 	private void LoadStateOfCommit(ICommit commit) {
-		foreach (VersionController trackedObject in trackedObjects) {
-			LoadStateOfCommit(commit, trackedObject);
+		for (int i = 0; i < trackedObjects.Count; i++) {
+			LoadStateOfCommit(commit, trackedObjects[i]);
+		}
+		IEnumerator<VersionController> objectsTrackedInCommit = commit.GetTrackedObjectsEnumerator();
+		while (objectsTrackedInCommit.MoveNext()) {
+			LoadStateOfCommit(commit, objectsTrackedInCommit.Current);
+		}
+	}
+
+	private void LoadStateOfCommit(ICommit commit, VersionController versionableObject) {
+		int trackedObjectIndex = trackedObjects.IndexOf(versionableObject);
+		if (trackedObjectIndex != -1) {
+			LoadStateOfCommitForTrackedObject(commit, versionableObject, trackedObjectIndex);
+		} else {
+			LoadStateOfCommitForNewTrackedObject(commit, versionableObject);
 		}
 	}
 
 	// Helper method for setting the state of the given tracked object to the corresponding
 	// state in the given commit
-	private void LoadStateOfCommit(ICommit commit, VersionController trackedObject) {
-		if (trackedObjects.Contains(trackedObject)) {
-			if (commit.ObjectIsTrackedInThisCommit(trackedObject)) {
-				trackedObject.ResetToVersion(commit.getObjectVersion(trackedObject));
-			} else {
-				trackedObject.ResetToInitialState();
-			}
+	private void LoadStateOfCommitForTrackedObject(ICommit commit, VersionController trackedObject, int trackedObjectIndex) {
+		if (commit.ObjectIsTrackedInThisCommit(trackedObject)) {
+			trackedObject.ResetToVersion(commit.getObjectVersion(trackedObject));
+		} else {
+			trackedObject.ResetToInitialState();
+			trackedObjects.RemoveAt(trackedObjectIndex);
 		}
+	}
+
+	// Helper method for adding a new object to the tracked objects when loading a commit where the object is tracked but was not
+	private void LoadStateOfCommitForNewTrackedObject(ICommit commit, VersionController versionableObject) {
+		trackedObjects.Add(versionableObject);
+		versionableObject.ResetToVersion(commit.getObjectVersion(versionableObject));
 	}
 
 	/// <summary>
@@ -255,5 +273,12 @@ public class VersionManager : MonoBehaviour {
 	/// </summary>
 	public ICommit GetHead() {
 		return activeBranch.GetTip();
+	}
+
+	/// <summary>
+	/// Determines whether the given object is currently tracked
+	/// </summary>
+	public bool IsObjectTracked(VersionController controller) {
+		return trackedObjects.Contains(controller);
 	}
 }

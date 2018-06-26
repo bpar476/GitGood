@@ -6,4 +6,5 @@ public interface ICommit : IChainLink<ICommit> {
     int getObjectVersion(VersionController versionedObject);
     Guid GetCommitId();
     bool ObjectIsTrackedInThisCommit(VersionController controller);
+    IEnumerator<VersionController> GetTrackedObjectsEnumerator();
 }
