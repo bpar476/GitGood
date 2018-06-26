@@ -321,6 +321,41 @@ public class VersionManagerTests {
     }
 
     [UnityTest]
+    public IEnumerator shouldResetTrackedObjectsWhenCheckingOutCommitWhereAnObjectWasNotTracked() {
+        VersionableObjectFactory factory = new VersionableObjectFactory();
+
+        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
+
+        VersionController testController = factory.createVersionableBox();
+        GameObject testObject = testController.GetActiveVersion();
+
+        testObject.transform.position = new Vector2(0.0f, 0.0f);
+
+        versionManager.Add(testController);
+
+        Guid firstCommitId = versionManager.Commit("Create a box").GetCommitId();
+
+        yield return null;
+
+        VersionController otherTestController = factory.createVersionableBox();
+        GameObject otherTestObject = otherTestController.GetActiveVersion();
+        
+        testObject.transform.position = new Vector2(-3.0f, 0.0f);
+        otherTestObject.transform.position = new Vector2(3.0f, -2.0f);
+
+        versionManager.Add(testController);
+        versionManager.Add(otherTestController);
+
+        versionManager.Commit("Create another box and move the first box");
+
+        yield return null;
+
+        versionManager.Checkout(versionManager.GetActiveBranch(), firstCommitId);
+
+        Assert.False(versionManager.IsObjectTracked(otherTestController));
+    }
+
+    [UnityTest]
     public IEnumerator shouldNotBeAbleToCommitWhenInDetachedHeadState() {
         Assert.Fail();
         yield return null;
