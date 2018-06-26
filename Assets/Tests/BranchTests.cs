@@ -65,11 +65,4 @@ public class BranchTests {
 
 
     }
-
-    private VersionController createTransformVersionedObject() {
-        VersionController testObject = new GameObject().AddComponent<VersionController>();
-        testObject.AddVersionable(new TransformVersionable(testObject.gameObject));
-        testObject.SetActiveVersion(new GameObject());
-        return testObject;
-    }
 }
