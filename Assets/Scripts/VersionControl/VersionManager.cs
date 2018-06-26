@@ -79,19 +79,21 @@ public class VersionManager : MonoBehaviour {
 	// Helper method for setting the state of all tracked objects to the corresponding
 	// state in the given commit
 	private void LoadStateOfCommit(ICommit commit) {
-		foreach (VersionController trackedObject in trackedObjects) {
-			LoadStateOfCommit(commit, trackedObject);
+		for (int i = 0; i < trackedObjects.Count; i++) {
+			LoadStateOfCommit(commit, trackedObjects[i]);
 		}
 	}
 
 	// Helper method for setting the state of the given tracked object to the corresponding
 	// state in the given commit
 	private void LoadStateOfCommit(ICommit commit, VersionController trackedObject) {
-		if (trackedObjects.Contains(trackedObject)) {
+		int trackedObjectIndex = trackedObjects.IndexOf(trackedObject);
+		if (trackedObjectIndex != -1) {
 			if (commit.ObjectIsTrackedInThisCommit(trackedObject)) {
 				trackedObject.ResetToVersion(commit.getObjectVersion(trackedObject));
 			} else {
 				trackedObject.ResetToInitialState();
+				trackedObjects.RemoveAt(trackedObjectIndex);
 			}
 		}
 	}
@@ -233,5 +235,12 @@ public class VersionManager : MonoBehaviour {
 	/// </summary>
 	public ICommit GetHead() {
 		return activeBranch.GetTip();
+	}
+
+	/// <summary>
+	/// Determines whether the given object is currently tracked
+	/// </summary>
+	public bool IsObjectTracked(VersionController controller) {
+		return trackedObjects.Contains(controller);
 	}
 }
