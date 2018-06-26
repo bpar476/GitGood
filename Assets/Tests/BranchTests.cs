@@ -119,4 +119,55 @@ public class BranchTests {
 
         Assert.AreEqual(Relationship.Divergent, LineageAnalyser.Compare(master.GetTip(), feature.GetTip()));
     }
+
+    [UnityTest]
+    public IEnumerator TestMergeWorkerSmoke() {
+        VersionableObjectFactory factory = new VersionableObjectFactory();
+
+        VersionController testController = factory.createVersionablePlayer();
+        VersionController otherTestController = factory.createVersionableBox();
+
+        GameObject testObject = testController.GetActiveVersion();
+        GameObject otherTestObject = otherTestController.GetActiveVersion();
+
+        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
+        IBranch master = versionManager.GetActiveBranch();
+
+        testObject.transform.position = new Vector2(0.0f, 0.0f);
+        otherTestObject.transform.position = new Vector2(3.0f, 3.0f);
+
+        versionManager.Add(testController);
+        versionManager.Add(otherTestController);
+
+        ICommit commit = versionManager.Commit("Add two objects");
+
+        yield return null;
+
+        IBranch testBranch = versionManager.CreateBranch("testBranch");
+        versionManager.Checkout("testBranch");
+
+        testObject.transform.position = new Vector2(1.0f, 0.0f);
+        versionManager.Add(testController);
+        ICommit secondCommit = versionManager.Commit("Move testObject");
+
+        versionManager.Checkout("master");
+
+        Assert.AreEqual("master", master.GetName());
+        Assert.AreEqual(commit, master.GetTip());
+        Assert.AreSame(commit, master.GetTip());
+        Assert.AreEqual("testBranch", testBranch.GetName());
+        Assert.AreEqual(secondCommit, testBranch.GetTip());
+        Assert.AreSame(secondCommit, testBranch.GetTip());
+
+        Assert.AreSame(commit, secondCommit.GetParent());
+        Assert.AreEqual(commit, secondCommit.GetParent());
+
+        Relationship r = LineageAnalyser.Compare(master.GetTip(), testBranch.GetTip());
+        Assert.AreEqual(Relationship.FastForward, r);
+
+        IMergeWorker mw = new MergeWorker(versionManager, master, testBranch);
+        Assert.AreEqual(true, mw.IsResolved());
+
+
+    }
 }
