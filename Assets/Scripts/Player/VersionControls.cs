@@ -14,7 +14,7 @@ public class VersionControls : MonoBehaviour {
 
 	private void Start() {
 		versionManager = GameObject.FindWithTag("VersionManager").GetComponent<VersionManager>();
-		overlay = new Overlay(null);
+		overlay = null;
 	}
 
 	// Update is called once per frame
