@@ -79,7 +79,7 @@ public class Commit : ICommit {
         return this.objectData.Keys.GetEnumerator();
     }
     public ICollection<VersionController> GetTrackedObjects() {
-        return objectData.Keys;
+        return new HashSet<VersionController>(objectData.Keys);
     }
 
     public bool Equals(IChainLink<ICommit> other) {
