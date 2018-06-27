@@ -7,20 +7,22 @@ public class MergeWorker : IMergeWorker
 {
     private IBranch baseBranch, featureBranch;
     private IOverlay baseOverlay, featureOverlay;
-    private VersionManager versionManager;
     private bool isMergable;
     private Relationship relationship;
     private ICollection<VersionController> ffControllers, resolvedControllers, conflictControllers;
 
-    public MergeWorker(VersionManager versionManager, IBranch baseBranch, IBranch featureBranch) {
+    private IDictionary<VersionController, IVersion> stagingArea;
+
+    public MergeWorker(IBranch baseBranch, IBranch featureBranch) {
         if (baseBranch == null || featureBranch == null) {
             throw new Exception("Branch can not be null");
         }
         this.baseBranch = baseBranch;
         this.featureBranch = featureBranch;
         this.isMergable = false;
-        this.versionManager = versionManager;
         this.relationship = LineageAnalyser.Compare(this.baseBranch.GetTip(), this.featureBranch.GetTip());
+
+        stagingArea = new Dictionary<VersionController, IVersion>();
         Initialise();
 
         UpdateStatus();
@@ -60,12 +62,12 @@ public class MergeWorker : IMergeWorker
                     throw new Exception("Can not determine version relativity");
                 case Relationship.Rewind:
                     ffControllers.Add(trackedObject);
-                    versionManager.Add(trackedObject, baseVersion);
+                    stagingArea.Add(trackedObject, baseVersion);
                     break;
                 case Relationship.Same:
                 case Relationship.FastForward:
                     ffControllers.Add(trackedObject);
-                    versionManager.Add(trackedObject, featureVersion);
+                    stagingArea.Add(trackedObject, featureVersion);
                     break;
                 case Relationship.Divergent:
                     conflictControllers.Add(trackedObject);
@@ -78,13 +80,13 @@ public class MergeWorker : IMergeWorker
         foreach (VersionController trackedObject in baseBranch.GetTip().GetTrackedObjects().Except(intersection)) {
             IVersion version = baseBranch.GetTip().getObjectVersion(trackedObject);
             ffControllers.Add(trackedObject);
-            versionManager.Add(trackedObject, version);
+            stagingArea.Add(trackedObject, version);
         }
 
         foreach (VersionController trackedObject in featureBranch.GetTip().GetTrackedObjects().Except(intersection)) {
             IVersion version = featureBranch.GetTip().getObjectVersion(trackedObject);
             ffControllers.Add(trackedObject);
-            versionManager.Add(trackedObject, version);
+            stagingArea.Add(trackedObject, version);
         }
     }
 
@@ -106,7 +108,7 @@ public class MergeWorker : IMergeWorker
             conflictControllers.Remove(vc);
 
             resolvedControllers.Add(vc);
-            versionManager.Add(vc, version);
+            stagingArea.Add(vc, version);
         }
         else {
             throw new Exception("Tried to resolve controller, but wasn't in conflict controller set");
@@ -123,5 +125,9 @@ public class MergeWorker : IMergeWorker
     private void DestroyOverlays() {
         this.baseOverlay.Destroy();
         this.featureOverlay.Destroy();
+    }
+
+    public IDictionary<VersionController, IVersion> BuildStagingArea() {
+        return new Dictionary<VersionController, IVersion>(stagingArea);
     }
 }

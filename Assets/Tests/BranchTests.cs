@@ -165,7 +165,7 @@ public class BranchTests {
         Relationship r = LineageAnalyser.Compare(master.GetTip(), testBranch.GetTip());
         Assert.AreEqual(Relationship.FastForward, r);
 
-        IMergeWorker mw = new MergeWorker(versionManager, master, testBranch);
+        IMergeWorker mw = new MergeWorker(master, testBranch);
         Assert.AreEqual(true, mw.IsResolved());
 
 
