@@ -46,11 +46,34 @@ public class Overlay : IOverlay
         this.overlayObjects.Clear();
     }
 
+    public void DisableCollision(VersionController versionedObject) {
+        GameObject gameObject = overlayObjects[versionedObject];
+        GameObject.Destroy(gameObject.GetComponent<Collider2D>());
+        
+    }
+
+    public void EnableCollision(VersionController versionedObject) {
+        GameObject gameObject = overlayObjects[versionedObject];
+        gameObject.AddComponent<BoxCollider2D>();
+        gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+    }
+
     /// <summary>
     /// Get the commit that this Overlay is displaying
     /// </summary>
     public ICommit GetCommit() {
         return this.commit;
+    }
+
+    public bool HasGameObject(GameObject gameObject, out VersionController versionedObject) {
+        foreach (KeyValuePair<VersionController, GameObject> keypair in overlayObjects) {
+            if (gameObject == keypair.Value) {
+                versionedObject = keypair.Key;
+                return true;
+            }
+        }
+        versionedObject = null;
+        return false;
     }
 
     /// <summary>

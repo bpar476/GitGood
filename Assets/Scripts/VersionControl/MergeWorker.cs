@@ -116,6 +116,9 @@ public class MergeWorker : IMergeWorker
             resolvedControllers.Add(versionedObject);
             stagingArea.Add(versionedObject, version);
         }
+        else if (resolvedControllers.Contains(versionedObject)) {
+            stagingArea[versionedObject] = version;
+        }
         else {
             throw new Exception("Tried to resolve controller, but wasn't in conflict controller set");
         }
@@ -149,6 +152,13 @@ public class MergeWorker : IMergeWorker
                 featureOverlay.SetColor(resolvedController, new Color(0f, 1f, 0f, 0.5f));
                 baseOverlay.SetColor(resolvedController, new Color(0f, 0f, 0f, 0.5f));
             }
+            baseOverlay.EnableCollision(resolvedController);
+            featureOverlay.EnableCollision(resolvedController);
+        }
+
+        foreach (VersionController conflictController in conflictControllers) {
+            baseOverlay.EnableCollision(conflictController);
+            featureOverlay.EnableCollision(conflictController);
         }
     }
 
@@ -176,5 +186,15 @@ public class MergeWorker : IMergeWorker
             return MergeStatus.FastForward;
         }
         return MergeStatus.Unknown;
+    }
+
+    public void PickObject(GameObject gameObject) {
+        VersionController versionedObject;
+        if (baseOverlay.HasGameObject(gameObject, out versionedObject)) {
+            PickVersion(versionedObject, baseBranch.GetTip().getObjectVersion(versionedObject));
+        }
+        else if (featureOverlay.HasGameObject(gameObject, out versionedObject)) {
+            PickVersion(versionedObject, featureBranch.GetTip().getObjectVersion(versionedObject));
+        }
     }
 }

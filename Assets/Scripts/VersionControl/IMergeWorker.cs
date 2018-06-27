@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public interface IMergeWorker {
     bool IsResolved();
@@ -9,4 +10,5 @@ public interface IMergeWorker {
     IDictionary<VersionController, IVersion> BuildStagingArea();
     MergeStatus GetStatus(VersionController versionedObject);
     Relationship GetMergeType();
+    void PickObject(GameObject gameObject);
 }

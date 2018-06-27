@@ -344,10 +344,6 @@ public class VersionManager : MonoBehaviour {
 	}
 
 	public IMergeWorker GetMergeWorker() {
-		if (this.mw == null) {
-			throw new Exception("Mo Merge Worker to get");
-		}
-
 		return this.mw;
 	}
 

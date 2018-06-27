@@ -9,4 +9,7 @@ public interface IOverlay {
     void SetColor(Color color);
     void SetColor(VersionController versionedObject, Color color);
     void SetColor(GameObject gameObject, Color color);
+    void EnableCollision(VersionController versionedObject);
+    void DisableCollision(VersionController versionedObject);
+    bool HasGameObject(GameObject gameObject, out VersionController versionedObject);
 }
