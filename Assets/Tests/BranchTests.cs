@@ -87,7 +87,7 @@ public class BranchTests {
         IBranch master = versionManager.GetActiveBranch();
         IBranch feature = versionManager.CreateBranch("feature");
 
-        versionManager.Commit("Commit on feature branch");
+        versionManager.Commit("Commit on master branch");
         yield return null;
 
         Assert.AreEqual(Relationship.Rewind, LineageAnalyser.Compare(master.GetTip(), feature.GetTip()));
