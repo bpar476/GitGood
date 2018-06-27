@@ -126,6 +126,16 @@ public class MergeWorker : IMergeWorker
     public void RenderDiff() {
         this.baseOverlay = new Overlay(baseBranch.GetTip(), new Color(0.5f, 0f, 1f, 0.5f));
         this.featureOverlay = new Overlay(featureBranch.GetTip(), new Color(1f, 1f, 0f, 0.5f));
+
+        foreach (VersionController ffController in ffControllers) {
+            if (baseBranch.GetTip().ObjectIsTrackedInThisCommit(ffController)) {
+                baseOverlay.RemoveObject(ffController);
+            }
+
+            if (featureBranch.GetTip().ObjectIsTrackedInThisCommit(ffController)) {
+                featureOverlay.RemoveObject(ffController);
+            }
+        }
     }
 
     private void DestroyOverlays() {

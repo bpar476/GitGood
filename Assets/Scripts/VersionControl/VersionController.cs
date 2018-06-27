@@ -88,6 +88,7 @@ public class VersionController : MonoBehaviour {
 
 	public void ResetToVersion(IVersion version) {
 		this.ResetToVersion(version, activeVersion);
+		this.version = version;
 	}
 
 	public void ResetToVersion(IVersion version, GameObject gameObject) {
