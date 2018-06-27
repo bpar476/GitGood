@@ -61,7 +61,7 @@ public class Commit : ICommit {
     /// <summary>
     /// Gets the ID for this commit.
     /// </summary>
-    public Guid GetCommitId() {
+    public Guid GetId() {
         return this.id;
     }
 

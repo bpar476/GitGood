@@ -1,5 +1,5 @@
 using System;
 
-public interface IVersion : IChainLink<IVersion> {
-    Guid GetId();
+public interface IVersion : IChainLink<IVersion>, IIdentifiable {
+    
 }

@@ -166,7 +166,7 @@ public class VersionManager : MonoBehaviour {
 	/// </summary>
 	public void Checkout(IBranch branch, Guid commitId) {
 		ICommit commit = branch.GetTip();
-		while (! commit.GetCommitId().Equals(commitId)) {
+		while (! commit.GetId().Equals(commitId)) {
 			commit = commit.GetParent();
 		}
 		Checkout(branch, commit);
