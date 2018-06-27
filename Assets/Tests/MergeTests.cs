@@ -50,10 +50,8 @@ public class MergeTests {
         Assert.AreEqual("testBranch", testBranch.GetName());
         Assert.AreSame(secondCommit, testBranch.GetTip());
 
-        Relationship r = LineageAnalyser.Compare(master.GetTip(), testBranch.GetTip());
-        Assert.AreEqual(Relationship.FastForward, r);
-
         IMergeWorker mw = new MergeWorker(master, testBranch);
+        Assert.AreEqual(Relationship.FastForward, mw.GetMergeType());
         Assert.AreEqual(true, mw.IsFastForward(testController1));
         Assert.AreEqual(true, mw.IsFastForward(testController2));
         Assert.AreEqual(true, mw.IsResolved());

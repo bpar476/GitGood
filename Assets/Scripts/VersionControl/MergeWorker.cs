@@ -8,7 +8,7 @@ public class MergeWorker : IMergeWorker
     private IBranch baseBranch, featureBranch;
     private IOverlay baseOverlay, featureOverlay;
     private bool isMergable;
-    private Relationship relationship;
+    private Relationship mergeType;
     private ICollection<VersionController> ffControllers, resolvedControllers, conflictControllers;
 
     private IDictionary<VersionController, IVersion> stagingArea;
@@ -20,7 +20,7 @@ public class MergeWorker : IMergeWorker
         this.baseBranch = baseBranch;
         this.featureBranch = featureBranch;
         this.isMergable = false;
-        this.relationship = LineageAnalyser.Compare(this.baseBranch.GetTip(), this.featureBranch.GetTip());
+        this.mergeType = LineageAnalyser.Compare(this.baseBranch.GetTip(), this.featureBranch.GetTip());
 
         stagingArea = new Dictionary<VersionController, IVersion>();
         Initialise();
@@ -40,7 +40,7 @@ public class MergeWorker : IMergeWorker
     /// Initialise the MergeWorker, determine the state
     /// </summary>
     private void Initialise() {
-        switch (this.relationship) {
+        switch (this.mergeType) {
             case Relationship.Rewind:
                 throw new Exception("Base branch is ahead of feature branch, merge redundant");
             case Relationship.Same:
@@ -157,5 +157,9 @@ public class MergeWorker : IMergeWorker
 
     public bool IsFastForward(VersionController versionedObject) {
         return ffControllers.Contains(versionedObject);
+    }
+
+    public Relationship GetMergeType() {
+        return this.mergeType;
     }
 }
