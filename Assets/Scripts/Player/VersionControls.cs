@@ -26,7 +26,7 @@ public class VersionControls : MonoBehaviour {
 			versionManager.Add(versionController);
 			Debug.Log(currentSelectedVersionable == gameObject ? "Adding player" : "Adding closest object");
 			Debug.Log(currentSelectedVersionable);
-		} else if(versionManager.IsInMergeConflict() && currentSelectedVersionable != null && Input.GetKeyDown(KeyCode.P)) {
+		} else if(versionManager.GetMergeWorker() != null && currentSelectedVersionable != null && Input.GetKeyDown(KeyCode.P)) {
 			GameObject gameObject = currentSelectedVersionable;
 			versionManager.GetMergeWorker().PickObject(gameObject);
 		} else if(Input.GetKeyDown(KeyCode.E)) {
