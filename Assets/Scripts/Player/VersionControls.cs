@@ -51,7 +51,7 @@ public class VersionControls : MonoBehaviour {
 				overlay = new Overlay(versionManager.GetHead(), Color.red);
 			}
 		} else if(Input.GetKeyDown(KeyCode.M)) {
-			IMergeWorker mw = new MergeWorker(versionManager.LookupBranch("master"), versionManager.LookupBranch("demo"));
+			new MergeWorker(versionManager.LookupBranch("master"), versionManager.LookupBranch("demo"));
 		}
 	}
 
