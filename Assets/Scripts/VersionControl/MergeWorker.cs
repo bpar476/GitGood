@@ -10,7 +10,7 @@ public class MergeWorker : IMergeWorker
     private VersionManager versionManager;
     private bool isMergable;
     private Relationship relationship;
-    private ICollection<VersionController> resolvedControllers, conflictControllers;
+    private ICollection<VersionController> ffControllers, resolvedControllers, conflictControllers;
 
     public MergeWorker(VersionManager versionManager, IBranch baseBranch, IBranch featureBranch) {
         if (baseBranch == null || featureBranch == null) {
@@ -47,6 +47,7 @@ public class MergeWorker : IMergeWorker
                 break;
         }
 
+        ffControllers = new HashSet<VersionController>();
         resolvedControllers = new HashSet<VersionController>();
         conflictControllers = new HashSet<VersionController>();
 
@@ -58,12 +59,12 @@ public class MergeWorker : IMergeWorker
                 case Relationship.Unknown:
                     throw new Exception("Can not determine version relativity");
                 case Relationship.Rewind:
-                    resolvedControllers.Add(trackedObject);
+                    ffControllers.Add(trackedObject);
                     versionManager.Add(trackedObject, baseVersion);
                     break;
                 case Relationship.Same:
                 case Relationship.FastForward:
-                    resolvedControllers.Add(trackedObject);
+                    ffControllers.Add(trackedObject);
                     versionManager.Add(trackedObject, featureVersion);
                     break;
                 case Relationship.Divergent:
@@ -76,13 +77,13 @@ public class MergeWorker : IMergeWorker
 
         foreach (VersionController trackedObject in baseBranch.GetTip().GetTrackedObjects().Except(intersection)) {
             IVersion version = baseBranch.GetTip().getObjectVersion(trackedObject);
-            resolvedControllers.Add(trackedObject);
+            ffControllers.Add(trackedObject);
             versionManager.Add(trackedObject, version);
         }
 
         foreach (VersionController trackedObject in featureBranch.GetTip().GetTrackedObjects().Except(intersection)) {
             IVersion version = featureBranch.GetTip().getObjectVersion(trackedObject);
-            resolvedControllers.Add(trackedObject);
+            ffControllers.Add(trackedObject);
             versionManager.Add(trackedObject, version);
         }
     }
@@ -100,7 +101,16 @@ public class MergeWorker : IMergeWorker
     }
 
     public void PickVersion(VersionController vc, IVersion version) {
-        throw new NotImplementedException();
+        if (conflictControllers.Contains(vc)) {
+            conflictControllers.Remove(vc);
+
+            resolvedControllers.Add(vc);
+            versionManager.Add(vc, version);
+        }
+        else {
+            throw new Exception("Tried to resolve controller, but wasn't in conflict controller set");
+        }
+        
     }
 
     public void RenderDiff() {
