@@ -97,6 +97,7 @@ public class MergeWorker : IMergeWorker
     }
 
     public bool IsResolved() {
+        this.UpdateStatus();
         return this.isMergable;
     }
 
@@ -111,6 +112,7 @@ public class MergeWorker : IMergeWorker
             throw new Exception("Tried to resolve controller, but wasn't in conflict controller set");
         }
         
+        this.UpdateStatus();
     }
 
     public void RenderDiff() {
