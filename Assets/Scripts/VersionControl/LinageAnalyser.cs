@@ -2,6 +2,10 @@ using System;
 using System.Collections.Generic;
 
 public class LineageAnalyser {
+
+    /// <summary>
+    /// Compare two nodes in a tree structure and find their relationship
+    /// </summary>
     public static Relationship Compare<T>(T baseT, T featureT) where T : IChainLink<T> {
         if (baseT.Equals(featureT)) {
             return Relationship.Same;

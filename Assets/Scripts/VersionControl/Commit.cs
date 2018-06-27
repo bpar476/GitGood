@@ -78,6 +78,10 @@ public class Commit : ICommit {
     public IEnumerator<VersionController> GetTrackedObjectsEnumerator() {
         return this.objectData.Keys.GetEnumerator();
     }
+
+    /// <summary>
+    /// Return a clone list of the version controller objects tracked in this commit
+    /// </summary>
     public ICollection<VersionController> GetTrackedObjects() {
         return new HashSet<VersionController>(objectData.Keys);
     }

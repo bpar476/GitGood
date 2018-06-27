@@ -19,10 +19,16 @@ public class Overlay : IOverlay
         this.SetColor(color);
     }
 
+    /// <summary>
+    /// Determine whether this overlay contains a versioned object representation
+    /// </summary>
     public bool ContainsObject(VersionController versionedObject) {
         return this.overlayObjects.ContainsKey(versionedObject);
     }
 
+    /// <summary>
+    /// Create the overlay, given the state of the constructed Overlay
+    /// </summary>
     public void Create() {
         foreach(VersionController versionedOject in this.commit.GetTrackedObjects()) {
             GameObject constructedObject = versionedOject.ReconstructVersion(this.commit.getObjectVersion(versionedOject));
@@ -30,6 +36,9 @@ public class Overlay : IOverlay
         }
     }
 
+    /// <summary>
+    /// Destroy the overlay. This will remove it from view. The overlay can be recreated through Create()
+    /// </summary>
     public void Destroy() {
         foreach (VersionController versionedObject in overlayObjects.Keys) {
             Object.Destroy(this.overlayObjects[versionedObject]);
@@ -37,15 +46,24 @@ public class Overlay : IOverlay
         this.overlayObjects.Clear();
     }
 
+    /// <summary>
+    /// Get the commit that this Overlay is displaying
+    /// </summary>
     public ICommit GetCommit() {
         return this.commit;
     }
 
+    /// <summary>
+    /// Remove an object from the overlay
+    /// </summary>
     public void RemoveObject(VersionController versionedObject) {
         Object.Destroy(this.overlayObjects[versionedObject]);
         this.overlayObjects.Remove(versionedObject);
     }
 
+    /// <summary>
+    /// Set the colour of the objects in the overlay
+    /// </summary>
     public void SetColor(Color color) {
         foreach (VersionController versionedObject in overlayObjects.Keys) {
             this.SetColor(versionedObject, color);

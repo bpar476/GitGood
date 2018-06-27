@@ -29,10 +29,16 @@ public class MergeWorker : IMergeWorker
         RenderDiff();
     }
 
+    /// <summary>
+    /// Update status variables given the current state of the MergerWorker
+    /// </summary>
     private void UpdateStatus() {
         this.isMergable = conflictControllers.Count == 0;
     }
 
+    /// <summary>
+    /// Initialise the MergeWorker, determine the state
+    /// </summary>
     private void Initialise() {
         switch (this.relationship) {
             case Relationship.Rewind:
