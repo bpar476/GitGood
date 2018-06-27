@@ -57,6 +57,40 @@ public class MergeTests {
         Assert.AreEqual(true, mw.IsResolved());
     }
 
+    [UnityTest]
+    public IEnumerator TestMergeFastForward() {
+        testObject1.transform.position = new Vector2(0.0f, 0.0f);
+        testObject2.transform.position = new Vector2(3.0f, 3.0f);
+
+        versionManager.Add(testController1);
+        versionManager.Add(testController2);
+
+        ICommit commit = versionManager.Commit("Add two objects");
+
+        yield return null;
+
+        IBranch testBranch = versionManager.CreateBranch("testBranch");
+        versionManager.Checkout("testBranch");
+
+        testObject1.transform.position = new Vector2(1.0f, 0.0f);
+        versionManager.Add(testController1);
+        ICommit secondCommit = versionManager.Commit("Move testObject");
+
+        versionManager.Checkout("master");
+
+        Assert.AreEqual("master", master.GetName());
+        Assert.AreSame(commit, master.GetTip());
+        Assert.AreEqual("testBranch", testBranch.GetName());
+        Assert.AreSame(secondCommit, testBranch.GetTip());
+
+        Relationship mergeType = versionManager.Merge(testBranch);
+        Assert.AreEqual(Relationship.FastForward, mergeType);
+
+        Assert.AreSame(secondCommit, master.GetTip());
+        Assert.AreSame(secondCommit, versionManager.GetActiveCommit());
+
+    }
+
     [TearDown]
     public void TearDown() {
 
