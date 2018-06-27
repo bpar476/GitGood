@@ -12,6 +12,8 @@ public class VersionManager : MonoBehaviour {
 	private IBranch activeBranch;
 	private bool isDetached;
 
+	private IMergeWorker mw;
+
 	private void Awake() {
 		trackedObjects = new List<VersionController>();
 		stagingArea = new List<VersionController>();
@@ -292,4 +294,62 @@ public class VersionManager : MonoBehaviour {
 	public bool IsObjectTracked(VersionController controller) {
 		return trackedObjects.Contains(controller);
 	}
+
+	#region Merging
+	public Relationship Merge(IBranch featureBranch) {
+		if (isDetached) {
+			throw new Exception("Can't merge if detached");
+		}
+
+		if (this.mw != null) {
+			throw new Exception("Already doing a merge, resolve this first");
+		}
+
+		IMergeWorker mw = new MergeWorker(activeBranch, featureBranch);
+		Relationship mergeType = mw.GetMergeType();
+
+		if (mw.GetMergeType() == Relationship.FastForward) {
+			mw.End();
+			activeBranch.UpdateTip(featureBranch.GetTip());
+			activeCommit = activeBranch.GetTip();
+			LoadStateOfCommit(activeCommit);
+			return mergeType;
+		}
+
+		this.mw = mw;
+		return mergeType;
+	}
+
+	public bool IsInMergeConflict() {
+		return this.mw != null && !this.mw.IsResolved();
+	}
+
+	public ICommit ResolveMerge() {
+		if (this.mw == null) {
+			throw new Exception("Not in merge...");
+		}
+		if (!this.mw.IsResolved()) {
+			return null;
+		}
+
+		foreach (KeyValuePair<VersionController, IVersion> stageData in this.mw.BuildStagingArea()) {
+			this.Add(stageData.Key, stageData.Value);
+		}
+		ICommit mergeCommit = this.Commit("Merge Commit");
+
+		this.mw.End();
+		this.mw = null;
+		return mergeCommit;
+
+	}
+
+	public IMergeWorker GetMergeWorker() {
+		if (this.mw == null) {
+			throw new Exception("Mo Merge Worker to get");
+		}
+
+		return this.mw;
+	}
+
+	#endregion
 }
