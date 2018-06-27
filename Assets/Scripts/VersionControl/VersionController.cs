@@ -15,7 +15,6 @@ public class VersionController : MonoBehaviour {
 	private IDictionary<IVersion, GameObject> previewVersions;
 	private GameObject stagedStatePreview;
 
-	public bool transformVersionable;
 	private IVersion version = new Version();
 
 	private void Awake() {
