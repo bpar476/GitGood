@@ -12,10 +12,10 @@ public class VersionController : MonoBehaviour {
 	public TransformVersionable transformVersioner;
 
 	private GameObject activeVersion;
-	private IDictionary<int, GameObject> previewVersions;
+	private IDictionary<IVersion, GameObject> previewVersions;
 	private GameObject stagedStatePreview;
 
-	private int version = 0;
+	private IVersion version = new Version();
 
 	private void Awake() {
 		versioners = new List<IVersionable>();
@@ -59,28 +59,40 @@ public class VersionController : MonoBehaviour {
 		initialPosition.position = new Vector2(x, y);
 	}
 	#endregion accessors
-	
+
 	public void StageVersion() {
 		foreach (IVersionable versioner in versioners) {
 			versioner.Stage(activeVersion);
 		}
 	}
 
-	public int GenerateVersion() {
-		this.version++;
+	public void StageVersion(IVersion version) {
+		GameObject gameObject = this.ReconstructVersion(version);
+		foreach (IVersionable versioner in versioners) {
+			versioner.Stage(gameObject);
+		}
+	}
+
+	public IVersion GenerateVersion() {
+		version = new Version(version);
 		foreach (IVersionable versioner in versioners) {
 			versioner.Commit(version);
 		}
 		return version;
 	}
 
-	public int GetVersion() {
+	public IVersion GetVersion() {
 		return this.version;
 	}
 
-	public void ResetToVersion(int version) {
+	public void ResetToVersion(IVersion version) {
+		this.ResetToVersion(version, activeVersion);
+		this.version = version;
+	}
+
+	public void ResetToVersion(IVersion version, GameObject gameObject) {
 		foreach (IVersionable versioner in versioners) {
-			versioner.ResetToVersion(version, activeVersion);
+			versioner.ResetToVersion(version, gameObject);
 		}
 	}
 
@@ -96,17 +108,26 @@ public class VersionController : MonoBehaviour {
 		}
 	}
 
-	public void ShowVersion(int version) {
+
+	public void ShowVersion(IVersion version) {
 		GameObject preview;
 		if(!previewVersions.TryGetValue(version, out preview)) {
 			preview = Instantiate(previewPrefab, transform) as GameObject;
-			foreach (IVersionable versioner in versioners) {
-				versioner.ResetToVersion(version, preview);
-			}
+			this.ResetToVersion(version, preview);
 			SpriteRenderer renderer = preview.GetComponent<SpriteRenderer>();
 			renderer.color = new Color(0.5f, 0.1f, 0.0f, 0.4f);
 			previewVersions.Add(version, preview);
 		}
+	}
+
+	public GameObject ReconstructVersion(IVersion version) {
+		GameObject gameObject = Instantiate(previewPrefab, transform) as GameObject;
+		this.ResetToVersion(version, gameObject);
+
+		SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
+		renderer.color = new Color(0.5f, 0.1f, 0.0f, 0.4f);
+
+		return gameObject;
 	}
 
 	public void ShowStagedState() {

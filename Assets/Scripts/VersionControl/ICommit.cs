@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 
-public interface ICommit : IChainLink<ICommit> {
+public interface ICommit : IChainLink<ICommit>, IIdentifiable {
     string GetMessage();
-    int getObjectVersion(VersionController versionedObject);
-    Guid GetCommitId();
+    IVersion getObjectVersion(VersionController versionedObject);
     bool ObjectIsTrackedInThisCommit(VersionController controller);
     IEnumerator<VersionController> GetTrackedObjectsEnumerator();
+    ICollection<VersionController> GetTrackedObjects();
 }

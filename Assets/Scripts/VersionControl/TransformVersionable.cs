@@ -23,12 +23,12 @@ public class TransformVersionable : MonoBehaviour, IVersionable {
 		this.stagedY = version.transform.position.y;
 	}
 
-	public void Commit(int version) {
-		this.history.Add(version, new Vector2(stagedX, stagedY));
+	public void Commit(IVersion version) {
+		history.Add(version, new Vector2(stagedX, stagedY));
 	}
 
-	public void ResetToVersion(int version, GameObject target) {
-		Reset(target, this.history.GetStateAt(version));
+	public void ResetToVersion(IVersion version, GameObject target) {
+		Reset(target, history.GetStateAt(version));
 	}
 
 	public void ResetToStaged(GameObject target) {

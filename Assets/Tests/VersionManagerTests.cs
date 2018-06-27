@@ -209,7 +209,7 @@ public class VersionManagerTests {
         versionManager.Add(testController);
         versionManager.Add(otherTestController);
 
-        Guid firstCommitId = versionManager.Commit("Create two boxes").GetCommitId();
+        Guid firstCommitId = versionManager.Commit("Create two boxes").GetId();
 
         yield return null;
 
@@ -250,7 +250,7 @@ public class VersionManagerTests {
         versionManager.Add(testController);
         versionManager.Add(otherTestController);
 
-        Guid firstCommitId = versionManager.Commit("Create two boxes").GetCommitId();
+        Guid firstCommitId = versionManager.Commit("Create two boxes").GetId();
 
         yield return null;
 
@@ -292,7 +292,7 @@ public class VersionManagerTests {
 
         versionManager.Add(testController);
 
-        Guid firstCommitId = versionManager.Commit("Create a box").GetCommitId();
+        Guid firstCommitId = versionManager.Commit("Create a box").GetId();
 
         yield return null;
 
@@ -333,7 +333,7 @@ public class VersionManagerTests {
 
         versionManager.Add(testController);
 
-        Guid firstCommitId = versionManager.Commit("Create a box").GetCommitId();
+        Guid firstCommitId = versionManager.Commit("Create a box").GetId();
 
         yield return null;
 
@@ -368,7 +368,7 @@ public class VersionManagerTests {
 
         versionManager.Add(testController);
 
-        Guid firstCommitId = versionManager.Commit("Create a box").GetCommitId();
+        Guid firstCommitId = versionManager.Commit("Create a box").GetId();
 
         yield return null;
 
@@ -381,7 +381,7 @@ public class VersionManagerTests {
         versionManager.Add(testController);
         versionManager.Add(otherTestController);
 
-        Guid secondCommitId = versionManager.Commit("Create another box and move the first box").GetCommitId();
+        Guid secondCommitId = versionManager.Commit("Create another box and move the first box").GetId();
 
         yield return null;
 
@@ -413,7 +413,7 @@ public class VersionManagerTests {
         versionManager.Add(otherTestController);
 
         ICommit firstCommit = versionManager.Commit("Create two boxes");
-        Guid firstCommitId = firstCommit.GetCommitId();
+        Guid firstCommitId = firstCommit.GetId();
 
         yield return null;
 
@@ -463,7 +463,7 @@ public class VersionManagerTests {
         versionManager.Add(otherTestController);
 
         ICommit firstCommit = versionManager.Commit("Create two boxes");
-        Guid firstCommitId = firstCommit.GetCommitId();
+        Guid firstCommitId = firstCommit.GetId();
 
         yield return null;
 
@@ -482,15 +482,15 @@ public class VersionManagerTests {
         IBranch newBranch = versionManager.CreateBranch("refactor");
         versionManager.Checkout(newBranch);
 
-        Assert.AreEqual(newBranch.GetTip().GetCommitId(), versionManager.GetActiveBranch().GetTip().GetCommitId());
-        Assert.AreEqual(newBranch.GetTip().GetCommitId(), versionManager.GetActiveCommit().GetCommitId());
+        Assert.AreEqual(newBranch.GetTip().GetId(), versionManager.GetActiveBranch().GetTip().GetId());
+        Assert.AreEqual(newBranch.GetTip().GetId(), versionManager.GetActiveCommit().GetId());
 
         testObject.transform.position = new Vector2(-1.0f, 0.0f);
 
         versionManager.Add(testController);
         ICommit commit = versionManager.Commit("Move a box to the left");
 
-        Assert.AreEqual(newBranch.GetTip().GetCommitId(), commit.GetCommitId());
+        Assert.AreEqual(newBranch.GetTip().GetId(), commit.GetId());
         Assert.True(commit.ObjectIsTrackedInThisCommit(testController));
         Assert.True(commit.ObjectIsTrackedInThisCommit(otherTestController));
     }
@@ -513,7 +513,7 @@ public class VersionManagerTests {
         versionManager.Add(testController);
         versionManager.Add(otherTestController);
 
-        versionManager.Commit("Create two boxes").GetCommitId();
+        versionManager.Commit("Create two boxes").GetId();
 
         yield return null;
 

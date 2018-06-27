@@ -6,7 +6,7 @@ using System.Collections.Generic;
 /// </summary>
 public class Commit : ICommit {
 
-    private IDictionary<VersionController, int> objectData;
+    private IDictionary<VersionController, IVersion> objectData;
     private ICommit parent;
     private string commitMessage;
     private Guid id;
@@ -14,10 +14,10 @@ public class Commit : ICommit {
     /// <summary>
     /// The Commit constructor should not be called directly, instead use a CommitBuilder to incrementally build a commit
     /// </summary>
-    public Commit(ICommit parent, IDictionary<VersionController, int> versionData, string message) {
+    public Commit(ICommit parent, IDictionary<VersionController, IVersion> versionData, string message) {
         Relink(parent);
         this.commitMessage = message;
-        this.objectData = new Dictionary<VersionController, int>();
+        this.objectData = new Dictionary<VersionController, IVersion>();
         foreach (VersionController controller in versionData.Keys) {
             this.objectData.Add(controller, versionData[controller]);
         }
@@ -48,8 +48,8 @@ public class Commit : ICommit {
     /// <summary>
     /// Gets the version code for the given object corresponding to the state at this commit
     /// </summary>
-    public int getObjectVersion(VersionController versionedObject) {
-        int version;
+    public IVersion getObjectVersion(VersionController versionedObject) {
+        IVersion version;
         if (this.objectData.TryGetValue(versionedObject, out version)) {
             return version;
         }
@@ -61,7 +61,7 @@ public class Commit : ICommit {
     /// <summary>
     /// Gets the ID for this commit.
     /// </summary>
-    public Guid GetCommitId() {
+    public Guid GetId() {
         return this.id;
     }
 
@@ -77,5 +77,16 @@ public class Commit : ICommit {
     /// </summary>
     public IEnumerator<VersionController> GetTrackedObjectsEnumerator() {
         return this.objectData.Keys.GetEnumerator();
+    }
+
+    /// <summary>
+    /// Return a clone list of the version controller objects tracked in this commit
+    /// </summary>
+    public ICollection<VersionController> GetTrackedObjects() {
+        return new HashSet<VersionController>(objectData.Keys);
+    }
+
+    public bool Equals(IChainLink<ICommit> other) {
+        return this == other;
     }
 }

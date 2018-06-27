@@ -45,6 +45,17 @@ public class VersionManager : MonoBehaviour {
 		}
 	}
 
+	public void Add(VersionController controller, IVersion version) {
+		if (!trackedObjects.Contains(controller)) {
+			trackedObjects.Add(controller);
+		}
+		stagingArea.Add(controller);
+		controller.StageVersion(version);
+		foreach(VersionController stagedController in stagingArea) {
+			stagedController.ShowStagedState();
+		}
+	}
+
 	/// <summary>
 	/// Creates a new commit from the current state of the staging area.
 	/// Appends the commit to the current branch and clears the staging area.
@@ -59,7 +70,7 @@ public class VersionManager : MonoBehaviour {
 		builder.SetMessage(message);
 		builder.SetParent(activeCommit);
 		foreach(VersionController controller in trackedObjects) {
-			int controllerVersion;
+			IVersion controllerVersion;
 			if (stagingArea.Contains(controller)) {
 				// increment commit count
 				controllerVersion = controller.GenerateVersion();
@@ -155,7 +166,7 @@ public class VersionManager : MonoBehaviour {
 	/// </summary>
 	public void Checkout(IBranch branch, Guid commitId) {
 		ICommit commit = branch.GetTip();
-		while (! commit.GetCommitId().Equals(commitId)) {
+		while (! commit.GetId().Equals(commitId)) {
 			commit = commit.GetParent();
 		}
 		Checkout(branch, commit);
