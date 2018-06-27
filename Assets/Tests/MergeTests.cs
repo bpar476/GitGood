@@ -52,8 +52,8 @@ public class MergeTests {
 
         IMergeWorker mw = new MergeWorker(master, testBranch);
         Assert.AreEqual(Relationship.FastForward, mw.GetMergeType());
-        Assert.AreEqual(true, mw.IsFastForward(testController1));
-        Assert.AreEqual(true, mw.IsFastForward(testController2));
+        Assert.AreEqual(MergeStatus.FastForward, mw.GetStatus(testController1));
+        Assert.AreEqual(MergeStatus.FastForward, mw.GetStatus(testController2));
         Assert.AreEqual(true, mw.IsResolved());
     }
 

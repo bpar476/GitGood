@@ -147,19 +147,20 @@ public class MergeWorker : IMergeWorker
         return new Dictionary<VersionController, IVersion>(stagingArea);
     }
 
-    public bool IsConflict(VersionController versionedObject) {
-        return conflictControllers.Contains(versionedObject);
-    }
-
-    public bool IsResolved(VersionController versionedObject) {
-        return resolvedControllers.Contains(versionedObject);
-    }
-
-    public bool IsFastForward(VersionController versionedObject) {
-        return ffControllers.Contains(versionedObject);
-    }
-
     public Relationship GetMergeType() {
         return this.mergeType;
+    }
+
+    public MergeStatus GetStatus(VersionController versionedObject) {
+        if (conflictControllers.Contains(versionedObject)) {
+            return MergeStatus.Conflict;
+        }
+        if (resolvedControllers.Contains(versionedObject)) {
+            return MergeStatus.Resolved;
+        }
+        if (ffControllers.Contains(versionedObject)) {
+            return MergeStatus.FastForward;
+        }
+        return MergeStatus.Unknown;
     }
 }
