@@ -109,12 +109,12 @@ public class MergeWorker : IMergeWorker
         return this.isMergable;
     }
 
-    public void PickVersion(VersionController vc, IVersion version) {
-        if (conflictControllers.Contains(vc)) {
-            conflictControllers.Remove(vc);
+    public void PickVersion(VersionController versionedObject, IVersion version) {
+        if (conflictControllers.Contains(versionedObject)) {
+            conflictControllers.Remove(versionedObject);
 
-            resolvedControllers.Add(vc);
-            stagingArea.Add(vc, version);
+            resolvedControllers.Add(versionedObject);
+            stagingArea.Add(versionedObject, version);
         }
         else {
             throw new Exception("Tried to resolve controller, but wasn't in conflict controller set");
@@ -145,5 +145,17 @@ public class MergeWorker : IMergeWorker
 
     public IDictionary<VersionController, IVersion> BuildStagingArea() {
         return new Dictionary<VersionController, IVersion>(stagingArea);
+    }
+
+    public bool IsConflict(VersionController versionedObject) {
+        return conflictControllers.Contains(versionedObject);
+    }
+
+    public bool IsResolved(VersionController versionedObject) {
+        return resolvedControllers.Contains(versionedObject);
+    }
+
+    public bool IsFastForward(VersionController versionedObject) {
+        return ffControllers.Contains(versionedObject);
     }
 }
