@@ -121,6 +121,9 @@ public class MergeWorker : IMergeWorker
         }
         
         this.UpdateStatus();
+
+        this.DestroyOverlays();
+        this.RenderDiff();
     }
 
     public void RenderDiff() {
@@ -134,6 +137,17 @@ public class MergeWorker : IMergeWorker
 
             if (featureBranch.GetTip().ObjectIsTrackedInThisCommit(ffController)) {
                 featureOverlay.RemoveObject(ffController);
+            }
+        }
+
+        foreach (VersionController resolvedController in resolvedControllers) {
+            if (stagingArea[resolvedController] == baseBranch.GetTip().getObjectVersion(resolvedController)) {
+                baseOverlay.SetColor(resolvedController, new Color(0f, 1f, 0f, 0.5f));
+                featureOverlay.SetColor(resolvedController, new Color(0f, 0f, 0f, 0.5f));
+            }
+            else if (stagingArea[resolvedController] == featureBranch.GetTip().getObjectVersion(resolvedController)) {
+                featureOverlay.SetColor(resolvedController, new Color(0f, 1f, 0f, 0.5f));
+                baseOverlay.SetColor(resolvedController, new Color(0f, 0f, 0f, 0.5f));
             }
         }
     }
