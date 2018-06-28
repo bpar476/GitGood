@@ -57,6 +57,16 @@ public class VersionManager : MonoBehaviour {
 	}
 
 	/// <summary>
+	/// Removes the given versionable object from the staging area
+	/// </summary>
+	/// <param name="controller">The versionable object to remove from the staging area</param>
+	public void Unstage(VersionController controller) {
+		if (stagingArea.Contains(controller)) {
+			stagingArea.Remove(controller);
+		}
+	}
+
+	/// <summary>
 	/// Creates a new commit from the current state of the staging area.
 	/// Appends the commit to the current branch and clears the staging area.
 	/// Clears the preview of the staging area.
@@ -291,5 +301,14 @@ public class VersionManager : MonoBehaviour {
 	/// </summary>
 	public bool IsObjectTracked(VersionController controller) {
 		return trackedObjects.Contains(controller);
+	}
+
+	/// <summary>
+	/// Determines whether a given versionable object is in the staging area
+	/// </summary>
+	/// <param name="controller">The versionable object to query the staging area for</param>
+	/// <returns>True if the object is in the staging area, false otherwise.</returns>
+	public bool IsObjectStaged(VersionController controller) {
+		return stagingArea.Contains(controller);
 	}
 }
