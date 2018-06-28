@@ -28,7 +28,7 @@ public class VersionControls : MonoBehaviour {
 			Debug.Log(currentSelectedVersionable);
 		} else if(versionManager.GetMergeWorker() != null && currentSelectedVersionable != null && Input.GetKeyDown(KeyCode.P)) {
 			GameObject gameObject = currentSelectedVersionable;
-			versionManager.GetMergeWorker().PickObject(gameObject);
+			versionManager.GetMergeWorker().PickObject(gameObject); // PictObject will resolve conflict corresponding to that game object the closest selected object an overlay one.
 		} else if(Input.GetKeyDown(KeyCode.E)) {
 			versionManager.Commit("Commit message");
 			Debug.Log("Commiting staged objects");

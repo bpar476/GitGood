@@ -152,13 +152,11 @@ public class MergeWorker : IMergeWorker
                 featureOverlay.SetColor(resolvedController, new Color(0f, 1f, 0f, 0.5f));
                 baseOverlay.SetColor(resolvedController, new Color(0f, 0f, 0f, 0.5f));
             }
-            baseOverlay.EnableCollision(resolvedController);
-            featureOverlay.EnableCollision(resolvedController);
+            // TODO: Somehow enable selectivity of the game object associated with this vesion controller in both overlays
         }
 
         foreach (VersionController conflictController in conflictControllers) {
-            baseOverlay.EnableCollision(conflictController);
-            featureOverlay.EnableCollision(conflictController);
+            // TODO: Somehow enable selectivity of the game object associated with this vesion controller in both overlays
         }
     }
 
