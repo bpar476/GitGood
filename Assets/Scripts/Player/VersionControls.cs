@@ -26,6 +26,9 @@ public class VersionControls : MonoBehaviour {
 			versionManager.Add(versionController);
 			Debug.Log(currentSelectedVersionable == gameObject ? "Adding player" : "Adding closest object");
 			Debug.Log(currentSelectedVersionable);
+		} else if(versionManager.GetMergeWorker() != null && currentSelectedVersionable != null && Input.GetKeyDown(KeyCode.P)) {
+			GameObject gameObject = currentSelectedVersionable;
+			versionManager.GetMergeWorker().PickObject(gameObject); // PictObject will resolve conflict corresponding to that game object the closest selected object an overlay one.
 		} else if(Input.GetKeyDown(KeyCode.E)) {
 			versionManager.Commit("Commit message");
 			Debug.Log("Commiting staged objects");
@@ -51,7 +54,12 @@ public class VersionControls : MonoBehaviour {
 				overlay = new Overlay(versionManager.GetHead(), Color.red);
 			}
 		} else if(Input.GetKeyDown(KeyCode.M)) {
-			new MergeWorker(versionManager.LookupBranch("master"), versionManager.LookupBranch("demo"));
+			if (versionManager.GetMergeWorker() != null) {
+				versionManager.ResolveMerge();
+			}
+			else {
+				versionManager.Merge(versionManager.LookupBranch("demo"));
+			}
 		}
 	}
 
