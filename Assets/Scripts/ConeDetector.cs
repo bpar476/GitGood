@@ -6,11 +6,16 @@ public class ConeDetector : MonoBehaviour {
 
 	public bool debug = false;
 	public float fovAngle = 65.0f;
-	public string tagToDetect = "";
 	public CircleCollider2D triggerZone;
 	public Transform forwards;
 
-	private GameObject closestObject;
+	private ICollection<GameObject> visibleObjects;
+	private ICollection<IVisionObserver> observers;
+
+	private void Awake() {
+		visibleObjects = new HashSet<GameObject>();
+		observers = new HashSet<IVisionObserver>();
+	}
 
 	private void Update() {
 		if(debug && triggerZone != null) {
@@ -20,51 +25,40 @@ public class ConeDetector : MonoBehaviour {
 			Debug.DrawRay(transform.position, positiveRotatedVector.normalized * triggerZone.radius, Color.blue);
 			Debug.DrawRay(transform.position, negativeRotatedVector.normalized * triggerZone.radius, Color.blue);
 
-			if (closestObject != null) {
-				Debug.DrawLine(transform.position, closestObject.transform.position, Color.green);
+			if (visibleObjects.Count != 0) {
+				foreach(GameObject gobj in visibleObjects) {
+					Debug.DrawLine(transform.position, gobj.transform.position, Color.green);
+				}
 			}
 		}	
 	}
+
 	// Is within radius
 	private void OnTriggerStay2D(Collider2D other) {
-		bool unsetClosestObject = false;
-		if (other.gameObject.tag == tagToDetect || tagToDetect == "") {
-			Vector3 otherPosition = other.transform.position;
-			Vector3 myPosition = transform.position;
-			Vector3 forwardDirection = forwards.position - myPosition;
-			Vector3 directionOfObject = otherPosition - myPosition;
+		Vector3 otherPosition = other.transform.position;
+		Vector3 myPosition = transform.position;
+		Vector3 forwardDirection = forwards.position - myPosition;
+		Vector3 directionOfObject = otherPosition - myPosition;
 
-			float angle = Vector2.Angle(forwardDirection, directionOfObject);
-			if (angle < fovAngle) {
-				RaycastHit2D raycastHit = Physics2D.Linecast(transform.position, other.transform.position);
-				if (raycastHit.collider != null && raycastHit.collider.Equals(other)) {
-					if (debug) {
-						Debug.DrawLine(myPosition, otherPosition, Color.red);
-					}
-					if (closestObject == null) {
-						closestObject = other.gameObject;
-					} else if(Vector3.Distance(transform.position, otherPosition) < Vector3.Distance(transform.position, closestObject.transform.position)) {
-						closestObject = other.gameObject;
-					}
-				} else if (other.gameObject.Equals(closestObject)) {
-					unsetClosestObject = true;
+		float angle = Vector2.Angle(forwardDirection, directionOfObject);
+		if (angle < fovAngle) {
+			RaycastHit2D raycastHit = Physics2D.Linecast(transform.position, other.transform.position);
+			if (raycastHit.collider != null && raycastHit.collider.Equals(other)) {
+				if (debug) {
+					Debug.DrawLine(myPosition, otherPosition, Color.red);
 				}
-			} else if (other.gameObject.Equals(closestObject)) {
-				unsetClosestObject = true;
+				visibleObjects.Add(other.gameObject);
+			} else if (visibleObjects.Contains(other.gameObject)) {
+				visibleObjects.Remove(other.gameObject);
 			}
-		}
-		if (unsetClosestObject) {
-			closestObject = null;
+		} else if (visibleObjects.Contains(other.gameObject)) {
+			visibleObjects.Remove(other.gameObject);
 		}
 	}
 
 	private void OnTriggerExit2D(Collider2D other) {
-		if (other.gameObject.Equals(closestObject)) {
-			closestObject = null;
+		if (visibleObjects.Contains(other.gameObject)) {
+			visibleObjects.Remove(other.gameObject);
 		}
-	}
-
-	public GameObject getClosestDetectedObject() {
-		return closestObject;
 	}
 }

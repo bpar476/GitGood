@@ -68,7 +68,7 @@ public class VersionControls : MonoBehaviour {
 		if (Input.GetKey(KeyCode.LeftControl)) {
 			objectToSelect =  gameObject;
 		} else {
-			objectToSelect = versionableDetector.getClosestDetectedObject();
+			//objectToSelect = versionableDetector.getClosestDetectedObject();
 		}
 
 		highlightNewlySelectedVersionableIfPresent(objectToSelect);
