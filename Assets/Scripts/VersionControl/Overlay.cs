@@ -53,6 +53,17 @@ public class Overlay : IOverlay
         return this.commit;
     }
 
+    public bool HasGameObject(GameObject gameObject, out VersionController versionedObject) {
+        foreach (KeyValuePair<VersionController, GameObject> keypair in overlayObjects) {
+            if (gameObject == keypair.Value) {
+                versionedObject = keypair.Key;
+                return true;
+            }
+        }
+        versionedObject = null;
+        return false;
+    }
+
     /// <summary>
     /// Remove an object from the overlay
     /// </summary>

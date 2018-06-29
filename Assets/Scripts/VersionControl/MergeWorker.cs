@@ -8,7 +8,7 @@ public class MergeWorker : IMergeWorker
     private IBranch baseBranch, featureBranch;
     private IOverlay baseOverlay, featureOverlay;
     private bool isMergable;
-    private Relationship relationship;
+    private Relationship mergeType;
     private ICollection<VersionController> ffControllers, resolvedControllers, conflictControllers;
 
     private IDictionary<VersionController, IVersion> stagingArea;
@@ -20,7 +20,7 @@ public class MergeWorker : IMergeWorker
         this.baseBranch = baseBranch;
         this.featureBranch = featureBranch;
         this.isMergable = false;
-        this.relationship = LineageAnalyser.Compare(this.baseBranch.GetTip(), this.featureBranch.GetTip());
+        this.mergeType = LineageAnalyser.Compare(this.baseBranch.GetTip(), this.featureBranch.GetTip());
 
         stagingArea = new Dictionary<VersionController, IVersion>();
         Initialise();
@@ -40,7 +40,7 @@ public class MergeWorker : IMergeWorker
     /// Initialise the MergeWorker, determine the state
     /// </summary>
     private void Initialise() {
-        switch (this.relationship) {
+        switch (this.mergeType) {
             case Relationship.Rewind:
                 throw new Exception("Base branch is ahead of feature branch, merge redundant");
             case Relationship.Same:
@@ -109,18 +109,24 @@ public class MergeWorker : IMergeWorker
         return this.isMergable;
     }
 
-    public void PickVersion(VersionController vc, IVersion version) {
-        if (conflictControllers.Contains(vc)) {
-            conflictControllers.Remove(vc);
+    public void PickVersion(VersionController versionedObject, IVersion version) {
+        if (conflictControllers.Contains(versionedObject)) {
+            conflictControllers.Remove(versionedObject);
 
-            resolvedControllers.Add(vc);
-            stagingArea.Add(vc, version);
+            resolvedControllers.Add(versionedObject);
+            stagingArea.Add(versionedObject, version);
+        }
+        else if (resolvedControllers.Contains(versionedObject)) {
+            stagingArea[versionedObject] = version;
         }
         else {
             throw new Exception("Tried to resolve controller, but wasn't in conflict controller set");
         }
         
         this.UpdateStatus();
+
+        this.DestroyOverlays();
+        this.RenderDiff();
     }
 
     public void RenderDiff() {
@@ -136,6 +142,22 @@ public class MergeWorker : IMergeWorker
                 featureOverlay.RemoveObject(ffController);
             }
         }
+
+        foreach (VersionController resolvedController in resolvedControllers) {
+            if (stagingArea[resolvedController] == baseBranch.GetTip().getObjectVersion(resolvedController)) {
+                baseOverlay.SetColor(resolvedController, new Color(0f, 1f, 0f, 0.5f));
+                featureOverlay.SetColor(resolvedController, new Color(0f, 0f, 0f, 0.5f));
+            }
+            else if (stagingArea[resolvedController] == featureBranch.GetTip().getObjectVersion(resolvedController)) {
+                featureOverlay.SetColor(resolvedController, new Color(0f, 1f, 0f, 0.5f));
+                baseOverlay.SetColor(resolvedController, new Color(0f, 0f, 0f, 0.5f));
+            }
+            // TODO: Somehow enable selectivity of the game object associated with this vesion controller in both overlays
+        }
+
+        foreach (VersionController conflictController in conflictControllers) {
+            // TODO: Somehow enable selectivity of the game object associated with this vesion controller in both overlays
+        }
     }
 
     private void DestroyOverlays() {
@@ -145,5 +167,32 @@ public class MergeWorker : IMergeWorker
 
     public IDictionary<VersionController, IVersion> BuildStagingArea() {
         return new Dictionary<VersionController, IVersion>(stagingArea);
+    }
+
+    public Relationship GetMergeType() {
+        return this.mergeType;
+    }
+
+    public MergeStatus GetStatus(VersionController versionedObject) {
+        if (conflictControllers.Contains(versionedObject)) {
+            return MergeStatus.Conflict;
+        }
+        if (resolvedControllers.Contains(versionedObject)) {
+            return MergeStatus.Resolved;
+        }
+        if (ffControllers.Contains(versionedObject)) {
+            return MergeStatus.FastForward;
+        }
+        return MergeStatus.Unknown;
+    }
+
+    public void PickObject(GameObject gameObject) {
+        VersionController versionedObject;
+        if (baseOverlay.HasGameObject(gameObject, out versionedObject)) {
+            PickVersion(versionedObject, baseBranch.GetTip().getObjectVersion(versionedObject));
+        }
+        else if (featureOverlay.HasGameObject(gameObject, out versionedObject)) {
+            PickVersion(versionedObject, featureBranch.GetTip().getObjectVersion(versionedObject));
+        }
     }
 }
