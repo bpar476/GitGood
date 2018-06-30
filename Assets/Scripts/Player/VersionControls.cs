@@ -6,14 +6,17 @@ public class VersionControls : MonoBehaviour {
 	
 	public VersionManager versionManager;
 
-	public ConeDetector versionableDetector;
+	public ConeDetector fov;
 
 	private GameObject currentSelectedVersionable;
+	private ClosestObjectVisionObserver closestVersionableDetector;
 
 	private IOverlay overlay;
 
 	private void Start() {
 		versionManager = GameObject.FindWithTag("VersionManager").GetComponent<VersionManager>();
+		closestVersionableDetector = GetComponent<ClosestObjectVisionObserver>();
+		fov.AddObserver(closestVersionableDetector);
 		overlay = null;
 	}
 
@@ -68,7 +71,7 @@ public class VersionControls : MonoBehaviour {
 		if (Input.GetKey(KeyCode.LeftControl)) {
 			objectToSelect =  gameObject;
 		} else {
-			//objectToSelect = versionableDetector.getClosestDetectedObject();
+			objectToSelect = closestVersionableDetector.getClosestObject();
 		}
 
 		highlightNewlySelectedVersionableIfPresent(objectToSelect);

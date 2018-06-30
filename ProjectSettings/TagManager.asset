@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - versionable
   - VersionManager
   - VersionPreview
+  - Versionable
   layers:
   - Default
   - TransparentFX
