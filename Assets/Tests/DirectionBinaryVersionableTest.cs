@@ -7,7 +7,7 @@ using System;
 public class DirectionVersionableTest {
 
     [UnityTest]
-    public IENumerator ShouldSetLocalScale() {
+    public IEnumerator ShouldSetLocalScale() {
         VersionableObjectFactory factory = new VersionableObjectFactory();
 
         VersionController testController = factory.createBinaryVersionable();
@@ -20,13 +20,19 @@ public class DirectionVersionableTest {
         versionManager.Add(testController);
         ICommit commit = versionManager.Commit("Add a box");
 
+        yield return null;
+
         testObject.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
         Assert.AreEqual(testObject.transform.localScale.x, -1.0f, 0.01f);
 
         versionManager.Add(testController);
         versionManager.Commit("Flip the box");
 
+        yield return null;
+
         versionManager.CheckoutCommit(commit);
+
+        yield return null;
 
         Assert.AreEqual(testObject.transform.localScale.x, 1.0f, 0.01f);
     }
