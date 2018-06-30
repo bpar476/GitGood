@@ -26,6 +26,9 @@ public class VersionableObjectFactory {
         testObject.SetActiveVersion(new GameObject());
         testObject.SetTemplatePrefab(Resources.Load("Tests/Versionables/VersionableBox") as GameObject);
         testObject.SetPreviewPrefab(Resources.Load("Tests/Versionables/VersionableBoxPreview") as GameObject);
+
+        directionVersioner.SetInitialState(true);
+        directionVersioner.SetScaleValue(1.0f);
         return testObject;
     }
 }

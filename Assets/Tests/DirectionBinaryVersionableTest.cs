@@ -15,7 +15,7 @@ public class DirectionVersionableTest {
 
         VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
 
-        Assert.AreEqual(testObject.transform.localScale.x, 1.0f, 0.01f);
+        Assert.AreEqual(1.0f, testObject.transform.localScale.x, 0.01f);
 
         versionManager.Add(testController);
         ICommit commit = versionManager.Commit("Add a box");
@@ -23,7 +23,7 @@ public class DirectionVersionableTest {
         yield return null;
 
         testObject.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
-        Assert.AreEqual(testObject.transform.localScale.x, -1.0f, 0.01f);
+        Assert.AreEqual(-1.0f, testObject.transform.localScale.x,  0.01f);
 
         versionManager.Add(testController);
         versionManager.Commit("Flip the box");
@@ -34,7 +34,7 @@ public class DirectionVersionableTest {
 
         yield return null;
 
-        Assert.AreEqual(testObject.transform.localScale.x, 1.0f, 0.01f);
+        Assert.AreEqual(1.0f, testObject.transform.localScale.x, 0.01f);
     }
 
 }

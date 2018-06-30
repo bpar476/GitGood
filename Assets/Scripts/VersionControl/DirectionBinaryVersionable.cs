@@ -41,6 +41,17 @@ public class DirectionBinaryVersionable : MonoBehaviour, IBinaryVersionable {
         return stagedState;
     }
 
+    public void SetScaleValue(float value) {
+        if (value < 0) {
+            value *= -1;
+        }
+        this.scaleValue = value;
+    }
+
+    public void SetInitialState(bool value) {
+        this.initialState = value;
+    }
+
     private void Reset(bool state, GameObject target) {
         float value = state ? scaleValue : -1 * scaleValue;
         target.transform.localScale = new Vector3(value, target.transform.localScale.y, target.transform.localScale.z);
