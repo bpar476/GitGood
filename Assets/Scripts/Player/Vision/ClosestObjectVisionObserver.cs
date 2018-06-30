@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class ClosestObjectVisionObserver : MonoBehaviour, IVisionObserver {
 
-    public string tag = "Untagged";
+    public string queryTag = "Untagged";
     public bool useTag = false;
 
     private GameObject closestObject;
 
     public void ProcessVisibleObject(GameObject gobj) {
-        if (!useTag || gobj.tag == this.tag) {
+        if (!useTag || gobj.tag == this.queryTag) {
             if (this.closestObject == null) {
                 this.closestObject = gobj;
             } else if (Vector3.Distance(transform.position, gobj.transform.position) < Vector3.Distance(transform.position, this.closestObject.transform.position)) {

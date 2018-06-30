@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73487bc760b48ce46ad7d47d230fc957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tag: Versionable
+  queryTag: Versionable
   useTag: 1
 --- !u!114 &114415682447259536
 MonoBehaviour:
