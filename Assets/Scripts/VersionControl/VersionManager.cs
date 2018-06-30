@@ -355,11 +355,13 @@ public class VersionManager : MonoBehaviour {
 			this.Add(stageData.Key, stageData.Value);
 		}
 		ICommit mergeCommit = this.Commit("Merge Commit");
+		foreach (VersionController versionedObject in this.mw.BuildStagingArea().Keys) {
+			this.ResetToHead(versionedObject);
+		}
 
 		this.mw.End();
 		this.mw = null;
 		return mergeCommit;
-
 	}
 
 	public IMergeWorker GetMergeWorker() {

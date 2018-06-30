@@ -71,6 +71,7 @@ public class VersionController : MonoBehaviour {
 		foreach (IVersionable versioner in versioners) {
 			versioner.Stage(gameObject);
 		}
+		Destroy(gameObject);
 	}
 
 	public IVersion GenerateVersion() {
