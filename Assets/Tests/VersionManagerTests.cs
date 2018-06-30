@@ -6,6 +6,25 @@ using System;
 
 public class VersionManagerTests {
 
+    [UnityTest]
+    public IEnumerator ShouldAllowRemovalOfStagedObjectFromStagingArea() {
+        VersionableObjectFactory factory = new VersionableObjectFactory();
+
+        VersionController testController = factory.createVersionableBox();
+        GameObject testObject = testController.GetActiveVersion();
+
+        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
+        versionManager.Add(testController);
+
+        Assert.True(versionManager.IsObjectStaged(testController));
+
+        versionManager.Unstage(testController);
+
+        Assert.False(versionManager.IsObjectStaged(testController));
+
+        yield return null;
+    }
+
     // A UnityTest behaves like a coroutine in PlayMode
     // and allows you to yield null to skip a frame in EditMode
     [UnityTest]
