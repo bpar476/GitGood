@@ -5,47 +5,56 @@ using UnityEngine;
 public class VersionControls : MonoBehaviour {
 	
 	public VersionManager versionManager;
+	public ConeDetector fov;
+	public string versionableTag;
+	public string previewTag;
 
-	public ConeDetector versionableDetector;
-
-	private GameObject currentSelectedVersionable;
+	private GameObject currentlySelectedObject;
+	private ClosestObjectVisionObserver closestObjectDetector;
 
 	private IOverlay overlay;
 
 	private void Start() {
 		versionManager = GameObject.FindWithTag("VersionManager").GetComponent<VersionManager>();
+		closestObjectDetector = GetComponent<ClosestObjectVisionObserver>();
+		fov.AddObserver(closestObjectDetector);
 		overlay = null;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		selectVersionable();
-
-		if(currentSelectedVersionable != null && Input.GetKeyDown(KeyCode.Q)) {
-			VersionController versionController = currentSelectedVersionable.GetComponentInParent<VersionController>();
-			versionManager.Add(versionController);
-			Debug.Log(currentSelectedVersionable == gameObject ? "Adding player" : "Adding closest object");
-			Debug.Log(currentSelectedVersionable);
-		} else if(versionManager.GetMergeWorker() != null && currentSelectedVersionable != null && Input.GetKeyDown(KeyCode.P)) {
-			GameObject gameObject = currentSelectedVersionable;
-			versionManager.GetMergeWorker().PickObject(gameObject); // PictObject will resolve conflict corresponding to that game object the closest selected object an overlay one.
-		} else if(Input.GetKeyDown(KeyCode.E)) {
-			versionManager.Commit("Commit message");
-			Debug.Log("Commiting staged objects");
-		} else if(Input.GetKeyDown(KeyCode.R)) {
-			versionManager.ResetToHead();
-			Debug.Log("Resetting to HEAD");
-		} else if(Input.GetKeyDown(KeyCode.J)) {
-			if (!versionManager.HasBranch("demo")) {
-				versionManager.CreateBranch("demo");
-				Debug.Log("Creating branch 'demo'");
+		if (versionManager.GetMergeWorker() != null) {
+			selectClosestPreview();
+			if (currentlySelectedObject != null && Input.GetKeyDown(KeyCode.P)) {
+				versionManager.GetMergeWorker().PickObject(currentlySelectedObject);
 			}
-			versionManager.Checkout("demo");
-			Debug.Log("Checkout demo");
-		} else if(Input.GetKeyDown(KeyCode.K)) {
-			versionManager.Checkout("master");
-			Debug.Log("Checkout master");
-		} else if(Input.GetKeyDown(KeyCode.O)) {
+		} else {
+			selectVersionable();
+			if(currentlySelectedObject != null && Input.GetKeyDown(KeyCode.Q)) {
+				VersionController versionController = currentlySelectedObject.GetComponentInParent<VersionController>();
+				versionManager.Add(versionController);
+				Debug.Log(currentlySelectedObject == gameObject ? "Adding player" : "Adding closest object");
+				Debug.Log(currentlySelectedObject);
+			} else if (Input.GetKeyDown(KeyCode.E)) {
+				versionManager.Commit("Commit message");
+				Debug.Log("Commiting staged objects");
+			} else if(Input.GetKeyDown(KeyCode.R)) {
+				versionManager.ResetToHead();
+				Debug.Log("Resetting to HEAD");
+			} else if(Input.GetKeyDown(KeyCode.J)) {
+				if (!versionManager.HasBranch("demo")) {
+					versionManager.CreateBranch("demo");
+					Debug.Log("Creating branch 'demo'");
+				}
+				versionManager.Checkout("demo");
+				Debug.Log("Checkout demo");
+			} else if(Input.GetKeyDown(KeyCode.K)) {
+				versionManager.Checkout("master");
+				Debug.Log("Checkout master");
+			}
+		}
+
+		if(Input.GetKeyDown(KeyCode.O)) {
 			if (overlay != null) {
 				overlay.Destroy();
 				overlay = null;
@@ -68,21 +77,27 @@ public class VersionControls : MonoBehaviour {
 		if (Input.GetKey(KeyCode.LeftControl)) {
 			objectToSelect =  gameObject;
 		} else {
-			objectToSelect = versionableDetector.getClosestDetectedObject();
+			objectToSelect = closestObjectDetector.GetClosestObjectWithTag(this.versionableTag);
 		}
 
-		highlightNewlySelectedVersionableIfPresent(objectToSelect);
-		currentSelectedVersionable = objectToSelect;
+		HighlightNewlySelectedObjectIfPresent(objectToSelect);
+		currentlySelectedObject = objectToSelect;
 	}
 
-	private void highlightNewlySelectedVersionableIfPresent(GameObject selectedVersionable) {
-		if (currentSelectedVersionable == null && selectedVersionable != null) {
-			toggleOutline(selectedVersionable);
-		} else if (selectedVersionable != null) {
-			toggleOutline(currentSelectedVersionable);
-			toggleOutline(selectedVersionable);
-		} else if (currentSelectedVersionable != null && selectedVersionable == null) {
-			toggleOutline(currentSelectedVersionable);
+	private void selectClosestPreview() {
+		GameObject closestPreview = this.closestObjectDetector.GetClosestObjectWithTag(this.previewTag);
+		HighlightNewlySelectedObjectIfPresent(closestPreview);
+		currentlySelectedObject = closestPreview;
+	}
+
+	private void HighlightNewlySelectedObjectIfPresent(GameObject selectedObject) {
+		if (currentlySelectedObject == null && selectedObject != null) {
+			toggleOutline(selectedObject);
+		} else if (selectedObject != null) {
+			toggleOutline(currentlySelectedObject);
+			toggleOutline(selectedObject);
+		} else if (currentlySelectedObject != null && selectedObject == null) {
+			toggleOutline(currentlySelectedObject);
 		}
 	}
 
