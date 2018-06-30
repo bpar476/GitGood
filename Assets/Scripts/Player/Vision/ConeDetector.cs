@@ -54,9 +54,11 @@ public class ConeDetector : MonoBehaviour {
 				if (debug) {
 					Debug.DrawLine(myPosition, otherPosition, Color.red);
 				}
-				visibleObjects.Add(other.gameObject);
-				foreach (IVisionObserver observer in observers) {
-					observer.ObjectEnteredVisibility(other.gameObject);
+				if (!visibleObjects.Contains(other.gameObject)) {
+					visibleObjects.Add(other.gameObject);
+					foreach (IVisionObserver observer in observers) {
+						observer.ObjectEnteredVisibility(other.gameObject);
+					}
 				}
 			} else if (visibleObjects.Contains(other.gameObject)) {
 				objectLeftVisibility = true;

@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4420848974858592}
   - component: {fileID: 212180017772796092}
+  - component: {fileID: 61572562466666036}
+  - component: {fileID: 114847047426833050}
   m_Layer: 0
   m_Name: VersionableBoxPreview
   m_TagString: VersionPreview
@@ -34,12 +36,50 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1443579411723072}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: -3, z: 0}
+  m_LocalPosition: {x: -2.315837, y: -2.2233183, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61572562466666036
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1443579411723072}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.04, y: 1.04}
+    newSize: {x: 1.04, y: 1.04}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.04, y: 1.04}
+  m_EdgeRadius: 0
+--- !u!114 &114847047426833050
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1443579411723072}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ea7a0ec30291a4195aaaab41a9c658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.118725546, g: 0.63644916, b: 0.8679245, a: 1}
+  outlineSize: 3
 --- !u!212 &212180017772796092
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -55,7 +95,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 21d785355de21544a9be46787a9724c0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
