@@ -18,4 +18,17 @@ public class VersionableObjectFactory {
     public VersionController createVersionableBox() {
         return createTransformVersionedObject("VersionableBox");
     }
+
+    public VersionController createBinaryVersionable() {
+        VersionController testObject = new GameObject().AddComponent<VersionController>();
+        DirectionBinaryVersionable directionVersioner = testObject.gameObject.AddComponent<DirectionBinaryVersionable>();
+        testObject.AddVersionable(directionVersioner);
+        testObject.SetActiveVersion(new GameObject());
+        testObject.SetTemplatePrefab(Resources.Load("Tests/Versionables/VersionableBox") as GameObject);
+        testObject.SetPreviewPrefab(Resources.Load("Tests/Versionables/VersionableBoxPreview") as GameObject);
+
+        directionVersioner.SetInitialState(true);
+        directionVersioner.SetScaleValue(1.0f);
+        return testObject;
+    }
 }
