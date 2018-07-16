@@ -99,7 +99,7 @@ public class MergeTests {
         versionManager.Add(testController1);
         versionManager.Add(testController2);
 
-        ICommit commit = versionManager.Commit("Add two objects");
+        versionManager.Commit("Add two objects");
 
         yield return null;
 
@@ -143,7 +143,7 @@ public class MergeTests {
         versionManager.Add(testController1);
         versionManager.Add(testController2);
 
-        ICommit commit = versionManager.Commit("Add two objects");
+        versionManager.Commit("Add two objects");
 
         yield return null;
 

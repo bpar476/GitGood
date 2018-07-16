@@ -11,7 +11,6 @@ public class Player_Movement : MonoBehaviour {
     public LayerMask groundCheckLayer;
 
     private bool facingRight = true;
-    private bool isAirborn = false;
     private bool jump = false;
     private Rigidbody2D myRigidBody;
 
