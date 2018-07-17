@@ -5,7 +5,8 @@ using UnityEngine;
 public class WeightedButton : MonoBehaviour {
 
     public bool active {
-        get { return active }
+        get { return active; }
+        private set { active = value; }
     }
 
     private int count;
