@@ -20,7 +20,7 @@ public class Player_Camera : MonoBehaviour {
         this.player = GameObject.FindGameObjectWithTag ("Player");
         // Camera can't go outside the clamp
         float x = Mathf.Clamp (this.player.transform.position.x, xMin, xMax);
-        float y = Mathf.Clamp (this.player.transform.position.y, yMin, yMax);
+        float y = Mathf.Clamp (this.player.transform.position.y + 1.5f, yMin, yMax);
         this.gameObject.transform.position = new Vector3 (x, y, this.gameObject.transform.position.z);
     }
 }
