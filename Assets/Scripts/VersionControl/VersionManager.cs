@@ -26,6 +26,8 @@ public class VersionManager : MonoBehaviour {
 		}
 	}
 
+	public MergeTriggerManager mergeTrigger;
+
 	IList<VersionController> trackedObjects;
 	IList<VersionController> stagingArea;
 	private IDictionary<string, IBranch> branches;
@@ -381,6 +383,8 @@ public class VersionManager : MonoBehaviour {
 
 		this.mw.End();
 		this.mw = null;
+
+		mergeTrigger.Trigger();
 		return mergeCommit;
 	}
 
