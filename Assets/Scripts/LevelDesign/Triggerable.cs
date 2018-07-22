@@ -6,7 +6,7 @@ public abstract class Triggerable : MonoBehaviour {
 
 	protected HashSet<ITriggerObserver> observers;
 
-	private void Start() {
+	private void Awake() {
 		observers = new HashSet<ITriggerObserver>();
 	}
 
