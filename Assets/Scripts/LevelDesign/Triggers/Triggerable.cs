@@ -19,8 +19,12 @@ public abstract class Triggerable : MonoBehaviour {
 	}
 
 	protected void NotifyObservers() {
+		NotifyObservers(true);
+	}
+
+	protected void NotifyObservers(bool state) {
 		foreach (ITriggerObserver observer in observers) {
-			observer.HandleTrigger();
+			observer.HandleTrigger(state);
 		}
 	}
 }

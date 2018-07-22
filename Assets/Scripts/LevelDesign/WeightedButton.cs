@@ -2,22 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeightedButton : MonoBehaviour {
+public class WeightedButton : Triggerable {
 
-    private bool _active;
-    public bool active {
-        get { return _active; }
-        private set { 
-            if (_active != value) {
-                if (_active) {
-                    buttonBase.GetComponent<SpriteRenderer>().sprite = offSprite;                                      
-                } else {
-                    buttonBase.GetComponent<SpriteRenderer>().sprite = activeSprite;
-                }
-            }
-            _active = value; 
-        }
-    }
+    public bool active = false;
 
     public Sprite activeSprite;
     public Sprite offSprite;
@@ -31,14 +18,35 @@ public class WeightedButton : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
         if (!other.isTrigger) {
             count++;
-            active = count > 0;
+            UpdateState();
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
         if (!other.isTrigger) {
             count--;
-            active = count > 0;
+            UpdateState();
         }
+    }
+
+    private void UpdateState() {
+        bool willUpdate = !(active && count > 0);
+        active = count > 0;
+        if (willUpdate && active) {
+            TurnOn();
+        } else {
+            TurnOff();
+        }
+
+    }
+
+    private void TurnOn() {
+        buttonBase.GetComponent<SpriteRenderer>().sprite = activeSprite;
+        NotifyObservers(true);
+    }
+
+    private void TurnOff() {
+        NotifyObservers(false);
+        buttonBase.GetComponent<SpriteRenderer>().sprite = offSprite;
     }
 }

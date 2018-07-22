@@ -16,11 +16,13 @@ public class MergeTrigger : Triggerable, ITriggerObserver {
 		notifier.AddObserver(this);
 	}
 
-	public void HandleTrigger() {
-		if (playerInZone) {
-            triggerCount++;
-            if (triggerCount == numberToTrigger) {
-                NotifyObservers();
+	public void HandleTrigger(bool state) {
+        if (state) {
+		    if (playerInZone) {
+                triggerCount++;
+                if (triggerCount == numberToTrigger) {
+                    NotifyObservers();
+                }
             }
         }
 	}

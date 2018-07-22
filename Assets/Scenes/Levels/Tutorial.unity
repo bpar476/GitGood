@@ -441,6 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 1298506152}
+  trigger: {fileID: 2100685118}
 --- !u!114 &1085312776 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114441134641795518, guid: d6a0c368594efd445bb9093d5e27b4ee,
@@ -806,7 +807,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4257490811005308, guid: b73f2e064a4b0d045ae5c77b93bf5ec6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 4257490811005308, guid: b73f2e064a4b0d045ae5c77b93bf5ec6, type: 2}
       propertyPath: m_LocalPosition.y
@@ -816,6 +817,11 @@ Prefab:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 1229260983594504, guid: b73f2e064a4b0d045ae5c77b93bf5ec6, type: 2}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b73f2e064a4b0d045ae5c77b93bf5ec6, type: 2}
   m_IsPrefabParent: 0
@@ -2429,3 +2435,9 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efe52982cb2cd6d4ba785c51eb525be8, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &2100685118 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114888573433755634, guid: 367577a51eeae7a41a797c3aad7dbf87,
+    type: 2}
+  m_PrefabInternal: {fileID: 1117432327}
+  m_Script: {fileID: 11500000, guid: 131d63e7e4fe0d74893f0891d4953622, type: 3}

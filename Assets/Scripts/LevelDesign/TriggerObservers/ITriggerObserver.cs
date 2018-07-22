@@ -1,5 +1,5 @@
 ﻿public interface ITriggerObserver {
 
-	void HandleTrigger();
+	void HandleTrigger(bool state);
 
 }

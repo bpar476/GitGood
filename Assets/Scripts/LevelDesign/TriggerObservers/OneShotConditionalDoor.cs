@@ -16,11 +16,13 @@ public class OneShotConditionalDoor : MonoBehaviour, ITriggerObserver {
 		hasTriggered = false;
 	}
 
-	public void HandleTrigger() {
-		if (!hasTriggered) {
-			doorAnimator.SetBool("open", true);
+	public void HandleTrigger(bool state) {
+		if (state) {
+			if (!hasTriggered) {
+				doorAnimator.SetBool("open", true);
+			}
+			hasTriggered = true;
 		}
-		hasTriggered = true;
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
