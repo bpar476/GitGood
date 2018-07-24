@@ -3,7 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VersionManager : MonoBehaviour {
+public class VersionManager {
+	// Singleton
+	private static VersionManager singletonInstance;
+	public static VersionManager Instance() {
+		if (singletonInstance == null) {
+			VersionManager.Reset();
+		}
+		return singletonInstance;
+	}
+	public static void Reset() {
+		singletonInstance = new VersionManager();
+	}
 
 	IList<VersionController> trackedObjects;
 	IList<VersionController> stagingArea;
@@ -14,7 +25,7 @@ public class VersionManager : MonoBehaviour {
 
 	private IMergeWorker mw;
 
-	private void Awake() {
+	private VersionManager() {
 		trackedObjects = new List<VersionController>();
 		stagingArea = new List<VersionController>();
 
@@ -25,11 +36,6 @@ public class VersionManager : MonoBehaviour {
 		activeBranch = master;
 		activeCommit = null;
 		isDetached = false;
-	}
-
-	// Use this for initialization
-	void Start () {
-
 	}
 
 	/// <summary>
