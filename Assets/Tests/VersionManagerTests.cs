@@ -11,7 +11,6 @@ public class VersionManagerTests {
         VersionableObjectFactory factory = new VersionableObjectFactory();
 
         VersionController testController = factory.createVersionableBox();
-        GameObject testObject = testController.GetActiveVersion();
 
         VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
         versionManager.Add(testController);
