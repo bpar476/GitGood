@@ -751,9 +751,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 758223088}
+  - {fileID: 758223081}
   selectedCommands:
-  - {fileID: 758223091}
+  - {fileID: 758223084}
   variables: []
   description: 
   stepPause: 0
@@ -872,7 +872,7 @@ MonoBehaviour:
   waitForClick: 1
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 0}
+  setSayDialog: {fileID: 1841723293}
 --- !u!114 &758223085
 MonoBehaviour:
   m_ObjectHideFlags: 2
