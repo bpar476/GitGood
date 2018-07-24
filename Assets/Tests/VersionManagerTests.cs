@@ -16,8 +16,6 @@ public class VersionManagerTests {
         VersionableObjectFactory factory = new VersionableObjectFactory();
 
         VersionController testController = factory.createVersionableBox();
-
-        VersionManager versionManager = VersionManager.Instance();
         VersionManager.Instance().Add(testController);
 
         Assert.True(VersionManager.Instance().IsObjectStaged(testController));
@@ -39,8 +37,6 @@ public class VersionManagerTests {
         VersionController testController = factory.createVersionablePlayer();
 
         GameObject testObject = testController.GetActiveVersion();
-
-        VersionManager versionManager = VersionManager.Instance();
 
         testObject.transform.position = new Vector2(0,0);
 
@@ -68,8 +64,6 @@ public class VersionManagerTests {
         VersionController testController = factory.createVersionablePlayer();
 
         GameObject testObject = testController.GetActiveVersion();
-
-        VersionManager versionManager = VersionManager.Instance();
 
         testObject.transform.position = new Vector2(0.0f,0.0f);
 
@@ -106,8 +100,6 @@ public class VersionManagerTests {
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
 
-        VersionManager versionManager = VersionManager.Instance();
-
         testObject.transform.position = new Vector2(1.0f, 3.0f);
         otherTestObject.transform.position = new Vector2(-1.0f, 5.0f);
 
@@ -142,8 +134,6 @@ public class VersionManagerTests {
 
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
-
-        VersionManager versionManager = VersionManager.Instance();
 
         testObject.transform.position = new Vector2(1.0f, 3.0f);
         otherTestObject.transform.position = new Vector2(-1.0f, 5.0f);
@@ -180,8 +170,6 @@ public class VersionManagerTests {
 
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
-
-        VersionManager versionManager = VersionManager.Instance();
 
         testObject.transform.position = new Vector2(0.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(3.0f, 3.0f);
@@ -224,8 +212,6 @@ public class VersionManagerTests {
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
 
-        VersionManager versionManager = VersionManager.Instance();
-
         testObject.transform.position = new Vector2(0.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(3.0f, 0.0f);
 
@@ -264,8 +250,6 @@ public class VersionManagerTests {
 
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
-
-        VersionManager versionManager = VersionManager.Instance();
 
         testObject.transform.position = new Vector2(0.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(3.0f, 0.0f);
@@ -306,8 +290,6 @@ public class VersionManagerTests {
     public IEnumerator shouldResetObjectToInitialPositionIfCheckingOutCommitWhereItWasNotTracked() {
         VersionableObjectFactory factory = new VersionableObjectFactory();
 
-        VersionManager versionManager = VersionManager.Instance();
-
         VersionController testController = factory.createVersionableBox();
         GameObject testObject = testController.GetActiveVersion();
 
@@ -347,8 +329,6 @@ public class VersionManagerTests {
     public IEnumerator shouldResetTrackedObjectsWhenCheckingOutCommitWhereAnObjectWasNotTracked() {
         VersionableObjectFactory factory = new VersionableObjectFactory();
 
-        VersionManager versionManager = VersionManager.Instance();
-
         VersionController testController = factory.createVersionableBox();
         GameObject testObject = testController.GetActiveVersion();
 
@@ -381,8 +361,6 @@ public class VersionManagerTests {
     [UnityTest]
     public IEnumerator shouldReloadTrackedObjectsWhenCheckingOutCommitWithNewTrackedObject() {
         VersionableObjectFactory factory = new VersionableObjectFactory();
-
-        VersionManager versionManager = VersionManager.Instance();
 
         VersionController testController = factory.createVersionableBox();
         GameObject testObject = testController.GetActiveVersion();
@@ -426,8 +404,6 @@ public class VersionManagerTests {
 
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
-
-        VersionManager versionManager = VersionManager.Instance();
 
         testObject.transform.position = new Vector2(0.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(3.0f, 0.0f);
@@ -477,8 +453,6 @@ public class VersionManagerTests {
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
 
-        VersionManager versionManager = VersionManager.Instance();
-
         testObject.transform.position = new Vector2(0.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(3.0f, 0.0f);
 
@@ -527,8 +501,6 @@ public class VersionManagerTests {
 
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
-
-        VersionManager versionManager = VersionManager.Instance();
 
         testObject.transform.position = new Vector2(0.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(3.0f, 0.0f);

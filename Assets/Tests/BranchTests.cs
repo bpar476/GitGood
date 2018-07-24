@@ -38,7 +38,6 @@ public class BranchTests {
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
 
-        VersionManager versionManager = VersionManager.Instance();
 
         testObject.transform.position = new Vector2(0.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(3.0f, 3.0f);
@@ -73,7 +72,6 @@ public class BranchTests {
 
     [UnityTest]
     public IEnumerator TestFastForward() {
-        VersionManager versionManager = VersionManager.Instance();
         VersionManager.Instance().Commit("Initial Commit");
         IBranch master = VersionManager.Instance().GetActiveBranch();
         IBranch feature = VersionManager.Instance().CreateBranch("feature");
@@ -87,7 +85,6 @@ public class BranchTests {
 
     [UnityTest]
     public IEnumerator TestRewind() {
-        VersionManager versionManager = VersionManager.Instance();
         VersionManager.Instance().Commit("Initial Commit");
         IBranch master = VersionManager.Instance().GetActiveBranch();
         IBranch feature = VersionManager.Instance().CreateBranch("feature");
@@ -100,7 +97,6 @@ public class BranchTests {
 
     [UnityTest]
     public IEnumerator TestSame() {
-        VersionManager versionManager = VersionManager.Instance();
         VersionManager.Instance().Commit("Initial Commit");
         IBranch master = VersionManager.Instance().GetActiveBranch();
         IBranch feature = VersionManager.Instance().CreateBranch("feature");
@@ -112,7 +108,6 @@ public class BranchTests {
 
     [UnityTest]
     public IEnumerator TestDivergent() {
-        VersionManager versionManager = VersionManager.Instance();
         VersionManager.Instance().Commit("Initial Commit");
         IBranch master = VersionManager.Instance().GetActiveBranch();
         IBranch feature = VersionManager.Instance().CreateBranch("feature");

@@ -17,8 +17,6 @@ public class DirectionVersionableTest {
         VersionController testController = factory.createBinaryVersionable();
         GameObject testObject = testController.GetActiveVersion();
 
-        VersionManager versionManager = VersionManager.Instance();
-
         Assert.AreEqual(1.0f, testObject.transform.localScale.x, 0.01f);
 
         VersionManager.Instance().Add(testController);
