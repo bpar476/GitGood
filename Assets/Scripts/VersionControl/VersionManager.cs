@@ -384,7 +384,9 @@ public class VersionManager : MonoBehaviour {
 		this.mw.End();
 		this.mw = null;
 
-		mergeTrigger.Trigger();
+		if (mergeTrigger != null) {
+			mergeTrigger.Trigger();
+		}
 		return mergeCommit;
 	}
 
