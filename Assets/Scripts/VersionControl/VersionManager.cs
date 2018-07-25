@@ -295,6 +295,8 @@ public class VersionManager : MonoBehaviour {
 		IBranch branch = new Branch(branchName, activeCommit);
 		branches.Add(branchName, branch);
 
+		branchTrigger.Trigger();
+
 		return branch;
 	}
 

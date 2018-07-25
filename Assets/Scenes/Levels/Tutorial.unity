@@ -142,6 +142,7 @@ Transform:
   - {fileID: 1776090843}
   - {fileID: 1522876152}
   - {fileID: 1117626567}
+  - {fileID: 377839209}
   - {fileID: 1590544728}
   - {fileID: 490950891}
   m_Father: {fileID: 0}
@@ -342,6 +343,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &377839208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 377839209}
+  - component: {fileID: 377839210}
+  m_Layer: 0
+  m_Name: UpdateBranchTutorialTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &377839209
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 377839208}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 21740543}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &377839210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 377839208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a45038af130b5841894e69a8b202108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notifier: {fileID: 1974774605}
+  VersionManager: {fileID: 591290366}
+  numberToTrigger: 1
+  oneShot: 1
 --- !u!1001 &409647391
 Prefab:
   m_ObjectHideFlags: 0
@@ -562,6 +607,50 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 536530085}
   m_Script: {fileID: 11500000, guid: 22f64a85acbc20947b7c638970b913af, type: 3}
+--- !u!1 &473008265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 473008266}
+  - component: {fileID: 473008267}
+  m_Layer: 0
+  m_Name: UpdateBranchTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &473008266
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 473008265}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1494603082}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &473008267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 473008265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9dd831615ee22943ac7f0c34fde23ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flowchart: {fileID: 758223079}
+  oneShot: 1
+  message: branch_setup
+  trigger: {fileID: 377839210}
 --- !u!4 &490950891 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4140606267191210, guid: d6a0c368594efd445bb9093d5e27b4ee,
@@ -735,7 +824,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4140606267191210, guid: d6a0c368594efd445bb9093d5e27b4ee, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1827765306449158, guid: d6a0c368594efd445bb9093d5e27b4ee, type: 2}
       propertyPath: m_Name
@@ -793,7 +882,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &729109453 stripped
 MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114916875429862884, guid: 2e120c5b64f2768499fa78ec74630b8e,
+  m_PrefabParentObject: {fileID: 114627647071211760, guid: 2e120c5b64f2768499fa78ec74630b8e,
     type: 2}
   m_PrefabInternal: {fileID: 536530085}
   m_Script: {fileID: 11500000, guid: 22f64a85acbc20947b7c638970b913af, type: 3}
@@ -850,6 +939,11 @@ GameObject:
   - component: {fileID: 758223125}
   - component: {fileID: 758223121}
   - component: {fileID: 758223127}
+  - component: {fileID: 758223122}
+  - component: {fileID: 758223124}
+  - component: {fileID: 758223123}
+  - component: {fileID: 758223128}
+  - component: {fileID: 758223129}
   m_Layer: 0
   m_Name: TutorialFlowchart
   m_TagString: Untagged
@@ -870,7 +964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 0, y: 0}
+  scrollPos: {x: -487, y: 16}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 347
@@ -882,8 +976,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 758223111}
-  selectedCommands: []
+  - {fileID: 758223122}
+  selectedCommands:
+  - {fileID: 758223123}
   variables: []
   description: 
   stepPause: 0
@@ -1851,7 +1946,7 @@ MonoBehaviour:
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
-  itemId: 25
+  itemId: 51
   blockName: Adding Yourself
   description: Teaches the player how to add themselves to the staging area. Triggered
     by unstaging the box
@@ -1886,6 +1981,74 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 1841723293}
+--- !u!114 &758223122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: 1077
+    y: 82
+    width: 127
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 60
+  blockName: Alter Branch
+  description: Commands to do on the new branch
+  eventHandler: {fileID: 758223128}
+  commandList:
+  - {fileID: 758223124}
+  - {fileID: 758223129}
+  - {fileID: 758223123}
+--- !u!114 &758223123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 59
+  indentLevel: 0
+  storyText: Now that you're on a new branch, make some changes. Move the box somewhere
+    again, and then create a commit.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65d551a201c94bc79950076ff3eaf2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 53
+  indentLevel: 0
+  sayDialog: {fileID: 1653460352}
 --- !u!114 &758223125
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -1940,6 +2103,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBlock: {fileID: 758223120}
   message: tutorial_stage_player
+--- !u!114 &758223128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7d417659cd54a6787f70f763950c34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentBlock: {fileID: 758223122}
+  message: branch_setup
+--- !u!114 &758223129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 61
+  indentLevel: 0
+  storyText: You'll see that the box has moved back to where it was when you committed.
+    This is because when you create a branch, it is an exact copy of whatever branch
+    you are currently on. In this case, the master branch.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &802137978
 GameObject:
   m_ObjectHideFlags: 0
@@ -2899,7 +3103,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4300734894093468, guid: 994fa000a0e34564c86326827f9b6be4, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1178299475908924, guid: 994fa000a0e34564c86326827f9b6be4, type: 2}
       propertyPath: m_Name
@@ -3127,6 +3331,7 @@ Transform:
   - {fileID: 1417138274}
   - {fileID: 433565313}
   - {fileID: 1353474459}
+  - {fileID: 473008266}
   m_Father: {fileID: 175043086}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5763,6 +5968,12 @@ RectTransform:
   m_AnchoredPosition: {x: -750.0001, y: 0}
   m_SizeDelta: {x: 1500, y: 335}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1974774605 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114916875429862884, guid: 2e120c5b64f2768499fa78ec74630b8e,
+    type: 2}
+  m_PrefabInternal: {fileID: 536530085}
+  m_Script: {fileID: 11500000, guid: 22f64a85acbc20947b7c638970b913af, type: 3}
 --- !u!1 &2009936812
 GameObject:
   m_ObjectHideFlags: 0
