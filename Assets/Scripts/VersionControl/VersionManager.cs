@@ -107,6 +107,7 @@ public class VersionManager : MonoBehaviour {
 			stagingArea.Remove(controller);
 			controller.HideStagedState();
 			lastUnstagedObject = controller;
+			unstageTrigger.Trigger();
 		}
 	}
 

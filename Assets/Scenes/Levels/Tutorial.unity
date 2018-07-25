@@ -139,6 +139,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1015038211}
+  - {fileID: 1776090843}
   - {fileID: 1590544728}
   - {fileID: 490950891}
   m_Father: {fileID: 0}
@@ -568,6 +569,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 536530085}
   m_Script: {fileID: 11500000, guid: 77ec122826a987042b9602645c78aad8, type: 3}
+--- !u!114 &620401454 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114896458693287298, guid: 2e120c5b64f2768499fa78ec74630b8e,
+    type: 2}
+  m_PrefabInternal: {fileID: 536530085}
+  m_Script: {fileID: 11500000, guid: 22f64a85acbc20947b7c638970b913af, type: 3}
 --- !u!1 &646275401
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,7 +689,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4140606267191210, guid: d6a0c368594efd445bb9093d5e27b4ee, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1827765306449158, guid: d6a0c368594efd445bb9093d5e27b4ee, type: 2}
       propertyPath: m_Name
@@ -769,6 +776,7 @@ GameObject:
   - component: {fileID: 758223105}
   - component: {fileID: 758223104}
   - component: {fileID: 758223103}
+  - component: {fileID: 758223109}
   m_Layer: 0
   m_Name: TutorialFlowchart
   m_TagString: Untagged
@@ -802,7 +810,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 758223102}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 758223109}
   variables: []
   description: 
   stepPause: 0
@@ -1137,7 +1146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 18
   indentLevel: 0
-  storyText: Commit this box and seal it's fate for this moment in history.
+  storyText: Add this box to the staging area, then commit to seal it's fate for this
+    moment in history.
   description: 
   character: {fileID: 1613906548}
   portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
@@ -1189,9 +1199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 16
   indentLevel: 0
-  storyText: Committing is the action of confirming a moment in history. When you
-    create a commit, you're creating an irreversible snapshot of the timeline in the
-    state you see in the staging area.
+  storyText: Well done. Now let's talk about committing.
   description: 
   character: {fileID: 1613906548}
   portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
@@ -1245,7 +1253,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223099
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -1271,7 +1279,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 1841723293}
 --- !u!114 &758223100
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -1329,23 +1337,24 @@ MonoBehaviour:
     serializedVersion: 2
     x: 552
     y: 76
-    width: 159
+    width: 139
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
   itemId: 19
-  blockName: VCS Basics (Copy)
+  blockName: Committing
   description: Teaches the player how to commit. Triggered by adding the box.
   eventHandler: {fileID: 758223097}
   commandList:
   - {fileID: 758223101}
   - {fileID: 758223096}
+  - {fileID: 758223109}
   - {fileID: 758223098}
   - {fileID: 758223094}
   - {fileID: 758223095}
 --- !u!114 &758223103
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -1372,7 +1381,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223104
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -1399,7 +1408,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223105
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -1426,7 +1435,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223106
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -1453,7 +1462,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223107
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -1467,7 +1476,7 @@ MonoBehaviour:
   sayDialog: {fileID: 1653460352}
 --- !u!114 &758223108
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -1478,6 +1487,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBlock: {fileID: 758223100}
   message: tutorial_unstage
+--- !u!114 &758223109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 30
+  indentLevel: 0
+  storyText: Committing is the action of confirming a moment in history. When you
+    create a commit, you're creating an irreversible snapshot of the timeline in the
+    state you see in the staging area.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &802137978
 GameObject:
   m_ObjectHideFlags: 0
@@ -2393,7 +2430,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4300734894093468, guid: 994fa000a0e34564c86326827f9b6be4, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1178299475908924, guid: 994fa000a0e34564c86326827f9b6be4, type: 2}
       propertyPath: m_Name
@@ -2461,6 +2498,50 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a8261a8c9ad82b4f95357e81ca3576f, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1417138273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1417138274}
+  - component: {fileID: 1417138275}
+  m_Layer: 0
+  m_Name: CommitingTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1417138274
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1417138273}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1494603082}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1417138275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1417138273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9dd831615ee22943ac7f0c34fde23ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flowchart: {fileID: 758223079}
+  oneShot: 1
+  message: tutorial_commit
+  trigger: {fileID: 1776090844}
 --- !u!1001 &1422105804
 Prefab:
   m_ObjectHideFlags: 0
@@ -2530,6 +2611,7 @@ Transform:
   m_Children:
   - {fileID: 802137979}
   - {fileID: 967717129}
+  - {fileID: 1417138274}
   m_Father: {fileID: 175043086}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4440,6 +4522,51 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &1776090842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1776090843}
+  - component: {fileID: 1776090844}
+  m_Layer: 0
+  m_Name: CommitTutorialTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1776090843
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1776090842}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 21740543}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1776090844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1776090842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b0155c4b4e2f8a408fb1a58f3a6ffa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notifier: {fileID: 620401454}
+  numberToTrigger: 1
+  targetObject: {fileID: 1807132010}
+  versionManager: {fileID: 591290366}
+  oneShot: 1
 --- !u!114 &1807132010 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114582680820456656, guid: 7a8261a8c9ad82b4f95357e81ca3576f,
