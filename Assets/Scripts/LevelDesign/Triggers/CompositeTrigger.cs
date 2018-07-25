@@ -5,6 +5,7 @@ using UnityEngine;
 public class CompositeTrigger : Triggerable {
 
     public List<Condition> conditions;
+    public bool oneShot = true;
 
     private void Awake() {
         conditions = new List();
@@ -17,6 +18,9 @@ public class CompositeTrigger : Triggerable {
         }
         if (state) {
             NotifyObservers();
+            if (oneShot) {
+                this.enabled = false;
+            }
         }
     }
 
