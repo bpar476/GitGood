@@ -8,6 +8,9 @@ public class StageTrigger : Triggerable, ITriggerObserver {
     public int numberToTrigger;
     public VersionController targetObject;
     public VersionManager versionManager;
+    public bool oneShot = true;
+
+    private int count = 0;
 
     private void Start() {
         notifier.AddObserver(this);
@@ -15,7 +18,16 @@ public class StageTrigger : Triggerable, ITriggerObserver {
 
     public void HandleTrigger(bool state) {
         if (state) {
-            // Check if object was just staged
+            if (versionManager.GetLastStagedObject().Equals(targetObject)) {
+                count++;
+                if (count == numberToTrigger) {
+                    NotifyObservers();
+                    count = 0;
+                    if (oneShot) {
+                        this.enabled = false;
+                    }
+                }
+            }
         }
     }
 }

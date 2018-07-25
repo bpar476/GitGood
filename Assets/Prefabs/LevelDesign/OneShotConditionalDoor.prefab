@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 95019444820961304}
   - component: {fileID: 61855577285021342}
   - component: {fileID: 114720755694634508}
+  - component: {fileID: 114438680782978992}
   m_Layer: 0
   m_Name: OneShotConditionalDoor
   m_TagString: Untagged
@@ -171,6 +172,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114438680782978992
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1360697522593536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f71bb8094c94c164c98d6943b90e9f3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerZone: {fileID: 61855577285021342}
 --- !u!114 &114720755694634508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -217,7 +230,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1749670887
+  m_SortingLayerID: 1162527419
   m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 347213d51ffbd8c4f82751b2928002d5, type: 3}

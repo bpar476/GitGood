@@ -40,6 +40,8 @@ public class VersionManager : MonoBehaviour {
 	private IBranch activeBranch;
 	private bool isDetached;
 
+	private VersionController lastStagedObject;
+
 	private IMergeWorker mw;
 
 	private VersionManager() {
@@ -68,6 +70,9 @@ public class VersionManager : MonoBehaviour {
 		foreach(VersionController stagedController in stagingArea) {
 			stagedController.ShowStagedState();
 		}
+
+		lastStagedObject = controller;
+		addTrigger.Trigger();
 	}
 
 	public void Add(VersionController controller, IVersion version) {
@@ -78,6 +83,17 @@ public class VersionManager : MonoBehaviour {
 		controller.StageVersion(version);
 		foreach(VersionController stagedController in stagingArea) {
 			stagedController.ShowStagedState();
+		}
+
+		lastStagedObject = controller;
+		addTrigger.Trigger();
+	}
+
+	public VersionController GetLastStagedObject() {
+		if (stagingArea.Contains(lastStagedObject)) {
+			return lastStagedObject;
+		} else {
+			return null;
 		}
 	}
 
