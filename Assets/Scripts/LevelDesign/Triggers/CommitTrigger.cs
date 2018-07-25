@@ -9,6 +9,10 @@ public class CommitTrigger : Triggerable, ITriggerObserver {
     public VersionController targetObject;
     public VersionManager versionManager;
 
+    private void Start() {
+        notifier.AddObserver(this);
+    }
+
     public void HandleTrigger(bool state) {
         if (state) {
             ICommit commit = versionManager.GetHead();
