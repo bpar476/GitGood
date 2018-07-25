@@ -48,20 +48,13 @@ public class VersionControls : MonoBehaviour {
 			}
 		}
 
-		if(Input.GetKeyDown(KeyCode.O)) {
+		if (Input.GetKeyDown(KeyCode.O)) {
 			if (overlay != null) {
 				overlay.Destroy();
 				overlay = null;
 			}
 			else {
 				overlay = new Overlay(VersionManager.Instance().GetHead(), Color.red);
-			}
-		} else if(Input.GetKeyDown(KeyCode.M)) {
-			if (VersionManager.Instance().GetMergeWorker() != null) {
-				VersionManager.Instance().ResolveMerge();
-			}
-			else {
-				VersionManager.Instance().Merge(VersionManager.Instance().LookupBranch("demo"));
 			}
 		}
 	}

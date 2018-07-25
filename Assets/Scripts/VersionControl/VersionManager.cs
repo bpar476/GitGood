@@ -357,10 +357,14 @@ public class VersionManager {
 			return null;
 		}
 
+		return CreateMergeCommit("Merge Commit");
+	}
+
+	public ICommit CreateMergeCommit(string commitMessage) {
 		foreach (KeyValuePair<VersionController, IVersion> stageData in this.mw.BuildStagingArea()) {
 			this.Add(stageData.Key, stageData.Value);
 		}
-		ICommit mergeCommit = this.Commit("Merge Commit");
+		ICommit mergeCommit = this.Commit(commitMessage);
 		foreach (VersionController versionedObject in this.mw.BuildStagingArea().Keys) {
 			this.ResetToHead(versionedObject);
 		}
