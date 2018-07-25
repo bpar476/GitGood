@@ -15,10 +15,14 @@ public class CommitTrigger : Triggerable, ITriggerObserver {
 
     public void HandleTrigger(bool state) {
         if (state) {
-            ICommit commit = versionManager.GetHead();
-            if (commit.ObjectIsTrackedInThisCommit(targetObject) &&
-                commit.ObjectWasChangedInThisCommit(targetObject)) {
+            if (targetObject == null) {
                 NotifyObservers();
+            } else {
+                ICommit commit = versionManager.GetHead();
+                if (commit.ObjectIsTrackedInThisCommit(targetObject) &&
+                    commit.ObjectWasChangedInThisCommit(targetObject)) {
+                    NotifyObservers();
+                }
             }
         }
     }
