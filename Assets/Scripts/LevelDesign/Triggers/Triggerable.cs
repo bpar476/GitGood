@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Triggerable : MonoBehaviour {
+public abstract class Triggerable : Condition {
 
 	protected HashSet<ITriggerObserver> observers;
 
@@ -23,6 +23,7 @@ public abstract class Triggerable : MonoBehaviour {
 	}
 
 	protected void NotifyObservers(bool state) {
+		condition = state;
 		foreach (ITriggerObserver observer in observers) {
 			observer.HandleTrigger(state);
 		}

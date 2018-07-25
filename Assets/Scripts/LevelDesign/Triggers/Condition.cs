@@ -4,9 +4,9 @@ using UnityEngine;
 
 public abstract class Condition : MonoBehaviour {
 
-	protected bool state = false;
+	protected bool condition = false;
 
 	public bool getState() {
-		return state;
+		return condition;
 	}
 }
