@@ -7,7 +7,7 @@ public class MergeTrigger : Triggerable, ITriggerObserver {
 	public int numberToTrigger;
 	public Collider2D triggerZone;
 
-	public MergeTriggerManager notifier;
+	public TriggerManager notifier;
 
     private int triggerCount = 0;
     private bool playerInZone;

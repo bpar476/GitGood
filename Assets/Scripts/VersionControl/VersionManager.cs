@@ -26,7 +26,12 @@ public class VersionManager : MonoBehaviour {
 		}
 	}
 
-	public MergeTriggerManager mergeTrigger;
+	public TriggerManager mergeTrigger;
+	public TriggerManager commitTrigger;
+	public TriggerManager addTrigger;
+	public TriggerManager unstageTrigger;
+	public TriggerManager branchTrigger;
+	public TriggerManager checkoutTrigger;
 
 	IList<VersionController> trackedObjects;
 	IList<VersionController> stagingArea;
