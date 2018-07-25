@@ -24,15 +24,8 @@ public abstract class Triggerable : Condition {
 
 	protected void NotifyObservers(bool state) {
 		condition = state;
-		List<ITriggerObserver> expiredObservers = new List<>();
 		foreach (ITriggerObserver observer in observers) {
 			observer.HandleTrigger(state);
-			if (!observer.enabled) {
-				expiredObservers.Add(observer);
-			}
-		}
-		foreach(ITriggerObserver observer in expiredObservers) {
-			RemoveObserver(observer);
 		}
 	}
 }
