@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02faecfafde884b709596e5194ace7d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textButttonDialogTemplate: {fileID: 1554552655269474, guid: 5aac6fdb5fd684277954176d2abb5b1f,
+  textButttonDialogTemplate: {fileID: 1489736485446382, guid: 5aac6fdb5fd684277954176d2abb5b1f,
     type: 2}
 --- !u!114 &114963566389028220
 MonoBehaviour:

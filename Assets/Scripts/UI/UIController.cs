@@ -16,12 +16,21 @@ public class UIController : MonoBehaviour {
 			EngineController.Instance().ToggleControls(false);
 			GameObject dialog = Instantiate(textButttonDialogTemplate, transform) as GameObject;
 			TextButtonDialogController dialogController = dialog.GetComponent<TextButtonDialogController>();
-			dialogController.promptText.text = "Switch to branch";
+			dialogController.titleText.text = "Checkout Branch";
+			dialogController.submitButton.GetComponentInChildren<Text>().text = "Create Branch";
+			dialogController.promptText.text = "git checkout -b ";
 			dialogController.submitButton.enabled = false;
 			dialogController.inputField.onValueChanged.AddListener((s) => {
 				Debug.Log(s);
+				if (VersionManager.Instance().HasBranch(s)) {
+					dialogController.submitButton.GetComponentInChildren<Text>().text = "Switch to Branch";
+					dialogController.promptText.text = "git checkout ";
+				}
+				else {
+					dialogController.submitButton.GetComponentInChildren<Text>().text = "Create Branch";
+					dialogController.promptText.text = "git checkout -b ";
+				}
 				dialogController.submitButton.enabled = !s.Equals("");
-				dialogController.submitButton.GetComponentInChildren<Text>().text = VersionManager.Instance().HasBranch(s) ? "Switch to Branch" : "Create Branch";
 			});
 			dialogController.submitButton.onClick.AddListener(() => {
 				Debug.Log("Button pressed");
@@ -38,13 +47,16 @@ public class UIController : MonoBehaviour {
 				Destroy(dialog);
 				}
 			);
+
+			dialogController.inputField.Select();
 		}
 		// Committing
 		else if (Input.GetKeyDown(KeyCode.E)) {
 			EngineController.Instance().ToggleControls(false);
 			GameObject dialog = Instantiate(textButttonDialogTemplate, transform) as GameObject;
 			TextButtonDialogController dialogController = dialog.GetComponent<TextButtonDialogController>();
-			dialogController.promptText.text = "Enter a commit message";
+			dialogController.promptText.text = "git commit -m ";
+			dialogController.titleText.text = "Enter a commit message";
 			dialogController.submitButton.enabled = false;
 			dialogController.submitButton.GetComponentInChildren<Text>().text = "Commit";
 			dialogController.inputField.onValueChanged.AddListener((s) => {
@@ -61,6 +73,8 @@ public class UIController : MonoBehaviour {
 				Destroy(dialog);
 				}
 			);
+
+			dialogController.inputField.Select();
 		}
 	}
 }
