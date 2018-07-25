@@ -244,6 +244,7 @@ public class VersionManager : MonoBehaviour {
 		} else {
 			this.isDetached = false;
 		}
+		checkoutTrigger.Trigger();
 	}
 
 	/// <summary>

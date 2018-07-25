@@ -144,6 +144,7 @@ Transform:
   - {fileID: 1117626567}
   - {fileID: 377839209}
   - {fileID: 2127357903}
+  - {fileID: 1773757190}
   - {fileID: 1590544728}
   - {fileID: 490950891}
   m_Father: {fileID: 0}
@@ -825,7 +826,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4140606267191210, guid: d6a0c368594efd445bb9093d5e27b4ee, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1827765306449158, guid: d6a0c368594efd445bb9093d5e27b4ee, type: 2}
       propertyPath: m_Name
@@ -949,6 +950,15 @@ GameObject:
   - component: {fileID: 758223133}
   - component: {fileID: 758223131}
   - component: {fileID: 758223134}
+  - component: {fileID: 758223135}
+  - component: {fileID: 758223139}
+  - component: {fileID: 758223138}
+  - component: {fileID: 758223136}
+  - component: {fileID: 758223140}
+  - component: {fileID: 758223137}
+  - component: {fileID: 758223132}
+  - component: {fileID: 758223141}
+  - component: {fileID: 758223142}
   m_Layer: 0
   m_Name: TutorialFlowchart
   m_TagString: Untagged
@@ -981,8 +991,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 758223102}
-  selectedCommands: []
+  - {fileID: 758223130}
+  selectedCommands:
+  - {fileID: 758223142}
   variables: []
   description: 
   stepPause: 0
@@ -1987,7 +1998,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 1841723293}
 --- !u!114 &758223122
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -2014,7 +2025,7 @@ MonoBehaviour:
   - {fileID: 758223123}
 --- !u!114 &758223123
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -2041,7 +2052,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223124
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -2109,7 +2120,7 @@ MonoBehaviour:
   message: tutorial_stage_player
 --- !u!114 &758223128
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -2122,7 +2133,7 @@ MonoBehaviour:
   message: tutorial_branch_1
 --- !u!114 &758223129
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -2150,7 +2161,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223130
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -2174,9 +2185,10 @@ MonoBehaviour:
   commandList:
   - {fileID: 758223133}
   - {fileID: 758223131}
+  - {fileID: 758223142}
 --- !u!114 &758223131
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -2200,9 +2212,36 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
---- !u!114 &758223133
+--- !u!114 &758223132
 MonoBehaviour:
   m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 77
+  indentLevel: 0
+  storyText: When you merge your parallel branch into the master timeline, you're
+    see the box will move to where it was on your branch.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223133
+MonoBehaviour:
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -2216,7 +2255,7 @@ MonoBehaviour:
   sayDialog: {fileID: 1653460352}
 --- !u!114 &758223134
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -2227,6 +2266,195 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBlock: {fileID: 758223130}
   message: tutorial_branch_2
+--- !u!114 &758223135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: 1372
+    y: 80
+    width: 182
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 79
+  blockName: Merging (Fast Forward)
+  description: Teaches the player about merging. Starts with fast forwards
+  eventHandler: {fileID: 758223140}
+  commandList:
+  - {fileID: 758223139}
+  - {fileID: 758223138}
+  - {fileID: 758223137}
+  - {fileID: 758223132}
+  - {fileID: 758223141}
+  - {fileID: 758223136}
+--- !u!114 &758223136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 75
+  indentLevel: 0
+  storyText: <Press M to start a merge>
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 1841723293}
+--- !u!114 &758223137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 76
+  indentLevel: 0
+  storyText: Merging is when you take the changes you've made on one branch and combine
+    them into another branch.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 74
+  indentLevel: 0
+  storyText: Now that you've finished work on your new branch, you're ready to merge
+    it into master.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65d551a201c94bc79950076ff3eaf2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 68
+  indentLevel: 0
+  sayDialog: {fileID: 1653460352}
+--- !u!114 &758223140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7d417659cd54a6787f70f763950c34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentBlock: {fileID: 758223135}
+  message: fast_forward
+--- !u!114 &758223141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 78
+  indentLevel: 0
+  storyText: Go ahead and merge your new branch into master
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 80
+  indentLevel: 0
+  storyText: <Press K to go back to master>
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &802137978
 GameObject:
   m_ObjectHideFlags: 0
@@ -2474,6 +2702,12 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 900255158}
+--- !u!114 &917366021 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114916875429862884, guid: 2e120c5b64f2768499fa78ec74630b8e,
+    type: 2}
+  m_PrefabInternal: {fileID: 536530085}
+  m_Script: {fileID: 11500000, guid: 22f64a85acbc20947b7c638970b913af, type: 3}
 --- !u!114 &949706359 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114438680782978992, guid: efe52982cb2cd6d4ba785c51eb525be8,
@@ -3187,7 +3421,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4300734894093468, guid: 994fa000a0e34564c86326827f9b6be4, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1178299475908924, guid: 994fa000a0e34564c86326827f9b6be4, type: 2}
       propertyPath: m_Name
@@ -3417,9 +3651,54 @@ Transform:
   - {fileID: 1353474459}
   - {fileID: 473008266}
   - {fileID: 1708364472}
+  - {fileID: 1507087126}
   m_Father: {fileID: 175043086}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1507087125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1507087126}
+  - component: {fileID: 1507087127}
+  m_Layer: 0
+  m_Name: MergingTrigger1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1507087126
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1507087125}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1494603082}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1507087127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1507087125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9dd831615ee22943ac7f0c34fde23ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flowchart: {fileID: 758223079}
+  oneShot: 1
+  message: fast_forward
+  trigger: {fileID: 1773757191}
 --- !u!1 &1522876151
 GameObject:
   m_ObjectHideFlags: 0
@@ -5416,6 +5695,51 @@ MonoBehaviour:
   oneShot: 1
   message: tutorial_branch_2
   trigger: {fileID: 2127357904}
+--- !u!1 &1773757189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1773757190}
+  - component: {fileID: 1773757191}
+  m_Layer: 0
+  m_Name: MergingTutorial1Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1773757190
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1773757189}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 21740543}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1773757191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1773757189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 931efde3efb07c5419beefebd1d2903b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notifier: {fileID: 917366021}
+  versionManager: {fileID: 591290366}
+  oneShot: 1
+  numberToTrigger: 1
+  targetBranch: master
 --- !u!1 &1776090842
 GameObject:
   m_ObjectHideFlags: 0
@@ -6099,7 +6423,7 @@ RectTransform:
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1974774605 stripped
 MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114916875429862884, guid: 2e120c5b64f2768499fa78ec74630b8e,
+  m_PrefabParentObject: {fileID: 114818947659512818, guid: 2e120c5b64f2768499fa78ec74630b8e,
     type: 2}
   m_PrefabInternal: {fileID: 536530085}
   m_Script: {fileID: 11500000, guid: 22f64a85acbc20947b7c638970b913af, type: 3}
