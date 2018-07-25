@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fungus;
 
-public class FlowchartTrigger : MonoBehaviour {
+public class FlowchartTrigger : MonoBehaviour, ITriggerObserver {
 
 	public Flowchart flowchart;
 	public bool oneShot;
 	public string message;
+	public Trigger trigger;
 
-	private void OnTriggerEnter2D(Collider2D other) {
-		if (other.tag.Equals("Player")) {
-			flowchart.SendFungusMessage (message);
+	private bool triggered;
+
+	public void HandleTrigger(bool state) {
+		if (state && !triggered) {
+			if (other.tag.Equals("Player")) {
+				flowchart.SendFungusMessage (message);
+				triggered = true;
+			}
 		}
 	}
-
 }
