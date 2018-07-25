@@ -148,6 +148,7 @@ public class VersionManager : MonoBehaviour {
 			activeBranch.UpdateTip(activeCommit);
 		}
 		stagingArea.Clear();
+		commitTrigger.Trigger();
 
 		return commit;
 	}

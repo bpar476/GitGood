@@ -21,7 +21,7 @@ public class CommitTrigger : Triggerable, ITriggerObserver {
                 ICommit commit = versionManager.GetHead();
                 if (commit.ObjectIsTrackedInThisCommit(targetObject) &&
                     commit.ObjectWasChangedInThisCommit(targetObject)) {
-                    NotifyObservers();
+                        NotifyObservers();
                 }
             }
         }
