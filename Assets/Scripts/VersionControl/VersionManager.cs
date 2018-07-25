@@ -105,6 +105,7 @@ public class VersionManager : MonoBehaviour {
 	public void Unstage(VersionController controller) {
 		if (stagingArea.Contains(controller)) {
 			stagingArea.Remove(controller);
+			controller.HideStagedState();
 			lastUnstagedObject = controller;
 		}
 	}
