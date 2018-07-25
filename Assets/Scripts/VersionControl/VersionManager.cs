@@ -355,6 +355,7 @@ public class VersionManager : MonoBehaviour {
 			activeBranch.UpdateTip(featureBranch.GetTip());
 			activeCommit = activeBranch.GetTip();
 			LoadStateOfCommit(activeCommit);
+			mergeTrigger.Trigger();
 			return mergeType;
 		}
 

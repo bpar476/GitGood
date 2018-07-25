@@ -17,6 +17,7 @@ public class MergeTrigger : Triggerable, ITriggerObserver {
 	}
 
 	public void HandleTrigger(bool state) {
+        Debug.Log("Merge trigger triggered");
         if (state) {
 		    if (playerInZone) {
                 triggerCount++;

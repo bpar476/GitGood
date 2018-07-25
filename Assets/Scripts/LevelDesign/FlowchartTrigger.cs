@@ -8,15 +8,19 @@ public class FlowchartTrigger : MonoBehaviour, ITriggerObserver {
 	public Flowchart flowchart;
 	public bool oneShot;
 	public string message;
-	public Trigger trigger;
+	public Triggerable trigger;
 
 	private bool triggered;
 
+	private void Start() {
+		trigger.AddObserver(this);
+	}
+
 	public void HandleTrigger(bool state) {
-		if (state && !triggered) {
-			if (other.tag.Equals("Player")) {
-				flowchart.SendFungusMessage (message);
-				triggered = true;
+		if (state) {
+			flowchart.SendFungusMessage (message);
+			if (oneShot) {
+				this.enabled = false;
 			}
 		}
 	}

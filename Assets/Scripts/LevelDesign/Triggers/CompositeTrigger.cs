@@ -8,7 +8,7 @@ public class CompositeTrigger : Triggerable {
     public bool oneShot = true;
 
     private void Awake() {
-        conditions = new List();
+        conditions = new List<Condition>();
     }
 
     private void Update() {
