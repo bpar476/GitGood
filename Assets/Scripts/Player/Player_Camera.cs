@@ -12,15 +12,17 @@ public class Player_Camera : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        this.player = GameObject.FindGameObjectWithTag ("Player");
+        this.player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // LateUpdate is called at end of Update Cycle
     void LateUpdate () {
-        this.player = GameObject.FindGameObjectWithTag ("Player");
+        if (this.player == null) {
+            this.player = GameObject.FindGameObjectWithTag("Player");
+        }
         // Camera can't go outside the clamp
-        float x = Mathf.Clamp (this.player.transform.position.x, xMin, xMax);
-        float y = Mathf.Clamp (this.player.transform.position.y + 1.5f, yMin, yMax);
-        this.gameObject.transform.position = new Vector3 (x, y, this.gameObject.transform.position.z);
+        float x = Mathf.Clamp(this.player.transform.position.x, xMin, xMax);
+        float y = Mathf.Clamp(this.player.transform.position.y + 1.5f, yMin, yMax);
+        this.gameObject.transform.position = new Vector3(x, y, this.gameObject.transform.position.z);
     }
 }
