@@ -253,7 +253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b8aa086c48d08a44ba52888d2b70aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  versionManager: {fileID: 0}
   fov: {fileID: 114518736845547928}
   versionableTag: Versionable
   previewTag: VersionPreview

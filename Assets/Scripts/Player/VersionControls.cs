@@ -32,9 +32,6 @@ public class VersionControls : MonoBehaviour {
 				VersionManager.Instance().Add(versionController);
 				Debug.Log(currentlySelectedObject == gameObject ? "Adding player" : "Adding closest object");
 				Debug.Log(currentlySelectedObject);
-			} else if (Input.GetKeyDown(KeyCode.E)) {
-				VersionManager.Instance().Commit("Commit message");
-				Debug.Log("Commiting staged objects");
 			} else if(Input.GetKeyDown(KeyCode.R)) {
 				VersionManager.Instance().ResetToHead();
 				Debug.Log("Resetting to HEAD");
