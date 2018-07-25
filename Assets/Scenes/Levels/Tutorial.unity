@@ -756,13 +756,19 @@ GameObject:
   - component: {fileID: 758223089}
   - component: {fileID: 758223102}
   - component: {fileID: 758223101}
-  - component: {fileID: 758223100}
-  - component: {fileID: 758223099}
   - component: {fileID: 758223098}
   - component: {fileID: 758223097}
   - component: {fileID: 758223096}
   - component: {fileID: 758223095}
   - component: {fileID: 758223094}
+  - component: {fileID: 758223100}
+  - component: {fileID: 758223107}
+  - component: {fileID: 758223099}
+  - component: {fileID: 758223108}
+  - component: {fileID: 758223106}
+  - component: {fileID: 758223105}
+  - component: {fileID: 758223104}
+  - component: {fileID: 758223103}
   m_Layer: 0
   m_Name: TutorialFlowchart
   m_TagString: Untagged
@@ -1120,7 +1126,7 @@ MonoBehaviour:
   sayDialog: {fileID: 1653460352}
 --- !u!114 &758223094
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -1146,7 +1152,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223095
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -1172,7 +1178,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 1841723293}
 --- !u!114 &758223096
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -1239,7 +1245,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223099
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -1248,12 +1254,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 14
+  itemId: 24
   indentLevel: 0
-  storyText: It shows you the state the timeline will be in once you commit your changes.
+  storyText: <Press Q to remove an object from the staging area>
   description: 
-  character: {fileID: 1613906548}
-  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  character: {fileID: 0}
+  portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -1262,34 +1268,38 @@ MonoBehaviour:
   waitForClick: 1
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 0}
+  setSayDialog: {fileID: 1841723293}
 --- !u!114 &758223100
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 13
-  indentLevel: 0
-  storyText: The staging area is a virtual space where you can visualise the state
-    of a timeline you're modifying.
-  description: 
-  character: {fileID: 1613906548}
-  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
+  nodeRect:
+    serializedVersion: 2
+    x: 395
+    y: 74
+    width: 142
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 25
+  blockName: Unstaging
+  description: Teaches the player how to add to the staging area. Triggered by Door1
+    closing
+  eventHandler: {fileID: 758223108}
+  commandList:
+  - {fileID: 758223107}
+  - {fileID: 758223106}
+  - {fileID: 758223105}
+  - {fileID: 758223104}
+  - {fileID: 758223103}
+  - {fileID: 758223099}
 --- !u!114 &758223101
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -1317,8 +1327,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 411
-    y: 77
+    x: 552
+    y: 76
     width: 159
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -1329,12 +1339,145 @@ MonoBehaviour:
   eventHandler: {fileID: 758223097}
   commandList:
   - {fileID: 758223101}
-  - {fileID: 758223100}
-  - {fileID: 758223099}
   - {fileID: 758223096}
   - {fileID: 758223098}
   - {fileID: 758223094}
   - {fileID: 758223095}
+--- !u!114 &758223103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 29
+  indentLevel: 0
+  storyText: Remove this box from the staging area. We don't need to fix it's history
+    just yet.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 28
+  indentLevel: 0
+  storyText: If you decide you don't like what you've done, you can stage the object
+    somewhere else, or even remove the object from the staging area.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 27
+  indentLevel: 0
+  storyText: It shows you the state the timeline will be in once you commit your changes.
+    We'll talk about committing in a moment.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 26
+  indentLevel: 0
+  storyText: The staging area is a virtual space where you can visualise the state
+    of a timeline you're modifying.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65d551a201c94bc79950076ff3eaf2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 21
+  indentLevel: 0
+  sayDialog: {fileID: 1653460352}
+--- !u!114 &758223108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7d417659cd54a6787f70f763950c34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentBlock: {fileID: 758223100}
+  message: tutorial_unstage
 --- !u!1 &802137978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1598,7 +1741,7 @@ GameObject:
   - component: {fileID: 967717129}
   - component: {fileID: 967717130}
   m_Layer: 0
-  m_Name: CommittingTrigger
+  m_Name: UnstagingTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1630,7 +1773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flowchart: {fileID: 758223079}
   oneShot: 1
-  message: tutorial_commit
+  message: tutorial_unstage
   trigger: {fileID: 1015038212}
 --- !u!1 &989882146
 GameObject:
@@ -1683,7 +1826,7 @@ GameObject:
   - component: {fileID: 1015038211}
   - component: {fileID: 1015038212}
   m_Layer: 0
-  m_Name: CommitTutorialTrigger
+  m_Name: UnstageTutorialTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

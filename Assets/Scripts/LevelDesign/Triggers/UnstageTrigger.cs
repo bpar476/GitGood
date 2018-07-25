@@ -18,7 +18,8 @@ public class UnstageTrigger : Triggerable, ITriggerObserver {
 
     public void HandleTrigger(bool state) {
         if (state) {
-            if (versionManager.GetLastUnstagedObject().Equals(targetObject)) {
+            VersionController lastUnstagedObject = versionManager.GetLastUnstagedObject();
+            if (lastUnstagedObject != null && lastUnstagedObject.Equals(targetObject)) {
                 count++;
                 if (count == numberToTrigger) {
                     NotifyObservers();

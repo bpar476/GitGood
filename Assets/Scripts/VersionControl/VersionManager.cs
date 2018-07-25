@@ -41,6 +41,7 @@ public class VersionManager : MonoBehaviour {
 	private bool isDetached;
 
 	private VersionController lastStagedObject;
+	private VersionController lastUnstagedObject;
 
 	private IMergeWorker mw;
 
@@ -104,7 +105,12 @@ public class VersionManager : MonoBehaviour {
 	public void Unstage(VersionController controller) {
 		if (stagingArea.Contains(controller)) {
 			stagingArea.Remove(controller);
+			lastUnstagedObject = controller;
 		}
+	}
+
+	public VersionController GetLastUnstagedObject() {
+		return lastUnstagedObject;
 	}
 
 	/// <summary>
