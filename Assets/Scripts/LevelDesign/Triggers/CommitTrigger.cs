@@ -6,6 +6,7 @@ public class CommitTrigger : Triggerable, ITriggerObserver {
 
     public TriggerManager notifier;
     public int numberToTrigger;
+    public string targetBranch = "";
     public VersionController targetObject;
     public VersionManager versionManager;
 
@@ -15,13 +16,15 @@ public class CommitTrigger : Triggerable, ITriggerObserver {
 
     public void HandleTrigger(bool state) {
         if (state) {
-            if (targetObject == null) {
+            if (targetObject == null && targetBranch == "") {
                 NotifyObservers();
             } else {
-                ICommit commit = versionManager.GetHead();
-                if (commit.ObjectIsTrackedInThisCommit(targetObject) &&
-                    commit.ObjectWasChangedInThisCommit(targetObject)) {
-                        NotifyObservers();
+                if (targetBranch == "" || versionManager.GetActiveBranch().GetName() == targetBranch) {
+                    ICommit commit = versionManager.GetHead();
+                    if (targetObject == null || commit.ObjectIsTrackedInThisCommit(targetObject) &&
+                        commit.ObjectWasChangedInThisCommit(targetObject)) {
+                            NotifyObservers();
+                    }
                 }
             }
         }
