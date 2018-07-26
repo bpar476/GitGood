@@ -17,6 +17,7 @@ public class Player_Camera : MonoBehaviour {
 
     // LateUpdate is called at end of Update Cycle
     void LateUpdate () {
+        this.player = GameObject.FindGameObjectWithTag ("Player");
         // Camera can't go outside the clamp
         float x = Mathf.Clamp (this.player.transform.position.x, xMin, xMax);
         float y = Mathf.Clamp (this.player.transform.position.y, yMin, yMax);
