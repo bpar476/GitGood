@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VersionManager {
+public class VersionManager : MonoBehaviour {
 	// Singleton
 	private static VersionManager singletonInstance;
 	public static VersionManager Instance() {
@@ -14,6 +14,16 @@ public class VersionManager {
 	}
 	public static void Reset() {
 		singletonInstance = new VersionManager();
+	}
+
+	void Awake() {
+		if (singletonInstance == null) {
+			singletonInstance = this;
+		}
+		else if (singletonInstance != this) {
+			Destroy(gameObject);
+			return;
+		}
 	}
 
 	IList<VersionController> trackedObjects;
