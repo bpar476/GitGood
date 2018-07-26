@@ -91,6 +91,10 @@ public class UIController : MonoBehaviour {
 			}
 		);
 
+		dialogController.submitButton.onClick.AddListener(() => {
+			UpdateDebugStatus();
+		});
+
 		dialogController.inputField.Select();
 	}
 
@@ -117,6 +121,10 @@ public class UIController : MonoBehaviour {
 			}
 		);
 
+		dialogController.submitButton.onClick.AddListener(() => {
+			UpdateDebugStatus();
+		});
+
 		dialogController.inputField.Select();
 	}
 
@@ -142,6 +150,10 @@ public class UIController : MonoBehaviour {
 			Destroy(dialog);
 			}
 		);
+
+		dialogController.submitButton.onClick.AddListener(() => {
+			UpdateDebugStatus();
+		});
 
 		dialogController.inputField.Select();
 	}
@@ -174,6 +186,28 @@ public class UIController : MonoBehaviour {
 			}
 		);
 
+		dialogController.submitButton.onClick.AddListener(() => {
+			UpdateDebugStatus();
+		});
+
 		dialogController.inputField.Select();
+	}
+
+	private void UpdateDebugStatus() {
+		Text branchText = GameObject.Find("/DebugCanvas/CurrentBranch").GetComponent<Text>();
+		if (VersionManager.Instance().GetActiveBranch() != null) {
+			branchText.text = "Current Branch: " + VersionManager.Instance().GetActiveBranch().GetName();
+		}
+		else {
+			branchText.text = "Current Branch: ERROR";
+		}
+
+		Text commitText = GameObject.Find("/DebugCanvas/CommitMessage").GetComponent<Text>();
+		if (VersionManager.Instance().GetHead() != null) {
+			commitText.text = "Last Commit: " + VersionManager.Instance().GetHead().GetMessage();
+		}
+		else {
+			commitText.text = "Last Commit: ERROR";
+		}
 	}
 }
