@@ -9,6 +9,9 @@ public class CommitTrigger : Triggerable, ITriggerObserver {
     public string targetBranch = "";
     public VersionController targetObject;
     public VersionManager versionManager;
+    public bool oneShot = true;
+
+    private int count = 0;
 
     private void Start() {
         notifier.AddObserver(this);
@@ -23,7 +26,13 @@ public class CommitTrigger : Triggerable, ITriggerObserver {
                     ICommit commit = versionManager.GetHead();
                     if (targetObject == null || commit.ObjectIsTrackedInThisCommit(targetObject) &&
                         commit.ObjectWasChangedInThisCommit(targetObject)) {
-                            NotifyObservers();
+                            count++;
+                            if (count == numberToTrigger) {
+                                NotifyObservers();
+                                if (oneShot) {
+                                    this.enabled = false;
+                                }
+                            }
                     }
                 }
             }
