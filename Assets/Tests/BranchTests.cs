@@ -4,6 +4,11 @@ using NUnit.Framework;
 using System.Collections;
 
 public class BranchTests {
+    [SetUp]
+    public void SetUp() {
+        VersionManager.Reset();
+    }
+
     [UnityTest]
     public IEnumerator TestSimple() {
         ICommit a = new CommitBuilder().SetMessage("Commit A").Build();
@@ -33,48 +38,46 @@ public class BranchTests {
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
 
-        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
 
         testObject.transform.position = new Vector2(0.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(3.0f, 3.0f);
 
-        versionManager.Add(testController);
-        versionManager.Add(otherTestController);
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Add(otherTestController);
 
-        ICommit commit = versionManager.Commit("Add two objects");
+        ICommit commit = VersionManager.Instance().Commit("Add two objects");
 
         yield return null;
-        Assert.AreSame(commit, versionManager.GetActiveBranch().GetTip());
+        Assert.AreSame(commit, VersionManager.Instance().GetActiveBranch().GetTip());
 
-        IBranch testBranch = versionManager.CreateBranch("testBranch");
+        IBranch testBranch = VersionManager.Instance().CreateBranch("testBranch");
         Assert.AreEqual("testBranch", testBranch.GetName());
-        Assert.AreEqual(true, versionManager.Checkout("testBranch"));
-        Assert.AreSame(testBranch, versionManager.GetActiveBranch());
-        Assert.AreSame(commit, versionManager.GetActiveBranch().GetTip());
+        Assert.AreEqual(true, VersionManager.Instance().Checkout("testBranch"));
+        Assert.AreSame(testBranch, VersionManager.Instance().GetActiveBranch());
+        Assert.AreSame(commit, VersionManager.Instance().GetActiveBranch().GetTip());
 
         testObject.transform.position = new Vector2(1.0f, 0.0f);
-        versionManager.Add(testController);
-        ICommit secondCommit = versionManager.Commit("Move testObject");
+        VersionManager.Instance().Add(testController);
+        ICommit secondCommit = VersionManager.Instance().Commit("Move testObject");
 
-        Assert.AreSame(secondCommit, versionManager.GetActiveBranch().GetTip());
-        Assert.AreSame(secondCommit, versionManager.GetHead());
-        Assert.AreSame(commit, versionManager.LookupBranch("master").GetTip());
+        Assert.AreSame(secondCommit, VersionManager.Instance().GetActiveBranch().GetTip());
+        Assert.AreSame(secondCommit, VersionManager.Instance().GetHead());
+        Assert.AreSame(commit, VersionManager.Instance().LookupBranch("master").GetTip());
 
-        versionManager.Checkout("master");
-        Assert.AreSame(commit, versionManager.GetHead());
+        VersionManager.Instance().Checkout("master");
+        Assert.AreSame(commit, VersionManager.Instance().GetHead());
 
 
     }
 
     [UnityTest]
     public IEnumerator TestFastForward() {
-        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
-        versionManager.Commit("Initial Commit");
-        IBranch master = versionManager.GetActiveBranch();
-        IBranch feature = versionManager.CreateBranch("feature");
+        VersionManager.Instance().Commit("Initial Commit");
+        IBranch master = VersionManager.Instance().GetActiveBranch();
+        IBranch feature = VersionManager.Instance().CreateBranch("feature");
 
-        versionManager.Checkout(feature.GetName());
-        versionManager.Commit("Commit on feature branch");
+        VersionManager.Instance().Checkout(feature.GetName());
+        VersionManager.Instance().Commit("Commit on feature branch");
         yield return null;
 
         Assert.AreEqual(Relationship.FastForward, LineageAnalyser.Compare(master.GetTip(), feature.GetTip()));
@@ -82,12 +85,11 @@ public class BranchTests {
 
     [UnityTest]
     public IEnumerator TestRewind() {
-        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
-        versionManager.Commit("Initial Commit");
-        IBranch master = versionManager.GetActiveBranch();
-        IBranch feature = versionManager.CreateBranch("feature");
+        VersionManager.Instance().Commit("Initial Commit");
+        IBranch master = VersionManager.Instance().GetActiveBranch();
+        IBranch feature = VersionManager.Instance().CreateBranch("feature");
 
-        versionManager.Commit("Commit on master branch");
+        VersionManager.Instance().Commit("Commit on master branch");
         yield return null;
 
         Assert.AreEqual(Relationship.Rewind, LineageAnalyser.Compare(master.GetTip(), feature.GetTip()));
@@ -95,10 +97,9 @@ public class BranchTests {
 
     [UnityTest]
     public IEnumerator TestSame() {
-        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
-        versionManager.Commit("Initial Commit");
-        IBranch master = versionManager.GetActiveBranch();
-        IBranch feature = versionManager.CreateBranch("feature");
+        VersionManager.Instance().Commit("Initial Commit");
+        IBranch master = VersionManager.Instance().GetActiveBranch();
+        IBranch feature = VersionManager.Instance().CreateBranch("feature");
 
         yield return null;
 
@@ -107,14 +108,13 @@ public class BranchTests {
 
     [UnityTest]
     public IEnumerator TestDivergent() {
-        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
-        versionManager.Commit("Initial Commit");
-        IBranch master = versionManager.GetActiveBranch();
-        IBranch feature = versionManager.CreateBranch("feature");
+        VersionManager.Instance().Commit("Initial Commit");
+        IBranch master = VersionManager.Instance().GetActiveBranch();
+        IBranch feature = VersionManager.Instance().CreateBranch("feature");
 
-        versionManager.Commit("Commit on master branch");
-        versionManager.Checkout(feature.GetName());
-        versionManager.Commit("Commit on feature branch");
+        VersionManager.Instance().Commit("Commit on master branch");
+        VersionManager.Instance().Checkout(feature.GetName());
+        VersionManager.Instance().Commit("Commit on feature branch");
         yield return null;
 
         Assert.AreEqual(Relationship.Divergent, LineageAnalyser.Compare(master.GetTip(), feature.GetTip()));

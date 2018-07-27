@@ -4,6 +4,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class VersionManager : MonoBehaviour {
+	// Singleton
+	private static VersionManager singletonInstance;
+	public static VersionManager Instance() {
+		if (singletonInstance == null) {
+			VersionManager.Reset();
+		}
+		return singletonInstance;
+	}
+	public static void Reset() {
+		singletonInstance = new VersionManager();
+	}
+
+	void Awake() {
+		if (singletonInstance == null) {
+			singletonInstance = this;
+		}
+		else if (singletonInstance != this) {
+			Destroy(gameObject);
+			return;
+		}
+	}
 
 	IList<VersionController> trackedObjects;
 	IList<VersionController> stagingArea;
@@ -14,7 +35,7 @@ public class VersionManager : MonoBehaviour {
 
 	private IMergeWorker mw;
 
-	private void Awake() {
+	private VersionManager() {
 		trackedObjects = new List<VersionController>();
 		stagingArea = new List<VersionController>();
 
@@ -25,11 +46,6 @@ public class VersionManager : MonoBehaviour {
 		activeBranch = master;
 		activeCommit = null;
 		isDetached = false;
-	}
-
-	// Use this for initialization
-	void Start () {
-
 	}
 
 	/// <summary>
@@ -351,10 +367,14 @@ public class VersionManager : MonoBehaviour {
 			return null;
 		}
 
+		return CreateMergeCommit("Merge Commit");
+	}
+
+	public ICommit CreateMergeCommit(string commitMessage) {
 		foreach (KeyValuePair<VersionController, IVersion> stageData in this.mw.BuildStagingArea()) {
 			this.Add(stageData.Key, stageData.Value);
 		}
-		ICommit mergeCommit = this.Commit("Merge Commit");
+		ICommit mergeCommit = this.Commit(commitMessage);
 		foreach (VersionController versionedObject in this.mw.BuildStagingArea().Keys) {
 			this.ResetToHead(versionedObject);
 		}

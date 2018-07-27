@@ -5,21 +5,24 @@ using System.Collections;
 using System;
 
 public class VersionManagerTests {
+    [SetUp]
+    public void SetUp() {
+        VersionManager.Reset();
+    }
+
 
     [UnityTest]
     public IEnumerator ShouldAllowRemovalOfStagedObjectFromStagingArea() {
         VersionableObjectFactory factory = new VersionableObjectFactory();
 
         VersionController testController = factory.createVersionableBox();
+        VersionManager.Instance().Add(testController);
 
-        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
-        versionManager.Add(testController);
+        Assert.True(VersionManager.Instance().IsObjectStaged(testController));
 
-        Assert.True(versionManager.IsObjectStaged(testController));
+        VersionManager.Instance().Unstage(testController);
 
-        versionManager.Unstage(testController);
-
-        Assert.False(versionManager.IsObjectStaged(testController));
+        Assert.False(VersionManager.Instance().IsObjectStaged(testController));
 
         yield return null;
     }
@@ -35,18 +38,16 @@ public class VersionManagerTests {
 
         GameObject testObject = testController.GetActiveVersion();
 
-        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
-
         testObject.transform.position = new Vector2(0,0);
 
-        versionManager.Add(testController);
-        versionManager.Commit("Set thing position to 0,0");
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Commit("Set thing position to 0,0");
 
         yield return null;
 
         // When
         testObject.transform.position = new Vector2(1,0);
-        versionManager.ResetToHead(testController);
+        VersionManager.Instance().ResetToHead(testController);
 
         yield return null;
 
@@ -64,24 +65,22 @@ public class VersionManagerTests {
 
         GameObject testObject = testController.GetActiveVersion();
 
-        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
-
         testObject.transform.position = new Vector2(0.0f,0.0f);
 
-        versionManager.Add(testController);
-        ICommit commitToLoad = versionManager.Commit("Set thing position to 0,0");
+        VersionManager.Instance().Add(testController);
+        ICommit commitToLoad = VersionManager.Instance().Commit("Set thing position to 0,0");
 
         yield return null;
         
         testObject.transform.position = new Vector2(1.0f,1.0f);
 
-        versionManager.Add(testController);
-        versionManager.Commit("Set thing position to 1,1");
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Commit("Set thing position to 1,1");
 
         yield return null;
         
         // When
-        versionManager.CheckoutCommit(commitToLoad);
+        VersionManager.Instance().CheckoutCommit(commitToLoad);
 
         yield return null;
 
@@ -101,15 +100,13 @@ public class VersionManagerTests {
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
 
-        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
-
         testObject.transform.position = new Vector2(1.0f, 3.0f);
         otherTestObject.transform.position = new Vector2(-1.0f, 5.0f);
 
-        versionManager.Add(testController);
-        versionManager.Add(otherTestController);
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Add(otherTestController);
 
-        versionManager.Commit("Create two objects");
+        VersionManager.Instance().Commit("Create two objects");
 
         yield return null;
 
@@ -117,7 +114,7 @@ public class VersionManagerTests {
 
         yield return null;
 
-        versionManager.ResetToHead();
+        VersionManager.Instance().ResetToHead();
 
         yield return null;
 
@@ -138,15 +135,13 @@ public class VersionManagerTests {
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
 
-        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
-
         testObject.transform.position = new Vector2(1.0f, 3.0f);
         otherTestObject.transform.position = new Vector2(-1.0f, 5.0f);
 
-        versionManager.Add(testController);
-        versionManager.Add(otherTestController);
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Add(otherTestController);
 
-        versionManager.Commit("Create two objects");
+        VersionManager.Instance().Commit("Create two objects");
 
         yield return null;
 
@@ -155,7 +150,7 @@ public class VersionManagerTests {
 
         yield return null;
 
-        versionManager.ResetToHead(testController);
+        VersionManager.Instance().ResetToHead(testController);
 
         yield return null;
 
@@ -176,22 +171,20 @@ public class VersionManagerTests {
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
 
-        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
-
         testObject.transform.position = new Vector2(0.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(3.0f, 3.0f);
 
-        versionManager.Add(testController);
-        versionManager.Add(otherTestController);
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Add(otherTestController);
 
-        versionManager.Commit("Create two objects");
+        VersionManager.Instance().Commit("Create two objects");
 
         yield return null;
 
         testObject.transform.position = new Vector2(-2.0f, -2.0f);
 
-        versionManager.Add(testController);
-        versionManager.Commit("Move one of the objects");
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Commit("Move one of the objects");
 
         yield return null;
 
@@ -200,7 +193,7 @@ public class VersionManagerTests {
 
         yield return null;
 
-        versionManager.ResetToHead();
+        VersionManager.Instance().ResetToHead();
 
         Assert.AreEqual(-2.0f, testObject.transform.position.x, 0.1f);
         Assert.AreEqual(-2.0f, testObject.transform.position.y, 0.1f);
@@ -219,29 +212,27 @@ public class VersionManagerTests {
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
 
-        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
-
         testObject.transform.position = new Vector2(0.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(3.0f, 0.0f);
 
-        versionManager.Add(testController);
-        versionManager.Add(otherTestController);
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Add(otherTestController);
 
-        Guid firstCommitId = versionManager.Commit("Create two boxes").GetId();
+        Guid firstCommitId = VersionManager.Instance().Commit("Create two boxes").GetId();
 
         yield return null;
 
         testObject.transform.position = new Vector2(1.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(4.0f, 1.0f);
 
-        versionManager.Add(testController);
-        versionManager.Add(otherTestController);
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Add(otherTestController);
 
-        versionManager.Commit("Move boxes");
+        VersionManager.Instance().Commit("Move boxes");
 
         yield return null;
 
-        versionManager.Checkout(versionManager.GetActiveBranch(), firstCommitId);
+        VersionManager.Instance().Checkout(VersionManager.Instance().GetActiveBranch(), firstCommitId);
 
         Assert.AreEqual(0.0f, testObject.transform.position.x, 0.1f);
         Assert.AreEqual(0.0f, testObject.transform.position.y, 0.1f);
@@ -260,32 +251,30 @@ public class VersionManagerTests {
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
 
-        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
-
         testObject.transform.position = new Vector2(0.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(3.0f, 0.0f);
 
-        versionManager.Add(testController);
-        versionManager.Add(otherTestController);
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Add(otherTestController);
 
-        Guid firstCommitId = versionManager.Commit("Create two boxes").GetId();
+        Guid firstCommitId = VersionManager.Instance().Commit("Create two boxes").GetId();
 
         yield return null;
 
-        versionManager.CreateBranch("feature");
-        versionManager.Checkout("feature");
+        VersionManager.Instance().CreateBranch("feature");
+        VersionManager.Instance().Checkout("feature");
 
         testObject.transform.position = new Vector2(1.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(4.0f, 1.0f);
 
-        versionManager.Add(testController);
-        versionManager.Add(otherTestController);
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Add(otherTestController);
 
-        versionManager.Commit("Move boxes");
+        VersionManager.Instance().Commit("Move boxes");
 
         yield return null;
 
-        versionManager.Checkout("master", firstCommitId);
+        VersionManager.Instance().Checkout("master", firstCommitId);
 
         Assert.AreEqual(0.0f, testObject.transform.position.x, 0.1f);
         Assert.AreEqual(0.0f, testObject.transform.position.y, 0.1f);
@@ -293,24 +282,22 @@ public class VersionManagerTests {
         Assert.AreEqual(3.0f, otherTestObject.transform.position.x, 0.1f);
         Assert.AreEqual(0.0f, otherTestObject.transform.position.y, 0.1f);
 
-        IBranch master = versionManager.LookupBranch("master");
-        Assert.AreEqual(master, versionManager.GetActiveBranch());
+        IBranch master = VersionManager.Instance().LookupBranch("master");
+        Assert.AreEqual(master, VersionManager.Instance().GetActiveBranch());
     }
 
     [UnityTest]
     public IEnumerator shouldResetObjectToInitialPositionIfCheckingOutCommitWhereItWasNotTracked() {
         VersionableObjectFactory factory = new VersionableObjectFactory();
 
-        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
-
         VersionController testController = factory.createVersionableBox();
         GameObject testObject = testController.GetActiveVersion();
 
         testObject.transform.position = new Vector2(0.0f, 0.0f);
 
-        versionManager.Add(testController);
+        VersionManager.Instance().Add(testController);
 
-        Guid firstCommitId = versionManager.Commit("Create a box").GetId();
+        Guid firstCommitId = VersionManager.Instance().Commit("Create a box").GetId();
 
         yield return null;
 
@@ -322,14 +309,14 @@ public class VersionManagerTests {
         testObject.transform.position = new Vector2(-3.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(3.0f, -2.0f);
 
-        versionManager.Add(testController);
-        versionManager.Add(otherTestController);
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Add(otherTestController);
 
-        versionManager.Commit("Create another box and move the first box");
+        VersionManager.Instance().Commit("Create another box and move the first box");
 
         yield return null;
 
-        versionManager.Checkout(versionManager.GetActiveBranch(), firstCommitId);
+        VersionManager.Instance().Checkout(VersionManager.Instance().GetActiveBranch(), firstCommitId);
 
         Assert.AreEqual(0.0f, testObject.transform.position.x, 0.1f);
         Assert.AreEqual(0.0f, testObject.transform.position.y, 0.1f);
@@ -342,16 +329,14 @@ public class VersionManagerTests {
     public IEnumerator shouldResetTrackedObjectsWhenCheckingOutCommitWhereAnObjectWasNotTracked() {
         VersionableObjectFactory factory = new VersionableObjectFactory();
 
-        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
-
         VersionController testController = factory.createVersionableBox();
         GameObject testObject = testController.GetActiveVersion();
 
         testObject.transform.position = new Vector2(0.0f, 0.0f);
 
-        versionManager.Add(testController);
+        VersionManager.Instance().Add(testController);
 
-        Guid firstCommitId = versionManager.Commit("Create a box").GetId();
+        Guid firstCommitId = VersionManager.Instance().Commit("Create a box").GetId();
 
         yield return null;
 
@@ -361,32 +346,30 @@ public class VersionManagerTests {
         testObject.transform.position = new Vector2(-3.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(3.0f, -2.0f);
 
-        versionManager.Add(testController);
-        versionManager.Add(otherTestController);
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Add(otherTestController);
 
-        versionManager.Commit("Create another box and move the first box");
+        VersionManager.Instance().Commit("Create another box and move the first box");
 
         yield return null;
 
-        versionManager.Checkout(versionManager.GetActiveBranch(), firstCommitId);
+        VersionManager.Instance().Checkout(VersionManager.Instance().GetActiveBranch(), firstCommitId);
 
-        Assert.False(versionManager.IsObjectTracked(otherTestController));
+        Assert.False(VersionManager.Instance().IsObjectTracked(otherTestController));
     }
 
     [UnityTest]
     public IEnumerator shouldReloadTrackedObjectsWhenCheckingOutCommitWithNewTrackedObject() {
         VersionableObjectFactory factory = new VersionableObjectFactory();
 
-        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
-
         VersionController testController = factory.createVersionableBox();
         GameObject testObject = testController.GetActiveVersion();
 
         testObject.transform.position = new Vector2(0.0f, 0.0f);
 
-        versionManager.Add(testController);
+        VersionManager.Instance().Add(testController);
 
-        Guid firstCommitId = versionManager.Commit("Create a box").GetId();
+        Guid firstCommitId = VersionManager.Instance().Commit("Create a box").GetId();
 
         yield return null;
 
@@ -396,20 +379,20 @@ public class VersionManagerTests {
         testObject.transform.position = new Vector2(-3.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(3.0f, -2.0f);
 
-        versionManager.Add(testController);
-        versionManager.Add(otherTestController);
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Add(otherTestController);
 
-        Guid secondCommitId = versionManager.Commit("Create another box and move the first box").GetId();
+        Guid secondCommitId = VersionManager.Instance().Commit("Create another box and move the first box").GetId();
 
         yield return null;
 
-        versionManager.Checkout(versionManager.GetActiveBranch(), firstCommitId);
+        VersionManager.Instance().Checkout(VersionManager.Instance().GetActiveBranch(), firstCommitId);
 
-        Assert.False(versionManager.IsObjectTracked(otherTestController));
+        Assert.False(VersionManager.Instance().IsObjectTracked(otherTestController));
 
-        versionManager.Checkout(versionManager.GetActiveBranch(), secondCommitId);
+        VersionManager.Instance().Checkout(VersionManager.Instance().GetActiveBranch(), secondCommitId);
 
-        Assert.True(versionManager.IsObjectTracked(otherTestController));
+        Assert.True(VersionManager.Instance().IsObjectTracked(otherTestController));
     }
 
     [UnityTest]
@@ -422,15 +405,13 @@ public class VersionManagerTests {
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
 
-        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
-
         testObject.transform.position = new Vector2(0.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(3.0f, 0.0f);
 
-        versionManager.Add(testController);
-        versionManager.Add(otherTestController);
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Add(otherTestController);
 
-        ICommit firstCommit = versionManager.Commit("Create two boxes");
+        ICommit firstCommit = VersionManager.Instance().Commit("Create two boxes");
         Guid firstCommitId = firstCommit.GetId();
 
         yield return null;
@@ -438,27 +419,27 @@ public class VersionManagerTests {
         testObject.transform.position = new Vector2(1.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(4.0f, 1.0f);
 
-        versionManager.Add(testController);
-        versionManager.Add(otherTestController);
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Add(otherTestController);
 
-        versionManager.Commit("Move boxes");
+        VersionManager.Instance().Commit("Move boxes");
 
         yield return null;
 
-        versionManager.Checkout("master", firstCommitId);
+        VersionManager.Instance().Checkout("master", firstCommitId);
 
         testObject.transform.position = new Vector2(3.0f, 3.0f);
 
-        versionManager.Add(testController);
+        VersionManager.Instance().Add(testController);
 
         ICommit commit = null;
         try {
-            commit = versionManager.Commit("Move the box");
+            commit = VersionManager.Instance().Commit("Move the box");
             Assert.Fail();
         } catch (InvalidOperationException ioe) {
             Assert.AreEqual(ioe.Message, "Cannot commit in detached HEAD state");
             Assert.IsNull(commit);
-            Assert.AreEqual(versionManager.GetActiveCommit(), firstCommit);
+            Assert.AreEqual(VersionManager.Instance().GetActiveCommit(), firstCommit);
         }
     }
 
@@ -472,15 +453,13 @@ public class VersionManagerTests {
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
 
-        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
-
         testObject.transform.position = new Vector2(0.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(3.0f, 0.0f);
 
-        versionManager.Add(testController);
-        versionManager.Add(otherTestController);
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Add(otherTestController);
 
-        ICommit firstCommit = versionManager.Commit("Create two boxes");
+        ICommit firstCommit = VersionManager.Instance().Commit("Create two boxes");
         Guid firstCommitId = firstCommit.GetId();
 
         yield return null;
@@ -488,25 +467,25 @@ public class VersionManagerTests {
         testObject.transform.position = new Vector2(1.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(4.0f, 1.0f);
 
-        versionManager.Add(testController);
-        versionManager.Add(otherTestController);
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Add(otherTestController);
 
-        versionManager.Commit("Move boxes");
+        VersionManager.Instance().Commit("Move boxes");
 
         yield return null;
 
-        versionManager.Checkout("master", firstCommitId);
+        VersionManager.Instance().Checkout("master", firstCommitId);
 
-        IBranch newBranch = versionManager.CreateBranch("refactor");
-        versionManager.Checkout(newBranch);
+        IBranch newBranch = VersionManager.Instance().CreateBranch("refactor");
+        VersionManager.Instance().Checkout(newBranch);
 
-        Assert.AreEqual(newBranch.GetTip().GetId(), versionManager.GetActiveBranch().GetTip().GetId());
-        Assert.AreEqual(newBranch.GetTip().GetId(), versionManager.GetActiveCommit().GetId());
+        Assert.AreEqual(newBranch.GetTip().GetId(), VersionManager.Instance().GetActiveBranch().GetTip().GetId());
+        Assert.AreEqual(newBranch.GetTip().GetId(), VersionManager.Instance().GetActiveCommit().GetId());
 
         testObject.transform.position = new Vector2(-1.0f, 0.0f);
 
-        versionManager.Add(testController);
-        ICommit commit = versionManager.Commit("Move a box to the left");
+        VersionManager.Instance().Add(testController);
+        ICommit commit = VersionManager.Instance().Commit("Move a box to the left");
 
         Assert.AreEqual(newBranch.GetTip().GetId(), commit.GetId());
         Assert.True(commit.ObjectIsTrackedInThisCommit(testController));
@@ -523,30 +502,28 @@ public class VersionManagerTests {
         GameObject testObject = testController.GetActiveVersion();
         GameObject otherTestObject = otherTestController.GetActiveVersion();
 
-        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
-
         testObject.transform.position = new Vector2(0.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(3.0f, 0.0f);
 
-        versionManager.Add(testController);
-        versionManager.Add(otherTestController);
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Add(otherTestController);
 
-        versionManager.Commit("Create two boxes").GetId();
+        VersionManager.Instance().Commit("Create two boxes").GetId();
 
         yield return null;
 
         testObject.transform.position = new Vector2(1.0f, 0.0f);
         otherTestObject.transform.position = new Vector2(4.0f, 1.0f);
 
-        versionManager.Add(testController);
-        versionManager.Add(otherTestController);
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Add(otherTestController);
 
-        versionManager.CreateBranch("feature");
-        versionManager.Checkout("feature");
+        VersionManager.Instance().CreateBranch("feature");
+        VersionManager.Instance().Checkout("feature");
 
-        versionManager.Commit("Move boxes");
+        VersionManager.Instance().Commit("Move boxes");
 
-        versionManager.ResetToHead();
+        VersionManager.Instance().ResetToHead();
 
         Assert.AreEqual(1.0f, testObject.transform.position.x, 0.1f);
         Assert.AreEqual(0.0f, testObject.transform.position.y, 0.1f);

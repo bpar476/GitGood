@@ -5,6 +5,10 @@ using System.Collections;
 using System;
 
 public class DirectionVersionableTest {
+    [SetUp]
+    public void SetUp() {
+        VersionManager.Reset();
+    }
 
     [UnityTest]
     public IEnumerator ShouldSetLocalScale() {
@@ -13,24 +17,22 @@ public class DirectionVersionableTest {
         VersionController testController = factory.createBinaryVersionable();
         GameObject testObject = testController.GetActiveVersion();
 
-        VersionManager versionManager = new GameObject().AddComponent<VersionManager>();
-
         Assert.AreEqual(1.0f, testObject.transform.localScale.x, 0.01f);
 
-        versionManager.Add(testController);
-        ICommit commit = versionManager.Commit("Add a box");
+        VersionManager.Instance().Add(testController);
+        ICommit commit = VersionManager.Instance().Commit("Add a box");
 
         yield return null;
 
         testObject.transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
         Assert.AreEqual(-1.0f, testObject.transform.localScale.x,  0.01f);
 
-        versionManager.Add(testController);
-        versionManager.Commit("Flip the box");
+        VersionManager.Instance().Add(testController);
+        VersionManager.Instance().Commit("Flip the box");
 
         yield return null;
 
-        versionManager.CheckoutCommit(commit);
+        VersionManager.Instance().CheckoutCommit(commit);
 
         yield return null;
 

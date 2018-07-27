@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class VersionControls : MonoBehaviour {
-	
-	public VersionManager versionManager;
 	public ConeDetector fov;
 	public string versionableTag;
 	public string previewTag;
@@ -15,7 +13,6 @@ public class VersionControls : MonoBehaviour {
 	private IOverlay overlay;
 
 	private void Start() {
-		versionManager = GameObject.FindWithTag("VersionManager").GetComponent<VersionManager>();
 		closestObjectDetector = GetComponent<ClosestObjectVisionObserver>();
 		fov.AddObserver(closestObjectDetector);
 		overlay = null;
@@ -23,51 +20,41 @@ public class VersionControls : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (versionManager.GetMergeWorker() != null) {
+		if (VersionManager.Instance().GetMergeWorker() != null) {
 			selectClosestPreview();
 			if (currentlySelectedObject != null && Input.GetKeyDown(KeyCode.P)) {
-				versionManager.GetMergeWorker().PickObject(currentlySelectedObject);
+				VersionManager.Instance().GetMergeWorker().PickObject(currentlySelectedObject);
 			}
 		} else {
 			selectVersionable();
 			if(currentlySelectedObject != null && Input.GetKeyDown(KeyCode.Q)) {
 				VersionController versionController = currentlySelectedObject.GetComponentInParent<VersionController>();
-				versionManager.Add(versionController);
+				VersionManager.Instance().Add(versionController);
 				Debug.Log(currentlySelectedObject == gameObject ? "Adding player" : "Adding closest object");
 				Debug.Log(currentlySelectedObject);
-			} else if (Input.GetKeyDown(KeyCode.E)) {
-				versionManager.Commit("Commit message");
-				Debug.Log("Commiting staged objects");
 			} else if(Input.GetKeyDown(KeyCode.R)) {
-				versionManager.ResetToHead();
+				VersionManager.Instance().ResetToHead();
 				Debug.Log("Resetting to HEAD");
 			} else if(Input.GetKeyDown(KeyCode.J)) {
-				if (!versionManager.HasBranch("demo")) {
-					versionManager.CreateBranch("demo");
+				if (!VersionManager.Instance().HasBranch("demo")) {
+					VersionManager.Instance().CreateBranch("demo");
 					Debug.Log("Creating branch 'demo'");
 				}
-				versionManager.Checkout("demo");
+				VersionManager.Instance().Checkout("demo");
 				Debug.Log("Checkout demo");
 			} else if(Input.GetKeyDown(KeyCode.K)) {
-				versionManager.Checkout("master");
+				VersionManager.Instance().Checkout("master");
 				Debug.Log("Checkout master");
 			}
 		}
 
-		if(Input.GetKeyDown(KeyCode.O)) {
+		if (Input.GetKeyDown(KeyCode.O)) {
 			if (overlay != null) {
 				overlay.Destroy();
 				overlay = null;
 			}
 			else {
-				overlay = new Overlay(versionManager.GetHead(), Color.red);
-			}
-		} else if(Input.GetKeyDown(KeyCode.M)) {
-			if (versionManager.GetMergeWorker() != null) {
-				versionManager.ResolveMerge();
-			}
-			else {
-				versionManager.Merge(versionManager.LookupBranch("demo"));
+				overlay = new Overlay(VersionManager.Instance().GetHead(), Color.red);
 			}
 		}
 	}
