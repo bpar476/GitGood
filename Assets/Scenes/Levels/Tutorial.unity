@@ -309,6 +309,11 @@ Prefab:
       propertyPath: m_Name
       value: Door1
       objectReference: {fileID: 0}
+    - target: {fileID: 114720755694634508, guid: efe52982cb2cd6d4ba785c51eb525be8,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efe52982cb2cd6d4ba785c51eb525be8, type: 2}
   m_IsPrefabParent: 0
@@ -388,7 +393,7 @@ MonoBehaviour:
   notifier: {fileID: 1974774605}
   VersionManager: {fileID: 591290366}
   numberToTrigger: 1
-  oneShot: 1
+  oneShot: 0
 --- !u!1001 &409647391
 Prefab:
   m_ObjectHideFlags: 0
@@ -491,6 +496,7 @@ GameObject:
   m_Component:
   - component: {fileID: 433565313}
   - component: {fileID: 433565314}
+  - component: {fileID: 433565316}
   m_Layer: 0
   m_Name: CommittingTrigger
   m_TagString: Untagged
@@ -525,7 +531,22 @@ MonoBehaviour:
   flowchart: {fileID: 758223079}
   oneShot: 1
   message: tutorial_commit
-  trigger: {fileID: 1522876153}
+  trigger: {fileID: 433565316}
+--- !u!114 &433565316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 433565312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d423cc07aec4248a989af80e672623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collector: {fileID: 1522876153}
+  baseSignal: {fileID: 1417138276}
+  oneShot: 1
+  timesToTrigger: 1
 --- !u!1 &437100973
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,6 +639,7 @@ GameObject:
   m_Component:
   - component: {fileID: 473008266}
   - component: {fileID: 473008267}
+  - component: {fileID: 473008268}
   m_Layer: 0
   m_Name: BranchingTrigger2
   m_TagString: Untagged
@@ -652,7 +674,22 @@ MonoBehaviour:
   flowchart: {fileID: 758223079}
   oneShot: 1
   message: tutorial_branch_1
-  trigger: {fileID: 377839210}
+  trigger: {fileID: 473008268}
+--- !u!114 &473008268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 473008265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d423cc07aec4248a989af80e672623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collector: {fileID: 377839210}
+  baseSignal: {fileID: 1353474461}
+  oneShot: 1
+  timesToTrigger: 1
 --- !u!4 &490950891 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4140606267191210, guid: d6a0c368594efd445bb9093d5e27b4ee,
@@ -2723,6 +2760,7 @@ GameObject:
   m_Component:
   - component: {fileID: 967717129}
   - component: {fileID: 967717130}
+  - component: {fileID: 967717132}
   m_Layer: 0
   m_Name: UnstagingTrigger
   m_TagString: Untagged
@@ -2757,7 +2795,22 @@ MonoBehaviour:
   flowchart: {fileID: 758223079}
   oneShot: 1
   message: tutorial_unstage
-  trigger: {fileID: 1015038212}
+  trigger: {fileID: 967717132}
+--- !u!114 &967717132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 967717128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d423cc07aec4248a989af80e672623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collector: {fileID: 1015038212}
+  baseSignal: {fileID: 949706359}
+  oneShot: 1
+  timesToTrigger: 1
 --- !u!1 &989882146
 GameObject:
   m_ObjectHideFlags: 1
@@ -2843,7 +2896,7 @@ MonoBehaviour:
   numberToTrigger: 1
   targetObject: {fileID: 1807132010}
   versionManager: {fileID: 591290366}
-  oneShot: 1
+  oneShot: 0
 --- !u!1 &1055591062
 GameObject:
   m_ObjectHideFlags: 0
@@ -3014,6 +3067,7 @@ MonoBehaviour:
   targetBranch: master
   targetObject: {fileID: 1807132010}
   versionManager: {fileID: 591290366}
+  oneShot: 0
 --- !u!1001 &1178084693
 Prefab:
   m_ObjectHideFlags: 0
@@ -3060,8 +3114,7 @@ Prefab:
     - target: {fileID: 1197213636616928, guid: 7a8261a8c9ad82b4f95357e81ca3576f, type: 2}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
-        type: 0}
+      objectReference: {fileID: 0}
     - target: {fileID: 4856399245948300, guid: 7a8261a8c9ad82b4f95357e81ca3576f, type: 2}
       propertyPath: m_LocalPosition.x
       value: 30
@@ -3498,6 +3551,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1353474459}
   - component: {fileID: 1353474460}
+  - component: {fileID: 1353474461}
   m_Layer: 0
   m_Name: BranchingTrigger
   m_TagString: Untagged
@@ -3532,7 +3586,22 @@ MonoBehaviour:
   flowchart: {fileID: 758223079}
   oneShot: 1
   message: tutorial_branch_0
-  trigger: {fileID: 1117626568}
+  trigger: {fileID: 1353474461}
+--- !u!114 &1353474461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1353474458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d423cc07aec4248a989af80e672623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collector: {fileID: 1117626568}
+  baseSignal: {fileID: 433565316}
+  oneShot: 1
+  timesToTrigger: 1
 --- !u!1 &1417138273
 GameObject:
   m_ObjectHideFlags: 0
@@ -3542,6 +3611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1417138274}
   - component: {fileID: 1417138275}
+  - component: {fileID: 1417138276}
   m_Layer: 0
   m_Name: StagePlayerTrigger
   m_TagString: Untagged
@@ -3576,7 +3646,22 @@ MonoBehaviour:
   flowchart: {fileID: 758223079}
   oneShot: 1
   message: tutorial_stage_player
-  trigger: {fileID: 1776090844}
+  trigger: {fileID: 1417138276}
+--- !u!114 &1417138276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1417138273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d423cc07aec4248a989af80e672623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collector: {fileID: 1776090844}
+  baseSignal: {fileID: 967717132}
+  oneShot: 1
+  timesToTrigger: 1
 --- !u!1001 &1422105804
 Prefab:
   m_ObjectHideFlags: 0
@@ -3664,6 +3749,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1507087126}
   - component: {fileID: 1507087127}
+  - component: {fileID: 1507087128}
   m_Layer: 0
   m_Name: MergingTrigger1
   m_TagString: Untagged
@@ -3698,7 +3784,22 @@ MonoBehaviour:
   flowchart: {fileID: 758223079}
   oneShot: 1
   message: fast_forward
-  trigger: {fileID: 1773757191}
+  trigger: {fileID: 1507087128}
+--- !u!114 &1507087128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1507087125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d423cc07aec4248a989af80e672623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collector: {fileID: 1773757191}
+  baseSignal: {fileID: 1708364474}
+  oneShot: 1
+  timesToTrigger: 1
 --- !u!1 &1522876151
 GameObject:
   m_ObjectHideFlags: 0
@@ -3743,7 +3844,7 @@ MonoBehaviour:
   numberToTrigger: 1
   targetObject: {fileID: 664873571}
   versionManager: {fileID: 591290366}
-  oneShot: 1
+  oneShot: 0
 --- !u!4 &1590544728 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4300734894093468, guid: 994fa000a0e34564c86326827f9b6be4,
@@ -5660,6 +5761,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1708364472}
   - component: {fileID: 1708364473}
+  - component: {fileID: 1708364474}
   m_Layer: 0
   m_Name: BranchingTrigger3
   m_TagString: Untagged
@@ -5694,7 +5796,22 @@ MonoBehaviour:
   flowchart: {fileID: 758223079}
   oneShot: 1
   message: tutorial_branch_2
-  trigger: {fileID: 2127357904}
+  trigger: {fileID: 1708364474}
+--- !u!114 &1708364474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1708364471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d423cc07aec4248a989af80e672623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collector: {fileID: 2127357904}
+  baseSignal: {fileID: 473008268}
+  oneShot: 1
+  timesToTrigger: 1
 --- !u!1 &1773757189
 GameObject:
   m_ObjectHideFlags: 0
@@ -5737,7 +5854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notifier: {fileID: 917366021}
   versionManager: {fileID: 591290366}
-  oneShot: 1
+  oneShot: 0
   numberToTrigger: 1
   targetBranch: master
 --- !u!1 &1776090842
@@ -5784,7 +5901,7 @@ MonoBehaviour:
   numberToTrigger: 1
   targetObject: {fileID: 1807132010}
   versionManager: {fileID: 591290366}
-  oneShot: 1
+  oneShot: 0
 --- !u!114 &1807132010 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114582680820456656, guid: 7a8261a8c9ad82b4f95357e81ca3576f,
@@ -6696,3 +6813,4 @@ MonoBehaviour:
   targetBranch: demo
   targetObject: {fileID: 1807132010}
   versionManager: {fileID: 591290366}
+  oneShot: 0
