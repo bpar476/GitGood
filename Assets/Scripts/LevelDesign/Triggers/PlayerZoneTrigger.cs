@@ -9,14 +9,16 @@ public class PlayerZoneTrigger : Triggerable {
 	public int timesToTrigger = 1;
 
 	private int count;
+	private bool triggered = false;
 
 	private void OnTriggerEnter2D(Collider2D other) {
-		if (other.gameObject.tag.Equals("Player")) {
+		if (!triggered && other.gameObject.tag.Equals("Player")) {
 			count++;
 			if (count == timesToTrigger) {
 				this.NotifyObservers();
+				count = 0;
 				if (oneShot) {
-					this.enabled = false;
+					triggered = true;
 				}
 			}
 		}

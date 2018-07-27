@@ -6,10 +6,9 @@ public class CompositeTrigger : Triggerable {
 
     public List<Condition> conditions;
     public bool oneShot = true;
+    public int timesToTrigger = 1;
 
-    private void Awake() {
-        conditions = new List<Condition>();
-    }
+    private int count = 0;
 
     private void Update() {
         bool state = true;
@@ -17,9 +16,13 @@ public class CompositeTrigger : Triggerable {
             state &= condition.getState();
         }
         if (state) {
-            NotifyObservers();
-            if (oneShot) {
-                this.enabled = false;
+            count++;
+            if (count == timesToTrigger) {
+                count = 0;
+                NotifyObservers();
+                if (oneShot) {
+                    this.enabled = false;
+                }
             }
         }
     }

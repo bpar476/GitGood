@@ -12,13 +12,14 @@ public class CommitTrigger : Triggerable, ITriggerObserver {
     public bool oneShot = true;
 
     private int count = 0;
+    private bool triggered = false;
 
     private void Start() {
         notifier.AddObserver(this);
     }
 
     public void HandleTrigger(bool state) {
-        if (state) {
+        if (!triggered && state) {
             if (targetObject == null && targetBranch == "") {
                 NotifyObservers();
             } else {
@@ -29,6 +30,7 @@ public class CommitTrigger : Triggerable, ITriggerObserver {
                             count++;
                             if (count == numberToTrigger) {
                                 NotifyObservers();
+                                count = 0;
                                 if (oneShot) {
                                     this.enabled = false;
                                 }

@@ -20,6 +20,7 @@ public class NewBranchTrigger : Triggerable, ITriggerObserver {
 			count++;
 			if (count == numberToTrigger) {
 				NotifyObservers();
+				count = 0;
 				if (oneShot) {
 					this.enabled = false;
 				}

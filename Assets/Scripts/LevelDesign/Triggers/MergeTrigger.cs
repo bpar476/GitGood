@@ -11,6 +11,7 @@ public class MergeTrigger : Triggerable, ITriggerObserver {
 
     private int triggerCount = 0;
     private bool playerInZone;
+    public bool oneShot;
 
 	private void Start() {
 		notifier.AddObserver(this);
@@ -23,6 +24,10 @@ public class MergeTrigger : Triggerable, ITriggerObserver {
                 triggerCount++;
                 if (triggerCount == numberToTrigger) {
                     NotifyObservers();
+                    triggerCount = 0;
+                    if (oneShot) {
+                        this.enabled = false;
+                    }
                 }
             }
         }
