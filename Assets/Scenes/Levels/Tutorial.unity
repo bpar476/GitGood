@@ -146,6 +146,7 @@ Transform:
   - {fileID: 2127357903}
   - {fileID: 1773757190}
   - {fileID: 427809791}
+  - {fileID: 684066026}
   - {fileID: 1590544728}
   - {fileID: 490950891}
   - {fileID: 744773595}
@@ -1068,7 +1069,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4140606267191210, guid: d6a0c368594efd445bb9093d5e27b4ee, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1827765306449158, guid: d6a0c368594efd445bb9093d5e27b4ee, type: 2}
       propertyPath: m_Name
@@ -1083,6 +1084,64 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1422105804}
   m_Script: {fileID: 11500000, guid: d9f505fbfecfceb4aa69fe905b664c46, type: 3}
+--- !u!1 &684066025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 684066026}
+  - component: {fileID: 684066028}
+  - component: {fileID: 684066027}
+  m_Layer: 0
+  m_Name: MergingTutorial3Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &684066026
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 684066025}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 21740543}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &684066027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 684066025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608c8741258a90a45b804f313496bcab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &684066028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 684066025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 442c69f939e393542af1ff6da0bd0d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: {fileID: 1141077891}
+  oneShot: 0
+  timesToTrigger: 1
+  delegateTrigger: {fileID: 684066027}
+  targetObject: {fileID: 0}
+  intoMaster: 0
 --- !u!1 &696927386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,7 +1217,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 21740543}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &744773596
 MonoBehaviour:
@@ -1266,6 +1325,12 @@ GameObject:
   - component: {fileID: 758223143}
   - component: {fileID: 758223150}
   - component: {fileID: 758223151}
+  - component: {fileID: 758223153}
+  - component: {fileID: 758223156}
+  - component: {fileID: 758223155}
+  - component: {fileID: 758223154}
+  - component: {fileID: 758223152}
+  - component: {fileID: 758223157}
   m_Layer: 0
   m_Name: TutorialFlowchart
   m_TagString: Untagged
@@ -1286,7 +1351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: -732.87695, y: 12.546377}
+  scrollPos: {x: -1487.5139, y: -7.04125}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 347
@@ -1298,9 +1363,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 758223130}
+  - {fileID: 758223153}
   selectedCommands:
-  - {fileID: 758223142}
+  - {fileID: 758223152}
   variables: []
   description: 
   stepPause: 0
@@ -2975,6 +3040,140 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
+--- !u!114 &758223152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 100
+  indentLevel: 0
+  storyText: <Press M to resolve a conflicted merge when there are no conflicts remaining>
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 1841723293}
+--- !u!114 &758223153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: 1744.5762
+    y: 75.99999
+    width: 187.1134
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 90
+  blockName: Resolving Conflict
+  description: Teaches the player about merging. Starts with fast forwards
+  eventHandler: {fileID: 758223157}
+  commandList:
+  - {fileID: 758223156}
+  - {fileID: 758223155}
+  - {fileID: 758223154}
+  - {fileID: 758223152}
+--- !u!114 &758223154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 96
+  indentLevel: 0
+  storyText: You're ready to resolve the merge.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 95
+  indentLevel: 0
+  storyText: Now that you've picked the version that you want to bring into the master
+    branch, there are no more conflicts.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65d551a201c94bc79950076ff3eaf2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 94
+  indentLevel: 0
+  sayDialog: {fileID: 1653460352}
+--- !u!114 &758223157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7d417659cd54a6787f70f763950c34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentBlock: {fileID: 758223153}
+  message: merge_conflict_resolve
 --- !u!1 &802137978
 GameObject:
   m_ObjectHideFlags: 0
@@ -3225,7 +3424,7 @@ CanvasRenderer:
   m_GameObject: {fileID: 900255158}
 --- !u!114 &917366021 stripped
 MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114916875429862884, guid: 2e120c5b64f2768499fa78ec74630b8e,
+  m_PrefabParentObject: {fileID: 114677304989380544, guid: 2e120c5b64f2768499fa78ec74630b8e,
     type: 2}
   m_PrefabInternal: {fileID: 536530085}
   m_Script: {fileID: 11500000, guid: 22f64a85acbc20947b7c638970b913af, type: 3}
@@ -3592,6 +3791,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608c8741258a90a45b804f313496bcab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1141077891 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114916875429862884, guid: 2e120c5b64f2768499fa78ec74630b8e,
+    type: 2}
+  m_PrefabInternal: {fileID: 536530085}
+  m_Script: {fileID: 11500000, guid: 22f64a85acbc20947b7c638970b913af, type: 3}
 --- !u!1001 &1178084693
 Prefab:
   m_ObjectHideFlags: 0
@@ -3999,7 +4204,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4300734894093468, guid: 994fa000a0e34564c86326827f9b6be4, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1178299475908924, guid: 994fa000a0e34564c86326827f9b6be4, type: 2}
       propertyPath: m_Name
@@ -4297,6 +4502,7 @@ Transform:
   - {fileID: 1708364472}
   - {fileID: 1507087126}
   - {fileID: 2032444458}
+  - {fileID: 1800804930}
   m_Father: {fileID: 175043086}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6529,6 +6735,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608c8741258a90a45b804f313496bcab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1800804929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1800804930}
+  - component: {fileID: 1800804933}
+  - component: {fileID: 1800804932}
+  - component: {fileID: 1800804931}
+  m_Layer: 0
+  m_Name: MergingTrigger3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1800804930
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1800804929}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1494603082}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1800804931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1800804929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608c8741258a90a45b804f313496bcab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1800804932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1800804929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d423cc07aec4248a989af80e672623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: {fileID: 427809793}
+  oneShot: 1
+  timesToTrigger: 1
+  delegateTrigger: {fileID: 1800804931}
+  baseSignal: {fileID: 2032444461}
+--- !u!114 &1800804933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1800804929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9dd831615ee22943ac7f0c34fde23ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: {fileID: 1800804931}
+  oneShot: 1
+  timesToTrigger: 1
+  flowchart: {fileID: 758223079}
+  message: merge_conflict_resolve
 --- !u!114 &1807132010 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114582680820456656, guid: 7a8261a8c9ad82b4f95357e81ca3576f,

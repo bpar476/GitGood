@@ -13,7 +13,9 @@ public class MergeWorker : IMergeWorker
 
     private IDictionary<VersionController, IVersion> stagingArea;
 
-    public MergeWorker(IBranch baseBranch, IBranch featureBranch) {
+    private TriggerManager pickTrigger;
+
+    public MergeWorker(IBranch baseBranch, IBranch featureBranch, TriggerManager trigger) {
         if (baseBranch == null || featureBranch == null) {
             throw new Exception("Branch can not be null");
         }
@@ -23,6 +25,9 @@ public class MergeWorker : IMergeWorker
         this.mergeType = LineageAnalyser.Compare(this.baseBranch.GetTip(), this.featureBranch.GetTip());
 
         stagingArea = new Dictionary<VersionController, IVersion>();
+
+        pickTrigger = trigger;
+
         Initialise();
 
         UpdateStatus();
@@ -127,6 +132,10 @@ public class MergeWorker : IMergeWorker
 
         this.DestroyOverlays();
         this.RenderDiff();
+
+        if (pickTrigger != null) {
+            pickTrigger.Trigger();
+        }
     }
 
     public void RenderDiff() {

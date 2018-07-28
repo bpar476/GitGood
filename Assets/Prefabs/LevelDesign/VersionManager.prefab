@@ -85,6 +85,22 @@ GameObject:
   - component: {fileID: 4774403513085760}
   - component: {fileID: 114916875429862884}
   m_Layer: 0
+  m_Name: PickInMergeTriggerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1915161659313204
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4214496577525480}
+  - component: {fileID: 114677304989380544}
+  m_Layer: 0
   m_Name: CheckoutTriggerManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,6 +139,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4214496577525480
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1915161659313204}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4370901779807434}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4370901779807434
 Transform:
   m_ObjectHideFlags: 1
@@ -138,6 +167,7 @@ Transform:
   - {fileID: 4556740946182748}
   - {fileID: 4995233615796466}
   - {fileID: 4736953988524504}
+  - {fileID: 4214496577525480}
   - {fileID: 4774403513085760}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -205,7 +235,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4370901779807434}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4995233615796466
 Transform:
@@ -236,13 +266,25 @@ MonoBehaviour:
   addTrigger: {fileID: 114700388397449692}
   unstageTrigger: {fileID: 114896458693287298}
   branchTrigger: {fileID: 114818947659512818}
-  checkoutTrigger: {fileID: 114916875429862884}
+  checkoutTrigger: {fileID: 114677304989380544}
+  pickTrigger: {fileID: 114916875429862884}
 --- !u!114 &114627647071211760
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1919454900092126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22f64a85acbc20947b7c638970b913af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114677304989380544
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1915161659313204}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22f64a85acbc20947b7c638970b913af, type: 3}

@@ -32,6 +32,7 @@ public class VersionManager : MonoBehaviour {
 	public TriggerManager unstageTrigger;
 	public TriggerManager branchTrigger;
 	public TriggerManager checkoutTrigger;
+	public TriggerManager pickTrigger;
 
 	IList<VersionController> trackedObjects;
 	IList<VersionController> stagingArea;
@@ -391,7 +392,7 @@ public class VersionManager : MonoBehaviour {
 			throw new Exception("Already doing a merge, resolve this first");
 		}
 
-		IMergeWorker mw = new MergeWorker(activeBranch, featureBranch);
+		IMergeWorker mw = new MergeWorker(activeBranch, featureBranch, pickTrigger);
 		Relationship mergeType = mw.GetMergeType();
 
 		if (mw.GetMergeType() == Relationship.FastForward) {
