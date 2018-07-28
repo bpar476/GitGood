@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class PositiveTriggerObserver : TriggerObserver {
 
-	public bool oneShot;
-	public int timesToTrigger;
+	public bool oneShot = true;
+	public int timesToTrigger = 1;
 
 	private int count = 0;
 	private bool triggerAgain = true;
