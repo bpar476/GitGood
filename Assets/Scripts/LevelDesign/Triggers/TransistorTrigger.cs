@@ -17,12 +17,10 @@ public class TransistorTrigger : Triggerable, ITriggerObserver {
 	}
 
 	public void HandleTrigger(bool state) {
-		Debug.Log("Transistor in HandleTrigger");
 		if (baseSignal.getState()) {
 			count++;
 			if (count == timesToTrigger) {
 				count = 0;
-				Debug.Log("Transistor is handling triggering");
 				NotifyObservers(state);
 				if (oneShot) {
 					this.enabled = false;
