@@ -8,9 +8,7 @@ public class StageTrigger : DelegateTrigger {
     public VersionManager versionManager;
 
     protected override bool shouldFire() {
-        Debug.Log("In stage trigger shouldFire");
         if (versionManager.GetLastStagedObject().Equals(targetObject)) {
-            Debug.Log("Stage trigger should fire");
             return true;
         }
         return false;
