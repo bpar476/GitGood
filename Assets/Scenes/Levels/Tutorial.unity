@@ -3800,7 +3800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 2016465561}
-  oneShot: 1
+  oneShot: 0
   timesToTrigger: 1
   delegateTrigger: {fileID: 1036257473}
   baseSignal: {fileID: 1800804931}
