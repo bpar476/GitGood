@@ -6,7 +6,6 @@ using Fungus;
 public class FlowchartTrigger : MonoBehaviour, ITriggerObserver {
 
 	public Flowchart flowchart;
-	public bool oneShot;
 	public string message;
 	public Triggerable trigger;
 
@@ -19,9 +18,6 @@ public class FlowchartTrigger : MonoBehaviour, ITriggerObserver {
 	public void HandleTrigger(bool state) {
 		if (state) {
 			flowchart.SendFungusMessage (message);
-			if (oneShot) {
-				this.enabled = false;
-			}
 		}
 	}
 }
