@@ -73,7 +73,10 @@ public class VersionManager : MonoBehaviour {
 		}
 
 		lastStagedObject = controller;
-		addTrigger.Trigger();
+
+		if (addTrigger != null) {
+			addTrigger.Trigger();
+		}
 	}
 
 	public void Add(VersionController controller, IVersion version) {
@@ -87,7 +90,9 @@ public class VersionManager : MonoBehaviour {
 		}
 
 		lastStagedObject = controller;
-		addTrigger.Trigger();
+		if (addTrigger != null) {
+			addTrigger.Trigger();
+		}
 	}
 
 	public VersionController GetLastStagedObject() {
@@ -107,7 +112,10 @@ public class VersionManager : MonoBehaviour {
 			stagingArea.Remove(controller);
 			controller.HideStagedState();
 			lastUnstagedObject = controller;
-			unstageTrigger.Trigger();
+
+			if (unstageTrigger != null) {
+				unstageTrigger.Trigger();
+			}
 		}
 	}
 
@@ -148,7 +156,10 @@ public class VersionManager : MonoBehaviour {
 			activeBranch.UpdateTip(activeCommit);
 		}
 		stagingArea.Clear();
-		commitTrigger.Trigger();
+
+		if (commitTrigger != null) {
+			commitTrigger.Trigger();
+		}
 
 		return commit;
 	}
@@ -244,7 +255,10 @@ public class VersionManager : MonoBehaviour {
 		} else {
 			this.isDetached = false;
 		}
-		checkoutTrigger.Trigger();
+
+		if (checkoutTrigger != null) {
+			checkoutTrigger.Trigger();
+		}
 	}
 
 	/// <summary>
@@ -296,7 +310,9 @@ public class VersionManager : MonoBehaviour {
 		IBranch branch = new Branch(branchName, activeCommit);
 		branches.Add(branchName, branch);
 
-		branchTrigger.Trigger();
+		if (branchTrigger != null) {
+			branchTrigger.Trigger();
+		}
 
 		return branch;
 	}
@@ -383,7 +399,11 @@ public class VersionManager : MonoBehaviour {
 			activeBranch.UpdateTip(featureBranch.GetTip());
 			activeCommit = activeBranch.GetTip();
 			LoadStateOfCommit(activeCommit);
-			mergeTrigger.Trigger();
+
+			if (mergeTrigger != null) {
+				mergeTrigger.Trigger();
+			}
+
 			return mergeType;
 		}
 

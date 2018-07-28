@@ -2,30 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Triggerable : Condition {
+public class Triggerable : Condition {
 
-	protected HashSet<ITriggerObserver> observers;
+	protected HashSet<TriggerObserver> observers;
 
 	private void Awake() {
-		observers = new HashSet<ITriggerObserver>();
+		observers = new HashSet<TriggerObserver>();
 	}
 
-	public void AddObserver(ITriggerObserver observer) {
+	public void AddObserver(TriggerObserver observer) {
 		observers.Add(observer);
 	}
 
-	public void RemoveObserver(ITriggerObserver observer) {
+	public void RemoveObserver(TriggerObserver observer) {
 		observers.Remove(observer);
 	}
 
-	protected void NotifyObservers() {
+	public void NotifyObservers() {
 		NotifyObservers(true);
 	}
 
-	protected void NotifyObservers(bool state) {
+	public void NotifyObservers(bool state) {
 		condition = state;
-		foreach (ITriggerObserver observer in observers) {
-			observer.HandleTrigger(state);
+		foreach (TriggerObserver observer in observers) {
+			observer.Triggered(state);
 		}
 	}
 }

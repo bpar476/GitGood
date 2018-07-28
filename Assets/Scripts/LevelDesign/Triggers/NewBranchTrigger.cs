@@ -2,29 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBranchTrigger : Triggerable, ITriggerObserver {
+public class NewBranchTrigger : DelegateTrigger {
 
-	public TriggerManager notifier;
-	public VersionManager VersionManager;
-	public int numberToTrigger = 1;
-	public bool oneShot = true;
-
-	private int count = 0;
-
-	private void Start() {
-        notifier.AddObserver(this);
+    protected override bool shouldFire() {
+    	return true;
     }
-
-	public void HandleTrigger(bool state) {
-		if (state) {
-			count++;
-			if (count == numberToTrigger) {
-				NotifyObservers();
-				count = 0;
-				if (oneShot) {
-					this.enabled = false;
-				}
-			}
-		}
-	}
 }

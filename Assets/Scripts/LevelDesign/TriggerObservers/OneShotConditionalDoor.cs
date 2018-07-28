@@ -2,27 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OneShotConditionalDoor : MonoBehaviour, ITriggerObserver {
+// TODO: Not actually forced to be oneshot, need to refactor
+public class OneShotConditionalDoor : PositiveTriggerObserver {
 
-	public Triggerable trigger;
 	public Animator doorAnimator;
 	public Collider2D closeZone;
 
-	private bool hasTriggered;
-
-	// Use this for initialization
-	void Start () {
-		trigger.AddObserver(this);
-		hasTriggered = false;
-	}
-
-	public void HandleTrigger(bool state) {
-		if (state) {
-			if (!hasTriggered) {
-				doorAnimator.SetBool("open", true);
-			}
-			hasTriggered = true;
-		}
+	protected override void HandleTrigger(bool state) {
+		doorAnimator.SetBool("open", true);
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {

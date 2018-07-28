@@ -3,21 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fungus;
 
-public class FlowchartTrigger : MonoBehaviour, ITriggerObserver {
+public class FlowchartTrigger : PositiveTriggerObserver {
 
 	public Flowchart flowchart;
 	public string message;
-	public Triggerable trigger;
 
-	private bool triggered;
-
-	private void Start() {
-		trigger.AddObserver(this);
-	}
-
-	public void HandleTrigger(bool state) {
-		if (state) {
-			flowchart.SendFungusMessage (message);
-		}
+	protected override void HandleTrigger(bool state) {
+		flowchart.SendFungusMessage (message);
 	}
 }

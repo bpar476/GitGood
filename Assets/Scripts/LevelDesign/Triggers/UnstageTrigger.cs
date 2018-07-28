@@ -2,33 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnstageTrigger : Triggerable, ITriggerObserver {
+public class UnstageTrigger : DelegateTrigger {
 
-    public TriggerManager notifier;
-    public int numberToTrigger;
     public VersionController targetObject;
     public VersionManager versionManager;
-    public bool oneShot = true;
 
-    private int count = 0;
-
-    private void Start() {
-        notifier.AddObserver(this);
-    }
-
-    public void HandleTrigger(bool state) {
-        if (state) {
-            VersionController lastUnstagedObject = versionManager.GetLastUnstagedObject();
-            if (lastUnstagedObject != null && lastUnstagedObject.Equals(targetObject)) {
-                count++;
-                if (count == numberToTrigger) {
-                    NotifyObservers();
-                    count = 0;
-                    if (oneShot) {
-                        this.enabled = false;
-                    }
-                }
-            }
+    protected override bool shouldFire() {
+        VersionController lastUnstagedObject = versionManager.GetLastUnstagedObject();
+        if (lastUnstagedObject != null && lastUnstagedObject.Equals(targetObject)) {
+            return true;
         }
+        
+        return false;
     }
 }
