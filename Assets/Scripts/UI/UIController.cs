@@ -5,16 +5,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UIController : Singleton<UIController> {
-	protected override void Awake() {
-		base.Awake();
-	}
-
 	public GameObject textButttonDialogTemplate;
-	
-	void Start () {
-		
-	}
-	
+
+	private UIController() {
+
+    }
+
 	void Update () {
 		// Branching
 		if (Input.GetKeyDown(KeyCode.Y)) {
