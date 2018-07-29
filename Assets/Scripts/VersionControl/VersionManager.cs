@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +13,8 @@ public class VersionManager : MonoBehaviour {
 		return singletonInstance;
 	}
 	public static void Reset() {
-		singletonInstance = new VersionManager();
+		singletonInstance = null;
+		new GameObject().AddComponent<VersionManager>();
 	}
 
 	void Awake() {
