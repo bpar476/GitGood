@@ -4,25 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIController : MonoBehaviour {
-	private static UIController singletonInstance;
-	void Awake() {
-		if (singletonInstance == null) {
-			singletonInstance = this;
-		}
-		else if (singletonInstance != this) {
-			Destroy(gameObject);
-			return;
-		}
-	}
-	public static UIController Instance() {
-		if (singletonInstance == null) {
-			UIController.Reset();
-		}
-		return singletonInstance;
-	}
-	public static void Reset() {
-		singletonInstance = new UIController();
+public class UIController : Singleton<UIController> {
+	protected override void Awake() {
+		base.Awake();
 	}
 
 	public GameObject textButttonDialogTemplate;
@@ -32,7 +16,7 @@ public class UIController : MonoBehaviour {
 	}
 	
 	void Update () {
-		// Braching
+		// Branching
 		if (Input.GetKeyDown(KeyCode.Y)) {
 			DisplayBranchDialog();
 		}

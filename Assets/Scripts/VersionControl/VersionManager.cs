@@ -3,28 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VersionManager : MonoBehaviour {
-	// Singleton
-	private static VersionManager singletonInstance;
-	public static VersionManager Instance() {
-		if (singletonInstance == null) {
-			VersionManager.Reset();
-		}
-		return singletonInstance;
-	}
-	public static void Reset() {
-		singletonInstance = null;
-		new GameObject().AddComponent<VersionManager>();
-	}
-
-	void Awake() {
-		if (singletonInstance == null) {
-			singletonInstance = this;
-		}
-		else if (singletonInstance != this) {
-			Destroy(gameObject);
-			return;
-		}
+public class VersionManager : Singleton<VersionManager> {
+	protected override void Awake() {
+		base.Awake();
 	}
 
 	public TriggerManager mergeTrigger;
