@@ -8,7 +8,8 @@ public class HiddenDoor : TriggerObserver {
 
 	private bool hidden = true;
 
-	private void Start() {
+	protected override void Start() {
+		base.Start();
 		door.gameObject.SetActive(false);
 	}
 

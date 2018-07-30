@@ -4,7 +4,7 @@ public abstract class TriggerObserver : MonoBehaviour {
 
 	public Triggerable trigger;
 
-	private void Start() {
+	protected virtual void Start() {
 		trigger.AddObserver(this);
 	}
 
