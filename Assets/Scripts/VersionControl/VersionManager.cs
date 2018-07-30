@@ -26,12 +26,23 @@ public class VersionManager : MonoBehaviour {
 		}
 	}
 
+	public TriggerManager mergeTrigger;
+	public TriggerManager commitTrigger;
+	public TriggerManager addTrigger;
+	public TriggerManager unstageTrigger;
+	public TriggerManager branchTrigger;
+	public TriggerManager checkoutTrigger;
+	public TriggerManager pickTrigger;
+
 	IList<VersionController> trackedObjects;
 	IList<VersionController> stagingArea;
 	private IDictionary<string, IBranch> branches;
 	private ICommit activeCommit;
 	private IBranch activeBranch;
 	private bool isDetached;
+
+	private VersionController lastStagedObject;
+	private VersionController lastUnstagedObject;
 
 	private IMergeWorker mw;
 
@@ -61,6 +72,12 @@ public class VersionManager : MonoBehaviour {
 		foreach(VersionController stagedController in stagingArea) {
 			stagedController.ShowStagedState();
 		}
+
+		lastStagedObject = controller;
+
+		if (addTrigger != null) {
+			addTrigger.Trigger();
+		}
 	}
 
 	public void Add(VersionController controller, IVersion version) {
@@ -72,6 +89,19 @@ public class VersionManager : MonoBehaviour {
 		foreach(VersionController stagedController in stagingArea) {
 			stagedController.ShowStagedState();
 		}
+
+		lastStagedObject = controller;
+		if (addTrigger != null) {
+			addTrigger.Trigger();
+		}
+	}
+
+	public VersionController GetLastStagedObject() {
+		if (stagingArea.Contains(lastStagedObject)) {
+			return lastStagedObject;
+		} else {
+			return null;
+		}
 	}
 
 	/// <summary>
@@ -81,7 +111,17 @@ public class VersionManager : MonoBehaviour {
 	public void Unstage(VersionController controller) {
 		if (stagingArea.Contains(controller)) {
 			stagingArea.Remove(controller);
+			controller.HideStagedState();
+			lastUnstagedObject = controller;
+
+			if (unstageTrigger != null) {
+				unstageTrigger.Trigger();
+			}
 		}
+	}
+
+	public VersionController GetLastUnstagedObject() {
+		return lastUnstagedObject;
 	}
 
 	/// <summary>
@@ -117,6 +157,10 @@ public class VersionManager : MonoBehaviour {
 			activeBranch.UpdateTip(activeCommit);
 		}
 		stagingArea.Clear();
+
+		if (commitTrigger != null) {
+			commitTrigger.Trigger();
+		}
 
 		return commit;
 	}
@@ -212,6 +256,10 @@ public class VersionManager : MonoBehaviour {
 		} else {
 			this.isDetached = false;
 		}
+
+		if (checkoutTrigger != null) {
+			checkoutTrigger.Trigger();
+		}
 	}
 
 	/// <summary>
@@ -262,6 +310,10 @@ public class VersionManager : MonoBehaviour {
 
 		IBranch branch = new Branch(branchName, activeCommit);
 		branches.Add(branchName, branch);
+
+		if (branchTrigger != null) {
+			branchTrigger.Trigger();
+		}
 
 		return branch;
 	}
@@ -340,7 +392,7 @@ public class VersionManager : MonoBehaviour {
 			throw new Exception("Already doing a merge, resolve this first");
 		}
 
-		IMergeWorker mw = new MergeWorker(activeBranch, featureBranch);
+		IMergeWorker mw = new MergeWorker(activeBranch, featureBranch, pickTrigger);
 		Relationship mergeType = mw.GetMergeType();
 
 		if (mw.GetMergeType() == Relationship.FastForward) {
@@ -348,6 +400,11 @@ public class VersionManager : MonoBehaviour {
 			activeBranch.UpdateTip(featureBranch.GetTip());
 			activeCommit = activeBranch.GetTip();
 			LoadStateOfCommit(activeCommit);
+
+			if (mergeTrigger != null) {
+				mergeTrigger.Trigger();
+			}
+
 			return mergeType;
 		}
 
@@ -381,6 +438,10 @@ public class VersionManager : MonoBehaviour {
 
 		this.mw.End();
 		this.mw = null;
+
+		if (mergeTrigger != null) {
+			mergeTrigger.Trigger();
+		}
 		return mergeCommit;
 	}
 

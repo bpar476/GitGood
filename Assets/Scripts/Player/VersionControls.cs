@@ -29,7 +29,11 @@ public class VersionControls : MonoBehaviour {
 			selectVersionable();
 			if(currentlySelectedObject != null && Input.GetKeyDown(KeyCode.Q)) {
 				VersionController versionController = currentlySelectedObject.GetComponentInParent<VersionController>();
-				VersionManager.Instance().Add(versionController);
+				if (VersionManager.Instance().IsObjectStaged(versionController)) {
+					VersionManager.Instance().Unstage(versionController);
+				} else {
+					VersionManager.Instance().Add(versionController);
+				}
 				Debug.Log(currentlySelectedObject == gameObject ? "Adding player" : "Adding closest object");
 				Debug.Log(currentlySelectedObject);
 			} else if(Input.GetKeyDown(KeyCode.R)) {

@@ -72,6 +72,20 @@ public class Commit : ICommit {
         return this.objectData.ContainsKey(controller);
     }
 
+    public bool ObjectWasChangedInThisCommit(VersionController controller) {
+        if (ObjectIsTrackedInThisCommit(controller)) {
+            if (parent == null) {
+                return true;
+            } else if (!parent.ObjectIsTrackedInThisCommit(controller)) {
+                return true;
+            } else {
+                return !getObjectVersion(controller).Equals(parent.getObjectVersion(controller));
+            }
+        } else {
+            return false;
+        }
+    }
+
     /// <summary>
     /// Returns an IEnumerator over all the objects that are tracked in this commit
     /// </summary>
