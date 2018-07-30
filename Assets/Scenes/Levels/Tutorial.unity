@@ -177,9 +177,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 744773597}
+  delegateTrigger: {fileID: 73782670}
   oneShot: 1
   timesToTrigger: 1
-  delegateTrigger: {fileID: 73782670}
   baseSignal: {fileID: 2032444461}
 --- !u!114 &73782670
 MonoBehaviour:
@@ -461,9 +461,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 1974774605}
+  delegateTrigger: {fileID: 377839211}
   oneShot: 0
   timesToTrigger: 1
-  delegateTrigger: {fileID: 377839211}
 --- !u!114 &377839211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -568,9 +568,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 55531879}
+  delegateTrigger: {fileID: 427809793}
   oneShot: 0
   timesToTrigger: 1
-  delegateTrigger: {fileID: 427809793}
 --- !u!114 &427809793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -652,9 +652,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 1522876154}
+  delegateTrigger: {fileID: 433565315}
   oneShot: 1
   timesToTrigger: 1
-  delegateTrigger: {fileID: 433565315}
   baseSignal: {fileID: 1417138277}
 --- !u!1 &437100973
 GameObject:
@@ -798,9 +798,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 377839211}
+  delegateTrigger: {fileID: 473008269}
   oneShot: 1
   timesToTrigger: 1
-  delegateTrigger: {fileID: 473008269}
   baseSignal: {fileID: 1353474462}
 --- !u!114 &473008269
 MonoBehaviour:
@@ -1096,9 +1096,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 1141077891}
+  delegateTrigger: {fileID: 684066027}
   oneShot: 0
   timesToTrigger: 1
-  delegateTrigger: {fileID: 684066027}
   targetObject: {fileID: 0}
   intoMaster: 0
 --- !u!1 &696927386
@@ -1190,9 +1190,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 55531879}
+  delegateTrigger: {fileID: 744773597}
   oneShot: 0
   timesToTrigger: 1
-  delegateTrigger: {fileID: 744773597}
 --- !u!114 &744773597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3601,9 +3601,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 1015038213}
+  delegateTrigger: {fileID: 967717131}
   oneShot: 1
   timesToTrigger: 1
-  delegateTrigger: {fileID: 967717131}
   baseSignal: {fileID: 949706359}
 --- !u!1 &989882146
 GameObject:
@@ -3688,9 +3688,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 438969082}
+  delegateTrigger: {fileID: 1015038213}
   oneShot: 0
   timesToTrigger: 1
-  delegateTrigger: {fileID: 1015038213}
   targetObject: {fileID: 1807132010}
   versionManager: {fileID: 591290366}
 --- !u!114 &1015038213
@@ -3758,9 +3758,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 2016465561}
-  oneShot: 0
-  timesToTrigger: 1
   delegateTrigger: {fileID: 1036257473}
+  oneShot: 1
+  timesToTrigger: 1
   baseSignal: {fileID: 1800804931}
 --- !u!114 &1036257475
 MonoBehaviour:
@@ -3945,9 +3945,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 729109453}
+  delegateTrigger: {fileID: 1117626569}
   oneShot: 0
   timesToTrigger: 1
-  delegateTrigger: {fileID: 1117626569}
   targetBranch: master
   targetObject: {fileID: 1807132010}
   versionManager: {fileID: 591290366}
@@ -4508,9 +4508,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 1117626569}
+  delegateTrigger: {fileID: 1353474462}
   oneShot: 1
   timesToTrigger: 1
-  delegateTrigger: {fileID: 1353474462}
   baseSignal: {fileID: 433565315}
 --- !u!114 &1353474462
 MonoBehaviour:
@@ -4582,9 +4582,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 1776090845}
+  delegateTrigger: {fileID: 1417138277}
   oneShot: 1
   timesToTrigger: 1
-  delegateTrigger: {fileID: 1417138277}
   baseSignal: {fileID: 967717131}
 --- !u!114 &1417138277
 MonoBehaviour:
@@ -4746,9 +4746,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 1773757192}
+  delegateTrigger: {fileID: 1507087129}
   oneShot: 1
   timesToTrigger: 1
-  delegateTrigger: {fileID: 1507087129}
   baseSignal: {fileID: 1708364475}
 --- !u!114 &1507087129
 MonoBehaviour:
@@ -4803,9 +4803,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 438969082}
+  delegateTrigger: {fileID: 1522876154}
   oneShot: 0
   timesToTrigger: 1
-  delegateTrigger: {fileID: 1522876154}
   targetObject: {fileID: 664873571}
   versionManager: {fileID: 591290366}
 --- !u!114 &1522876154
@@ -6785,9 +6785,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 2127357905}
+  delegateTrigger: {fileID: 1708364475}
   oneShot: 1
   timesToTrigger: 1
-  delegateTrigger: {fileID: 1708364475}
   baseSignal: {fileID: 473008269}
 --- !u!114 &1708364475
 MonoBehaviour:
@@ -6842,9 +6842,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 917366021}
+  delegateTrigger: {fileID: 1773757192}
   oneShot: 0
   timesToTrigger: 1
-  delegateTrigger: {fileID: 1773757192}
   versionManager: {fileID: 591290366}
   targetBranch: master
 --- !u!114 &1773757192
@@ -6900,9 +6900,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 620401454}
+  delegateTrigger: {fileID: 1776090845}
   oneShot: 0
   timesToTrigger: 1
-  delegateTrigger: {fileID: 1776090845}
   targetObject: {fileID: 1807132010}
   versionManager: {fileID: 591290366}
 --- !u!114 &1776090845
@@ -6970,9 +6970,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 684066027}
+  delegateTrigger: {fileID: 1800804931}
   oneShot: 1
   timesToTrigger: 1
-  delegateTrigger: {fileID: 1800804931}
   baseSignal: {fileID: 2032444461}
 --- !u!114 &1800804933
 MonoBehaviour:
@@ -7746,9 +7746,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 55531879}
+  delegateTrigger: {fileID: 2016465561}
   oneShot: 0
   timesToTrigger: 1
-  delegateTrigger: {fileID: 2016465561}
 --- !u!1 &2032444457
 GameObject:
   m_ObjectHideFlags: 0
@@ -7792,9 +7792,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 427809793}
+  delegateTrigger: {fileID: 2032444461}
   oneShot: 1
   timesToTrigger: 1
-  delegateTrigger: {fileID: 2032444461}
   baseSignal: {fileID: 1507087129}
 --- !u!114 &2032444460
 MonoBehaviour:
@@ -7963,9 +7963,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 729109453}
+  delegateTrigger: {fileID: 2127357905}
   oneShot: 0
   timesToTrigger: 1
-  delegateTrigger: {fileID: 2127357905}
   targetBranch: demo
   targetObject: {fileID: 1807132010}
   versionManager: {fileID: 591290366}
