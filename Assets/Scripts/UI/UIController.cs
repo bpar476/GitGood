@@ -4,35 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIController : MonoBehaviour {
-	private static UIController singletonInstance;
-	void Awake() {
-		if (singletonInstance == null) {
-			singletonInstance = this;
-		}
-		else if (singletonInstance != this) {
-			Destroy(gameObject);
-			return;
-		}
-	}
-	public static UIController Instance() {
-		if (singletonInstance == null) {
-			UIController.Reset();
-		}
-		return singletonInstance;
-	}
-	public static void Reset() {
-		singletonInstance = new UIController();
-	}
-
+public class UIController : Singleton<UIController> {
 	public GameObject textButttonDialogTemplate;
-	
-	void Start () {
-		
-	}
-	
+
+	private UIController() {
+
+    }
+
 	void Update () {
-		// Braching
+		// Branching
 		if (Input.GetKeyDown(KeyCode.Y)) {
 			DisplayBranchDialog();
 		}
@@ -64,7 +44,6 @@ public class UIController : MonoBehaviour {
 		dialogController.promptText.text = "git checkout -b ";
 		dialogController.submitButton.enabled = false;
 		dialogController.inputField.onValueChanged.AddListener((s) => {
-			Debug.Log(s);
 			if (VersionManager.Instance().HasBranch(s)) {
 				dialogController.submitButton.GetComponentInChildren<Text>().text = "Switch to Branch";
 				dialogController.promptText.text = "git checkout ";
