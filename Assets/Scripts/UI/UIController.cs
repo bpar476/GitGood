@@ -44,7 +44,6 @@ public class UIController : Singleton<UIController> {
 		dialogController.promptText.text = "git checkout -b ";
 		dialogController.submitButton.enabled = false;
 		dialogController.inputField.onValueChanged.AddListener((s) => {
-			Debug.Log(s);
 			if (VersionManager.Instance().HasBranch(s)) {
 				dialogController.submitButton.GetComponentInChildren<Text>().text = "Switch to Branch";
 				dialogController.promptText.text = "git checkout ";
