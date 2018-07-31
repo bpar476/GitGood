@@ -12,11 +12,18 @@ public class EnterableDoor : MonoBehaviour {
 		if (Vector3.Distance(transform.position, enterer.transform.position) < enterDistance) {
 			EnterDoor enterDoor = enterer.GetComponent<EnterDoor>();
 			if (enterDoor != null) {
-				doorAnimator.SetBool("open", true);
-				enterDoor.Enter(this);
+				StartCoroutine(LetEnter(enterDoor));
 				return true;
 			}
 		}
 		return false;
+	}
+
+	private IEnumerator LetEnter(EnterDoor enterer) {
+		doorAnimator.SetBool("open", true);
+
+		yield return null;
+
+		enterer.Enter(this);
 	}
 }

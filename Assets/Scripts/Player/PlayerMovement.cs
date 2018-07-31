@@ -74,7 +74,12 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     public void MoveTo(Vector3 target, Action then) {
-       StartCoroutine(doMoveTo(target, then));
+        EngineController.Instance().ToggleControls(false);
+        UpdateDirection(Mathf.Sign(target.x));
+        StartCoroutine(doMoveTo(target, () => {
+            then();
+            EngineController.Instance().ToggleControls(true);
+        }));
     }
 
     private IEnumerator doMoveTo(Vector3 target, Action then) {
