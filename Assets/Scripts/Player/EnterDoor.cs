@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnterDoor : MonoBehaviour {
 
-	private bool faded = false;
-
 	public void Enter(EnterableDoor door) {
 		PlayerMovement movement = GetComponent<PlayerMovement>();
 		movement.MoveTo(door.transform.position, DoEnterDoor);
