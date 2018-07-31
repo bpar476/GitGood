@@ -37,14 +37,14 @@ GameObject:
   - component: {fileID: 4544096837935344}
   - component: {fileID: 212635410114956000}
   - component: {fileID: 95584222697994962}
-  - component: {fileID: 114891890214648480}
+  - component: {fileID: 114813518460970748}
   m_Layer: 0
   m_Name: BackgroundDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4544096837935344
 Transform:
   m_ObjectHideFlags: 1
@@ -101,9 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff0f05115e86c2488f97478d3331efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  door: {fileID: 114891890214648480}
   trigger: {fileID: 0}
---- !u!114 &114891890214648480
+  door: {fileID: 0}
+--- !u!114 &114813518460970748
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -111,11 +111,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1989304286505610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3029c4ec3ec46714f902e5231b9f2e04, type: 3}
+  m_Script: {fileID: 11500000, guid: 01cf390a7a03117459c9c643c1135103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 95584222697994962}
-  closedSprite: {fileID: 21300058, guid: f1faa38ba790a33468150eeaeaf88ac4, type: 3}
+  doorAnimator: {fileID: 95584222697994962}
 --- !u!212 &212635410114956000
 SpriteRenderer:
   m_ObjectHideFlags: 1

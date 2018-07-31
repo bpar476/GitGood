@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HiddenDoor : TriggerObserver {
 
-	public BackgroundSlidingDoor door;
+	public EnterableDoor door;
 
 	private bool hidden = true;
 

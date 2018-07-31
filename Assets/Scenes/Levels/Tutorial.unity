@@ -160,28 +160,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 648070135}
   m_Script: {fileID: 11500000, guid: 22f64a85acbc20947b7c638970b913af, type: 3}
---- !u!1 &68050161 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1989304286505610, guid: 736f2c72f97ce1545b0f8ec8de7eadf8,
-    type: 2}
-  m_PrefabInternal: {fileID: 413450366}
---- !u!114 &68050162
+--- !u!114 &68050162 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 68050161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01cf390a7a03117459c9c643c1135103, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorAnimator: {fileID: 68050163}
---- !u!95 &68050163 stripped
-Animator:
-  m_PrefabParentObject: {fileID: 95584222697994962, guid: 736f2c72f97ce1545b0f8ec8de7eadf8,
+  m_PrefabParentObject: {fileID: 114813518460970748, guid: 736f2c72f97ce1545b0f8ec8de7eadf8,
     type: 2}
   m_PrefabInternal: {fileID: 413450366}
+  m_Script: {fileID: 11500000, guid: 01cf390a7a03117459c9c643c1135103, type: 3}
 --- !u!1 &73782668 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1178299475908924, guid: 994fa000a0e34564c86326827f9b6be4,
@@ -541,12 +525,16 @@ Prefab:
       propertyPath: trigger
       value: 
       objectReference: {fileID: 2100685118}
+    - target: {fileID: 114291263086899064, guid: 736f2c72f97ce1545b0f8ec8de7eadf8,
+        type: 2}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 68050162}
     - target: {fileID: 1304755345292876, guid: 736f2c72f97ce1545b0f8ec8de7eadf8, type: 2}
       propertyPath: m_Name
       value: HiddenDoorController1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114891890214648480, guid: 736f2c72f97ce1545b0f8ec8de7eadf8, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 736f2c72f97ce1545b0f8ec8de7eadf8, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &427809790
