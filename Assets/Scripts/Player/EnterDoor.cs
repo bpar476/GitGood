@@ -16,10 +16,10 @@ public class EnterDoor : MonoBehaviour {
 	private IEnumerator FadeIntoDoor() {
 		Renderer renderer = GetComponent<Renderer>();
 		for (float f = 1f; f >= 0; f -= 0.1f) {
-        	Color c = renderer.material.color;
-        	c.a = f;
-        	renderer.material.color = c;
-        	yield return null;
-    	}
+			Color c = renderer.material.color;
+			c.a = f;
+			renderer.material.color = c;
+			yield return null;
+		}
 	}
 }
