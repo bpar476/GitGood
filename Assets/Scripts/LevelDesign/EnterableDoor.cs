@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnterableDoor : MonoBehaviour {
 
+	public Triggerable trigger;
+
 	private static readonly float enterDistance = 1.0f;
 
 	public Animator doorAnimator;
@@ -22,8 +24,14 @@ public class EnterableDoor : MonoBehaviour {
 	private IEnumerator LetEnter(EnterDoor enterer) {
 		doorAnimator.SetBool("open", true);
 
-		yield return null;
+		yield return new WaitForSeconds(0.5f);
 
 		enterer.Enter(this);
+
+		yield return new WaitForSeconds(1);
+
+		if (trigger != null) {
+			trigger.NotifyObservers();
+		}
 	}
 }
