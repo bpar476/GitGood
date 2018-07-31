@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -61,5 +62,21 @@ public class PlayerMovement : MonoBehaviour {
             myRigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
             jump = false;
         }
+    }
+
+    public void MoveTo(Vector3 target, Action then) {
+       StartCoroutine(doMoveTo(target, then));
+    }
+
+    private IEnumerator doMoveTo(Vector3 target, Action then) {
+        while (Mathf.Abs(transform.position.x - target.x) > 0.1) {
+            Vector3 oldPosition = transform.position;
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.x, transform.position.y, target.z), 0.09f);
+            yield return null;
+            if (Mathf.Abs(oldPosition.x - transform.position.x) < 0.01) {
+                break;
+            }
+        }
+        then();
     }
 }
