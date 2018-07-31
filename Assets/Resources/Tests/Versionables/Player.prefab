@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114253544264562374}
   - component: {fileID: 114287987536527828}
   - component: {fileID: 114901048139136982}
+  - component: {fileID: 114782425914990496}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -243,6 +244,18 @@ MonoBehaviour:
   fovAngle: 45
   triggerZone: {fileID: 58717030947772284}
   forwards: {fileID: 4804291237761936}
+--- !u!114 &114782425914990496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1051562760724500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fc8330cfd73a48439e1840f93138a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attachedBody: {fileID: 50952677935903488}
 --- !u!114 &114901048139136982
 MonoBehaviour:
   m_ObjectHideFlags: 1

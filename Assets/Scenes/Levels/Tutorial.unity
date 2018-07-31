@@ -160,12 +160,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 648070135}
   m_Script: {fileID: 11500000, guid: 22f64a85acbc20947b7c638970b913af, type: 3}
---- !u!114 &68050162 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114813518460970748, guid: 736f2c72f97ce1545b0f8ec8de7eadf8,
-    type: 2}
-  m_PrefabInternal: {fileID: 413450366}
-  m_Script: {fileID: 11500000, guid: 01cf390a7a03117459c9c643c1135103, type: 3}
 --- !u!1 &73782668 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1178299475908924, guid: 994fa000a0e34564c86326827f9b6be4,
@@ -525,11 +519,6 @@ Prefab:
       propertyPath: trigger
       value: 
       objectReference: {fileID: 2100685118}
-    - target: {fileID: 114291263086899064, guid: 736f2c72f97ce1545b0f8ec8de7eadf8,
-        type: 2}
-      propertyPath: door
-      value: 
-      objectReference: {fileID: 68050162}
     - target: {fileID: 1304755345292876, guid: 736f2c72f97ce1545b0f8ec8de7eadf8, type: 2}
       propertyPath: m_Name
       value: HiddenDoorController1
@@ -4649,7 +4638,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4257490811005308, guid: b73f2e064a4b0d045ae5c77b93bf5ec6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: -4.95
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b73f2e064a4b0d045ae5c77b93bf5ec6, type: 2}

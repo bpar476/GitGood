@@ -10,6 +10,15 @@ public class PlayerMovement : MonoBehaviour {
     public float maxVelocity;
     public Transform groundCheck;
     public LayerMask groundCheckLayer;
+    public Vector2 forward {
+        get { 
+            if (facingRight) {
+                return new Vector2(1,0);
+            } else {
+                return new Vector2(-1,0);
+            }
+        }
+    }
 
     private bool facingRight = true;
     private bool jump = false;
