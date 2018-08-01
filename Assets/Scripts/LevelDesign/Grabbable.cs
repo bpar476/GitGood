@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Grabbable : MonoBehaviour {
 
-    public float grabDistance = 0.5f;
+    public float grabDistance = 1.5f;
     public GameObject grabbedBy;
 
     public bool Grab(GameObject grabber) {
