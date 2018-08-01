@@ -5,10 +5,13 @@ public class Grabbable : PersistentInteractable {
     public float grabDistance = 1.5f;
     public GameObject grabbedBy;
 
+    private Transform oldParent;
+
     public override bool TryInteract(GameObject grabber) {
         if (Vector3.Distance(grabber.transform.position, transform.position) < grabDistance
            && grabbedBy == null) {
             TogglePhysics(false);
+            oldParent = transform.parent;
             transform.parent = grabber.transform;
             transform.localPosition = new Vector3(0.75f, 0.2f, 0.0f);
             grabbedBy = grabber;
@@ -18,7 +21,7 @@ public class Grabbable : PersistentInteractable {
     }
 
     public override void StopInteracting() {
-        transform.parent = null;
+        transform.parent = oldParent;
         TogglePhysics(true);
         grabbedBy = null;
     }
