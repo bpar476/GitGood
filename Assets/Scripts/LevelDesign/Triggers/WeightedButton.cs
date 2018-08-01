@@ -34,10 +34,9 @@ public class WeightedButton : Triggerable {
         active = count > 0;
         if (willUpdate && active) {
             TurnOn();
-        } else {
+        } else if (willUpdate) {
             TurnOff();
         }
-
     }
 
     private void TurnOn() {
