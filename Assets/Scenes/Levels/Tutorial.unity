@@ -1296,6 +1296,14 @@ GameObject:
   - component: {fileID: 758223160}
   - component: {fileID: 758223163}
   - component: {fileID: 758223158}
+  - component: {fileID: 758223164}
+  - component: {fileID: 758223165}
+  - component: {fileID: 758223166}
+  - component: {fileID: 758223167}
+  - component: {fileID: 758223169}
+  - component: {fileID: 758223168}
+  - component: {fileID: 758223170}
+  - component: {fileID: 758223171}
   m_Layer: 0
   m_Name: TutorialFlowchart
   m_TagString: Untagged
@@ -1316,7 +1324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: -1487.5139, y: -7.04125}
+  scrollPos: {x: -1233.9061, y: 40.38143}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 347
@@ -1328,8 +1336,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 758223159}
-  selectedCommands: []
+  - {fileID: 758223144}
+  selectedCommands:
+  - {fileID: 758223171}
   variables: []
   description: 
   stepPause: 0
@@ -1867,6 +1876,7 @@ MonoBehaviour:
   - {fileID: 758223101}
   - {fileID: 758223096}
   - {fileID: 758223109}
+  - {fileID: 758223164}
   - {fileID: 758223098}
   - {fileID: 758223094}
   - {fileID: 758223095}
@@ -2018,9 +2028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 30
   indentLevel: 0
-  storyText: Committing is the action of confirming a moment in history. When you
-    create a commit, you're creating an irreversible snapshot of the timeline in the
-    state you see in the staging area.
+  storyText: Committing is the action of confirming a moment in history.
   description: 
   character: {fileID: 1613906548}
   portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
@@ -2087,6 +2095,7 @@ MonoBehaviour:
   - {fileID: 758223117}
   - {fileID: 758223116}
   - {fileID: 758223115}
+  - {fileID: 758223165}
   - {fileID: 758223114}
   - {fileID: 758223113}
   - {fileID: 758223112}
@@ -2184,9 +2193,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 39
   indentLevel: 0
-  storyText: For every universe, there is one true timeline. We call that the master
-    branch. This is the timeline that people truly live in and that is monitored by
-    the time guardians.
+  storyText: For every universe, there is one true timeline. We call it the master
+    branch.
   description: 
   character: {fileID: 1613906548}
   portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
@@ -2358,6 +2366,7 @@ MonoBehaviour:
   commandList:
   - {fileID: 758223124}
   - {fileID: 758223129}
+  - {fileID: 758223166}
   - {fileID: 758223123}
 --- !u!114 &758223123
 MonoBehaviour:
@@ -2480,9 +2489,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 61
   indentLevel: 0
-  storyText: You'll see that the box has moved back to where it was when you committed.
-    This is because when you create a branch, it is an exact copy of whatever branch
-    you are currently on. In this case, the master branch.
+  storyText: You'll see that you've moved back to where you were when you committed
+    on the master branch.
   description: 
   character: {fileID: 1613906548}
   portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
@@ -2805,10 +2813,7 @@ MonoBehaviour:
   itemId: 89
   indentLevel: 0
   storyText: Sometimes when you want to merge your branch into master, the things
-    you changed have already been changed in master. This creates what is called a
-    merge conflict. These need to be solved manually by choosing the version that
-    you want to keep. I'll show you what it looks like when you try to merge when
-    there are conflicts.
+    you changed on your branch have already been changed in master.
   description: 
   character: {fileID: 1613906548}
   portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
@@ -2848,7 +2853,11 @@ MonoBehaviour:
   - {fileID: 758223148}
   - {fileID: 758223147}
   - {fileID: 758223146}
+  - {fileID: 758223167}
   - {fileID: 758223143}
+  - {fileID: 758223169}
+  - {fileID: 758223168}
+  - {fileID: 758223171}
   - {fileID: 758223150}
   - {fileID: 758223151}
   - {fileID: 758223145}
@@ -2865,7 +2874,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 87
   indentLevel: 0
-  storyText: <Press P to pick a version when in a merge conflict>
+  storyText: <When in a merge conflict, click on the version to keep, or Press P to
+    pick the outlined version>
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -2892,9 +2902,7 @@ MonoBehaviour:
   itemId: 88
   indentLevel: 0
   storyText: Notice that you didn't have to do anything special to merge your branch
-    into master. That's because it was a fast-forward merge. What this means is that
-    nothing that you changed on your branch was changed on the master branch before
-    merging it in.
+    into master. That's because it was a fast-forward merge.
   description: 
   character: {fileID: 1613906548}
   portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
@@ -3140,7 +3148,7 @@ MonoBehaviour:
   message: merge_conflict_resolve
 --- !u!114 &758223158
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3166,7 +3174,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223159
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3191,10 +3199,11 @@ MonoBehaviour:
   - {fileID: 758223162}
   - {fileID: 758223161}
   - {fileID: 758223160}
+  - {fileID: 758223170}
   - {fileID: 758223158}
 --- !u!114 &758223160
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3205,7 +3214,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 105
   indentLevel: 0
-  storyText: Combine your skills in the next test chamber.
+  storyText: Combine your skills in the next test chamber. You'll need to move the
+    box in there onto the button.
   description: 
   character: {fileID: 1613906548}
   portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
@@ -3220,7 +3230,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223161
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3246,7 +3256,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223162
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3260,7 +3270,7 @@ MonoBehaviour:
   sayDialog: {fileID: 1653460352}
 --- !u!114 &758223163
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3271,6 +3281,219 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBlock: {fileID: 758223159}
   message: end_tutorial
+--- !u!114 &758223164
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 109
+  indentLevel: 0
+  storyText: When you create a commit, you're creating an irreversible snapshot of
+    the timeline in the state you see in the staging area.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 110
+  indentLevel: 0
+  storyText: The master branch is the timeline that people truly live in and that
+    is monitored by the time guardians.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 111
+  indentLevel: 0
+  storyText: This is because when you create a branch, it is an exact copy of whatever
+    branch you are currently on. In this case, the master branch.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 112
+  indentLevel: 0
+  storyText: What this means is that nothing that you changed on your branch was changed
+    on the master branch before you merged it.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 114
+  indentLevel: 0
+  storyText: To solve a merge conflict, you choose the version you want to keep.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 113
+  indentLevel: 0
+  storyText: This creates what is called a merge conflict, which you need to solve
+    manually.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 115
+  indentLevel: 0
+  storyText: But be careful, your actions have consequences.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 116
+  indentLevel: 0
+  storyText: I'll show you what it looks like when you have a merge with conflicts.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &802137978
 GameObject:
   m_ObjectHideFlags: 0
