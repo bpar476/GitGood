@@ -14,11 +14,15 @@ public class MouseVersionControls : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		objectUnderCursor = FindObjectUnderCursor();
-		if (objectUnderCursor != null) {
-			
+		if (Input.GetAxis("Fire1") != 0) {
+			objectUnderCursor = FindObjectUnderCursor();
+			if (objectUnderCursor != null) {
+				IMergeWorker mergeWorker = versionManager.GetMergeWorker();
+				if (mergeWorker != null && objectUnderCursor.tag == "VersionPreview") {
+					mergeWorker.PickObject(objectUnderCursor);
+				}
+			}
 		}
-		
 	}
 
 	private GameObject FindObjectUnderCursor() {
