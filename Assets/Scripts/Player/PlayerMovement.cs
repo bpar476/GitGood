@@ -1,14 +1,24 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Movement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour {
 
     public float moveForce;
     public float jumpForce;
     public float maxVelocity;
     public Transform groundCheck;
     public LayerMask groundCheckLayer;
+    public Vector2 forward {
+        get { 
+            if (facingRight) {
+                return new Vector2(1,0);
+            } else {
+                return new Vector2(-1,0);
+            }
+        }
+    }
 
     private bool facingRight = true;
     private bool jump = false;
@@ -61,5 +71,26 @@ public class Player_Movement : MonoBehaviour {
             myRigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
             jump = false;
         }
+    }
+
+    public void MoveTo(Vector3 target, Action then) {
+        EngineController.Instance().ToggleControls(false);
+        UpdateDirection(Mathf.Sign(target.x));
+        StartCoroutine(doMoveTo(target, () => {
+            then();
+            EngineController.Instance().ToggleControls(true);
+        }));
+    }
+
+    private IEnumerator doMoveTo(Vector3 target, Action then) {
+        while (Mathf.Abs(transform.position.x - target.x) > 0.1) {
+            Vector3 oldPosition = transform.position;
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.x, transform.position.y, target.z), 0.09f);
+            yield return null;
+            if (Mathf.Abs(oldPosition.x - transform.position.x) < 0.01) {
+                break;
+            }
+        }
+        then();
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Camera : MonoBehaviour {
+public class PlayerCamera : MonoBehaviour {
 
     private GameObject player;
     public float xMin;

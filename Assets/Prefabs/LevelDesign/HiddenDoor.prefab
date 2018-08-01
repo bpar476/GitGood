@@ -37,7 +37,8 @@ GameObject:
   - component: {fileID: 4544096837935344}
   - component: {fileID: 212635410114956000}
   - component: {fileID: 95584222697994962}
-  - component: {fileID: 114891890214648480}
+  - component: {fileID: 114813518460970748}
+  - component: {fileID: 61441009663106622}
   m_Layer: 0
   m_Name: BackgroundDoor
   m_TagString: Untagged
@@ -72,6 +73,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61441009663106622
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1989304286505610}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.64}
+    newSize: {x: 0.32, y: 0.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.32, y: 0.64}
+  m_EdgeRadius: 0
 --- !u!95 &95584222697994962
 Animator:
   serializedVersion: 3
@@ -101,9 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff0f05115e86c2488f97478d3331efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  door: {fileID: 114891890214648480}
   trigger: {fileID: 0}
---- !u!114 &114891890214648480
+  door: {fileID: 114813518460970748}
+--- !u!114 &114813518460970748
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -111,11 +137,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1989304286505610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3029c4ec3ec46714f902e5231b9f2e04, type: 3}
+  m_Script: {fileID: 11500000, guid: 01cf390a7a03117459c9c643c1135103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 95584222697994962}
-  closedSprite: {fileID: 21300058, guid: f1faa38ba790a33468150eeaeaf88ac4, type: 3}
+  doorAnimator: {fileID: 95584222697994962}
 --- !u!212 &212635410114956000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -148,8 +173,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1162527419
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f1faa38ba790a33468150eeaeaf88ac4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
