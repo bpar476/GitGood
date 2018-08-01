@@ -26,6 +26,13 @@ public class PlayerInteraction : MonoBehaviour {
 						if(door.TryEnter(gameObject)) {
 							break;
 						}
+					} else {
+						Grabbable grabbable = hit.GetComponent<Grabbable>();
+						if (grabbable != null) {
+							if(grabbable.Grab(gameObject)) {
+								break;
+							}
+						}
 					}
 				}
 			}
