@@ -8,7 +8,7 @@ public class Grabbable : MonoBehaviour {
     public bool Grab(GameObject grabber) {
         if (Vector3.Distance(grabber.transform.position, transform.position) < grabDistance
            && grabbedBy == null) {
-            GrabObject grab = grabber.GetCommponent<GrabObject>();
+            GrabObject grab = grabber.GetComponent<GrabObject>();
             if (grab != null) {
                 grab.PickUp(this);
                 grabbedBy = grabber;
