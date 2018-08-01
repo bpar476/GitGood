@@ -268,7 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc8330cfd73a48439e1840f93138a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attachedBody: {fileID: 50952677935903488}
+  attachedBody: {fileID: 70106837517930922}
+  currentInteraction: {fileID: 0}
 --- !u!114 &114901048139136982
 MonoBehaviour:
   m_ObjectHideFlags: 1
