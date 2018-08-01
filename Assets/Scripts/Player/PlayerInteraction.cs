@@ -37,9 +37,10 @@ public class PlayerInteraction : MonoBehaviour {
 						}
 					}
 				}
-			}
-		} else {
-			currentInteraction.StopInteracting();
+			} else {
+				currentInteraction.StopInteracting();
+				currentInteraction = null;
+			} 
 		}
 	}
 }
