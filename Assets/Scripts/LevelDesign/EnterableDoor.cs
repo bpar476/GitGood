@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnterableDoor : MonoBehaviour {
+public class EnterableDoor : Interactable {
 
 	public Triggerable trigger;
 
@@ -10,7 +10,7 @@ public class EnterableDoor : MonoBehaviour {
 
 	public Animator doorAnimator;
 
-	public bool TryEnter(GameObject enterer) {
+	public override bool TryInteract(GameObject enterer) {
 		if (Vector3.Distance(transform.position, enterer.transform.position) < enterDistance) {
 			EnterDoor enterDoor = enterer.GetComponent<EnterDoor>();
 			if (enterDoor != null) {
