@@ -391,6 +391,7 @@ public class VersionManager : Singleton<VersionManager> {
 		}
 
 		this.mw = mw;
+
 		return mergeType;
 	}
 
@@ -405,6 +406,8 @@ public class VersionManager : Singleton<VersionManager> {
 		if (!this.mw.IsResolved()) {
 			return null;
 		}
+
+		Camera.main.GetComponent<MergeInterfaceCamera>().enabled = false;
 
 		return CreateMergeCommit("Merge Commit");
 	}
@@ -424,6 +427,9 @@ public class VersionManager : Singleton<VersionManager> {
 		if (mergeTrigger != null) {
 			mergeTrigger.Trigger();
 		}
+
+		Camera.main.GetComponent<MergeInterfaceCamera>().enabled = false;
+
 		return mergeCommit;
 	}
 

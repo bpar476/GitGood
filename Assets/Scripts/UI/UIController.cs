@@ -131,6 +131,8 @@ public class UIController : Singleton<UIController> {
 
 			EngineController.Instance().ToggleControls(true);
 			Destroy(dialog);
+
+			Camera.main.GetComponent<MergeInterfaceCamera>().enabled = false;
 			}
 		);
 
@@ -166,6 +168,8 @@ public class UIController : Singleton<UIController> {
 
 			EngineController.Instance().ToggleControls(true);
 			Destroy(dialog);
+
+			Camera.main.GetComponent<MergeInterfaceCamera>().enabled = true;
 			}
 		);
 
