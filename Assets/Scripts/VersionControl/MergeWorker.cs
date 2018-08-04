@@ -15,7 +15,9 @@ public class MergeWorker : IMergeWorker
 
     private TriggerManager pickTrigger;
 
-    public MergeWorker(IBranch baseBranch, IBranch featureBranch, TriggerManager trigger) {
+    private MergeUIController ui;
+
+    public MergeWorker(IBranch baseBranch, IBranch featureBranch, TriggerManager trigger, MergeUIController mergeUI) {
         if (baseBranch == null || featureBranch == null) {
             throw new Exception("Branch can not be null");
         }
@@ -27,8 +29,14 @@ public class MergeWorker : IMergeWorker
         stagingArea = new Dictionary<VersionController, IVersion>();
 
         pickTrigger = trigger;
+        this.ui = mergeUI;
 
         Initialise();
+
+        if (this.ui != null) {
+            this.ui.gameObject.SetActive(true);
+            this.ui.PopulateConflictObjects(conflictControllers);
+        }
 
         UpdateStatus();
         RenderDiff();
@@ -102,10 +110,12 @@ public class MergeWorker : IMergeWorker
     }
 
     public void Abort() {
+        this.ui.enabled = false;
         this.DestroyOverlays();
     }
 
     public void End() {
+        this.ui.enabled = false;
         this.DestroyOverlays();
     }
 
