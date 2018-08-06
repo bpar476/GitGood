@@ -16,14 +16,14 @@ public class MergeUIController : MonoBehaviour {
 	private IDictionary<GameObject, VersionController> currentResolveds;
 
 	public void PopulateConflictObjects(ICollection<VersionController> conflictObjects) {
-		float yPos = -20.0f;
+		float yPos = -27.5f;
 		foreach (VersionController conflictedObject in conflictObjects) {
 			GameObject uiObj = Instantiate(Resources.Load("UI/MergeUI/UnresolvedObject")) as GameObject;
 			MergeObjectController controller = uiObj.GetComponent<MergeObjectController>();
 			controller.underlyingObject = conflictedObject;
 			RectTransform rTransform = uiObj.GetComponent<RectTransform>();
 			rTransform.SetParent(UnresolvedControllersRegion, false);
-			rTransform.anchoredPosition = new Vector2(1.0f, yPos);
+			rTransform.anchoredPosition = new Vector2(rTransform.anchoredPosition.x, yPos);
 			yPos -= 20.0f;
 		}
 	}
