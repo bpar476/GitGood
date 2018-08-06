@@ -33,13 +33,14 @@ public class MergeWorker : IMergeWorker
 
         Initialise();
 
-        if (this.ui != null) {
-            this.ui.gameObject.SetActive(true);
-            this.ui.PopulateConflictObjects(conflictControllers);
-        }
-
         UpdateStatus();
         RenderDiff();
+
+        if (this.ui != null) {
+            this.ui.gameObject.SetActive(true);
+            this.ui.SetMergeWorker(this);
+            this.ui.PopulateConflictObjects(conflictControllers);
+        }
     }
 
     /// <summary>
@@ -184,6 +185,14 @@ public class MergeWorker : IMergeWorker
         this.featureOverlay.Destroy();
     }
 
+    public GameObject GetBasePreviewForVersionedObject(VersionController versionedObject) {
+        return this.baseOverlay.GetPreviewForObject(versionedObject);
+    }
+
+    public GameObject GetFeaturePreviewForVersionedObject(VersionController versionedObject) {
+        return this.featureOverlay.GetPreviewForObject(versionedObject);
+    }
+
     public IDictionary<VersionController, IVersion> BuildStagingArea() {
         return new Dictionary<VersionController, IVersion>(stagingArea);
     }
@@ -213,5 +222,13 @@ public class MergeWorker : IMergeWorker
         else if (featureOverlay.HasGameObject(gameObject, out versionedObject)) {
             PickVersion(versionedObject, featureBranch.GetTip().getObjectVersion(versionedObject));
         }
+    }
+
+    public IBranch GetBaseBranch() {
+        return this.baseBranch;
+    }
+
+    public IBranch GetFeatureBranch() {
+        return this.featureBranch;
     }
 }
