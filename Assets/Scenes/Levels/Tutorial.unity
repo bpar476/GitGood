@@ -4518,11 +4518,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114472977924942088, guid: 563c5148a634a46ad9fdd3400705e3be,
-        type: 2}
-      propertyPath: ResolvedControllersRegion
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1058879174307732, guid: 563c5148a634a46ad9fdd3400705e3be, type: 2}
       propertyPath: m_IsActive
       value: 0

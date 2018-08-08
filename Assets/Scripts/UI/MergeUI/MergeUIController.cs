@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class MergeUIController : MonoBehaviour {
 
 	public RectTransform mergeStatusPanel;
-	public RectTransform ResolvedControllersRegion;
-	public RectTransform UnresolvedControllersRegion;
+	public RectTransform unresolvedControllersRegion;
+	public Button resolveButton;
 
 	private MergeWorker mw;
 	private int numResolved = 0;
@@ -37,7 +37,7 @@ public class MergeUIController : MonoBehaviour {
 			controller.SetFeaturePreview(mw.GetFeaturePreviewForVersionedObject(conflictedObject));
 
 			RectTransform rTransform = uiObj.GetComponent<RectTransform>();
-			rTransform.SetParent(UnresolvedControllersRegion, false);
+			rTransform.SetParent(unresolvedControllersRegion, false);
 			rTransform.anchoredPosition = new Vector2(rTransform.anchoredPosition.x, yPos);
 			yPos -= 20.0f;
 		}
@@ -47,10 +47,19 @@ public class MergeUIController : MonoBehaviour {
 		MergeObjectController uiController;
 		if (this.controllers.TryGetValue(versionController, out uiController)) {
 			uiController.VersionWasPicked(versionPicked);
+			foreach(MergeObjectController controller in controllers.Values) {
+				if (controller.IsResolved()) {
+					resolveButton.gameObject.SetActive(true);
+				}
+			}
 		}
 	}
 
 	public void SetMergeWorker(MergeWorker mergeWorker) {
 		this.mw = mergeWorker;
+	}
+
+	public void ResolveMerge() {
+		UIController.Instance().DisplayMergeCommitDialog();
 	}
 }

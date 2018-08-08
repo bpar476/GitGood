@@ -47,6 +47,12 @@ public class MergeObjectController : MonoBehaviour {
 	private GameObject basePreview;
 	private GameObject featurePreview;
 
+	private bool isResolved;
+
+	public bool IsResolved() {
+		return isResolved;
+	}
+
 	public void SetBasePreview(GameObject preview) {
 		this.basePreview = preview;
 		transform.Find("Version 1").GetComponent<Text>().color = preview.GetComponent<SpriteRenderer>().color;
@@ -81,5 +87,6 @@ public class MergeObjectController : MonoBehaviour {
 	private void UpdatePickedVersion(Text pickedVersion, Text notPickedVersion) {
 		pickedVersion.color = Color.green;
 		notPickedVersion.color = Color.gray;
+		isResolved = true;
 	}
 }
