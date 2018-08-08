@@ -921,6 +921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomSensitivity: 3.5
+  mouseSensitivity: 0.015
 --- !u!114 &114508649655786894
 MonoBehaviour:
   m_ObjectHideFlags: 1
