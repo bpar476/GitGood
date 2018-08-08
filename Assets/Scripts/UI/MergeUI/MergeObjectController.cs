@@ -49,10 +49,12 @@ public class MergeObjectController : MonoBehaviour {
 
 	public void SetBasePreview(GameObject preview) {
 		this.basePreview = preview;
+		transform.Find("Version 1").GetComponent<Text>().color = preview.GetComponent<SpriteRenderer>().color;
 	}
 
 	public void SetFeaturePreview(GameObject preview) {
 		this.featurePreview = preview;
+		transform.Find("Version 2").GetComponent<Text>().color = preview.GetComponent<SpriteRenderer>().color;
 	}
 
 	public void BaseBranchTextClicked() {
