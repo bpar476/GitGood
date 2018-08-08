@@ -67,4 +67,17 @@ public class MergeObjectController : MonoBehaviour {
 		Camera.main.transform.position = new Vector3(preview.transform.position.x, preview.transform.position.y, Camera.main.transform.position.z);
 		Camera.main.orthographicSize = 5;
 	}
+	
+	public void VersionWasPicked(GameObject versionPicked) {
+		if (versionPicked.Equals(basePreview)) {
+			UpdatePickedVersion(transform.Find("Version 1").GetComponent<Text>(), transform.Find("Version 2").GetComponent<Text>());
+		} else if (versionPicked.Equals(featurePreview)) {
+			UpdatePickedVersion(transform.Find("Version 2").GetComponent<Text>(), transform.Find("Version 1").GetComponent<Text>());
+		}
+	}
+
+	private void UpdatePickedVersion(Text pickedVersion, Text notPickedVersion) {
+		pickedVersion.color = Color.green;
+		notPickedVersion.color = Color.gray;
+	}
 }

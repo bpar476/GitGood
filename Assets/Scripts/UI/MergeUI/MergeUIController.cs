@@ -13,8 +13,7 @@ public class MergeUIController : MonoBehaviour {
 	private int numResolved = 0;
 	private int numConflicts = 0;
 
-	private IDictionary<GameObject, VersionController> currentConflicts;
-	private IDictionary<GameObject, VersionController> currentResolveds;
+	private IDictionary<VersionController, MergeObjectController> controllers;
 
 	public void PopulateConflictObjects(ICollection<VersionController> conflictObjects) {
 		float yPos = -27.5f;
@@ -24,6 +23,8 @@ public class MergeUIController : MonoBehaviour {
 
 			GameObject uiObj = Instantiate(Resources.Load("UI/MergeUI/UnresolvedObject")) as GameObject;
 			MergeObjectController controller = uiObj.GetComponent<MergeObjectController>();
+
+			this.controllers.Add(conflictedObject, controller);
 
 			controller.underlyingObject = conflictedObject;
 			controller.baseBranch = baseBranch.GetName();
@@ -38,7 +39,11 @@ public class MergeUIController : MonoBehaviour {
 		}
 	}
 
-	public void ObjectInDictionaryClicked(GameObject gobj) {
+	public void VersionPicked(VersionController versionController, GameObject versionPicked) {
+		MergeObjectController uiController;
+		if (this.controllers.TryGetValue(versionController, out uiController)) {
+			uiController.VersionWasPicked(versionPicked);
+		}
 	}
 
 	public void SetMergeWorker(MergeWorker mergeWorker) {
