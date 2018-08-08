@@ -15,6 +15,10 @@ public class MergeUIController : MonoBehaviour {
 
 	private IDictionary<VersionController, MergeObjectController> controllers;
 
+	private void Awake() {
+		this.controllers = new Dictionary<VersionController, MergeObjectController>();
+	}
+
 	public void PopulateConflictObjects(ICollection<VersionController> conflictObjects) {
 		float yPos = -27.5f;
 		foreach (VersionController conflictedObject in conflictObjects) {

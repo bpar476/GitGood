@@ -211,17 +211,19 @@ public class MergeWorker : IMergeWorker
         return MergeStatus.Unknown;
     }
 
-    public void PickObject(GameObject gameObject) {
+    public void PickObject(GameObject pickedObject) {
         VersionController versionedObject;
-        if (baseOverlay.HasGameObject(gameObject, out versionedObject)) {
+        if (baseOverlay.HasGameObject(pickedObject, out versionedObject)) {
             PickVersion(versionedObject, baseBranch.GetTip().getObjectVersion(versionedObject));
             baseOverlay.SetColor(versionedObject, new Color(0f, 1f, 0f, 0.5f));
             featureOverlay.SetColor(versionedObject, new Color(0f, 0f, 0f, 0.5f));
+            this.ui.VersionPicked(versionedObject, pickedObject);
         }
-        else if (featureOverlay.HasGameObject(gameObject, out versionedObject)) {
+        else if (featureOverlay.HasGameObject(pickedObject, out versionedObject)) {
             PickVersion(versionedObject, featureBranch.GetTip().getObjectVersion(versionedObject));
             featureOverlay.SetColor(versionedObject, new Color(0f, 1f, 0f, 0.5f));
             baseOverlay.SetColor(versionedObject, new Color(0f, 0f, 0f, 0.5f));
+            this.ui.VersionPicked(versionedObject, pickedObject);
         }
     }
 
