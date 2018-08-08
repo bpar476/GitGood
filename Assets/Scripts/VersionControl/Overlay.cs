@@ -46,6 +46,14 @@ public class Overlay : IOverlay
         this.overlayObjects.Clear();
     }
 
+    public GameObject GetPreviewForObject(VersionController versionedObject) {
+        GameObject preview;
+        if (overlayObjects.TryGetValue(versionedObject, out preview)) {
+            return preview;
+        }
+        return null;
+    }
+
     /// <summary>
     /// Get the commit that this Overlay is displaying
     /// </summary>

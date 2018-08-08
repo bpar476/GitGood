@@ -16,6 +16,8 @@ public class VersionManager : Singleton<VersionManager> {
 	public TriggerManager checkoutTrigger;
 	public TriggerManager pickTrigger;
 
+	public MergeUIController mergeUI;
+
 	IList<VersionController> trackedObjects;
 	IList<VersionController> stagingArea;
 	private IDictionary<string, IBranch> branches;
@@ -374,7 +376,7 @@ public class VersionManager : Singleton<VersionManager> {
 			throw new Exception("Already doing a merge, resolve this first");
 		}
 
-		IMergeWorker mw = new MergeWorker(activeBranch, featureBranch, pickTrigger);
+		IMergeWorker mw = new MergeWorker(activeBranch, featureBranch, pickTrigger, mergeUI);
 		Relationship mergeType = mw.GetMergeType();
 
 		if (mw.GetMergeType() == Relationship.FastForward) {
@@ -391,6 +393,7 @@ public class VersionManager : Singleton<VersionManager> {
 		}
 
 		this.mw = mw;
+
 		return mergeType;
 	}
 
@@ -405,6 +408,8 @@ public class VersionManager : Singleton<VersionManager> {
 		if (!this.mw.IsResolved()) {
 			return null;
 		}
+
+		Camera.main.GetComponent<MergeInterfaceCamera>().enabled = false;
 
 		return CreateMergeCommit("Merge Commit");
 	}
@@ -424,6 +429,10 @@ public class VersionManager : Singleton<VersionManager> {
 		if (mergeTrigger != null) {
 			mergeTrigger.Trigger();
 		}
+
+		Camera.main.GetComponent<MergeInterfaceCamera>().enabled = false;
+		mergeUI.gameObject.SetActive(false);
+
 		return mergeCommit;
 	}
 

@@ -18,6 +18,10 @@ public class EngineController : Singleton<EngineController> {
         GameObject.FindGameObjectWithTag("Player").GetComponent<VersionControls>().enabled = controlsEnabled;
         GameObject.Find("/EngineController/UIController").GetComponent<UIController>().enabled = controlsEnabled;
     }
+
+    public void ToggleMovement(bool enabled) {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().enabled = enabled;
+    }
     
     public bool ControlsEnabled() {
         return controlsEnabled;
