@@ -430,8 +430,6 @@ public class VersionManager : Singleton<VersionManager> {
 			mergeTrigger.Trigger();
 		}
 
-		Camera.main.GetComponent<MergeInterfaceCamera>().enabled = false;
-		mergeUI.gameObject.SetActive(false);
 
 		return mergeCommit;
 	}
