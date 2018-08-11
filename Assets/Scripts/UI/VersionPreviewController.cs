@@ -34,6 +34,7 @@ public abstract class VersionPreviewController : MonoBehaviour {
 
 	private void Update() {
 		if (previewObject != null) {
+			// Taken from stack overflow: https://answers.unity.com/questions/799616/unity-46-beta-19-how-to-convert-from-world-space-t.html
 			Vector3 targetPosition = this.previewObject.transform.position + new Vector3(-1.0f, 1.5f, 0);
 			Vector2 uiPosition = Camera.main.WorldToViewportPoint(targetPosition);
 			Vector2 proportionalPosition = new Vector2(uiPosition.x * canvasRect.sizeDelta.x - canvasRect.sizeDelta.x*0.5f
