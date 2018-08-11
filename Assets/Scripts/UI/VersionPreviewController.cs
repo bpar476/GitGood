@@ -9,6 +9,8 @@ public abstract class VersionPreviewController : MonoBehaviour {
 	public Canvas canvas;
 	public Button actionButton;
 	public Text title;
+	public Text versionablePropertyOne;
+	public Text versionablePropertyTwo;
 	public VersionController versionedObject;
 
 	private Vector2 uiOffset;
@@ -25,6 +27,17 @@ public abstract class VersionPreviewController : MonoBehaviour {
 		title.text = versionedObject.gameObject.name;
 
 		this.transform.SetParent(canvas.transform);
+
+		string[] description = versionedObject.DescribeStagedState().Split('\n');
+		Debug.Log(description);
+		if (description.Length >= 1) {
+			versionablePropertyOne.text = description[0];
+		}
+		if (description.Length == 2) {
+			versionablePropertyTwo.gameObject.SetActive(true);
+			versionablePropertyTwo.text = description[1];
+		}
+
 	}
 
 	public void SetPreviewObject(VersionController versionedObject, GameObject preview) {

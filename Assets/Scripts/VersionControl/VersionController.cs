@@ -61,6 +61,22 @@ public class VersionController : MonoBehaviour {
 	}
 	#endregion accessors
 
+	public string DescribeState(IVersion version) {
+		string result = "";
+		foreach(IVersionable versioner in versioners) {
+			result += versioner.DescribeState(version) +"\n";
+		}
+		return result;
+	}
+
+	public string DescribeStagedState() {
+		string result = "";
+		foreach(IVersionable versioner in versioners) {
+			result += versioner.DescribeStagedState() +"\n";
+		}
+		return result;
+	}
+
 	public void StageVersion() {
 		foreach (IVersionable versioner in versioners) {
 			versioner.Stage(activeVersion);

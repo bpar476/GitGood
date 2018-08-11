@@ -57,4 +57,14 @@ public class DirectionBinaryVersionable : MonoBehaviour, IBinaryVersionable {
         target.transform.localScale = new Vector3(value, target.transform.localScale.y, target.transform.localScale.z);
     }
 
+    public string DescribeState(IVersion version) {
+        string direction = history.GetStateAt(version) ? "right" : "left";
+        return "Direction: " + direction;
+    }
+
+    public string DescribeStagedState() {
+        string direction = stagedState ? "right" : "left";
+        return "Direction: " + direction;
+    }
+
 }

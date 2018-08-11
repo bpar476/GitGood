@@ -50,4 +50,13 @@ public class TransformVersionable : MonoBehaviour, IVersionable {
 	public void SetInitialState(Vector2 position) {
 		this.initialState.position = new Vector3(position.x, position.y, 0);
 	}
+
+	public string DescribeState(IVersion version) {
+		Vector2 position = history.GetStateAt(version);
+		return "Position: [" + position.x + "," + position.y + "]";
+	}
+
+	public string DescribeStagedState() {
+		return string.Format("Position: [ {0:F2}, {1:F2}]", stagedX, stagedY);
+	}
 }
