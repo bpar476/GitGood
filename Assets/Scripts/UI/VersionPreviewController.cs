@@ -1,24 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class VersionPreviewController : MonoBehaviour {
+public abstract class VersionPreviewController : MonoBehaviour {
 
 	public GameObject previewObject;
 	public Canvas canvas;
+	public Button actionButton;
+	public Text title;
+	public VersionController versionedObject;
 
 	private Vector2 uiOffset;
 	private RectTransform canvasRect;
 
 	private void Start() {
-		Canvas canvas = GetComponentInParent<Canvas>();
+		canvas = GameObject.Find("Overlay").GetComponent<Canvas>();
+		if (canvas == null) {
+			Debug.Log("CANVAS NOT FOUND");
+		}
 		this.canvasRect = canvas.GetComponent<RectTransform>();
 		uiOffset = new Vector2((float)canvasRect.sizeDelta.x / 2f, (float)canvasRect.sizeDelta.y / 2f);
+		actionButton.onClick.AddListener(OnActionButtonClicked);
+		title.text = versionedObject.gameObject.name;
+
+		this.transform.SetParent(canvas.transform);
 	}
 
-
-	public void SetPreviewObject(GameObject preview) {
+	public void SetPreviewObject(VersionController versionedObject, GameObject preview) {
 		this.previewObject = preview;
+		this.versionedObject = versionedObject;
 	}
 
 	private void Update() {
@@ -30,4 +41,6 @@ public class VersionPreviewController : MonoBehaviour {
 			GetComponent<RectTransform>().anchoredPosition = proportionalPosition;
 		}
 	}
+
+	protected abstract void OnActionButtonClicked();
 }
