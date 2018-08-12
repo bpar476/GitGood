@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 81523579527568104}
   - component: {fileID: 114778107228379130}
   - component: {fileID: 114399195158020272}
+  - component: {fileID: 114502233190845150}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -908,6 +909,19 @@ MonoBehaviour:
   mergeStatusPanel: {fileID: 224878123356219974}
   unresolvedControllersRegion: {fileID: 224024650646521650}
   resolveButton: {fileID: 114401765502360794}
+--- !u!114 &114502233190845150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1701054786671920}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ccf10fc269f994faba0f7314788313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomSensitivity: 3.5
+  mouseSensitivity: 0.015
 --- !u!114 &114508649655786894
 MonoBehaviour:
   m_ObjectHideFlags: 1
