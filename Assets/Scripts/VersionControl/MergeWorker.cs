@@ -38,6 +38,7 @@ public class MergeWorker : IMergeWorker
 
         if (this.ui != null) {
             this.ui.gameObject.SetActive(true);
+            Camera.main.GetComponent<MergeInterfaceCamera>().enabled = true;
             this.ui.SetMergeWorker(this);
             this.ui.PopulateConflictObjects(conflictControllers);
         }
@@ -111,12 +112,16 @@ public class MergeWorker : IMergeWorker
     }
 
     public void Abort() {
-        this.ui.enabled = false;
+        this.ui.gameObject.SetActive(false);
+        Debug.Log("In Abort");
+        Camera.main.GetComponent<MergeInterfaceCamera>().enabled = false;
         this.DestroyOverlays();
     }
 
     public void End() {
-        this.ui.enabled = false;
+        this.ui.gameObject.SetActive(false);
+        Debug.Log("In End");
+        Camera.main.GetComponent<MergeInterfaceCamera>().enabled = false;
         this.DestroyOverlays();
     }
 
