@@ -14,6 +14,7 @@ public class VersionController : MonoBehaviour {
 	private GameObject activeVersion;
 	private IDictionary<IVersion, GameObject> previewVersions;
 	private GameObject stagedStatePreview;
+	StagedObjectPreviewController stagedUIController;
 
 	private IVersion version = new Version();
 
@@ -59,6 +60,22 @@ public class VersionController : MonoBehaviour {
 		initialPosition.position = new Vector2(x, y);
 	}
 	#endregion accessors
+
+	public string DescribeState(IVersion version) {
+		string result = "";
+		foreach(IVersionable versioner in versioners) {
+			result += versioner.DescribeState(version) +"\n";
+		}
+		return result;
+	}
+
+	public string DescribeStagedState() {
+		string result = "";
+		foreach(IVersionable versioner in versioners) {
+			result += versioner.DescribeStagedState() +"\n";
+		}
+		return result;
+	}
 
 	public void StageVersion() {
 		foreach (IVersionable versioner in versioners) {
@@ -134,6 +151,9 @@ public class VersionController : MonoBehaviour {
 	public void ShowStagedState() {
 		if(stagedStatePreview == null) {
 			stagedStatePreview =  Instantiate(previewPrefab, transform) as GameObject;
+			GameObject uiObject = Instantiate(Resources.Load("UI/StagedPreviewSummary")) as GameObject;
+			stagedUIController = uiObject.GetComponent<StagedObjectPreviewController>();
+			stagedUIController.SetPreviewObject(this, stagedStatePreview);
 		}
 		foreach (IVersionable versioner in versioners) {
 			versioner.ResetToStaged(stagedStatePreview);
@@ -143,7 +163,12 @@ public class VersionController : MonoBehaviour {
 	public void HideStagedState() {
 		if(stagedStatePreview != null) {
 			Destroy(stagedStatePreview);
+			Destroy(stagedUIController.gameObject);
 			stagedStatePreview = null;
 		}
+	}
+
+	public GameObject GetStagedObjectPreview() {
+		return this.stagedStatePreview;
 	}
 }

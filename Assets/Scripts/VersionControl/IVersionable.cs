@@ -10,4 +10,8 @@ public interface IVersionable {
     void ResetToStaged(GameObject target);
 
     void ResetToInitialState(GameObject target);
+
+    string DescribeState(IVersion version);
+
+    string DescribeStagedState();
 }
