@@ -20,6 +20,7 @@ public class OneShotConditionalDoor : PositiveTriggerObserver {
 			VersionManager manager = VersionManager.Instance();
 			manager.Add(playerVersionController);
 			manager.Commit("Left room");
+			GameObject.Find("AutocommitText").GetComponent<FlashText>().Flash();
 		}
 	}
 	
