@@ -178,7 +178,7 @@ public class UIController : Singleton<UIController> {
 		dialogController.inputField.Select();
 	}
 
-	private void UpdateOverlay() {
+	public void UpdateOverlay() {
 		Text branchText = GameObject.Find("Overlay/Status/CurrentBranch").GetComponent<Text>();
 		if (VersionManager.Instance().GetActiveBranch() != null) {
 			branchText.text = "Current Branch: " + VersionManager.Instance().GetActiveBranch().GetName();
@@ -194,5 +194,18 @@ public class UIController : Singleton<UIController> {
 		else {
 			commitText.text = "Last Commit: {No Commit}";
 		}
+
+		List<String> objectNames = VersionManager.Instance().GetStagedObjectNames();
+		Text stagedAreaText = GameObject.Find("/EngineController/UIController/Overlay/Status/StagingArea").GetComponent<Text>();
+
+		if (objectNames.Count == 0) {
+			stagedAreaText.text = "Nothing staged";
+			stagedAreaText.color = Color.grey;
+		}
+		else {
+			stagedAreaText.text = String.Join("\n", objectNames.ToArray());
+			stagedAreaText.color = Color.black;
+		}
+		
 	}
 }

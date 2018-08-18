@@ -63,7 +63,7 @@ public class VersionManager : Singleton<VersionManager> {
 			addTrigger.Trigger();
 		}
 
-		UpdateStageStatus();
+		UIController.Instance().UpdateOverlay();
 	}
 
 	public void Add(VersionController controller, IVersion version) {
@@ -81,7 +81,7 @@ public class VersionManager : Singleton<VersionManager> {
 			addTrigger.Trigger();
 		}
 
-		UpdateStageStatus();
+		UIController.Instance().UpdateOverlay();
 	}
 
 	public VersionController GetLastStagedObject() {
@@ -107,15 +107,16 @@ public class VersionManager : Singleton<VersionManager> {
 			}
 		}
 
-		UpdateStageStatus();
+		UIController.Instance().UpdateOverlay();
 	}
 
-	public void UpdateStageStatus() {
+	public List<String> GetStagedObjectNames() {
 		List<String> objectNames = new List<String>();
 		foreach (VersionController vc in stagingArea) {
-			objectNames.Add(vc.previewPrefab.name);
+			objectNames.Add(vc.gameObject.name);
 		}
-		GameObject.Find("StagedThings").GetComponent<UnityEngine.UI.Text>().text = String.Join("\n", objectNames.ToArray());
+		return objectNames;
+		
 	}
 
 	public VersionController GetLastUnstagedObject() {
