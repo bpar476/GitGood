@@ -11,4 +11,6 @@ public interface IMergeWorker {
     MergeStatus GetStatus(VersionController versionedObject);
     Relationship GetMergeType();
     void PickObject(GameObject gameObject);
+    GameObject GetBasePreviewForVersionedObject(VersionController versionedObject);
+    GameObject GetFeaturePreviewForVersionedObject(VersionController versionedObject);
 }

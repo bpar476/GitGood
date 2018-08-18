@@ -15,7 +15,9 @@ public class MergeWorker : IMergeWorker
 
     private TriggerManager pickTrigger;
 
-    public MergeWorker(IBranch baseBranch, IBranch featureBranch, TriggerManager trigger) {
+    private MergeUIController ui;
+
+    public MergeWorker(IBranch baseBranch, IBranch featureBranch, TriggerManager trigger, MergeUIController mergeUI) {
         if (baseBranch == null || featureBranch == null) {
             throw new Exception("Branch can not be null");
         }
@@ -27,11 +29,19 @@ public class MergeWorker : IMergeWorker
         stagingArea = new Dictionary<VersionController, IVersion>();
 
         pickTrigger = trigger;
+        this.ui = mergeUI;
 
         Initialise();
 
         UpdateStatus();
         RenderDiff();
+
+        if (this.ui != null) {
+            this.ui.gameObject.SetActive(true);
+            Camera.main.GetComponent<MergeInterfaceCamera>().enabled = true;
+            this.ui.SetMergeWorker(this);
+            this.ui.PopulateConflictObjects(conflictControllers);
+        }
     }
 
     /// <summary>
@@ -102,10 +112,16 @@ public class MergeWorker : IMergeWorker
     }
 
     public void Abort() {
+        this.ui.gameObject.SetActive(false);
+        Debug.Log("In Abort");
+        Camera.main.GetComponent<MergeInterfaceCamera>().enabled = false;
         this.DestroyOverlays();
     }
 
     public void End() {
+        this.ui.gameObject.SetActive(false);
+        Debug.Log("In End");
+        Camera.main.GetComponent<MergeInterfaceCamera>().enabled = false;
         this.DestroyOverlays();
     }
 
@@ -129,9 +145,6 @@ public class MergeWorker : IMergeWorker
         }
         
         this.UpdateStatus();
-
-        this.DestroyOverlays();
-        this.RenderDiff();
 
         if (pickTrigger != null) {
             pickTrigger.Trigger();
@@ -174,6 +187,14 @@ public class MergeWorker : IMergeWorker
         this.featureOverlay.Destroy();
     }
 
+    public GameObject GetBasePreviewForVersionedObject(VersionController versionedObject) {
+        return this.baseOverlay.GetPreviewForObject(versionedObject);
+    }
+
+    public GameObject GetFeaturePreviewForVersionedObject(VersionController versionedObject) {
+        return this.featureOverlay.GetPreviewForObject(versionedObject);
+    }
+
     public IDictionary<VersionController, IVersion> BuildStagingArea() {
         return new Dictionary<VersionController, IVersion>(stagingArea);
     }
@@ -195,13 +216,27 @@ public class MergeWorker : IMergeWorker
         return MergeStatus.Unknown;
     }
 
-    public void PickObject(GameObject gameObject) {
+    public void PickObject(GameObject pickedObject) {
         VersionController versionedObject;
-        if (baseOverlay.HasGameObject(gameObject, out versionedObject)) {
+        if (baseOverlay.HasGameObject(pickedObject, out versionedObject)) {
             PickVersion(versionedObject, baseBranch.GetTip().getObjectVersion(versionedObject));
+            baseOverlay.SetColor(versionedObject, new Color(0f, 1f, 0f, 0.5f));
+            featureOverlay.SetColor(versionedObject, new Color(0f, 0f, 0f, 0.5f));
+            this.ui.VersionPicked(versionedObject, pickedObject);
         }
-        else if (featureOverlay.HasGameObject(gameObject, out versionedObject)) {
+        else if (featureOverlay.HasGameObject(pickedObject, out versionedObject)) {
             PickVersion(versionedObject, featureBranch.GetTip().getObjectVersion(versionedObject));
+            featureOverlay.SetColor(versionedObject, new Color(0f, 1f, 0f, 0.5f));
+            baseOverlay.SetColor(versionedObject, new Color(0f, 0f, 0f, 0.5f));
+            this.ui.VersionPicked(versionedObject, pickedObject);
         }
+    }
+
+    public IBranch GetBaseBranch() {
+        return this.baseBranch;
+    }
+
+    public IBranch GetFeatureBranch() {
+        return this.featureBranch;
     }
 }

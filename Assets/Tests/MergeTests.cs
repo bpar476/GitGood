@@ -50,7 +50,7 @@ public class MergeTests {
         Assert.AreEqual("testBranch", testBranch.GetName());
         Assert.AreSame(secondCommit, testBranch.GetTip());
 
-        IMergeWorker mw = new MergeWorker(master, testBranch, null);
+        IMergeWorker mw = new MergeWorker(master, testBranch, null, null);
         Assert.AreEqual(Relationship.FastForward, mw.GetMergeType());
         Assert.AreEqual(MergeStatus.FastForward, mw.GetStatus(testController1));
         Assert.AreEqual(MergeStatus.FastForward, mw.GetStatus(testController2));

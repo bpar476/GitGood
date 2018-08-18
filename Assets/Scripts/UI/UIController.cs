@@ -11,6 +11,10 @@ public class UIController : Singleton<UIController> {
 
     }
 
+	void Start() {
+		UpdateOverlay();
+	}
+
 	void Update () {
 		// Branching
 		if (Input.GetKeyDown(KeyCode.Y)) {
@@ -71,7 +75,7 @@ public class UIController : Singleton<UIController> {
 		);
 
 		dialogController.submitButton.onClick.AddListener(() => {
-			UpdateDebugStatus();
+			UpdateOverlay();
 		});
 
 		dialogController.inputField.Select();
@@ -101,7 +105,7 @@ public class UIController : Singleton<UIController> {
 		);
 
 		dialogController.submitButton.onClick.AddListener(() => {
-			UpdateDebugStatus();
+			UpdateOverlay();
 		});
 
 		dialogController.inputField.Select();
@@ -127,11 +131,13 @@ public class UIController : Singleton<UIController> {
 
 			EngineController.Instance().ToggleControls(true);
 			Destroy(dialog);
+
+			Camera.main.GetComponent<MergeInterfaceCamera>().enabled = false;
 			}
 		);
 
 		dialogController.submitButton.onClick.AddListener(() => {
-			UpdateDebugStatus();
+			UpdateOverlay();
 		});
 
 		dialogController.inputField.Select();
@@ -166,14 +172,14 @@ public class UIController : Singleton<UIController> {
 		);
 
 		dialogController.submitButton.onClick.AddListener(() => {
-			UpdateDebugStatus();
+			UpdateOverlay();
 		});
 
 		dialogController.inputField.Select();
 	}
 
-	private void UpdateDebugStatus() {
-		Text branchText = GameObject.Find("/DebugCanvas/CurrentBranch").GetComponent<Text>();
+	private void UpdateOverlay() {
+		Text branchText = GameObject.Find("Overlay/CurrentBranch").GetComponent<Text>();
 		if (VersionManager.Instance().GetActiveBranch() != null) {
 			branchText.text = "Current Branch: " + VersionManager.Instance().GetActiveBranch().GetName();
 		}
@@ -181,12 +187,12 @@ public class UIController : Singleton<UIController> {
 			branchText.text = "Current Branch: ERROR";
 		}
 
-		Text commitText = GameObject.Find("/DebugCanvas/CommitMessage").GetComponent<Text>();
+		Text commitText = GameObject.Find("Overlay/CommitMessage").GetComponent<Text>();
 		if (VersionManager.Instance().GetHead() != null) {
 			commitText.text = "Last Commit: " + VersionManager.Instance().GetHead().GetMessage();
 		}
 		else {
-			commitText.text = "Last Commit: ERROR";
+			commitText.text = "Last Commit: {No Commit}";
 		}
 	}
 }
