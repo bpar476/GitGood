@@ -8,21 +8,24 @@ public class OneShotConditionalDoor : PositiveTriggerObserver {
 	public Animator doorAnimator;
 	public Collider2D closeZone;
 
+	private bool shut = false;
+
 	protected override void HandleTrigger(bool state) {
 		doorAnimator.SetBool("open", true);
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
-		if (other.gameObject.tag.Equals("Player")) {
-			doorAnimator.SetBool("open", false);
-			// Commit the player's position because the door can't open again.
-			VersionController playerVersionController = other.gameObject.GetComponentInParent<VersionController>();
-			VersionManager manager = VersionManager.Instance();
-			manager.Add(playerVersionController);
-			manager.Commit("Left room");
-			GameObject.Find("AutocommitText").GetComponent<FlashText>().Flash();
+		if (!shut) {
+			if (other.gameObject.tag.Equals("Player")) {
+				doorAnimator.SetBool("open", false);
+				// Commit the player's position because the door can't open again.
+				VersionController playerVersionController = other.gameObject.GetComponentInParent<VersionController>();
+				VersionManager manager = VersionManager.Instance();
+				manager.Add(playerVersionController);
+				manager.Commit("Left room");
+				GameObject.Find("AutocommitText").GetComponent<FlashText>().Flash();
+				shut = true;
+			}
 		}
 	}
-	
-
 }
