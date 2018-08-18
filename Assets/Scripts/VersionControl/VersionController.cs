@@ -6,6 +6,8 @@ public class VersionController : MonoBehaviour {
 
 	private List<IVersionable> versioners;
 
+	public string objectName;
+
 	public GameObject templatePrefab;
 	public GameObject previewPrefab;
 	public Transform initialPosition;

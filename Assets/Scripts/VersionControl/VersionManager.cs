@@ -113,7 +113,7 @@ public class VersionManager : Singleton<VersionManager> {
 	public List<String> GetStagedObjectNames() {
 		List<String> objectNames = new List<String>();
 		foreach (VersionController vc in stagingArea) {
-			objectNames.Add(vc.gameObject.name);
+			objectNames.Add(vc.objectName);
 		}
 		return objectNames;
 		
