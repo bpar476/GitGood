@@ -323,6 +323,14 @@ public class VersionManager : Singleton<VersionManager> {
 	public bool HasBranch(string branchName) {
 		return branches.ContainsKey(branchName);
 	}
+	
+	/// <summary>
+	/// Returns a collection of all the branch names
+	/// </summary>
+	/// <returns></returns>
+	public ICollection<string> GetBranchList() {
+		return branches.Keys;
+	}
 
 	/// <summary>
 	/// Resets the game state to that of the currently checked out commit.
