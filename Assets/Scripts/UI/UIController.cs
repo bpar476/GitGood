@@ -155,18 +155,25 @@ public class UIController : Singleton<UIController> {
 			dialogController.submitButton.enabled = !s.Equals("");
 		});
 		dialogController.submitButton.onClick.AddListener(() => {
+			bool reenableControls = true;
 			Debug.Log("Button pressed");
 
 			string mergeBranch = dialogController.inputField.text;
 			if (VersionManager.Instance().HasBranch(mergeBranch)) {
 				VersionManager.Instance().Merge(VersionManager.Instance().LookupBranch(mergeBranch));
+				if (VersionManager.Instance().IsInMergeConflict()) {
+					// The merge conflict menu will re-enable controls later.
+					reenableControls = false;
+				}
 				Debug.Log("Starting merge");
 			}
 			else {
 				Debug.Log("Feature branch doesn't exist");
 			}
 
-			EngineController.Instance().ToggleControls(true);
+			if (reenableControls) {
+				EngineController.Instance().ToggleControls(true);
+			}
 			Destroy(dialog);
 			}
 		);
