@@ -11,9 +11,7 @@ public class MergeInterfaceCamera : MonoBehaviour {
 	private float originalSize;
 
 	private void OnEnable() {
-		Debug.Log("In OnEnable");
-		EngineController.Instance().ToggleMovement(false);
-
+		EngineController.Instance().ToggleControls(false);
 		Camera.main.GetComponent<PlayerCamera>().enabled = false;
 		Camera.main.transform.position = new Vector3(xPosition, yPosition, -1);
 		originalSize = Camera.main.orthographicSize;
@@ -23,8 +21,7 @@ public class MergeInterfaceCamera : MonoBehaviour {
 	}
 
 	private void OnDisable() {
-		Debug.Log("In OnDisable");
-		EngineController.Instance().ToggleMovement(true);
+		EngineController.Instance().ToggleControls(true);
 		Camera.main.orthographicSize = originalSize;
 		GetComponent<PanZoomCamera>().enabled = false;
 		Camera.main.GetComponent<PlayerCamera>().enabled = true;
