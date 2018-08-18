@@ -17,6 +17,8 @@ public class MergeWorker : IMergeWorker
 
     private MergeUIController ui;
 
+    private GameObject oldStatusUI;
+
     public MergeWorker(IBranch baseBranch, IBranch featureBranch, TriggerManager trigger, MergeUIController mergeUI) {
         if (baseBranch == null || featureBranch == null) {
             throw new Exception("Branch can not be null");
@@ -41,6 +43,9 @@ public class MergeWorker : IMergeWorker
             Camera.main.GetComponent<MergeInterfaceCamera>().enabled = true;
             this.ui.SetMergeWorker(this);
             this.ui.PopulateConflictObjects(conflictControllers);
+
+            oldStatusUI = GameObject.Find("Status");
+            oldStatusUI.SetActive(false);
         }
     }
 
@@ -113,6 +118,7 @@ public class MergeWorker : IMergeWorker
 
     public void Abort() {
         this.ui.gameObject.SetActive(false);
+        oldStatusUI.SetActive(true);
         Debug.Log("In Abort");
         Camera.main.GetComponent<MergeInterfaceCamera>().enabled = false;
         this.DestroyOverlays();
@@ -120,9 +126,11 @@ public class MergeWorker : IMergeWorker
 
     public void End() {
         this.ui.gameObject.SetActive(false);
+        oldStatusUI.SetActive(true);
         Debug.Log("In End");
         Camera.main.GetComponent<MergeInterfaceCamera>().enabled = false;
         this.DestroyOverlays();
+
     }
 
     public bool IsResolved() {
