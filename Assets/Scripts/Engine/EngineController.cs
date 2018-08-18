@@ -27,7 +27,7 @@ public class EngineController : Singleton<EngineController> {
 
     public void ToggleMovement(bool enabled) {
         if (player == null) {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player = GameObject.FindGameObjectWithTag("Player");
         }
         player.GetComponent<PlayerMovement>().enabled = enabled;
     }
