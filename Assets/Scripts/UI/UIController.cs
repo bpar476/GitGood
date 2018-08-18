@@ -179,7 +179,7 @@ public class UIController : Singleton<UIController> {
 	}
 
 	private void UpdateOverlay() {
-		Text branchText = GameObject.Find("Overlay/CurrentBranch").GetComponent<Text>();
+		Text branchText = GameObject.Find("Overlay/Status/CurrentBranch").GetComponent<Text>();
 		if (VersionManager.Instance().GetActiveBranch() != null) {
 			branchText.text = "Current Branch: " + VersionManager.Instance().GetActiveBranch().GetName();
 		}
@@ -187,7 +187,7 @@ public class UIController : Singleton<UIController> {
 			branchText.text = "Current Branch: ERROR";
 		}
 
-		Text commitText = GameObject.Find("Overlay/CommitMessage").GetComponent<Text>();
+		Text commitText = GameObject.Find("Overlay/Status/CommitMessage").GetComponent<Text>();
 		if (VersionManager.Instance().GetHead() != null) {
 			commitText.text = "Last Commit: " + VersionManager.Instance().GetHead().GetMessage();
 		}
