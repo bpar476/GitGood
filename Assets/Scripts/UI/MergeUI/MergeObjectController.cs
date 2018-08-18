@@ -13,7 +13,7 @@ public class MergeObjectController : MonoBehaviour {
 
 		set {
 			_underlyingObject = value;
-			transform.Find("Object").GetComponent<Text>().text = value.gameObject.name;
+			transform.Find("Object").GetComponent<Text>().text = value.objectName;
 		}
 	}
 	private VersionController _underlyingObject;

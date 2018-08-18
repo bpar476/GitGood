@@ -24,7 +24,7 @@ public abstract class VersionPreviewController : MonoBehaviour {
 		this.canvasRect = canvas.GetComponent<RectTransform>();
 		uiOffset = new Vector2((float)canvasRect.sizeDelta.x / 2f, (float)canvasRect.sizeDelta.y / 2f);
 		actionButton.onClick.AddListener(OnActionButtonClicked);
-		title.text = versionedObject.gameObject.name;
+		title.text = versionedObject.objectName;
 
 		this.transform.SetParent(canvas.transform);
 

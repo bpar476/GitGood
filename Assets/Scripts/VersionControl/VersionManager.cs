@@ -62,6 +62,8 @@ public class VersionManager : Singleton<VersionManager> {
 		if (addTrigger != null) {
 			addTrigger.Trigger();
 		}
+
+		UIController.Instance().UpdateOverlay();
 	}
 
 	public void Add(VersionController controller, IVersion version) {
@@ -78,6 +80,8 @@ public class VersionManager : Singleton<VersionManager> {
 		if (addTrigger != null) {
 			addTrigger.Trigger();
 		}
+
+		UIController.Instance().UpdateOverlay();
 	}
 
 	public VersionController GetLastStagedObject() {
@@ -102,6 +106,17 @@ public class VersionManager : Singleton<VersionManager> {
 				unstageTrigger.Trigger();
 			}
 		}
+
+		UIController.Instance().UpdateOverlay();
+	}
+
+	public List<String> GetStagedObjectNames() {
+		List<String> objectNames = new List<String>();
+		foreach (VersionController vc in stagingArea) {
+			objectNames.Add(vc.objectName);
+		}
+		return objectNames;
+		
 	}
 
 	public VersionController GetLastUnstagedObject() {
