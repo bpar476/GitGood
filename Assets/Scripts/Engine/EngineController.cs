@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EngineController : Singleton<EngineController> {
     private bool controlsEnabled = true;
+    private GameObject player;
 
     protected override void Awake() {
         base.Awake();
@@ -12,15 +13,23 @@ public class EngineController : Singleton<EngineController> {
     private EngineController() {
 
     }
+
     public void ToggleControls(bool enabled) {
+        if (player == null) {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
         controlsEnabled = enabled;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().enabled = controlsEnabled;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<VersionControls>().enabled = controlsEnabled;
+        player.GetComponent<PlayerMovement>().enabled = controlsEnabled;
+        player.GetComponent<VersionControls>().enabled = controlsEnabled;
+        player.GetComponent<PlayerInteraction>().enabled = controlsEnabled;
         GameObject.Find("/EngineController/UIController").GetComponent<UIController>().enabled = controlsEnabled;
     }
 
     public void ToggleMovement(bool enabled) {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().enabled = enabled;
+        if (player == null) {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+        player.GetComponent<PlayerMovement>().enabled = enabled;
     }
     
     public bool ControlsEnabled() {
