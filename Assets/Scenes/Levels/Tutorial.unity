@@ -447,6 +447,80 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efe52982cb2cd6d4ba785c51eb525be8, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &163265487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 163265488}
+  - component: {fileID: 163265491}
+  - component: {fileID: 163265490}
+  - component: {fileID: 163265489}
+  m_Layer: 0
+  m_Name: BranchnameTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &163265488
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 163265487}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1494603082}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &163265489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 163265487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608c8741258a90a45b804f313496bcab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &163265490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 163265487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d423cc07aec4248a989af80e672623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: {fileID: 1904392579}
+  delegateTrigger: {fileID: 163265489}
+  oneShot: 1
+  timesToTrigger: 1
+  baseSignal: {fileID: 1353474462}
+--- !u!114 &163265491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 163265487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9dd831615ee22943ac7f0c34fde23ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: {fileID: 163265489}
+  oneShot: 1
+  timesToTrigger: 1
+  flowchart: {fileID: 758223079}
+  message: tutorial_branch_name
 --- !u!1 &175043085
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,7 +903,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1494603082}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &473008267
 MonoBehaviour:
@@ -1337,6 +1411,13 @@ GameObject:
   - component: {fileID: 758223181}
   - component: {fileID: 758223180}
   - component: {fileID: 758223178}
+  - component: {fileID: 758223187}
+  - component: {fileID: 758223188}
+  - component: {fileID: 758223186}
+  - component: {fileID: 758223189}
+  - component: {fileID: 758223191}
+  - component: {fileID: 758223190}
+  - component: {fileID: 758223192}
   m_Layer: 0
   m_Name: TutorialFlowchart
   m_TagString: Untagged
@@ -1357,7 +1438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 261.81238, y: 127.44152}
+  scrollPos: {x: -476.6485, y: 63.98007}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 347
@@ -1369,9 +1450,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 758223179}
+  - {fileID: 758223187}
   selectedCommands:
-  - {fileID: 758223183}
+  - {fileID: 758223186}
   variables: []
   description: 
   stepPause: 0
@@ -1423,8 +1504,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: -73.384514
-    y: 80.615364
+    x: -329.15332
+    y: 86.38458
     width: 120
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -1571,8 +1652,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 60.106323
-    y: 81.72322
+    x: -182.20126
+    y: 79.80015
     width: 124.99994
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -1852,7 +1933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 191.05676
+    x: -41.63539
     y: 78.73829
     width: 149.99992
     height: 40
@@ -1897,8 +1978,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 527.9913
-    y: 81.6915
+    x: 312.60706
+    y: 85.53764
     width: 146.15378
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -2115,8 +2196,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 882
-    y: 80
+    x: 697.3842
+    y: 87.69229
     width: 159.6153
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -2334,8 +2415,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 346.39398
-    y: 82.56857
+    x: 113.70178
+    y: 84.491646
     width: 182.6922
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -2388,8 +2469,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 1043
-    y: 82
+    x: 1048.7693
+    y: 89.69229
     width: 159.6153
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -2552,8 +2633,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 1207
-    y: 81
+    x: 1208.9231
+    y: 88.69229
     width: 159.6153
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -2660,8 +2741,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 1386.4325
-    y: 78.96907
+    x: 1372.9707
+    y: 86.66136
     width: 192.30759
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -2876,8 +2957,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 1573.0309
-    y: 76
+    x: 1730.7244
+    y: 83.69229
     width: 163.46146
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -3091,8 +3172,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 1744.5762
-    y: 75.99999
+    x: 1900.3464
+    y: 81.76921
     width: 194.23065
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -3226,8 +3307,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 1949.1106
-    y: 75.99999
+    x: 2104.881
+    y: 81.76921
     width: 140.38455
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -3735,8 +3816,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 675.2121
-    y: 80.799355
+    x: 479.05817
+    y: 84.6455
     width: 207.69218
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -3887,6 +3968,170 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBlock: {fileID: 758223179}
   message: tutorial_commit_message
+--- !u!114 &758223186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 139
+  indentLevel: 0
+  storyText: You can see in the terminal that the command to create a new branch is
+    "git checkout -b".
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: 861.6151
+    y: 89.615364
+    width: 186.53836
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 142
+  blockName: Branch Names
+  description: Teaches the player how to create branches. Triggered by committing
+  eventHandler: {fileID: 758223189}
+  commandList:
+  - {fileID: 758223188}
+  - {fileID: 758223186}
+  - {fileID: 758223192}
+  - {fileID: 758223191}
+  - {fileID: 758223190}
+--- !u!114 &758223188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65d551a201c94bc79950076ff3eaf2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 132
+  indentLevel: 0
+  sayDialog: {fileID: 1653460352}
+--- !u!114 &758223189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7d417659cd54a6787f70f763950c34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentBlock: {fileID: 758223187}
+  message: tutorial_branch_name
+--- !u!114 &758223190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 141
+  indentLevel: 0
+  storyText: Give your new branch a sensible name that describes why you are creating
+    it.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 140
+  indentLevel: 0
+  storyText: Branch names are important because they describe to you and other Time
+    Guardians what the purpose of that branch is.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 143
+  indentLevel: 0
+  storyText: Checkout is the command to move branch and the "-b" flag means you're
+    creating a new branch.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &802137978
 GameObject:
   m_ObjectHideFlags: 0
@@ -4349,7 +4594,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1494603082}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1036257473
 MonoBehaviour:
@@ -5364,6 +5609,7 @@ Transform:
   - {fileID: 433565313}
   - {fileID: 1626982088}
   - {fileID: 1353474459}
+  - {fileID: 163265488}
   - {fileID: 473008266}
   - {fileID: 1708364472}
   - {fileID: 1507087126}
@@ -5402,7 +5648,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1494603082}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1507087127
 MonoBehaviour:
@@ -5567,9 +5813,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1626982088}
+  - component: {fileID: 1626982089}
   - component: {fileID: 1626982091}
   - component: {fileID: 1626982090}
-  - component: {fileID: 1626982089}
   m_Layer: 0
   m_Name: CommitMessageTrigger
   m_TagString: Untagged
@@ -7515,7 +7761,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1494603082}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1708364473
 MonoBehaviour:
@@ -7705,7 +7951,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1494603082}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1800804931
 MonoBehaviour:
@@ -8237,6 +8483,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1904392571}
   m_Script: {fileID: 11500000, guid: 608c8741258a90a45b804f313496bcab, type: 3}
+--- !u!114 &1904392579 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114154704502758400, guid: 563c5148a634a46ad9fdd3400705e3be,
+    type: 2}
+  m_PrefabInternal: {fileID: 1904392571}
+  m_Script: {fileID: 11500000, guid: 608c8741258a90a45b804f313496bcab, type: 3}
 --- !u!1001 &1942902052
 Prefab:
   m_ObjectHideFlags: 0
@@ -8630,7 +8882,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1494603082}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2032444459
 MonoBehaviour:
