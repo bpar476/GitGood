@@ -161,6 +161,8 @@ public class VersionManager : Singleton<VersionManager> {
 			commitTrigger.Trigger();
 		}
 
+		UIController.Instance().UpdateOverlay();
+
 		return commit;
 	}
 
@@ -259,6 +261,8 @@ public class VersionManager : Singleton<VersionManager> {
 		if (checkoutTrigger != null) {
 			checkoutTrigger.Trigger();
 		}
+
+		UIController.Instance().UpdateOverlay();
 	}
 
 	/// <summary>
