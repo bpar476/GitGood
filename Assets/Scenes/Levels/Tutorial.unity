@@ -1323,6 +1323,11 @@ GameObject:
   - component: {fileID: 758223168}
   - component: {fileID: 758223170}
   - component: {fileID: 758223171}
+  - component: {fileID: 758223176}
+  - component: {fileID: 758223175}
+  - component: {fileID: 758223174}
+  - component: {fileID: 758223173}
+  - component: {fileID: 758223172}
   m_Layer: 0
   m_Name: TutorialFlowchart
   m_TagString: Untagged
@@ -1343,7 +1348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: -1233.9061, y: 40.38143}
+  scrollPos: {x: -873.081, y: 39.3505}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 347
@@ -1357,7 +1362,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 758223144}
   selectedCommands:
-  - {fileID: 758223171}
+  - {fileID: 758223151}
   variables: []
   description: 
   stepPause: 0
@@ -1573,6 +1578,7 @@ MonoBehaviour:
   - {fileID: 758223092}
   - {fileID: 758223090}
   - {fileID: 758223091}
+  - {fileID: 758223172}
 --- !u!114 &758223089
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -1599,7 +1605,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 9
   indentLevel: 0
-  storyText: Move the box and add it to the staging area.
+  storyText: Move the box and add it to the staging area. When you're close enough
+    to stage it, it will gain a green outline in your Heads Up Display (HUD)
   description: 
   character: {fileID: 1613906548}
   portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
@@ -1625,7 +1632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 10
   indentLevel: 0
-  storyText: <Press Q to add an object to the staging area>
+  storyText: <Press F when near the box to pick it up or drop it>
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -1719,7 +1726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 17
   indentLevel: 0
-  storyText: <Press E to make a commit>
+  storyText: <Click Commit on the status menu to create a commit>
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -1810,7 +1817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 24
   indentLevel: 0
-  storyText: <Press Q to remove an object from the staging area>
+  storyText: <Click "unstage" above the box to unstage it>
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -2073,7 +2080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 37
   indentLevel: 0
-  storyText: <Press J to checkout a new branch>
+  storyText: <Click the "New Branch" button to checkout a new branch>
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -2562,7 +2569,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 65
   indentLevel: 0
-  storyText: Great, now hop back to the master branch and I'll teach you about merges.
+  storyText: Great, now checkout the master branch. That will load the state of the
+    master branch back into the world.
   description: 
   character: {fileID: 1613906548}
   portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
@@ -2805,7 +2813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 80
   indentLevel: 0
-  storyText: <Press K to go back to master>
+  storyText: <Click "Checkout Branch" and choose master from the list>
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -2858,7 +2866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 1572
+    x: 1573.0309
     y: 76
     width: 158.24742
     height: 40
@@ -2879,6 +2887,10 @@ MonoBehaviour:
   - {fileID: 758223171}
   - {fileID: 758223150}
   - {fileID: 758223151}
+  - {fileID: 758223176}
+  - {fileID: 758223175}
+  - {fileID: 758223174}
+  - {fileID: 758223173}
   - {fileID: 758223145}
 --- !u!114 &758223145
 MonoBehaviour:
@@ -2893,8 +2905,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 87
   indentLevel: 0
-  storyText: <When in a merge conflict, click on the version to keep, or Press P to
-    pick the outlined version>
+  storyText: <When in a merge conflict, click on a version to stage it>
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3017,8 +3028,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 92
   indentLevel: 0
-  storyText: Now you can see that there are two versions of the box visible. Pick
-    the version that you like to be merged into master.
+  storyText: Now you can see that there are two versions of the box visible. These
+    are the versions on the different branches you're merging.
   description: 
   character: {fileID: 1613906548}
   portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
@@ -3044,7 +3055,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 100
   indentLevel: 0
-  storyText: <Press M to resolve a conflicted merge when there are no conflicts remaining>
+  storyText: <Click "Merge" on the merge HUD to finalise the merge>
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -3098,7 +3109,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 96
   indentLevel: 0
-  storyText: You're ready to resolve the merge.
+  storyText: All conflicts have been solved, you can see the option to merge has been
+    added to the HUD.
   description: 
   character: {fileID: 1613906548}
   portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
@@ -3501,6 +3513,140 @@ MonoBehaviour:
   itemId: 116
   indentLevel: 0
   storyText: I'll show you what it looks like when you have a merge with conflicts.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 121
+  indentLevel: 0
+  storyText: <Press Q to add the box to the staging area>
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 1841723293}
+--- !u!114 &758223173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 120
+  indentLevel: 0
+  storyText: Once you've figured out which version you want, add it to the staging
+    area.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 119
+  indentLevel: 0
+  storyText: You can zoom in and out with the scroll wheel and pan by dragging to
+    get a good look around the place.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 118
+  indentLevel: 0
+  storyText: Below the object name, are the different versions listed by their branch
+    name. Clicking the branch name will zoom in on that version.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 117
+  indentLevel: 0
+  storyText: You can see a list of all the objects that have conflicts on that menu
+    on the left side of your HUD.
   description: 
   character: {fileID: 1613906548}
   portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
