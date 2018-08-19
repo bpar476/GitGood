@@ -1371,7 +1371,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 758223179}
   selectedCommands:
-  - {fileID: 758223181}
+  - {fileID: 758223183}
   variables: []
   description: 
   stepPause: 0
@@ -3671,7 +3671,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223177
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3698,7 +3698,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223178
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3724,7 +3724,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223179
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3754,7 +3754,7 @@ MonoBehaviour:
   - {fileID: 758223178}
 --- !u!114 &758223180
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3781,7 +3781,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223181
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3808,7 +3808,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223182
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3819,8 +3819,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 126
   indentLevel: 0
-  storyText: ' You can see the command "git commit -m". This command creates a commit.
-    The "-m" flag means you''re going to leave a commit message.'
+  storyText: You can see the command "git commit -m". This command creates a commit.
+    The "-m" flag means you're going to leave a commit message.
   description: 
   character: {fileID: 1613906548}
   portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
@@ -3835,7 +3835,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223183
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3846,8 +3846,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 125
   indentLevel: 0
-  storyText: This is the input terminal where git commands are entered to manipulate
-    timelines.
+  storyText: This is the input terminal where Git commands are entered to manipulate
+    timelines. Git is the version control system we use to manage timeline versions.
   description: 
   character: {fileID: 1613906548}
   portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
@@ -3862,7 +3862,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223184
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3876,7 +3876,7 @@ MonoBehaviour:
   sayDialog: {fileID: 1653460352}
 --- !u!114 &758223185
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
