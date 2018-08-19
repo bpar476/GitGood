@@ -231,6 +231,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1520632823074332
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4444927350182790}
+  - component: {fileID: 114794480027301324}
+  m_Layer: 0
+  m_Name: MergeDialogTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1529914112292266
 GameObject:
   m_ObjectHideFlags: 1
@@ -435,7 +451,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4779607695767088}
   - component: {fileID: 114834673861466736}
-  - component: {fileID: 114500051596374110}
   m_Layer: 0
   m_Name: UIController
   m_TagString: Untagged
@@ -724,6 +739,19 @@ Transform:
   m_Father: {fileID: 4484321868060042}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4444927350182790
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1520632823074332}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4779607695767088}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4484321868060042
 Transform:
   m_ObjectHideFlags: 1
@@ -768,6 +796,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224331299744321824}
+  - {fileID: 4444927350182790}
   m_Father: {fileID: 4119899784547072}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1441,17 +1470,6 @@ MonoBehaviour:
   mergeStatusPanel: {fileID: 224878123356219974}
   unresolvedControllersRegion: {fileID: 224024650646521650}
   resolveButton: {fileID: 114401765502360794}
---- !u!114 &114500051596374110
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1718312064808006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 608c8741258a90a45b804f313496bcab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114502233190845150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1876,6 +1894,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114794480027301324
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1520632823074332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608c8741258a90a45b804f313496bcab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114802861120503088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1964,7 +1993,7 @@ MonoBehaviour:
   checkoutDialogTrigger: {fileID: 114425016093723168}
   newBranchDialogTrigger: {fileID: 114154704502758400}
   commitDialogTrigger: {fileID: 114958265918243088}
-  mergeDialogTrigger: {fileID: 114500051596374110}
+  mergeDialogTrigger: {fileID: 114794480027301324}
 --- !u!114 &114866469073188586
 MonoBehaviour:
   m_ObjectHideFlags: 1
