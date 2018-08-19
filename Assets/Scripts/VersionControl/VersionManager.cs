@@ -6,6 +6,13 @@ using UnityEngine;
 public class VersionManager : Singleton<VersionManager> {
 	protected override void Awake() {
 		base.Awake();
+
+		//Construct Initial Commit
+		CommitBuilder cb = new CommitBuilder();
+		cb.SetMessage("Initial Commit");
+		ICommit initialCommit = cb.Build();
+		activeCommit = initialCommit;
+		activeBranch.UpdateTip(initialCommit);
 	}
 
 	public TriggerManager mergeTrigger;
