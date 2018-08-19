@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 222136098606729620}
   - component: {fileID: 114129070717705642}
   - component: {fileID: 114969051445187258}
+  - component: {fileID: 114958265918243088}
   m_Layer: 5
   m_Name: CommitButton
   m_TagString: Untagged
@@ -292,6 +293,7 @@ GameObject:
   - component: {fileID: 222122162118067338}
   - component: {fileID: 114183497080253860}
   - component: {fileID: 114623347166614324}
+  - component: {fileID: 114425016093723168}
   m_Layer: 5
   m_Name: CheckoutButton
   m_TagString: Untagged
@@ -379,6 +381,7 @@ GameObject:
   - component: {fileID: 222427639779975754}
   - component: {fileID: 114246964562872406}
   - component: {fileID: 114698964354467934}
+  - component: {fileID: 114154704502758400}
   m_Layer: 5
   m_Name: BranchButton
   m_TagString: Untagged
@@ -432,6 +435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4779607695767088}
   - component: {fileID: 114834673861466736}
+  - component: {fileID: 114500051596374110}
   m_Layer: 0
   m_Name: UIController
   m_TagString: Untagged
@@ -1051,6 +1055,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114154704502758400
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1674830270726462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608c8741258a90a45b804f313496bcab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114183497080253860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1368,6 +1383,17 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114425016093723168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1601445974782620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608c8741258a90a45b804f313496bcab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114438536975230536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1415,6 +1441,17 @@ MonoBehaviour:
   mergeStatusPanel: {fileID: 224878123356219974}
   unresolvedControllersRegion: {fileID: 224024650646521650}
   resolveButton: {fileID: 114401765502360794}
+--- !u!114 &114500051596374110
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1718312064808006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608c8741258a90a45b804f313496bcab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114502233190845150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1924,6 +1961,10 @@ MonoBehaviour:
   textButttonDialogTemplate: {fileID: 1489736485446382, guid: 5aac6fdb5fd684277954176d2abb5b1f,
     type: 2}
   branchMenu: {fileID: 114363873343052334}
+  checkoutDialogTrigger: {fileID: 114425016093723168}
+  newBranchDialogTrigger: {fileID: 114154704502758400}
+  commitDialogTrigger: {fileID: 114958265918243088}
+  mergeDialogTrigger: {fileID: 114500051596374110}
 --- !u!114 &114866469073188586
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2015,6 +2056,17 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114958265918243088
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1460764128491944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608c8741258a90a45b804f313496bcab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114969051445187258
 MonoBehaviour:
   m_ObjectHideFlags: 1

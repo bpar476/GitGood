@@ -9,6 +9,11 @@ public class UIController : Singleton<UIController> {
 
 	public BranchMenu branchMenu;
 
+	public Triggerable checkoutDialogTrigger;
+	public Triggerable newBranchDialogTrigger;
+	public Triggerable commitDialogTrigger;
+	public Triggerable mergeDialogTrigger;
+
 	private UIController() {
 
     }
@@ -45,6 +50,9 @@ public class UIController : Singleton<UIController> {
 		EngineController.Instance().ToggleControls(false);
 		branchMenu.gameObject.SetActive(true);
 		branchMenu.Render();
+		if (checkoutDialogTrigger != null) {
+			checkoutDialogTrigger.NotifyObservers();
+		}
 	}
 
 	public void DisplayBranchDialog() {
@@ -87,6 +95,10 @@ public class UIController : Singleton<UIController> {
 		});
 
 		dialogController.inputField.Select();
+
+		if (newBranchDialogTrigger != null) {
+			newBranchDialogTrigger.NotifyObservers();
+		}
 	}
 
 	public void DisplayCommitDialog() {
@@ -117,6 +129,10 @@ public class UIController : Singleton<UIController> {
 		});
 
 		dialogController.inputField.Select();
+
+		if (commitDialogTrigger != null) {
+			commitDialogTrigger.NotifyObservers();
+		}
 	}
 
 	public void DisplayMergeCommitDialog() {
@@ -149,6 +165,10 @@ public class UIController : Singleton<UIController> {
 		});
 
 		dialogController.inputField.Select();
+
+		if (commitDialogTrigger != null) {
+			commitDialogTrigger.NotifyObservers();
+		}
 	}
 
 	public void DisplayMergeDialog() {
@@ -191,6 +211,10 @@ public class UIController : Singleton<UIController> {
 		});
 
 		dialogController.inputField.Select();
+
+		if (mergeDialogTrigger != null) {
+			mergeDialogTrigger.NotifyObservers();
+		}
 	}
 
 	public void UpdateOverlay() {
