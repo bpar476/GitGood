@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class UIController : Singleton<UIController> {
 	public GameObject textButttonDialogTemplate;
 
+	public BranchMenu branchMenu;
+
 	private UIController() {
 
     }
@@ -37,6 +39,12 @@ public class UIController : Singleton<UIController> {
 				DisplayMergeDialog();
 			}
 		}
+	}
+
+	public void DisplayChooseBranchDialog() {
+		EngineController.Instance().ToggleControls(false);
+		branchMenu.gameObject.SetActive(true);
+		branchMenu.Render();
 	}
 
 	public void DisplayBranchDialog() {

@@ -161,6 +161,8 @@ public class VersionManager : Singleton<VersionManager> {
 			commitTrigger.Trigger();
 		}
 
+		UIController.Instance().UpdateOverlay();
+
 		return commit;
 	}
 
@@ -259,6 +261,8 @@ public class VersionManager : Singleton<VersionManager> {
 		if (checkoutTrigger != null) {
 			checkoutTrigger.Trigger();
 		}
+
+		UIController.Instance().UpdateOverlay();
 	}
 
 	/// <summary>
@@ -322,6 +326,14 @@ public class VersionManager : Singleton<VersionManager> {
 	/// </summary>
 	public bool HasBranch(string branchName) {
 		return branches.ContainsKey(branchName);
+	}
+	
+	/// <summary>
+	/// Returns a collection of all the branch names
+	/// </summary>
+	/// <returns></returns>
+	public ICollection<string> GetBranchList() {
+		return branches.Keys;
 	}
 
 	/// <summary>
