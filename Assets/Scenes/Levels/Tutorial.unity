@@ -1328,6 +1328,7 @@ GameObject:
   - component: {fileID: 758223174}
   - component: {fileID: 758223173}
   - component: {fileID: 758223172}
+  - component: {fileID: 758223177}
   m_Layer: 0
   m_Name: TutorialFlowchart
   m_TagString: Untagged
@@ -1348,7 +1349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: -873.081, y: 39.3505}
+  scrollPos: {x: -539.0595, y: -31.783503}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 347
@@ -1360,9 +1361,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 758223144}
+  - {fileID: 758223122}
   selectedCommands:
-  - {fileID: 758223151}
+  - {fileID: 758223177}
   variables: []
   description: 
   stepPause: 0
@@ -2393,6 +2394,7 @@ MonoBehaviour:
   - {fileID: 758223124}
   - {fileID: 758223129}
   - {fileID: 758223166}
+  - {fileID: 758223177}
   - {fileID: 758223123}
 --- !u!114 &758223123
 MonoBehaviour:
@@ -2650,8 +2652,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 1372
-    y: 80
+    x: 1386.4325
+    y: 78.96907
     width: 186.08247
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -3341,7 +3343,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223165
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3368,7 +3370,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223166
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3379,8 +3381,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 111
   indentLevel: 0
-  storyText: This is because when you create a branch, it is an exact copy of whatever
-    branch you are currently on. In this case, the master branch.
+  storyText: This is because when you create a branch, it starts from the most recent
+    commit on the branch you were on previously.
   description: 
   character: {fileID: 1613906548}
   portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
@@ -3395,7 +3397,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223167
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3422,7 +3424,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223168
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3448,7 +3450,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223169
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3475,7 +3477,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223170
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3501,7 +3503,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223171
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3527,7 +3529,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223172
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3553,7 +3555,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 1841723293}
 --- !u!114 &758223173
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3580,7 +3582,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223174
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3607,7 +3609,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223175
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3634,7 +3636,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &758223176
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758223078}
@@ -3647,6 +3649,33 @@ MonoBehaviour:
   indentLevel: 0
   storyText: You can see a list of all the objects that have conflicts on that menu
     on the left side of your HUD.
+  description: 
+  character: {fileID: 1613906548}
+  portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &758223177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 122
+  indentLevel: 0
+  storyText: The most recent commit is called the HEAD commit. If you find you've
+    made a mistake and want to go back to the HEAD, just click "Reset To HEAD".
   description: 
   character: {fileID: 1613906548}
   portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
