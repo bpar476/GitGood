@@ -10,8 +10,6 @@ public class MergeUIController : MonoBehaviour {
 	public Button resolveButton;
 
 	private MergeWorker mw;
-	private int numResolved = 0;
-	private int numConflicts = 0;
 
 	private IDictionary<VersionController, MergeObjectController> controllers;
 
@@ -61,5 +59,6 @@ public class MergeUIController : MonoBehaviour {
 
 	public void ResolveMerge() {
 		UIController.Instance().DisplayMergeCommitDialog();
+		controllers.Clear();
 	}
 }
