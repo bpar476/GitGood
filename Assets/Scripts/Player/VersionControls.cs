@@ -57,6 +57,9 @@ public class VersionControls : MonoBehaviour {
 				overlay = new Overlay(VersionManager.Instance().GetHead(), Color.red);
 			}
 		}
+		if (Input.GetKeyDown(KeyCode.G)) {
+			VersionManager.Instance().ToggleDiffOverlay();
+		}
 	}
 
 	private void selectVersionable() {

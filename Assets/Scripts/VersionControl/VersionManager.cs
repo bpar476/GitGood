@@ -39,6 +39,8 @@ public class VersionManager : Singleton<VersionManager> {
 
 	private IMergeWorker mw;
 
+	private Overlay diffOverlay;
+
 	private VersionManager() {
 		trackedObjects = new List<VersionController>();
 		stagingArea = new List<VersionController>();
@@ -50,6 +52,7 @@ public class VersionManager : Singleton<VersionManager> {
 		activeBranch = master;
 		activeCommit = null;
 		isDetached = false;
+		diffOverlay = null;
 	}
 
 	/// <summary>
@@ -519,4 +522,15 @@ public class VersionManager : Singleton<VersionManager> {
 	}
 
 	#endregion
+
+	public void ToggleDiffOverlay() {
+		if (diffOverlay == null) {
+			diffOverlay = new Overlay(LookupBranch("master").GetTip());
+
+		}
+		else {
+			diffOverlay.Destroy();
+			diffOverlay = null;
+		}
+	}
 }
