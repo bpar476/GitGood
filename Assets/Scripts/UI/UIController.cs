@@ -202,7 +202,8 @@ public class UIController : Singleton<UIController> {
 				Debug.Log("Starting merge");
 			}
 			else {
-				Debug.Log("Feature branch doesn't exist");
+				dialogController.ErrorText = "Feature branch doesn't exist, check spelling and try again";
+				return;
 			}
 
 			if (reenableControls) {
