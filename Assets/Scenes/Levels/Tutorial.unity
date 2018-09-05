@@ -554,6 +554,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &253606246 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1561980299256168, guid: 563c5148a634a46ad9fdd3400705e3be,
+    type: 2}
+  m_PrefabInternal: {fileID: 1904392571}
 --- !u!1 &377839208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,6 +1429,27 @@ GameObject:
   - component: {fileID: 758223198}
   - component: {fileID: 758223193}
   - component: {fileID: 758223195}
+  - component: {fileID: 758223200}
+  - component: {fileID: 758223199}
+  - component: {fileID: 758223201}
+  - component: {fileID: 758223202}
+  - component: {fileID: 758223204}
+  - component: {fileID: 758223203}
+  - component: {fileID: 758223206}
+  - component: {fileID: 758223205}
+  - component: {fileID: 758223208}
+  - component: {fileID: 758223207}
+  - component: {fileID: 758223211}
+  - component: {fileID: 758223212}
+  - component: {fileID: 758223216}
+  - component: {fileID: 758223215}
+  - component: {fileID: 758223217}
+  - component: {fileID: 758223218}
+  - component: {fileID: 758223219}
+  - component: {fileID: 758223221}
+  - component: {fileID: 758223224}
+  - component: {fileID: 758223227}
+  - component: {fileID: 758223228}
   m_Layer: 0
   m_Name: TutorialFlowchart
   m_TagString: Untagged
@@ -1444,11 +1470,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 399.07217, y: 580.428}
+  scrollPos: {x: -1671.9972, y: 20.824745}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 347
-  zoom: 0.5100011
+  zoom: 0.9399997
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -1456,9 +1482,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 758223100}
+  - {fileID: 758223159}
   selectedCommands:
-  - {fileID: 758223099}
+  - {fileID: 758223228}
   variables: []
   description: 
   stepPause: 0
@@ -1522,10 +1548,12 @@ MonoBehaviour:
   eventHandler: {fileID: 758223082}
   commandList:
   - {fileID: 758223087}
+  - {fileID: 758223200}
   - {fileID: 758223080}
   - {fileID: 758223086}
   - {fileID: 758223085}
   - {fileID: 758223084}
+  - {fileID: 758223199}
 --- !u!114 &758223082
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -1660,7 +1688,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -182.20126
     y: 79.80015
-    width: 126.47042
+    width: 120.21279
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1670,11 +1698,13 @@ MonoBehaviour:
     closing
   eventHandler: {fileID: 758223089}
   commandList:
+  - {fileID: 758223202}
   - {fileID: 758223093}
   - {fileID: 758223092}
   - {fileID: 758223090}
   - {fileID: 758223091}
   - {fileID: 758223172}
+  - {fileID: 758223201}
 --- !u!114 &758223089
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -1939,9 +1969,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: -41.63539
-    y: 78.73829
-    width: 151.96056
+    x: -42.699223
+    y: 85.121254
+    width: 145.74472
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1951,12 +1981,14 @@ MonoBehaviour:
     closing
   eventHandler: {fileID: 758223108}
   commandList:
+  - {fileID: 758223203}
   - {fileID: 758223107}
   - {fileID: 758223106}
   - {fileID: 758223105}
   - {fileID: 758223104}
   - {fileID: 758223103}
   - {fileID: 758223099}
+  - {fileID: 758223204}
 --- !u!114 &758223101
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -1986,7 +2018,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 312.60706
     y: 85.53764
-    width: 148.039
+    width: 141.48938
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1995,6 +2027,7 @@ MonoBehaviour:
   description: Teaches the player how to commit. Triggered by adding the box.
   eventHandler: {fileID: 758223097}
   commandList:
+  - {fileID: 758223208}
   - {fileID: 758223101}
   - {fileID: 758223096}
   - {fileID: 758223109}
@@ -2002,6 +2035,7 @@ MonoBehaviour:
   - {fileID: 758223098}
   - {fileID: 758223094}
   - {fileID: 758223095}
+  - {fileID: 758223207}
 --- !u!114 &758223103
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -2204,7 +2238,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 697.3842
     y: 87.69229
-    width: 161.76447
+    width: 151.06387
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2213,6 +2247,7 @@ MonoBehaviour:
   description: Teaches the player how to create branches. Triggered by committing
   eventHandler: {fileID: 758223119}
   commandList:
+  - {fileID: 758223211}
   - {fileID: 758223118}
   - {fileID: 758223117}
   - {fileID: 758223116}
@@ -2222,6 +2257,7 @@ MonoBehaviour:
   - {fileID: 758223113}
   - {fileID: 758223112}
   - {fileID: 758223110}
+  - {fileID: 758223212}
 --- !u!114 &758223112
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -2423,7 +2459,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 113.70178
     y: 84.491646
-    width: 185.29382
+    width: 173.4043
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2433,9 +2469,11 @@ MonoBehaviour:
     by unstaging the box
   eventHandler: {fileID: 758223127}
   commandList:
+  - {fileID: 758223205}
   - {fileID: 758223126}
   - {fileID: 758223125}
   - {fileID: 758223121}
+  - {fileID: 758223206}
 --- !u!114 &758223121
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -2477,7 +2515,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1048.7693
     y: 89.69229
-    width: 161.76447
+    width: 151.06387
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2486,11 +2524,13 @@ MonoBehaviour:
   description: Commands to do on the new branch
   eventHandler: {fileID: 758223128}
   commandList:
+  - {fileID: 758223215}
   - {fileID: 758223124}
   - {fileID: 758223129}
   - {fileID: 758223166}
   - {fileID: 758223177}
   - {fileID: 758223123}
+  - {fileID: 758223216}
 --- !u!114 &758223123
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -2639,9 +2679,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 1208.9231
-    y: 88.69229
-    width: 161.76447
+    x: 1205.7308
+    y: 85.50081
+    width: 151.06387
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2650,9 +2690,11 @@ MonoBehaviour:
   description: Teaches the player about fast forward merges.
   eventHandler: {fileID: 758223134}
   commandList:
+  - {fileID: 758223218}
   - {fileID: 758223133}
   - {fileID: 758223131}
   - {fileID: 758223142}
+  - {fileID: 758223217}
 --- !u!114 &758223131
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -2749,7 +2791,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1372.9707
     y: 86.66136
-    width: 195.09772
+    width: 185.10643
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2758,12 +2800,14 @@ MonoBehaviour:
   description: Teaches the player about merging. Starts with fast forwards
   eventHandler: {fileID: 758223140}
   commandList:
+  - {fileID: 758223221}
   - {fileID: 758223139}
   - {fileID: 758223138}
   - {fileID: 758223137}
   - {fileID: 758223132}
   - {fileID: 758223141}
   - {fileID: 758223136}
+  - {fileID: 758223219}
 --- !u!114 &758223136
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -2964,8 +3008,8 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: 1734.5706
-    y: 85.615364
-    width: 165.68602
+    y: 86.67919
+    width: 158.51068
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2974,6 +3018,7 @@ MonoBehaviour:
   description: Teaches the player about merging. Starts with fast forwards
   eventHandler: {fileID: 758223149}
   commandList:
+  - {fileID: 758223224}
   - {fileID: 758223148}
   - {fileID: 758223147}
   - {fileID: 758223146}
@@ -3180,7 +3225,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1906.1157
     y: 83.69228
-    width: 197.0585
+    width: 184.0426
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3313,9 +3358,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 2104.881
-    y: 81.76921
-    width: 142.15666
+    x: 2102.7537
+    y: 79.641556
+    width: 136.17024
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -3324,11 +3369,13 @@ MonoBehaviour:
   description: Teaches the player about merging. Starts with fast forwards
   eventHandler: {fileID: 758223163}
   commandList:
+  - {fileID: 758223228}
   - {fileID: 758223162}
   - {fileID: 758223161}
   - {fileID: 758223160}
   - {fileID: 758223170}
   - {fileID: 758223158}
+  - {fileID: 758223227}
 --- !u!114 &758223160
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -3824,7 +3871,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 479.05817
     y: 84.6455
-    width: 210.78397
+    width: 202.1277
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -4016,7 +4063,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 861.6151
     y: 89.615364
-    width: 189.21538
+    width: 177.6596
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -4179,7 +4226,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1571.8176
     y: 86.66138
-    width: 159.80368
+    width: 153.19153
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -4272,6 +4319,342 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentBlock: {fileID: 758223194}
   message: merge_command
+--- !u!114 &758223199
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 151
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: EnableControls
+  delay: 0
+--- !u!114 &758223200
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 150
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: DisableControls
+  delay: 0
+--- !u!114 &758223201
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 152
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: EnableControls
+  delay: 0
+--- !u!114 &758223202
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 153
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: DisableControls
+  delay: 0
+--- !u!114 &758223203
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 155
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: DisableControls
+  delay: 0
+--- !u!114 &758223204
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 154
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: EnableControls
+  delay: 0
+--- !u!114 &758223205
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 157
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: DisableControls
+  delay: 0
+--- !u!114 &758223206
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 156
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: EnableControls
+  delay: 0
+--- !u!114 &758223207
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 159
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: EnableControls
+  delay: 0
+--- !u!114 &758223208
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 158
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: DisableControls
+  delay: 0
+--- !u!114 &758223211
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 162
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: DisableControls
+  delay: 0.1
+--- !u!114 &758223212
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 163
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: EnableControls
+  delay: 0
+--- !u!114 &758223215
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 167
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: DisableControls
+  delay: 0.1
+--- !u!114 &758223216
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 166
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: EnableControls
+  delay: 0
+--- !u!114 &758223217
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 168
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: EnableControls
+  delay: 0
+--- !u!114 &758223218
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 169
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: DisableControls
+  delay: 0.1
+--- !u!114 &758223219
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 170
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: EnableControls
+  delay: 0
+--- !u!114 &758223221
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 171
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: DisableControls
+  delay: 0.1
+--- !u!114 &758223224
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 175
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: DisableControls
+  delay: 0.1
+--- !u!114 &758223227
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 178
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: EnableControls
+  delay: 0
+--- !u!114 &758223228
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 758223078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 179
+  indentLevel: 0
+  targetObject: {fileID: 253606246}
+  methodName: DisableControls
+  delay: 0.1
 --- !u!1 &802137978
 GameObject:
   m_ObjectHideFlags: 0
