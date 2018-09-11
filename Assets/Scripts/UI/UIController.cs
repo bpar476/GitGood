@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -78,6 +79,11 @@ public class UIController : Singleton<UIController> {
 			Debug.Log("Button pressed");
 
 			string branch = dialogController.inputField.text;
+			if (Regex.Match(branch, @"[~^:\[\]\\\s]").Success) {
+				dialogController.ErrorText = "Error - branch names cannot contain spaces or special characters: ~ ^ : [ ] \\";
+				return;
+			}
+
 			if (!VersionManager.Instance().HasBranch(branch)) {
 				VersionManager.Instance().CreateBranch(branch);
 				Debug.Log("Creating branch " + branch);
@@ -196,7 +202,8 @@ public class UIController : Singleton<UIController> {
 				Debug.Log("Starting merge");
 			}
 			else {
-				Debug.Log("Feature branch doesn't exist");
+				dialogController.ErrorText = "Feature branch doesn't exist, check spelling and try again";
+				return;
 			}
 
 			if (reenableControls) {
