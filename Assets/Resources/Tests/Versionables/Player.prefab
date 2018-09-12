@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4627231224871234}
   - component: {fileID: 212134028590795654}
   - component: {fileID: 50952677935903488}
+  - component: {fileID: 61861304575841830}
   - component: {fileID: 114415682447259536}
-  - component: {fileID: 70106837517930922}
   - component: {fileID: 114953495467383190}
   - component: {fileID: 114253544264562374}
   - component: {fileID: 114287987536527828}
@@ -103,8 +103,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1051562760724500}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 6.14, y: -3.17, z: 0}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 1}
   m_Children:
   - {fileID: 4046986586108624}
   - {fileID: 4793974594099678}
@@ -173,8 +173,8 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 8.5
---- !u!70 &70106837517930922
-CapsuleCollider2D:
+--- !u!61 &61861304575841830
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -185,9 +185,19 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.03232336, y: 0}
-  m_Size: {x: 1.8553534, y: 3.06}
-  m_Direction: 0
+  m_Offset: {x: 0.05, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.28, y: 2.56}
+    newSize: {x: 1.92, y: 3.06}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.56}
+  m_EdgeRadius: 0
 --- !u!114 &114253544264562374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -268,7 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc8330cfd73a48439e1840f93138a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attachedBody: {fileID: 70106837517930922}
+  attachedBody: {fileID: 0}
   currentInteraction: {fileID: 0}
 --- !u!114 &114901048139136982
 MonoBehaviour:
@@ -330,7 +340,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9ee1efcfd0ad0d34191018554c61cf80, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8302ad5b529c86440a4e2307a19053f2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
