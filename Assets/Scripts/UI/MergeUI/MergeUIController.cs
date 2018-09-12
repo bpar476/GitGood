@@ -37,7 +37,7 @@ public class MergeUIController : MonoBehaviour {
 			RectTransform rTransform = uiObj.GetComponent<RectTransform>();
 			rTransform.SetParent(unresolvedControllersRegion, false);
 			rTransform.anchoredPosition = new Vector2(rTransform.anchoredPosition.x, yPos);
-			yPos -= 20.0f;
+			yPos -= 50.0f;
 		}
 	}
 
