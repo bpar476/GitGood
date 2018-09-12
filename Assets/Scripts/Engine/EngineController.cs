@@ -19,6 +19,7 @@ public class EngineController : Singleton<EngineController> {
             player = GameObject.FindGameObjectWithTag("Player");
         }
         controlsEnabled = enabled;
+        Debug.Log("Setting controls to: " + controlsEnabled);
         player.GetComponent<PlayerMovement>().enabled = controlsEnabled;
         player.GetComponent<VersionControls>().enabled = controlsEnabled;
         player.GetComponent<PlayerInteraction>().enabled = controlsEnabled;
@@ -30,6 +31,14 @@ public class EngineController : Singleton<EngineController> {
             player = GameObject.FindGameObjectWithTag("Player");
         }
         player.GetComponent<PlayerMovement>().enabled = enabled;
+    }
+
+    public void DisableControls() {
+        ToggleControls(false);
+    }
+
+    public void EnableControls() {
+        ToggleControls(true);
     }
     
     public bool ControlsEnabled() {
