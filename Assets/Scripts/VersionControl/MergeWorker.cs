@@ -10,6 +10,7 @@ public class MergeWorker : IMergeWorker
     private bool isMergable;
     private Relationship mergeType;
     private ICollection<VersionController> ffControllers, resolvedControllers, conflictControllers;
+    private ICollection<Renderer> hiddenSprites;
 
     private IDictionary<VersionController, IVersion> stagingArea;
 
@@ -78,6 +79,8 @@ public class MergeWorker : IMergeWorker
         ffControllers = new HashSet<VersionController>();
         resolvedControllers = new HashSet<VersionController>();
         conflictControllers = new HashSet<VersionController>();
+
+        hiddenSprites = new HashSet<Renderer>();
 
         IEnumerable<VersionController> intersection = baseBranch.GetTip().GetTrackedObjects().Intersect(featureBranch.GetTip().GetTrackedObjects());
         foreach (VersionController trackedObject in intersection) {
@@ -188,14 +191,21 @@ public class MergeWorker : IMergeWorker
             // TODO: Somehow enable selectivity of the game object associated with this vesion controller in both overlays
         }
 
+        //Hide the real object so that they can focus on the merge previews
         foreach (VersionController conflictController in conflictControllers) {
-            // TODO: Somehow enable selectivity of the game object associated with this vesion controller in both overlays
+            Renderer conflictRenderer = conflictController.GetActiveVersion().GetComponent<Renderer>();
+            conflictRenderer.enabled = false;
+            hiddenSprites.Add(conflictRenderer);
         }
     }
 
     private void DestroyOverlays() {
         this.baseOverlay.Destroy();
         this.featureOverlay.Destroy();
+
+        foreach (Renderer conflictRenderer in hiddenSprites) {
+            conflictRenderer.enabled = true;
+        }
     }
 
     public GameObject GetBasePreviewForVersionedObject(VersionController versionedObject) {
