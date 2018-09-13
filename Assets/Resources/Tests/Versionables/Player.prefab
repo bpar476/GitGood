@@ -29,6 +29,8 @@ GameObject:
   - component: {fileID: 114901048139136982}
   - component: {fileID: 114782425914990496}
   - component: {fileID: 114362248334850454}
+  - component: {fileID: 114702011605540184}
+  - component: {fileID: 114832646234655906}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -267,6 +269,20 @@ MonoBehaviour:
   fovAngle: 45
   triggerZone: {fileID: 58717030947772284}
   forwards: {fileID: 4804291237761936}
+--- !u!114 &114702011605540184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1051562760724500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c46b3583e685d459090915d363547f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: {fileID: 114832646234655906}
+  defaultSprite: {fileID: 21300000, guid: 8302ad5b529c86440a4e2307a19053f2, type: 3}
+  otherSprite: {fileID: 21300000, guid: 9ee1efcfd0ad0d34191018554c61cf80, type: 3}
 --- !u!114 &114782425914990496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -280,6 +296,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachedBody: {fileID: 61861304575841830}
   currentInteraction: {fileID: 0}
+--- !u!114 &114832646234655906
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1051562760724500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc58bacf8c86cf44289e10756cccac23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sequence:
+  - UpArrow
+  - UpArrow
+  - DownArrow
+  - DownArrow
+  - LeftArrow
+  - RightArrow
+  - LeftArrow
+  - RightArrow
+  - B
+  - A
 --- !u!114 &114901048139136982
 MonoBehaviour:
   m_ObjectHideFlags: 1
