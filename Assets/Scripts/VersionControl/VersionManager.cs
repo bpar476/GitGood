@@ -443,7 +443,9 @@ public class VersionManager : Singleton<VersionManager> {
 			return null;
 		}
 
-		Camera.main.GetComponent<MergeInterfaceCamera>().enabled = false;
+		if (Camera.main != null) {
+			Camera.main.GetComponent<MergeInterfaceCamera>().enabled = false;
+		}
 
 		return CreateMergeCommit("Merge Commit");
 	}
