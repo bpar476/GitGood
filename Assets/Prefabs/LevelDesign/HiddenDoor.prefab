@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 95584222697994962}
   - component: {fileID: 114813518460970748}
   - component: {fileID: 61441009663106622}
+  - component: {fileID: 114581340782225596}
   m_Layer: 0
   m_Name: BackgroundDoor
   m_TagString: Untagged
@@ -129,6 +130,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trigger: {fileID: 0}
   door: {fileID: 114813518460970748}
+--- !u!114 &114581340782225596
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1989304286505610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608c8741258a90a45b804f313496bcab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114813518460970748
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01cf390a7a03117459c9c643c1135103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trigger: {fileID: 114581340782225596}
   doorAnimator: {fileID: 95584222697994962}
 --- !u!212 &212635410114956000
 SpriteRenderer:

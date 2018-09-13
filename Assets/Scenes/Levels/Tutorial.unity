@@ -379,6 +379,7 @@ Transform:
   - {fileID: 26027247}
   - {fileID: 1086671970}
   - {fileID: 889762460}
+  - {fileID: 827459638}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4791,6 +4792,63 @@ MonoBehaviour:
   timesToTrigger: 1
   flowchart: {fileID: 758223079}
   message: tutorial_add
+--- !u!1 &827459637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 827459638}
+  - component: {fileID: 827459639}
+  - component: {fileID: 827459640}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &827459638
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 827459637}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 132118999}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &827459639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 827459637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcafdf8f2a7bb6a43ac9967e66f78d0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: {fileID: 1125997963}
+  oneShot: 1
+  timesToTrigger: 1
+  levelCode: 0
+  levelController: {fileID: 827459640}
+--- !u!114 &827459640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 827459637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc27fccb6b00f4da2a2572b43e735aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &843589347
 GameObject:
   m_ObjectHideFlags: 0
@@ -5608,6 +5666,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608c8741258a90a45b804f313496bcab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1125997963 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114581340782225596, guid: 736f2c72f97ce1545b0f8ec8de7eadf8,
+    type: 2}
+  m_PrefabInternal: {fileID: 413450366}
+  m_Script: {fileID: 11500000, guid: 608c8741258a90a45b804f313496bcab, type: 3}
 --- !u!114 &1141077891 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114392074970066162, guid: 563c5148a634a46ad9fdd3400705e3be,
