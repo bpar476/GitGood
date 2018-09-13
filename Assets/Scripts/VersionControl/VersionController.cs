@@ -36,6 +36,9 @@ public class VersionController : MonoBehaviour {
 		if (initialPosition == null) {
 			initialPosition = new GameObject().transform;
 		}
+
+		VersionManager.Instance().Add(this);
+		VersionManager.Instance().Commit("Initial Commit for " + this.objectName, true);
 	}
 
 	#region accessors
