@@ -22,7 +22,7 @@ public class OneShotConditionalDoor : PositiveTriggerObserver {
 				VersionController playerVersionController = other.gameObject.GetComponentInParent<VersionController>();
 				VersionManager manager = VersionManager.Instance();
 				manager.Add(playerVersionController);
-				manager.Commit("Left room");
+				manager.Commit("Left room", true);
 				UIController.Instance().UpdateOverlay();
 				GameObject.Find("AutocommitText").GetComponent<FlashText>().Flash();
 				shut = true;

@@ -35,6 +35,8 @@ public class VersionManager : Singleton<VersionManager> {
 	private VersionController lastStagedObject;
 	private VersionController lastUnstagedObject;
 
+	private IBranch lastCreatedBranch;
+
 	private IMergeWorker mw;
 
 	private VersionManager() {
@@ -131,11 +133,32 @@ public class VersionManager : Singleton<VersionManager> {
 	}
 
 	/// <summary>
+	/// Wrapper method for commit API. Checks if player is able to commit yet.
+	/// </summary>
+	/// <param name="message">The commit message</param>
+	/// <returns>The commit if the player is able to commit, null otherwise</returns>
+	public ICommit Commit(string message) {
+		if (!EnabledVersionControls.Instance().CanCommit) {
+			Debug.Log("Can't Commit; not enabled yet");
+			return null;
+		} else {
+			return this.Commit(message, false);
+		}
+	}
+
+	/// <summary>
 	/// Creates a new commit from the current state of the staging area.
 	/// Appends the commit to the current branch and clears the staging area.
 	/// Clears the preview of the staging area.
+	/// 
+	/// Additional parameter for forcing commits through the player's enabled version control mechanics
+	/// such as for oneShot doors.
 	/// </summary>
-	public ICommit Commit(string message) {
+	public ICommit Commit(string message, bool forced) {
+		if (!EnabledVersionControls.Instance().CanCommit && !forced) {
+			Debug.Log("Can't Commit; not enabled yet");
+			return null;
+		}
 		if (isDetached) {
 			throw new InvalidOperationException("Cannot commit in detached HEAD state");
 		}
@@ -216,6 +239,10 @@ public class VersionManager : Singleton<VersionManager> {
 	/// if we are on a branch
 	/// </summary>
 	public void ResetToHead() {
+		if (!EnabledVersionControls.Instance().CanReset) {
+			Debug.Log("Can't Reset; not enabled yet");
+			return;
+		}
 		LoadStateOfCommit(activeBranch.GetTip());
 	}
 
@@ -224,7 +251,10 @@ public class VersionManager : Singleton<VersionManager> {
 	/// branch if we are on a branch.
 	/// </summary>
 	public void ResetToHead(VersionController versionedObject) {
-		if (activeBranch != null) {
+		if (!EnabledVersionControls.Instance().CanReset) {
+			Debug.Log("Can't Reset; not enabled yet");
+			return;
+		} else if (activeBranch != null) {
 			LoadStateOfCommit(activeBranch.GetTip(), versionedObject);
 		}
 	}
@@ -256,6 +286,11 @@ public class VersionManager : Singleton<VersionManager> {
 	/// Checks out the given commit on the given branch
 	/// </summary>
 	public void Checkout(IBranch branch, ICommit commit) {
+		// Need to allow them to checkout the last created branch because that's how "create branch" works
+		if (!EnabledVersionControls.Instance().CanCheckout && !lastCreatedBranch.Equals(branch)) {
+			Debug.Log("Can't Checkout branch; not enabled yet");
+			return;
+		}
 		LoadStateOfCommit(commit);
 		activeCommit = commit;
 		activeBranch = branch;
@@ -314,6 +349,10 @@ public class VersionManager : Singleton<VersionManager> {
 	/// Does not check out the newly created branch
 	/// </summary>
 	public IBranch CreateBranch(string branchName) {
+		if (!EnabledVersionControls.Instance().CanBranch) {
+			Debug.Log("Can't Branch; not enabled yet");
+			return null;
+		}
 		if (HasBranch(branchName)) {
 			throw new System.ArgumentException("Branch already exists");
 		}
@@ -324,6 +363,8 @@ public class VersionManager : Singleton<VersionManager> {
 		if (branchTrigger != null) {
 			branchTrigger.Trigger();
 		}
+
+		lastCreatedBranch = branch;
 
 		return branch;
 	}
@@ -402,6 +443,9 @@ public class VersionManager : Singleton<VersionManager> {
 	
 	#region Merging
 	public Relationship Merge(IBranch featureBranch) {
+		if (!EnabledVersionControls.Instance().CanMerge) {
+			Debug.Log("Merging not enabled yet");
+		}
 		if (isDetached) {
 			throw new Exception("Can't merge if detached");
 		}
@@ -443,7 +487,9 @@ public class VersionManager : Singleton<VersionManager> {
 			return null;
 		}
 
-		Camera.main.GetComponent<MergeInterfaceCamera>().enabled = false;
+		if (Camera.main != null) {
+			Camera.main.GetComponent<MergeInterfaceCamera>().enabled = false;
+		}
 
 		return CreateMergeCommit("Merge Commit");
 	}
