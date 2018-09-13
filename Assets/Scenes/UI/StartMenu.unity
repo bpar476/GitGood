@@ -377,6 +377,7 @@ GameObject:
   - component: {fileID: 798129732}
   - component: {fileID: 798129734}
   - component: {fileID: 798129733}
+  - component: {fileID: 798129735}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -436,6 +437,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 798129731}
+--- !u!114 &798129735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 798129731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebe0627a16ab594b84c882adb8f1474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxPeriod: 0.4
+  minPeriod: 0.2
+  maxDelay: 0.8
+  minDelay: 0.1
 --- !u!1 &1089608663
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,7 +510,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 9ebb6ca5ee4094addac513cf8528f1e1, type: 2}
     m_FontSize: 0
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 100
     m_Alignment: 4
