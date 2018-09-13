@@ -1477,7 +1477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: -728.3743, y: -22.792295}
+  scrollPos: {x: -1850.7175, y: 65.50561}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 347
@@ -1489,9 +1489,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 758223122}
+  - {fileID: 758223159}
   selectedCommands:
-  - {fileID: 758223220}
+  - {fileID: 758223170}
   variables: []
   description: 
   stepPause: 0
@@ -3642,7 +3642,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 115
   indentLevel: 0
-  storyText: But be careful, your actions have consequences.
+  storyText: Use the box in here to reach that door. Be careful, your actions in there
+    have consequences.
   description: 
   character: {fileID: 1613906548}
   portrait: {fileID: 21300000, guid: 789b72b06c21b194ca9cb23f6c80747f, type: 3}
@@ -7790,6 +7791,15 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
+  - first: {x: 22, y: -4, z: 0}
+    second:
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
   - first: {x: 38, y: -4, z: 0}
     second:
       m_TileIndex: 1
@@ -7800,6 +7810,15 @@ Tilemap:
       m_TileFlags: 1
       m_ColliderType: 1
   - first: {x: -8, y: -3, z: 0}
+    second:
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: 22, y: -3, z: 0}
     second:
       m_TileIndex: 1
       m_TileSpriteIndex: 1
@@ -7899,33 +7918,6 @@ Tilemap:
       m_TileFlags: 1
       m_ColliderType: 1
   - first: {x: 7, y: 0, z: 0}
-    second:
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 1
-      m_ColliderType: 1
-  - first: {x: 22, y: 0, z: 0}
-    second:
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 1
-      m_ColliderType: 1
-  - first: {x: 23, y: 0, z: 0}
-    second:
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 1
-      m_ColliderType: 1
-  - first: {x: 24, y: 0, z: 0}
     second:
       m_TileIndex: 1
       m_TileSpriteIndex: 1
@@ -8078,7 +8070,16 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
-  - first: {x: 22, y: 1, z: 0}
+  - first: {x: 25, y: 1, z: 0}
+    second:
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: 26, y: 1, z: 0}
     second:
       m_TileIndex: 1
       m_TileSpriteIndex: 1
@@ -8106,6 +8107,33 @@ Tilemap:
       m_TileFlags: 1
       m_ColliderType: 1
   - first: {x: 22, y: 2, z: 0}
+    second:
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: 23, y: 2, z: 0}
+    second:
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: 24, y: 2, z: 0}
+    second:
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: 25, y: 2, z: 0}
     second:
       m_TileIndex: 1
       m_TileSpriteIndex: 1
@@ -8424,19 +8452,19 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 50affa643770fd1458456065041c1909, type: 2}
-  - m_RefCount: 126
+  - m_RefCount: 129
     m_Data: {fileID: 11400000, guid: 01dee20100ef2ed45864e266e62f20d1, type: 2}
   - m_RefCount: 16
     m_Data: {fileID: 11400000, guid: 0cb4cdcd86b8c4849b5a5a7ac864e642, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: 21300020, guid: 0583dbf41e94ee24eb11bf1d27f70223, type: 3}
-  - m_RefCount: 126
+  - m_RefCount: 129
     m_Data: {fileID: 21300004, guid: 0583dbf41e94ee24eb11bf1d27f70223, type: 3}
   - m_RefCount: 16
     m_Data: {fileID: 21300000, guid: 0583dbf41e94ee24eb11bf1d27f70223, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 143
+  - m_RefCount: 146
     m_Data:
       e00: 1
       e01: 0
@@ -8455,7 +8483,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 143
+  - m_RefCount: 146
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8514,8 +8542,16 @@ CompositeCollider2D:
     m_ColliderPaths:
     - - X: 390000000
         Y: 10000000
-      - X: 230000000
+      - X: 270000000
         Y: 10000000
+      - X: 270000000
+        Y: 20000000
+      - X: 260000000
+        Y: 20000000
+      - X: 260000000
+        Y: 30000000
+      - X: 230000000
+        Y: 30000000
       - X: 230000000
         Y: 50000000
       - X: -80000000
@@ -8532,6 +8568,14 @@ CompositeCollider2D:
         Y: -80000000
       - X: 270000000
         Y: -40000000
+      - X: 230000000
+        Y: -40000000
+      - X: 230000000
+        Y: 0
+      - X: 220000000
+        Y: 0
+      - X: 220000000
+        Y: -40000000
       - X: 30000000
         Y: -40000000
       - X: 30000000
@@ -8555,10 +8599,10 @@ CompositeCollider2D:
       - X: 220000000
         Y: 40000000
       - X: 220000000
-        Y: -20000000
-      - X: 230000000
-        Y: -20000000
-      - X: 230000000
+        Y: 20000000
+      - X: 250000000
+        Y: 20000000
+      - X: 250000000
         Y: 0
       - X: 380000000
         Y: 0
@@ -8567,7 +8611,11 @@ CompositeCollider2D:
   m_CompositePaths:
     m_Paths:
     - - {x: 39, y: 1}
-      - {x: 23, y: 1}
+      - {x: 27, y: 1}
+      - {x: 27, y: 2}
+      - {x: 26, y: 2}
+      - {x: 26, y: 3}
+      - {x: 23, y: 3}
       - {x: 23, y: 5}
       - {x: -8, y: 5}
       - {x: -8, y: -5}
@@ -8576,6 +8624,10 @@ CompositeCollider2D:
       - {x: 39, y: -9}
     - - {x: 27, y: -8}
       - {x: 27, y: -4}
+      - {x: 23, y: -4}
+      - {x: 23, y: 0}
+      - {x: 22, y: 0}
+      - {x: 22, y: -4}
       - {x: 3, y: -4}
       - {x: 3, y: -3}
       - {x: 2, y: -3}
@@ -8587,9 +8639,9 @@ CompositeCollider2D:
       - {x: 8, y: -2}
       - {x: 8, y: 4}
       - {x: 22, y: 4}
-      - {x: 22, y: -2}
-      - {x: 23, y: -2}
-      - {x: 23, y: 0}
+      - {x: 22, y: 2}
+      - {x: 25, y: 2}
+      - {x: 25, y: 0}
       - {x: 38, y: 0}
       - {x: 38, y: -8}
   m_VertexDistance: 0.0005
@@ -9389,7 +9441,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4885219580169932, guid: efe52982cb2cd6d4ba785c51eb525be8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4885219580169932, guid: efe52982cb2cd6d4ba785c51eb525be8, type: 2}
       propertyPath: m_LocalPosition.z
@@ -9428,6 +9480,21 @@ Prefab:
     - target: {fileID: 114720755694634508, guid: efe52982cb2cd6d4ba785c51eb525be8,
         type: 2}
       propertyPath: timesToTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61855577285021342, guid: efe52982cb2cd6d4ba785c51eb525be8,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 61855577285021342, guid: efe52982cb2cd6d4ba785c51eb525be8,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 61855577285021342, guid: efe52982cb2cd6d4ba785c51eb525be8,
+        type: 2}
+      propertyPath: m_Offset.x
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
