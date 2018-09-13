@@ -21,12 +21,18 @@ public class LevelManager : Singleton<LevelManager> {
     }
 
     private Level ResolveLevel(LevelType levelType) {
+        Level level;
         switch (levelType) {
             case LevelType.TUTORIAL_1:
-                return new Level("Tutorial");
+                level = new Level("Tutorial");
+                level.AppendTeardownHook(() => {
+                    Destroy(EngineController.Instance().gameObject);
+                });
+                return level;
             default:
             case LevelType.MAIN_MENU:
-                return new Level("TestLevel");
+                level = new Level("StartMenu");
+                return level;
         }
     }
 }
