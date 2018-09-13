@@ -16,7 +16,9 @@ public class TextButtonDialogControls : MonoBehaviour {
 			EngineController.Instance().ToggleControls(true);
 		}
 		else if (Input.GetKeyDown(KeyCode.Return)) {
-			gameObject.GetComponent<TextButtonDialogController>().submitButton.onClick.Invoke();
+			if (gameObject.GetComponent<TextButtonDialogController>().submitButton.enabled) {
+				gameObject.GetComponent<TextButtonDialogController>().submitButton.onClick.Invoke();
+			}
 		}
 	}
 }

@@ -10,6 +10,7 @@ public class MergeWorker : IMergeWorker
     private bool isMergable;
     private Relationship mergeType;
     private ICollection<VersionController> ffControllers, resolvedControllers, conflictControllers;
+    private ICollection<Renderer> hiddenSprites;
 
     private IDictionary<VersionController, IVersion> stagingArea;
 
@@ -78,6 +79,8 @@ public class MergeWorker : IMergeWorker
         ffControllers = new HashSet<VersionController>();
         resolvedControllers = new HashSet<VersionController>();
         conflictControllers = new HashSet<VersionController>();
+
+        hiddenSprites = new HashSet<Renderer>();
 
         IEnumerable<VersionController> intersection = baseBranch.GetTip().GetTrackedObjects().Intersect(featureBranch.GetTip().GetTrackedObjects());
         foreach (VersionController trackedObject in intersection) {
@@ -160,8 +163,11 @@ public class MergeWorker : IMergeWorker
     }
 
     public void RenderDiff() {
-        this.baseOverlay = new Overlay(baseBranch.GetTip(), new Color(0.5f, 0f, 1f, 0.5f));
-        this.featureOverlay = new Overlay(featureBranch.GetTip(), new Color(1f, 1f, 0f, 0.5f));
+        // Blue Overlay
+        this.baseOverlay = new Overlay(baseBranch.GetTip(), new Color(0.278f, 1f, 0.916f, 0.5f));
+
+        // Pink Overlay
+        this.featureOverlay = new Overlay(featureBranch.GetTip(), new Color(0.7f, 0.22f, 0.63f, 0.5f));
 
         foreach (VersionController ffController in ffControllers) {
             if (baseBranch.GetTip().ObjectIsTrackedInThisCommit(ffController)) {
@@ -185,14 +191,21 @@ public class MergeWorker : IMergeWorker
             // TODO: Somehow enable selectivity of the game object associated with this vesion controller in both overlays
         }
 
+        //Hide the real object so that they can focus on the merge previews
         foreach (VersionController conflictController in conflictControllers) {
-            // TODO: Somehow enable selectivity of the game object associated with this vesion controller in both overlays
+            Renderer conflictRenderer = conflictController.GetActiveVersion().GetComponent<Renderer>();
+            conflictRenderer.enabled = false;
+            hiddenSprites.Add(conflictRenderer);
         }
     }
 
     private void DestroyOverlays() {
         this.baseOverlay.Destroy();
         this.featureOverlay.Destroy();
+
+        foreach (Renderer conflictRenderer in hiddenSprites) {
+            conflictRenderer.enabled = true;
+        }
     }
 
     public GameObject GetBasePreviewForVersionedObject(VersionController versionedObject) {
