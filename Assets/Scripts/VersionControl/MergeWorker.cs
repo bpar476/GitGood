@@ -128,12 +128,13 @@ public class MergeWorker : IMergeWorker
     }
 
     public void End() {
-        this.ui.gameObject.SetActive(false);
-        oldStatusUI.SetActive(true);
+        if (this.ui != null) {
+            this.ui.gameObject.SetActive(false);
+            oldStatusUI.SetActive(true);
+            Camera.main.GetComponent<MergeInterfaceCamera>().enabled = false;
+        }
         Debug.Log("In End");
-        Camera.main.GetComponent<MergeInterfaceCamera>().enabled = false;
         this.DestroyOverlays();
-
     }
 
     public bool IsResolved() {
@@ -194,8 +195,10 @@ public class MergeWorker : IMergeWorker
         //Hide the real object so that they can focus on the merge previews
         foreach (VersionController conflictController in conflictControllers) {
             Renderer conflictRenderer = conflictController.GetActiveVersion().GetComponent<Renderer>();
-            conflictRenderer.enabled = false;
-            hiddenSprites.Add(conflictRenderer);
+            if (conflictRenderer != null) {
+                conflictRenderer.enabled = false;
+                hiddenSprites.Add(conflictRenderer);
+            }
         }
     }
 
