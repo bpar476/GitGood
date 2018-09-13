@@ -133,12 +133,29 @@ public class VersionManager : Singleton<VersionManager> {
 	}
 
 	/// <summary>
+	/// Wrapper method for commit API. Checks if player is able to commit yet.
+	/// </summary>
+	/// <param name="message">The commit message</param>
+	/// <returns>The commit if the player is able to commit, null otherwise</returns>
+	public ICommit Commit(string message) {
+		if (!EnabledVersionControls.Instance().CanCommit) {
+			Debug.Log("Can't Commit; not enabled yet");
+			return null;
+		} else {
+			return this.Commit(message, false);
+		}
+	}
+
+	/// <summary>
 	/// Creates a new commit from the current state of the staging area.
 	/// Appends the commit to the current branch and clears the staging area.
 	/// Clears the preview of the staging area.
+	/// 
+	/// Additional parameter for forcing commits through the player's enabled version control mechanics
+	/// such as for oneShot doors.
 	/// </summary>
-	public ICommit Commit(string message) {
-		if (!EnabledVersionControls.Instance().CanCommit) {
+	public ICommit Commit(string message, bool forced) {
+		if (!EnabledVersionControls.Instance().CanCommit && !forced) {
 			Debug.Log("Can't Commit; not enabled yet");
 			return null;
 		}
