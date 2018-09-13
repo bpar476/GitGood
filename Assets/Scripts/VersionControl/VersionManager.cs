@@ -35,6 +35,8 @@ public class VersionManager : Singleton<VersionManager> {
 	private VersionController lastStagedObject;
 	private VersionController lastUnstagedObject;
 
+	private IBranch lastCreatedBranch;
+
 	private IMergeWorker mw;
 
 	private VersionManager() {
@@ -267,7 +269,8 @@ public class VersionManager : Singleton<VersionManager> {
 	/// Checks out the given commit on the given branch
 	/// </summary>
 	public void Checkout(IBranch branch, ICommit commit) {
-		if (!EnabledVersionControls.Instance().CanCheckout) {
+		// Need to allow them to checkout the last created branch because that's how "create branch" works
+		if (!EnabledVersionControls.Instance().CanCheckout && !lastCreatedBranch.Equals(branch)) {
 			Debug.Log("Can't Checkout branch; not enabled yet");
 			return;
 		}
@@ -343,6 +346,8 @@ public class VersionManager : Singleton<VersionManager> {
 		if (branchTrigger != null) {
 			branchTrigger.Trigger();
 		}
+
+		lastCreatedBranch = branch;
 
 		return branch;
 	}
