@@ -136,6 +136,10 @@ public class VersionManager : Singleton<VersionManager> {
 	/// Clears the preview of the staging area.
 	/// </summary>
 	public ICommit Commit(string message) {
+		if (!EnabledVersionControls.Instance().CanCommit) {
+			Debug.Log("Can't Commit; not enabled yet");
+			return null;
+		}
 		if (isDetached) {
 			throw new InvalidOperationException("Cannot commit in detached HEAD state");
 		}
@@ -216,6 +220,10 @@ public class VersionManager : Singleton<VersionManager> {
 	/// if we are on a branch
 	/// </summary>
 	public void ResetToHead() {
+		if (!EnabledVersionControls.Instance().CanReset) {
+			Debug.Log("Can't Reset; not enabled yet");
+			return;
+		}
 		LoadStateOfCommit(activeBranch.GetTip());
 	}
 
@@ -224,7 +232,10 @@ public class VersionManager : Singleton<VersionManager> {
 	/// branch if we are on a branch.
 	/// </summary>
 	public void ResetToHead(VersionController versionedObject) {
-		if (activeBranch != null) {
+		if (!EnabledVersionControls.Instance().CanReset) {
+			Debug.Log("Can't Reset; not enabled yet");
+			return;
+		} else if (activeBranch != null) {
 			LoadStateOfCommit(activeBranch.GetTip(), versionedObject);
 		}
 	}
@@ -256,6 +267,10 @@ public class VersionManager : Singleton<VersionManager> {
 	/// Checks out the given commit on the given branch
 	/// </summary>
 	public void Checkout(IBranch branch, ICommit commit) {
+		if (!EnabledVersionControls.Instance().CanCheckout) {
+			Debug.Log("Can't Checkout branch; not enabled yet");
+			return;
+		}
 		LoadStateOfCommit(commit);
 		activeCommit = commit;
 		activeBranch = branch;
@@ -314,6 +329,10 @@ public class VersionManager : Singleton<VersionManager> {
 	/// Does not check out the newly created branch
 	/// </summary>
 	public IBranch CreateBranch(string branchName) {
+		if (!EnabledVersionControls.Instance().CanBranch) {
+			Debug.Log("Can't Branch; not enabled yet");
+			return null;
+		}
 		if (HasBranch(branchName)) {
 			throw new System.ArgumentException("Branch already exists");
 		}
@@ -402,6 +421,9 @@ public class VersionManager : Singleton<VersionManager> {
 	
 	#region Merging
 	public Relationship Merge(IBranch featureBranch) {
+		if (!EnabledVersionControls.Instance().CanMerge) {
+			Debug.Log("Merging not enabled yet");
+		}
 		if (isDetached) {
 			throw new Exception("Can't merge if detached");
 		}

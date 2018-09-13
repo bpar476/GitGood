@@ -20,6 +20,11 @@ public class UIController : Singleton<UIController> {
     }
 
 	void Start() {
+		EnabledVersionControls playerVersionControls = EnabledVersionControls.Instance();
+		GameObject.Find("Overlay/Status/CommitButton").GetComponent<Button>().interactable = playerVersionControls.CanCommit;
+		GameObject.Find("Overlay/Status/BranchButton").GetComponent<Button>().interactable = playerVersionControls.CanBranch;
+		GameObject.Find("Overlay/Status/CheckoutButton").GetComponent<Button>().interactable = playerVersionControls.CanCheckout;
+		GameObject.Find("Overlay/Status/ResetButton").GetComponent<Button>().interactable = playerVersionControls.CanReset;
 		UpdateOverlay();
 	}
 
@@ -57,6 +62,10 @@ public class UIController : Singleton<UIController> {
 	}
 
 	public void DisplayBranchDialog() {
+		if (!EnabledVersionControls.Instance().CanBranch) {
+			Debug.Log("Can't Branch; not enabled yet");
+			return;
+		}
 		EngineController.Instance().ToggleControls(false);
 		GameObject dialog = Instantiate(textButttonDialogTemplate, transform) as GameObject;
 		TextButtonDialogController dialogController = dialog.GetComponent<TextButtonDialogController>();
@@ -108,6 +117,10 @@ public class UIController : Singleton<UIController> {
 	}
 
 	public void DisplayCommitDialog() {
+		if (!EnabledVersionControls.Instance().CanCommit) {
+			Debug.Log("Can't commit; not enabled");
+			return;
+		}
 		EngineController.Instance().ToggleControls(false);
 		GameObject dialog = Instantiate(textButttonDialogTemplate, transform) as GameObject;
 		TextButtonDialogController dialogController = dialog.GetComponent<TextButtonDialogController>();
@@ -178,6 +191,10 @@ public class UIController : Singleton<UIController> {
 	}
 
 	public void DisplayMergeDialog() {
+		if (!EnabledVersionControls.Instance().CanMerge) {
+			Debug.Log("Can't Merge; not enabled yet");
+			return;
+		}
 		EngineController.Instance().ToggleControls(false);
 		GameObject dialog = Instantiate(textButttonDialogTemplate, transform) as GameObject;
 		TextButtonDialogController dialogController = dialog.GetComponent<TextButtonDialogController>();
